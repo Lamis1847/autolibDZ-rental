@@ -1,4 +1,4 @@
-# autolib
+# autolib rental app
 
 Check out [this blog post](https://blog.mindorks.com/mvvm-architecture-android-tutorial-for-beginners-step-by-step-guide) to better understand the architecture elements and to have an example of it
 
