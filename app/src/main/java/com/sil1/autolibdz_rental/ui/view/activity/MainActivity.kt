@@ -1,4 +1,4 @@
-package com.sil1.autolibdz_rental.ui.view
+package com.sil1.autolibdz_rental.ui.view.activity
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
