@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:showIn="navigation_view">
+
+    <group android:checkableBehavior="single">
+        <item
+            android:id="@+id/nav_home"
+            android:icon="@drawable/menu_home"
+            android:title="@string/menu_home" />
+        <item
+            android:id="@+id/nav_history"
+            android:icon="@drawable/menu_history"
+            android:title="@string/menu_history" />
+        <item
+            android:id="@+id/nav_reclamation"
+            android:icon="@drawable/menu_reclamation"
+            android:title="@string/menu_reclamation" />
+        <item
+            android:id="@+id/nav_assistance"
+            android:icon="@drawable/menu_assistance"
+            android:title="@string/menu_assistance" />
+        <item
+            android:id="@+id/nav_balance"
+            android:icon="@drawable/menu_balance"
+            android:title="@string/menu_balance" />
+    </group>
+</menu>
