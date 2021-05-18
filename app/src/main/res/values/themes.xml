@@ -13,4 +13,18 @@
         <item name="android:statusBarColor" tools:targetApi="l">?attr/colorPrimaryVariant</item>
         <!-- Customize your theme here. -->
     </style>
+
+    <style name="Theme.AutolibDZrental.NoActionBar">
+        <item name="windowActionBar">false</item>
+        <item name="windowNoTitle">true</item>
+    </style>
+
+    <style name="Theme.AutolibDZrental.AppBarOverlay" parent="ThemeOverlay.AppCompat.Dark.ActionBar" />
+
+    <style name="Theme.AutolibDZrental.PopupOverlay" parent="ThemeOverlay.AppCompat.Light" />
+
+
+    <style name="FontStyle" parent="android:Widget.TextView">
+        <item name="android:fontFamily">@font/gothamblack</item>
+    </style>
 </resources>
