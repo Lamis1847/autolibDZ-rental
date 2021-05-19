@@ -1,8 +1,6 @@
 package com.sil1.autolibdz_rental.data.api
 
-import com.sil1.autolibdz_rental.data.model.Borne
-import com.sil1.autolibdz_rental.data.model.LoginUser
-import com.sil1.autolibdz_rental.data.model.SignInBody
+import com.sil1.autolibdz_rental.data.model.*
 import okhttp3.MultipartBody
 import okhttp3.RequestBody
 import okhttp3.ResponseBody
@@ -20,4 +18,8 @@ interface ServiceProvider {
     fun userLogin(
         @Body info: SignInBody
     ):Call<LoginUser>
+
+    //add new  Locataire
+    @POST("api/locataire/createLocataire")
+    fun ajouterLocataire(@Body userData: Locataire): Call<SignUpResponse>
 }
