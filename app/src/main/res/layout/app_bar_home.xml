@@ -30,7 +30,7 @@
            android:backgroundTint="@color/white"
            android:background="@color/white"
            app:borderWidth="0px"
-           app:srcCompat="@drawable/menu_hamburger" />
+           app:srcCompat="@drawable/ic_menu_hamburger" />
 
 
 

@@ -1,13 +1,16 @@
-package com.sil1.autolibdz_rental.data.api
+package com.sil1.autolibdz_rental.data.repositories
 
 import android.util.Log
 import androidx.lifecycle.MutableLiveData
+import com.sil1.autolibdz_rental.data.api.ServiceBuilder
+import com.sil1.autolibdz_rental.data.api.ServiceProvider
+import com.sil1.autolibdz_rental.data.model.Borne
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
-import com.sil1.autolibdz_rental.data.model.*
 
-class Api {
+class BorneRepository {
+
     companion object {
 
         val api: ServiceProvider by lazy {
@@ -53,5 +56,4 @@ class Api {
         }
 
     }
-
 }

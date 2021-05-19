@@ -26,9 +26,9 @@ class HomeActivity : AppCompatActivity(){
     @SuppressLint("ResourceType")
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-       /* if (!Places.isInitialized()) {
+        if (!Places.isInitialized()) {
             Places.initialize( applicationContext, getString(R.string.api_key));
-        }*/
+        }
 
 
         binding = ActivityHomeBinding.inflate(layoutInflater)
