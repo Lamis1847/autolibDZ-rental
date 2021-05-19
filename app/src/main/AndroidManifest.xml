@@ -28,9 +28,6 @@
             android:name="com.google.android.geo.API_KEY"
             android:value="${MAPS_API_KEY}" />
 
-        <activity android:name=".ui.view.activity.MainActivity">
-
-        </activity>
     </application>
 
 </manifest>
