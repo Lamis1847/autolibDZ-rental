@@ -2,6 +2,7 @@ plugins {
     id 'com.android.application'
     id 'kotlin-android'
     id 'com.google.secrets_gradle_plugin' version '0.5'
+    id 'kotlin-android-extensions'
 
 }
 
@@ -76,6 +77,9 @@ dependencies {
 
     //logger
     implementation("com.squareup.okhttp3:logging-interceptor:4.9.1")
+
+    //JWT for decrypting the token
+    implementation 'com.auth0.android:jwtdecode:2.0.0'
 
 
 }
