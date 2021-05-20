@@ -10,7 +10,6 @@ import com.google.android.gms.auth.api.signin.GoogleSignInClient
 import com.google.android.gms.auth.api.signin.GoogleSignInOptions
 import com.google.android.gms.common.api.ApiException
 import com.google.android.gms.tasks.Task
-import com.google.gson.Gson
 import com.sil1.autolibdz_rental.R
 import com.sil1.autolibdz_rental.data.model.Locataire
 import com.sil1.autolibdz_rental.data.model.SignUpGoogleBody
@@ -18,9 +17,7 @@ import com.sil1.autolibdz_rental.data.repositories.SignUpRepository
 import com.sil1.autolibdz_rental.utils.idTokenUser
 import com.sil1.autolibdz_rental.utils.utils.Companion.showPassword
 import kotlinx.android.synthetic.main.activity_sign_up.*
-import retrofit2.Call
-import retrofit2.Callback
-import retrofit2.Response
+
 
 
 class SignUpActivity : AppCompatActivity() {
