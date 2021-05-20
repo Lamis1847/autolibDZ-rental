@@ -1,6 +1,7 @@
 package com.sil1.autolibdz_rental.ui.view.activity
 
 
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import com.sil1.autolibdz_rental.R
@@ -32,10 +33,11 @@ class LoginActivity : AppCompatActivity() {
             loginActivity.login(this,email,password)
 
 
-            createAccount.setOnClickListener {
-                /*val intent = Intent(this,SignUpActivity::class.java)
-            startActivity(intent)*/
-            }
+
+        }
+        createAccount.setOnClickListener {
+            val intent = Intent(this,SignUpActivity::class.java)
+            startActivity(intent)
         }
     }
 }

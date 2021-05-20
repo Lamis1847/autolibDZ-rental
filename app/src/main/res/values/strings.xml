@@ -50,7 +50,7 @@
     <string name="birthday">Date de naissance</string>
     <string name="email">E-mail</string>
     <string name="phoneNumber">Numéro de téléphone</string>
-    <string name="save">Sauvgarger</string>
+    <string name="save">Sauvgarder</string>
     <string name="logOut">Se déconnecter</string>
     <string name="pwd">    Mot de passe</string>
 
