@@ -1,22 +1,33 @@
 package com.sil1.autolibdz_rental.ui.view.activity
 
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.text.method.HideReturnsTransformationMethod
-import android.text.method.PasswordTransformationMethod
-import android.widget.EditText
-import android.widget.ImageView
 import android.widget.Toast
+import com.google.android.gms.auth.api.signin.GoogleSignIn
+import com.google.android.gms.auth.api.signin.GoogleSignInAccount
+import com.google.android.gms.auth.api.signin.GoogleSignInClient
+import com.google.android.gms.auth.api.signin.GoogleSignInOptions
+import com.google.android.gms.common.api.ApiException
+import com.google.android.gms.tasks.Task
+import com.google.gson.Gson
 import com.sil1.autolibdz_rental.R
 import com.sil1.autolibdz_rental.data.model.Locataire
+import com.sil1.autolibdz_rental.data.model.SignUpGoogleBody
 import com.sil1.autolibdz_rental.data.repositories.SignUpRepository
+import com.sil1.autolibdz_rental.utils.idTokenUser
 import com.sil1.autolibdz_rental.utils.utils.Companion.showPassword
 import kotlinx.android.synthetic.main.activity_sign_up.*
+import retrofit2.Call
+import retrofit2.Callback
+import retrofit2.Response
 
 
 class SignUpActivity : AppCompatActivity() {
     var mIsShowPass = false
     var mIsShowPass2 = false
+    private val RC_SIGN_IN = 9001
+    lateinit var mGoogleSignInClient: GoogleSignInClient
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_sign_up)
@@ -38,9 +49,19 @@ class SignUpActivity : AppCompatActivity() {
                 }
 
             }
-
-
         }
+        // Configure sign-in to request the user's ID, email address, and basic
+        // profile. ID and basic profile are included in DEFAULT_SIGN_IN.
+        val gso = GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
+            .requestIdToken("648513849628-s30qhqtimiq4mclrmb6a85svvt5hk8u6.apps.googleusercontent.com")
+            .requestEmail()
+            .build()
+        mGoogleSignInClient = GoogleSignIn.getClient(this, gso)
+        google_login_btn.setOnClickListener {
+            signIn()
+        }
+
+
         //show and hide password 1
         ivShowHidePass.setOnClickListener {
             mIsShowPass = !mIsShowPass
@@ -80,5 +101,44 @@ class SignUpActivity : AppCompatActivity() {
             return false
         }
         return true
+    }
+
+    private fun signIn() {
+        val signInIntent = mGoogleSignInClient.signInIntent
+        startActivityForResult(
+            signInIntent, RC_SIGN_IN
+        )
+
+    }
+
+    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
+        super.onActivityResult(requestCode, resultCode, data)
+        if (requestCode == RC_SIGN_IN) {
+            val task =
+                GoogleSignIn.getSignedInAccountFromIntent(data)
+            handleSignInResult(task)
+        }
+    }
+
+    private fun handleSignInResult(completedTask: Task<GoogleSignInAccount>) {
+        try {
+            val account = completedTask.getResult(
+                ApiException::class.java
+            )
+            // Signed in successfully
+            idTokenUser = account?.idToken ?: ""
+            println("Google ID Token " + idTokenUser)
+            mGoogleSignInClient.signOut()
+                .addOnCompleteListener(this) {
+                }
+            var token = SignUpGoogleBody(idTokenUser)
+            var SignUpGoogleActivity = SignUpRepository.Companion
+            SignUpGoogleActivity.createLocataireGoogle(this, token)
+        } catch (e: ApiException) {
+            // Sign in was unsuccessful
+            println(
+                "failed code= " + e.statusCode.toString()
+            )
+        }
     }
 }

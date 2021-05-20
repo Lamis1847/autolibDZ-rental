@@ -22,4 +22,8 @@ interface ServiceProvider {
     //add new  Locataire
     @POST("api/locataire/createLocataire")
     fun ajouterLocataire(@Body userData: Locataire): Call<SignUpResponse>
+
+    //add new  Locataire with google api , password == mail
+    @POST("api/locataire/createLocataireGmail")
+    fun ajouterLocataireGoogle(@Body token: SignUpGoogleBody): Call<SignUpResponse>
 }
