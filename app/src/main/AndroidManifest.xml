@@ -11,6 +11,9 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.AutolibDZrental">
+    <activity
+            android:name=".ui.view.activity.ProfilLocataireActivity"
+            android:theme="@style/Theme.AutolibDZrental.NoActionBar"></activity>
         <activity android:name=".ui.view.activity.SignUpActivity"
             android:theme="@style/Theme.AutolibDZrental.NoActionBar"></activity>
         <activity android:name=".ui.view.activity.HomeActivity" />
