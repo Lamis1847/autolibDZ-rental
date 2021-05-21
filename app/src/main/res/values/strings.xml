@@ -56,5 +56,8 @@
 
     <!-- END OF Strings used for profil interface-->
 
+    <!-- FOR KEY SHAREDPREF-->
+    <string name="PREFERENCE_FILE_KEY">com.sil1.autolibdz_rental</string>
+    <!-- END OF SHAREDPREF-->
 
 </resources>
