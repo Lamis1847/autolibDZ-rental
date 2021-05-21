@@ -1,5 +1,6 @@
 package com.sil1.autolibdz_rental.data.repositories
 
+import android.annotation.SuppressLint
 import android.content.Context
 import android.widget.Toast
 import com.auth0.android.jwt.JWT
@@ -27,11 +28,13 @@ class LogInRepository {
             email: String,
             password: String
         ) {
+
             var signinbody = SignInBody(email, password)
             val authLocataireRequest = api.userLogin(signinbody) // consommation de l'api
 
             authLocataireRequest.enqueue(object : Callback<LoginUser> {
 
+                @SuppressLint("RestrictedApi")
                 override fun onResponse(call: Call<LoginUser>, response: Response<LoginUser>) {
                     if (!response.isSuccessful()) {
                         val gson = Gson()
@@ -39,7 +42,7 @@ class LogInRepository {
                             response.errorBody()!!.charStream(),
                             LoginUser::class.java
                         )
-                        Toast.makeText(context, "Erreur dans le login", Toast.LENGTH_LONG).show();
+                        Toast.makeText(context, "Erreur dans le login", Toast.LENGTH_LONG).show()
 
                     } else {
                         val resp = response.body()
@@ -49,19 +52,8 @@ class LogInRepository {
 
                         var jwt = JWT(userToken)
                         var claimID = jwt.getClaim("id") //claimID to have the connected user's ID
-                        var claimRole = jwt.getClaim("role")
+                        var claimRole = jwt.getClaim("role") //claimRole to have the connected user's role
 
-                        /*//saving the information from the token
-                        val sharedPreference =  getSharedPreferences("com.example.autoLibDZ", Context.MODE_PRIVATE)
-                        var editor = sharedPreference.edit()
-                        editor.putString("userID", claimID.asString())
-                        editor.putString("userRole",claimRole.asString())
-                        editor.putBoolean("connected",true)
-                        editor.commit()*/
-
-                        //val intent = Intent(context,ProfilActivity::class.java)
-                        //startActivity(intent)
-                        //finish()*/
                     }
                 }
 
@@ -69,7 +61,6 @@ class LogInRepository {
                     Toast.makeText(context, "Erreur", Toast.LENGTH_SHORT).show()
                 }
             })
-
         }
     }
 }

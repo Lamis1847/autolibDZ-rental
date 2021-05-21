@@ -1,12 +1,14 @@
 package com.sil1.autolibdz_rental.ui.view.activity
 
 
+import android.content.Context
 import android.content.Intent
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import androidx.appcompat.app.AppCompatActivity
 import com.sil1.autolibdz_rental.R
 import com.sil1.autolibdz_rental.data.repositories.LogInRepository
 import kotlinx.android.synthetic.main.activity_login.*
+
 
 class LoginActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -30,13 +32,11 @@ class LoginActivity : AppCompatActivity() {
             }
 
             var loginActivity = LogInRepository.Companion
-            loginActivity.login(this,email,password)
-
-
+           loginActivity.login(this, email, password)
 
         }
         createAccount.setOnClickListener {
-            val intent = Intent(this,SignUpActivity::class.java)
+            val intent = Intent(this, SignUpActivity::class.java)
             startActivity(intent)
         }
     }
