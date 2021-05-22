@@ -61,7 +61,7 @@ class ProfilFragment : Fragment() {
             nom.setText(locataire.get(0)?.nom)
             prenom.setText(locataire.get(0)?.prenom)
             email.setText(locataire.get(0)?.email)
-        
+
     }
 
 //    companion object {
