@@ -20,3 +20,4 @@ data class Borne(
     @SerializedName("nbPlaces")
     var nbPlaces:Int,
 )
+
