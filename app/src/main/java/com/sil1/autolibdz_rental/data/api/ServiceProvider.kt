@@ -28,7 +28,10 @@ interface ServiceProvider {
     fun ajouterLocataireGoogle(@Body token: SignUpGoogleBody): Call<SignUpResponse>
 
     //récupérer les informations d'un locataire
-    @GET("api/locataire/1")
-    fun getLocataire(/*@Header("Authorization") token: String*/): Call<LocataireRetro>
+    @GET("api/locataire/{id}")
+    fun getLocataire(@Path("id") id:String /*@Header("Authorization") token: String*/): Call<LocataireRetro>
+
+    @PUT("api/locataire/{id}")
+    fun editLocataire(@Path("id") id:String,@Body locataire:LocataireRetro/*@Header("Authorization") token: String*/): Call<LocataireModificationResponse>
 
 }
