@@ -1,0 +1,508 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/grey_background"
+    android:backgroundTintMode="add"
+    tools:context=".ui.view.activity.DetailsVehiculeFragment">
+
+    <TextView
+        android:id="@+id/detailsTitleTextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:fontFamily="@font/gotham_black_500"
+        android:text="Détails"
+
+        android:textSize="20dp"
+        app:layout_constraintBottom_toTopOf="@+id/VehiculeImageViewD"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.497"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <ImageView
+        android:id="@+id/VehiculeImageViewD"
+        android:layout_width="406dp"
+        android:layout_height="133dp"
+        android:layout_marginTop="15dp"
+        android:layout_marginBottom="16dp"
+        android:src="@drawable/vehiculeimg"
+        app:layout_constraintBottom_toTopOf="@+id/nomVehiculeD"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/detailsTitleTextView" />
+
+    <TextView
+        android:id="@+id/nomVehiculeD"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:fontFamily="@font/gotham_black_regular"
+        android:text="TextView"
+
+        android:textSize="20dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/VehiculeImageViewD" />
+
+    <TextView
+        android:id="@+id/matriculeVehiculeD"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="12dp"
+        android:fontFamily="@font/gotham_black_500"
+        android:text="927-654-444"
+
+        android:textSize="20dp"
+        app:layout_constraintEnd_toStartOf="@+id/linearLayout"
+        app:layout_constraintHorizontal_bias="0.861"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/nomVehiculeD" />
+
+    <LinearLayout
+        android:id="@+id/linearLayout"
+        android:layout_width="78dp"
+        android:layout_height="29dp"
+        android:layout_marginEnd="80dp"
+        android:orientation="horizontal"
+        app:layout_constraintBottom_toBottomOf="@+id/matriculeVehiculeD"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/matriculeVehiculeD"
+        app:layout_constraintVertical_bias="0.0">
+
+        <ImageView
+            android:id="@+id/imageView3"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="2.5dp"
+            android:layout_weight="1"
+            android:src="@drawable/seats" />
+
+        <TextView
+            android:id="@+id/nbPlacesVehiculeD"
+
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:fontFamily="@font/gotham_black_500"
+            android:text="5"
+            android:textSize="20dp" />
+    </LinearLayout>
+
+    <androidx.cardview.widget.CardView
+        android:id="@+id/marqueVehiculeLayoutD"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="24dp"
+        android:layout_marginTop="30dp"
+        app:cardCornerRadius="10dp"
+        app:layout_constraintEnd_toStartOf="@+id/modeleVehiculeLayoutD"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="@+id/VehiculeImageViewD"
+        app:layout_constraintTop_toBottomOf="@+id/matriculeVehiculeD">
+
+        <LinearLayout
+            android:layout_width="137dp"
+            android:layout_height="65dp"
+
+            android:layout_marginTop="5dp"
+            android:background="@color/white"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/marqueVehiculeTextViewD"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/gotham_black_regular"
+
+                android:text="Marque"
+                android:textAlignment="center" />
+
+            <TextView
+                android:id="@+id/marqueVehiculeD"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:fontFamily="@font/gotham_black_500"
+                android:text="TextView"
+                android:textAlignment="center"
+                android:textFontWeight="900" />
+        </LinearLayout>
+    </androidx.cardview.widget.CardView>
+
+
+    <androidx.cardview.widget.CardView
+        android:id="@+id/modeleVehiculeLayoutD"
+
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="36dp"
+        app:cardCornerRadius="10dp"
+
+        app:layout_constraintBottom_toBottomOf="@+id/marqueVehiculeLayoutD"
+        app:layout_constraintEnd_toEndOf="@+id/VehiculeImageViewD"
+        app:layout_constraintTop_toTopOf="@+id/marqueVehiculeLayoutD"
+        app:layout_constraintVertical_bias="0.0">
+
+        <LinearLayout
+            android:layout_width="139dp"
+            android:layout_height="66dp"
+
+            android:layout_marginTop="5dp"
+            android:background="@color/white"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/modeleVehiculeTextViewD"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+
+                android:fontFamily="@font/gotham_black_regular"
+                android:text="Modèle"
+                android:textAlignment="center" />
+
+            <TextView
+                android:id="@+id/modeleVehiculeD"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+
+                android:fontFamily="@font/gotham_black_500"
+                android:text="TextView"
+                android:textAlignment="center"
+                android:textFontWeight="900" />
+        </LinearLayout>
+    </androidx.cardview.widget.CardView>
+
+    <androidx.cardview.widget.CardView
+        android:id="@+id/typeEnergieLayoutD"
+        android:fontFamily="@font/gotham_black_regular"
+
+
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        app:cardCornerRadius="10dp"
+
+        app:layout_constraintEnd_toStartOf="@+id/vitesseMaxLayoutD"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="@+id/marqueVehiculeLayoutD"
+        app:layout_constraintTop_toBottomOf="@+id/marqueVehiculeLayoutD"
+
+        >
+
+        <LinearLayout
+            android:layout_width="151dp"
+            android:layout_height="66dp"
+            android:background="@color/white"
+            android:orientation="vertical">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+
+                android:layout_height="wrap_content"
+                android:layout_marginTop="5dp"
+                android:layout_marginRight="5dp"
+
+
+                android:orientation="horizontal">
+
+                <ImageView
+                    android:id="@+id/imageView"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:src="@drawable/energie" />
+
+                <TextView
+                    android:id="@+id/typeEnergieTextViewD"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/gotham_black_regular"
+
+                    android:text="Type d'énergie" />
+            </LinearLayout>
+
+            <TextView
+                android:id="@+id/typeEnergieD"
+
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:fontFamily="@font/gotham_black_500"
+                android:text="TextView"
+                android:textAlignment="center"
+                android:textFontWeight="900" />
+        </LinearLayout>
+    </androidx.cardview.widget.CardView>
+
+    <androidx.cardview.widget.CardView
+        android:id="@+id/vitesseMaxLayoutD"
+
+        android:layout_width="wrap_content"
+        android:fontFamily="@font/gotham_black_regular"
+
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        app:cardCornerRadius="10dp"
+        app:layout_constraintBottom_toBottomOf="@+id/typeEnergieLayoutD"
+        app:layout_constraintEnd_toEndOf="@+id/modeleVehiculeLayoutD"
+        app:layout_constraintTop_toTopOf="@+id/typeEnergieLayoutD"
+        app:layout_constraintVertical_bias="1.0">
+
+        <LinearLayout
+
+            android:layout_width="wrap_content"
+            android:layout_height="68dp"
+            android:background="@color/white"
+            android:orientation="vertical">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+
+                android:layout_marginTop="5dp"
+                android:layout_marginRight="5dp"
+                android:orientation="horizontal">
+
+                <ImageView
+                    android:id="@+id/imageView4"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:layout_marginLeft="5dp"
+                    android:layout_marginRight="5dp"
+
+                    android:layout_weight="1"
+                    android:src="@drawable/vitessemax" />
+
+                <TextView
+                    android:id="@+id/vitesseMaxTextViewD"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+
+                    android:fontFamily="@font/gotham_black_regular"
+                    android:text="Vitesse maximale" />
+            </LinearLayout>
+
+            <TextView
+                android:layout_marginTop="10dp"
+
+                android:id="@+id/vitesseMaxD"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/gotham_black_500"
+                android:textFontWeight="900"
+                android:text="TextView"
+                android:textAlignment="center" />
+        </LinearLayout>
+    </androidx.cardview.widget.CardView>
+
+
+    <androidx.cardview.widget.CardView
+        android:id="@+id/capaciteMaxLayoutD"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        app:cardCornerRadius="10dp"
+
+        app:layout_constraintEnd_toEndOf="@+id/vitesseMaxLayoutD"
+        app:layout_constraintStart_toStartOf="@+id/typeEnergieLayoutD"
+        app:layout_constraintTop_toBottomOf="@+id/typeEnergieLayoutD">
+
+        <LinearLayout
+            android:layout_width="338dp"
+            android:layout_height="63dp"
+            android:background="@color/white"
+            android:orientation="vertical">
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+
+                android:layout_marginTop="5dp"
+                android:layout_marginRight="5dp"
+                android:orientation="horizontal">
+
+                <ImageView
+                    android:id="@+id/imageView5"
+                    android:layout_width="39dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:src="@drawable/capacitemax" />
+
+                <TextView
+                    android:id="@+id/capaciteMaxTextViewD"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+
+                    android:fontFamily="@font/gotham_black_regular"
+                    android:text="Capacité maximale du coffre" />
+            </LinearLayout>
+
+            <TextView
+                android:id="@+id/capaciteMaxD"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/gotham_black_500"
+                android:text="TextView"
+                android:textAlignment="center"
+                android:textFontWeight="900" />
+        </LinearLayout>
+    </androidx.cardview.widget.CardView>
+
+    <androidx.cardview.widget.CardView
+        android:id="@+id/puissanceFiscaleLayoutD"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        app:cardCornerRadius="10dp"
+        app:layout_constraintEnd_toEndOf="@+id/capaciteMaxLayoutD"
+        app:layout_constraintStart_toStartOf="@+id/capaciteMaxLayoutD"
+        app:layout_constraintTop_toBottomOf="@+id/capaciteMaxLayoutD">
+
+        <LinearLayout
+            android:layout_width="339dp"
+            android:layout_height="66dp"
+            android:background="@color/white"
+            android:orientation="vertical">
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+
+                android:layout_marginTop="5dp"
+                android:layout_marginRight="5dp"
+                android:orientation="horizontal">
+
+                <ImageView
+                    android:id="@+id/imageView6"
+                    android:layout_width="39dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:src="@drawable/puissancefisc" />
+
+                <TextView
+                    android:id="@+id/puissanceFiscaleTextViewD"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/gotham_black_regular"
+
+                    android:text="Puissance fiscale" />
+            </LinearLayout>
+
+            <TextView
+                android:id="@+id/puissanceFiscaleD"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+
+                android:text="TextView"
+                android:textAlignment="center" />
+        </LinearLayout>
+    </androidx.cardview.widget.CardView>
+
+    <androidx.cardview.widget.CardView
+        android:id="@+id/optionLayoutD"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        app:cardCornerRadius="10dp"
+        app:layout_constraintEnd_toEndOf="@+id/puissanceFiscaleLayoutD"
+        app:layout_constraintStart_toStartOf="@+id/puissanceFiscaleLayoutD"
+        app:layout_constraintTop_toBottomOf="@+id/puissanceFiscaleLayoutD">
+
+        <LinearLayout
+            android:layout_width="370dp"
+            android:layout_height="80dp"
+            android:background="@color/white"
+            android:orientation="vertical">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+
+                android:layout_marginTop="5dp"
+                android:layout_marginRight="5dp"
+                android:orientation="horizontal">
+
+                <ImageView
+                    android:id="@+id/imageView7"
+                    android:layout_width="39dp"
+                    android:layout_height="wrap_content"
+                    android:src="@drawable/options" />
+
+                <TextView
+                    android:id="@+id/optionTextViewD"
+                    android:layout_width="wrap_content"
+
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/gotham_black_regular"
+                    android:text="Options" />
+            </LinearLayout>
+
+            <TextView
+                android:id="@+id/optionVehiculeD"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:fontFamily="@font/gotham_black_500"
+                android:text="TextView"
+                android:textAlignment="center"
+
+                android:textAllCaps="false"
+                android:textFontWeight="900" />
+        </LinearLayout>
+    </androidx.cardview.widget.CardView>
+
+    <Button
+        android:id="@+id/button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="60dp"
+        android:layout_marginTop="24dp"
+        android:fontFamily="@font/gotham_black"
+        android:text="Réserver"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/optionLayoutD"
+        app:layout_constraintVertical_bias="0.193" />
+
+    <Button
+        android:id="@+id/button2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="60dp"
+        android:background="@color/error_color"
+        android:backgroundTint="@color/error_color"
+        android:fontFamily="@font/gotham_black_regular"
+        android:text="Annuler"
+
+        app:layout_constraintBottom_toBottomOf="@+id/button"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.644"
+        app:layout_constraintStart_toEndOf="@+id/button"
+        app:layout_constraintTop_toTopOf="@+id/button"
+        app:layout_constraintVertical_bias="0.0" />
+
+    <Button
+        android:id="@+id/goBackButtonDetailsVehicule"
+        android:layout_width="40dp"
+        android:layout_height="36dp"
+        android:layout_marginTop="1dp"
+
+        android:backgroundTint="@color/grey_light"
+        android:fontFamily="@font/gotham_black_regular"
+        app:icon="@drawable/icon"
+        app:iconTint="@color/back_button"
+        app:layout_constraintBottom_toBottomOf="@+id/detailsTitleTextView"
+        app:layout_constraintEnd_toStartOf="@+id/detailsTitleTextView"
+        app:layout_constraintHorizontal_bias="0.096"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/detailsTitleTextView"
+        app:layout_constraintVertical_bias="0.466" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

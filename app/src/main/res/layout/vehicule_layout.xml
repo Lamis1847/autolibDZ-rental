@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+    <ImageView
+        android:id="@+id/imageVehicule"
+        android:layout_width="154dp"
+        android:layout_height="104dp"
+        android:layout_marginTop="16dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.059"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/vehiculeimg" />
+
+    <TextView
+        android:id="@+id/nomVehicule"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/gotham_black_regular"
+        android:text="Peugeot 308"
+        app:layout_constraintBottom_toBottomOf="@+id/imageVehicule"
+        app:layout_constraintStart_toEndOf="@+id/imageVehicule"
+        app:layout_constraintTop_toTopOf="@+id/imageVehicule"
+        app:layout_constraintVertical_bias="0.25" />
+
+    <Button
+        android:id="@+id/detailsButton"
+        android:layout_width="109dp"
+        android:layout_height="33dp"
+        android:layout_marginEnd="8dp"
+        android:fontFamily="@font/gotham_black_regular"
+        android:text="Détails"
+        android:textSize="12sp"
+        app:layout_constraintBottom_toBottomOf="@+id/nomVehicule"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.78"
+        app:layout_constraintStart_toEndOf="@+id/nomVehicule"
+        app:layout_constraintTop_toTopOf="@+id/nomVehicule"
+        app:layout_constraintVertical_bias="0.631" />
+
+    <Button
+        android:id="@+id/reserverButton"
+        android:layout_width="109dp"
+        android:layout_height="33dp"
+        android:layout_marginEnd="8dp"
+        android:fontFamily="@font/gotham_black_regular"
+        android:text="Réserver"
+        android:textSize="12sp"
+        app:layout_constraintBottom_toBottomOf="@+id/imageVehicule"
+        app:layout_constraintEnd_toEndOf="@+id/detailsButton"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="@+id/detailsButton"
+        app:layout_constraintTop_toBottomOf="@+id/detailsButton"
+        app:layout_constraintVertical_bias="0.0" />
+
+    <ImageView
+        android:id="@+id/imageView2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="28dp"
+        android:layout_marginTop="10dp"
+        app:layout_constraintStart_toEndOf="@+id/imageVehicule"
+        app:layout_constraintTop_toBottomOf="@+id/nomVehicule"
+        app:srcCompat="@drawable/seats" />
+
+    <TextView
+        android:id="@+id/nbPlaces"
+        android:layout_width="9dp"
+        android:layout_height="16dp"
+        android:layout_marginStart="16dp"
+        android:text="5"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toBottomOf="@+id/imageView2"
+        app:layout_constraintStart_toEndOf="@+id/imageView2"
+        app:layout_constraintTop_toTopOf="@+id/imageView2"
+        app:layout_constraintVertical_bias="0.0" />
+
+    <View
+        android:id="@+id/divider"
+        android:layout_width="380dp"
+        android:layout_height="1dp"
+        android:layout_marginStart="1dp"
+        android:layout_marginTop="28dp"
+        android:layout_marginEnd="1dp"
+        android:background="?android:attr/listDivider"
+        android:backgroundTint="@color/black"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.482"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/imageView2"
+        app:layout_constraintVertical_bias="0.0" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>
