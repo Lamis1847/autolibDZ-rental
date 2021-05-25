@@ -15,16 +15,16 @@ object ServiceBuilder {
 
     //Create Okhttp Client
     private val okHttp: OkHttpClient = OkHttpClient.Builder()
-            .addInterceptor(interceptor)
-            .readTimeout(5, TimeUnit.MINUTES)
-            .writeTimeout(5, TimeUnit.MINUTES)
-            .build()
+        .addInterceptor(interceptor)
+        .readTimeout(5, TimeUnit.MINUTES)
+        .writeTimeout(5, TimeUnit.MINUTES)
+        .build()
 
     // Create Retrofit Builder
     private val builder : Retrofit.Builder = Retrofit.Builder()
-            .client(okHttp)
-            .baseUrl(BASE_URL)
-            .addConverterFactory(GsonConverterFactory.create())
+        .client(okHttp)
+        .baseUrl(BASE_URL)
+        .addConverterFactory(GsonConverterFactory.create())
 
     //create Retrofit Instance
     private val retrofit = builder.build()
