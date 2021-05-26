@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/splash_navigation"
+    app:startDestination="@id/splashFragmentOne">
+
+    <fragment
+        android:id="@+id/splashFragmentOne"
+        android:name="com.sil1.autolibdz_rental.ui.view.fragment.splashscreen.SplashFragmentOne"
+        android:label="fragment_splash_one"
+        tools:layout="@layout/fragment_splash_one" >
+        <action
+            android:id="@+id/action_splashFragmentOne_to_splashFragmentTwo"
+            app:destination="@id/splashFragmentTwo" />
+    </fragment>
+    <fragment
+        android:id="@+id/splashFragmentTwo"
+        android:name="com.sil1.autolibdz_rental.ui.view.fragment.splashscreen.SplashFragmentTwo"
+        android:label="fragment_splash_two"
+        tools:layout="@layout/fragment_splash_two" >
+        <action
+            android:id="@+id/action_splashFragmentTwo_to_splashFragmentThree"
+            app:destination="@id/splashFragmentThree" />
+        <action
+            android:id="@+id/action_splashFragmentTwo_to_splashFragmentOne"
+            app:destination="@id/splashFragmentOne" />
+    </fragment>
+    <fragment
+        android:id="@+id/splashFragmentThree"
+        android:name="com.sil1.autolibdz_rental.ui.view.fragment.splashscreen.SplashFragmentThree"
+        android:label="fragment_splash_three"
+        tools:layout="@layout/fragment_splash_three" >
+        <action
+            android:id="@+id/action_splashFragmentThree_to_splashFragmentTwo"
+            app:destination="@id/splashFragmentTwo" />
+    </fragment>
+</navigation>
