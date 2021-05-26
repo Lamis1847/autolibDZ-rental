@@ -1,10 +1,12 @@
 package com.sil1.autolibdz_rental.ui.view.fragment.profil
 
 import android.os.Bundle
+import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.lifecycle.ViewModelProvider
 import com.sil1.autolibdz_rental.R
 import com.sil1.autolibdz_rental.data.model.LocataireRetro
@@ -35,7 +37,9 @@ class ProfilFragment : Fragment() {
 //            param2 = it.getString(ARG_PARAM2)
 //        }
 //    }
-
+var list= mutableListOf<String>()
+var list2= mutableListOf<String>()
+ var boolean:Boolean=false
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -48,11 +52,34 @@ class ProfilFragment : Fragment() {
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
-       var viewModel = ViewModelProvider(this).get(ProfilViewModel::class.java)
+        var viewModel = ViewModelProvider(this).get(ProfilViewModel::class.java)
+       viewModel.getLocataire()
         viewModel.locataire.observe(requireActivity(), Observer {
                 locataire ->
             updateLocataire(locataire)
         })
+        button.setOnClickListener{
+            list2.add(nom.text.toString())
+            list2.add(prenom.text.toString())
+            list2.add(email.text.toString())
+            if(!(list2.isEmpty()))
+            if(!list.equals(list2))
+            {
+                val locataire=LocataireRetro(null,nom.text.toString(),prenom.text.toString(),email.text.toString(),"test123456",null)
+               boolean= viewModel.updateLocataire(locataire,"193") //il faut changer l'id après!
+            //    Log.i("testTAG", "Display locataire List: call enqueue")
+                if(boolean)
+                Toast.makeText(requireActivity(), "mise à jour avec succès", Toast.LENGTH_LONG).show()
+                else
+                Toast.makeText(requireActivity(), "erreur de mise à jour", Toast.LENGTH_LONG).show()
+            }
+
+            nom.text.clear()
+            prenom.text.clear()
+            email.text.clear()
+            password.text.clear()
+
+        }
 
     }
     private fun updateLocataire(locataire: ArrayList<LocataireRetro?>)
@@ -61,6 +88,9 @@ class ProfilFragment : Fragment() {
             nom.setText(locataire.get(0)?.nom)
             prenom.setText(locataire.get(0)?.prenom)
             email.setText(locataire.get(0)?.email)
+        list.add(locataire.get(0)?.nom.toString())
+        list.add(locataire.get(0)?.prenom.toString())
+        list.add(locataire.get(0)?.email.toString())
 
     }
 
