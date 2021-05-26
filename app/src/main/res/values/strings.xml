@@ -9,21 +9,24 @@
     <string name="action_settings">Parametres</string>
 
     <string name="menu_home">Accueil</string>
-    <string name="menu_history">Historique des réservations</string>
-    <string name="menu_reclamation">Réclamer</string>
+    <string name="menu_history">Mes réservations</string>
+    <string name="menu_reclamation">Réclamation</string>
     <string name="menu_assistance">Assistance</string>
     <string name="menu_balance">Balance</string>
+    <string name="menu_transactions">Mes transactions</string>
+    <string name="menu_profil">Mon profil</string>
 
     <string name="set_location">Choisissez location</string>
-    <string name="set_start_location">Choisir votre borne  de départ</string>
-    <string name="set_dest_location">Choisir votre borne d\'arrivée </string>
+    <string name="set_start_location">Choisir votre borne de départ</string>
+    <string name="set_dest_location">Choisir votre borne d\'arrivée</string>
 
     <string name="from_current_location_empty">Borne départ</string>
     <string name="to_location_empty">Borne destination</string>
     <string name="drag_info">Plus d\'infos</string>
-    <string name="api_key" templateMergeStrategy="preserve" translatable="false">AIzaSyDBBARZjOQEBFPDxIYDCyJeEGb-GOZSs_Q</string>
-    <!-- TODO: Remove or change this placeholder text -->
+    <string name="api_key" templateMergeStrategy="preserve" translatable="false">AIzaSyA9DGuUN735F-CarxUPOfblxOMC5m3K8p8</string>
+
     <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="button_confirmer">Confirmer</string>
 
 
 </resources>

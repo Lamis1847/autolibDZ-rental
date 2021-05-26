@@ -12,11 +12,22 @@
         tools:layout="@layout/map_display_fragment" />
 
     <fragment
+        android:id="@+id/nav_profil"
+        android:name="com.sil1.autolibdz_rental.ui.view.fragment.ExampleFragment"
+        android:label="@string/menu_profil"
+        tools:layout="@layout/fragment_example" />
+
+    <fragment
         android:id="@+id/nav_history"
         android:name="com.sil1.autolibdz_rental.ui.view.fragment.ExampleFragment"
         android:label="@string/menu_history"
         tools:layout="@layout/fragment_example" />
 
+    <fragment
+        android:id="@+id/nav_transaction"
+        android:name="com.sil1.autolibdz_rental.ui.view.fragment.ExampleFragment"
+        android:label="@string/menu_transactions"
+        tools:layout="@layout/fragment_example" />
     <fragment
         android:id="@+id/nav_reclamation"
         android:name="com.sil1.autolibdz_rental.ui.view.fragment.ExampleFragment"
@@ -27,12 +38,5 @@
         android:name="com.sil1.autolibdz_rental.ui.view.fragment.ExampleFragment"
         android:label="@string/menu_assistance"
         tools:layout="@layout/fragment_example" />
-    <fragment
-        android:id="@+id/nav_balance"
-        android:name="com.sil1.autolibdz_rental.ui.view.fragment.ExampleFragment"
-        android:label="@string/menu_balance"
-        tools:layout="@layout/fragment_example" />
-
-
 
 </navigation>

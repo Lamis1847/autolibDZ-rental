@@ -22,7 +22,7 @@
     <androidx.cardview.widget.CardView
         android:id="@+id/cardView"
         android:layout_width="match_parent"
-        android:layout_height="150dp"
+        android:layout_height="wrap_content"
         app:cardCornerRadius="10px"
         android:backgroundTint="@color/palette_grey_200"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -32,6 +32,7 @@
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
+
             <Button
                 android:id="@+id/buttonChoixBorneDepart"
                 android:layout_width="match_parent"
@@ -67,11 +68,32 @@
                 android:textAppearance="@style/TextAppearance.AppCompat.Medium"
                 android:textColor="@color/palette_grey_700"
                 android:typeface="normal"
-                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintBottom_toBottomOf="@id/buttonSuivant"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.0"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/buttonChoixBorneDepart" />
+
+            <Button
+                android:id="@+id/buttonSuivant"
+                android:layout_width="150dp"
+                android:layout_height="70dp"
+                android:layout_marginStart="15dp"
+                android:layout_marginEnd="15dp"
+                android:backgroundTint="@color/palette_yellow"
+                android:fontFamily="@font/gothambold"
+                android:text="@string/button_confirmer"
+                android:textAllCaps="false"
+                android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+                android:textColor="@color/white"
+                android:textFontWeight="900"
+                android:typeface="normal"
+                android:visibility="gone"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.498"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/buttonChoixBorneDestination" />
         </androidx.constraintlayout.widget.ConstraintLayout>
     </androidx.cardview.widget.CardView>
 
@@ -91,108 +113,6 @@
         app:layout_constraintEnd_toEndOf="parent"
         tools:ignore="MissingConstraints" />
 
-    <!--
-       <fragment
-           android:id="@+id/autocomplete_fragment"
-           android:name="com.google.android.libraries.places.widget.AutocompleteSupportFragment"
-           android:layout_width="match_parent"
-           android:layout_height="42dp"
-           android:layout_marginBottom="24dp"
-           app:layout_constraintBottom_toBottomOf="parent"
-           app:layout_constraintEnd_toEndOf="parent"
-           app:layout_constraintHorizontal_bias="0.567"
-           app:layout_constraintStart_toStartOf="parent" />
-
-       <androidx.cardview.widget.CardView
-           android:layout_width="wrap_content"
-           android:layout_height="wrap_content"
-           android:layout_marginStart="10dp"
-           android:layout_marginEnd="10dp"
-           android:layout_marginBottom="10dp"
-           app:cardBackgroundColor="@color/palette_grey_200"
-           app:cardCornerRadius="2dp"
-           app:layout_constraintBottom_toBottomOf="parent"
-           app:layout_constraintEnd_toEndOf="parent"
-           app:layout_constraintStart_toStartOf="parent"
-           tools:ignore="MissingConstraints">
-
-           <LinearLayout
-               android:layout_width="match_parent"
-               android:layout_height="wrap_content"
-               android:layout_margin="8dp"
-               android:orientation="vertical">
-
-               <LinearLayout
-                   android:layout_width="match_parent"
-                   android:layout_height="wrap_content"
-                   android:orientation="horizontal">
-
-                   <androidx.appcompat.widget.AppCompatImageView
-                       android:layout_width="24dp"
-                       android:layout_height="24dp"
-                       android:layout_gravity="center"
-                       android:src="@drawable/localisation" />
-
-                   <androidx.appcompat.widget.AppCompatTextView
-                       android:id="@+id/fromLocationTxt"
-                       android:layout_width="0dp"
-                       android:layout_height="wrap_content"
-                       android:layout_gravity="center"
-                       android:layout_weight="1"
-                       android:ellipsize="end"
-                       android:maxLines="1"
-                       android:text="@string/from_current_location_empty"
-                       android:textColor="@color/palette_grey_700" />
-
-                   <com.google.android.material.button.MaterialButton
-                       android:id="@+id/setStartPoint"
-                       style="@style/Widget.MaterialComponents.Button.TextButton"
-                       android:layout_width="wrap_content"
-                       android:layout_height="wrap_content"
-                       android:text="@string/set_location"
-                       android:textAllCaps="false" />
-               </LinearLayout>
-
-               <LinearLayout
-                   android:layout_width="match_parent"
-                   android:layout_height="wrap_content"
-                   android:orientation="horizontal">
-
-                   <androidx.appcompat.widget.AppCompatImageView
-                       android:layout_width="24dp"
-                       android:layout_height="24dp"
-                       android:layout_gravity="center"
-                       android:src="@drawable/localisation" />
-
-                   <androidx.appcompat.widget.AppCompatTextView
-                       android:id="@+id/toLocationTxt"
-                       android:layout_width="0dp"
-                       android:layout_height="wrap_content"
-                       android:layout_gravity="center"
-                       android:layout_weight="1"
-                       android:ellipsize="end"
-                       android:maxLines="1"
-                       android:text="@string/to_location_empty"
-                       android:textColor="@color/palette_grey_700" />
-
-                   <com.google.android.material.button.MaterialButton
-                       android:id="@+id/setFinishPoint"
-                       style="@style/Widget.MaterialComponents.Button.TextButton"
-                       android:layout_width="wrap_content"
-                       android:layout_height="wrap_content"
-                       android:text="@string/set_location"
-                       android:textAllCaps="false" />
-               </LinearLayout>
-
-               <androidx.appcompat.widget.AppCompatTextView
-                   android:layout_width="match_parent"
-                   android:layout_height="wrap_content"
-                   android:text="@string/drag_info"
-                   android:textColor="@color/palette_grey_700"
-                   android:textSize="12sp"
-                   android:textStyle="italic" />
-           </LinearLayout>
-       </androidx.cardview.widget.CardView> -->
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
