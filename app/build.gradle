@@ -3,6 +3,7 @@ plugins {
     id 'kotlin-android'
     id 'com.google.secrets_gradle_plugin' version '0.5'
     id 'kotlin-android-extensions'
+
 }
 
 android {
@@ -14,7 +15,7 @@ android {
         minSdkVersion 22
         targetSdkVersion 30
         versionCode 1
-        versionName "1.0"
+        versionName "1.0" 
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
     }
