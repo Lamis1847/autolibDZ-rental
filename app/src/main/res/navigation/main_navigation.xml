@@ -8,7 +8,7 @@
         android:id="@+id/DetailsVehiculeFragment"
         android:name="com.sil1.autolibdz_rental.ui.view.activity.DetailsVehiculeFragment"
         android:label="Doctor's details"
-        tools:layout="@layout/fragment_details_vehicule" >
+        tools:layout="@layout/fragment_details_vehicule">
         <action
             android:id="@+id/action_DetailsVehiculeFragment_pop"
             app:popUpTo="@id/DetailsVehiculeFragment"

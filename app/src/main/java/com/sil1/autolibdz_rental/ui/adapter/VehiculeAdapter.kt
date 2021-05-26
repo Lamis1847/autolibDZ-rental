@@ -1,6 +1,7 @@
 package com.sil1.autolibdz_rental.ui.adapter
 
 import android.content.Context
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -10,9 +11,10 @@ import android.widget.TextView
 import androidx.navigation.findNavController
 import androidx.recyclerview.widget.RecyclerView
 import com.sil1.autolibdz_rental.R
+import com.sil1.autolibdz_rental.data.model.VehiculeModel
 import com.sil1.autolibdz_rental.ui.viewmodel.Vehicule
 
-class VehiculesAdapter(val context: Context, var data: List<Vehicule>, var vm: Vehicule): RecyclerView.Adapter<MyViewHolder>()
+class VehiculesAdapter(val context: Context, var data: List<VehiculeModel>, var vm: Vehicule): RecyclerView.Adapter<MyViewHolder>()
 {
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MyViewHolder {
         return MyViewHolder(LayoutInflater.from(context).inflate(R.layout.vehicule_layout, parent, false))
@@ -23,18 +25,19 @@ class VehiculesAdapter(val context: Context, var data: List<Vehicule>, var vm: V
 
     override fun onBindViewHolder(holder: MyViewHolder, position: Int) {
         holder.nomVehicule.text = data[position].marque + data[position].modele
-        holder.nbPlaces.text = data[position].nbPlaces.toString()
+        //holder.nbPlaces.text = data[position].nbPlaces.toString()
         //holder.imageVehicule.setImageResource(data[position].imageVehicule)
 
         holder.detailsButton.setOnClickListener{
             vm.marque = data[position].marque
+
             vm.modele =  data[position].modele
-            vm.nbPlaces = data[position].nbPlaces
-          //vm.imageVehicule = data[position].imageVehicule
-            vm.vitesse_max = data[position].vitesse_max
-            vm.type_energie = data[position].type_energie
-            vm.puissance_fiscale = data[position].puissance_fiscale
-            vm.matricule =data[position].matricule
+           //vm.nbPlaces = data[position].nbPlaces
+           //vm.imageVehicule = data[position].imageVehicule
+            vm.limiteurVitesse = data[position].limiteurVitesse
+          //vm.type_energie = data[position].type_energie
+          //vm.puissance_fiscale = data[position].puissance_fiscale
+            vm.numChassis =data[position].numChassis
 
 
             holder.detailsButton.findNavController().navigate(R.id.action_listeVehiculeFragment_to_DetailsVehiculeFragment)

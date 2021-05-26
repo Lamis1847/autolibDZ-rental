@@ -1,11 +1,13 @@
 package com.sil1.autolibdz_rental.ui.view.activity
 
 import android.os.Bundle
+import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
+import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.sil1.autolibdz_rental.R
@@ -13,8 +15,10 @@ import com.sil1.autolibdz_rental.ui.adapter.VehiculesAdapter
 import com.sil1.autolibdz_rental.ui.view.fragment.ListeVehiculeViewModel
 import com.sil1.autolibdz_rental.ui.viewmodel.Vehicule
 import kotlinx.android.synthetic.main.fragment_liste_vehicule.*
+import okhttp3.internal.wait
 
 class ListeVehiculeFragment : Fragment() {
+    private lateinit var viewModel: ListeVehiculeViewModel
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -24,24 +28,41 @@ class ListeVehiculeFragment : Fragment() {
         return inflater.inflate(R.layout.fragment_liste_vehicule, container, false)
     }
 
-    override fun onActivityCreated(savedInstanceState: Bundle?) {
+    override  fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
         recyclerViewVehicule.layoutManager = LinearLayoutManager(requireActivity())
-        val viewmodel = ViewModelProvider(this).get(ListeVehiculeViewModel::class.java)
-        val data = viewmodel.vehicules.value
+
+        viewModel = ViewModelProvider(requireActivity()).get(ListeVehiculeViewModel::class.java)
+
+        viewModel.getListeVehicule()
+        Log.i("LISTEEEUH" , viewModel.vehicules?.value.toString())
+        requireActivity().goBackButtonListeVehicule.setOnClickListener { checkList() }
 
 
+        //Log.i("test", "error HELLO:" + viewmodel.vehicules?.value?.size)
 
-        val toast = Toast.makeText(context, "Hello Javatpoint ${viewmodel.vehicules.value}", Toast.LENGTH_SHORT)
-        toast.show()
+       /* if(viewmodel.vehicules == null){
+            val toast = Toast.makeText(context, "Erreur valeurs ${viewmodel.vehicules?.value}", Toast.LENGTH_SHORT)
+            toast.show()
+        }
+        else{
+            val data = viewmodel.vehicules!!.value
+            val vm = ViewModelProvider(this).get(Vehicule::class.java)
 
-
-        val vm = ViewModelProvider(this).get(Vehicule::class.java)
-
+            if(data != null){
+                recyclerViewVehicule.adapter = VehiculesAdapter(requireActivity() ,data,vm)
+            }
+        }*/
+    }
+    fun checkList() {
+        val data = viewModel.vehicules?.value
+        val vm = ViewModelProvider(requireActivity()).get(Vehicule::class.java)
+        //val toast = Toast.makeText(context, "Erreur valeurs ${viewModel.vehicules?.value}", Toast.LENGTH_SHORT)
+        //toast.show()
         if(data != null){
             recyclerViewVehicule.adapter = VehiculesAdapter(requireActivity() ,data,vm)
         }
-
+       // Log.i("LISTEEEUH FINAL" , viewModel.vehicules?.value.toString())
     }
 
 
