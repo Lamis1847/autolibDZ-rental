@@ -26,4 +26,9 @@ interface ServiceProvider {
     //add new  Locataire with google api , password == mail
     @POST("api/locataire/createLocataireGmail")
     fun ajouterLocataireGoogle(@Body token: SignUpGoogleBody): Call<SignUpResponse>
+
+    //récupérer les informations d'un locataire
+    @GET("api/locataire/1")
+    fun getLocataire(/*@Header("Authorization") token: String*/): Call<LocataireRetro>
+
 }
