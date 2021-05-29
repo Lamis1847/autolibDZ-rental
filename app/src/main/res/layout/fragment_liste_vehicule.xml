@@ -16,7 +16,7 @@
         android:backgroundTint="@color/grey_light"
         android:elevation="10dp"
         android:textAlignment="viewStart"
-        app:icon="@drawable/icon"
+        app:icon="@drawable/ic_back_icon"
         app:iconTint="@color/back_button"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
