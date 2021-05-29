@@ -31,8 +31,19 @@ class DetailsVehiculeFragment : Fragment() {
         val vm = ViewModelProvider(requireActivity()).get(Vehicule::class.java)
             nomVehiculeD.text = vm.marque +" "+ vm.modele
             matriculeVehiculeD.text = vm.modele
-            marqueVehiculeD.text = vm.marque
+            marqueD.text = vm.marque
             etatVehiculeD.text = vm.etat
+            numeroChassisD.text = vm.numChassis.toString()
+            modeleD.text = vm.modele
+            couleurD.text = vm.couleur
+            tempRD.text = vm.tempsDeRefroidissement.toString()
+            pressionHD.text = vm.pressionHuileMoteur.toString()
+            chargeD.text = vm.chargeBatterie.toString()
+            pressionPneuD.text = vm.pressionPneus.toString()
+            niveauHMD.text = vm.pressionHuileMoteur.toString()
+            anomalieCD.text = vm.anomalieCircuit
+            regulateurVD.text = vm.regulateurVitesse.toString()
+            limiteurVD.text=vm.limiteurVitesse.toString()
 
             goBackButtonDetailsVehicule.setOnClickListener{ this.findNavController().navigate(R.id.action_DetailsVehiculeFragment_pop)
 

@@ -379,7 +379,7 @@
                             android:textAlignment="center" />
 
                         <TextView
-                            android:id="@+id/textView22"
+                            android:id="@+id/chargeD"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:fontFamily="@font/gothambook"
@@ -410,7 +410,7 @@
                             android:text="Pression pneu" />
 
                         <TextView
-                            android:id="@+id/textView25"
+                            android:id="@+id/pressionPneuD"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:fontFamily="@font/gothambook"
@@ -449,7 +449,7 @@
                             android:textAlignment="center" />
 
                         <TextView
-                            android:id="@+id/textView10"
+                            android:id="@+id/niveauHMD"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:fontFamily="@font/gothambook"
@@ -482,7 +482,7 @@
                             android:textAlignment="center" />
 
                         <TextView
-                            android:id="@+id/textView13"
+                            android:id="@+id/anomalieCD"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:fontFamily="@font/gothambook"
@@ -522,7 +522,7 @@
                             android:textAlignment="center" />
 
                         <TextView
-                            android:id="@+id/textView6"
+                            android:id="@+id/regulateurVD"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:fontFamily="@font/gothambook"
@@ -555,7 +555,7 @@
                             android:textAlignment="center" />
 
                         <TextView
-                            android:id="@+id/textView8"
+                            android:id="@+id/limiteurVD"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:fontFamily="@font/gothambook"
