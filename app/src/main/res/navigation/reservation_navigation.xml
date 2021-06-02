@@ -13,6 +13,9 @@
             android:id="@+id/action_DetailsVehiculeFragment_pop"
             app:popUpTo="@id/DetailsVehiculeFragment"
             app:popUpToInclusive="true" />
+        <action
+            android:id="@+id/action_DetailsVehiculeFragment_to_infosReservationFragment"
+            app:destination="@id/infosReservationFragment" />
     </fragment>
     <fragment
         android:id="@+id/listeVehiculeFragment"
@@ -22,5 +25,13 @@
         <action
             android:id="@+id/action_listeVehiculeFragment_to_DetailsVehiculeFragment"
             app:destination="@id/DetailsVehiculeFragment" />
+        <action
+            android:id="@+id/action_listeVehiculeFragment_to_infosReservationFragment"
+            app:destination="@id/infosReservationFragment" />
     </fragment>
+    <fragment
+        android:id="@+id/infosReservationFragment"
+        android:name="com.sil1.autolibdz_rental.InfosReservationFragment"
+        android:label="fragment_infos_reservation"
+        tools:layout="@layout/fragment_infos_reservation" />
 </navigation>

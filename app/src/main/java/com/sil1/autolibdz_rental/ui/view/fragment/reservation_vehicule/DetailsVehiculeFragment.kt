@@ -1,6 +1,7 @@
 package com.sil1.autolibdz_rental.ui.view.activity
 
 import android.annotation.SuppressLint
+import android.net.Uri
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
@@ -11,6 +12,7 @@ import androidx.navigation.fragment.findNavController
 import com.sil1.autolibdz_rental.R
 import com.sil1.autolibdz_rental.ui.viewmodel.Vehicule
 import kotlinx.android.synthetic.main.fragment_details_vehicule.*
+import kotlinx.android.synthetic.main.vehicule_layout.*
 
 
 class DetailsVehiculeFragment : Fragment() {
@@ -44,6 +46,12 @@ class DetailsVehiculeFragment : Fragment() {
             anomalieCD.text = vm.anomalieCircuit
             regulateurVD.text = vm.regulateurVitesse.toString()
             limiteurVD.text=vm.limiteurVitesse.toString()
+          /*  if(vm.secureUrl != "") {
+                val imgUri: Uri = Uri.parse(vm.secureUrl)
+                VehiculeImageViewD.setImageURI(imgUri)
+            }else{
+            VehiculeImageViewD.setImageResource(R.drawable.vehiculeimg)
+            }*/
 
             goBackButtonDetailsVehicule.setOnClickListener{ this.findNavController().navigate(R.id.action_DetailsVehiculeFragment_pop)
 
