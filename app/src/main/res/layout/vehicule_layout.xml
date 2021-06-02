@@ -18,12 +18,12 @@
 
     <TextView
         android:id="@+id/nomVehicule"
-        android:layout_width="wrap_content"
+        android:layout_width="100dp"
         android:layout_height="wrap_content"
         android:ellipsize="end"
         android:fontFamily="@font/gothambold"
-        android:maxLines="1"
         android:text="Peugeot 308"
+        android:textAlignment="center"
         app:layout_constraintBottom_toBottomOf="@+id/imageVehicule"
         app:layout_constraintEnd_toStartOf="@+id/detailsButton"
         app:layout_constraintStart_toEndOf="@+id/imageVehicule"
