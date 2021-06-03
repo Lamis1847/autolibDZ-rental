@@ -13,6 +13,12 @@
     <color name="palette_grey_700">#868FAC</color>
     <color name="transparent">#00FFFFFF</color>
     <color name="textfont">#737070</color>
+    <color name="grey_primary">#000000B2</color>
+    <color name="grey_light">#F5F3F5</color>
+    <color name="grey_background">#FCFCFC</color>
+    <color name="error_color">#F5365C</color>
+    <color name="back_button">#252834</color>
+    <color name="validate_color">#2DCE89</color>
 
 
 
