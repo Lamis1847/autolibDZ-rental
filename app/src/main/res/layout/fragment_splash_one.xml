@@ -9,10 +9,10 @@
 
     <ImageView
         android:id="@+id/imageViewHandCar"
-        android:layout_width="352dp"
+        android:layout_width="wrap_content"
         android:layout_height="294dp"
         android:layout_marginTop="88dp"
-        android:src="@drawable/ic_hand_car"
+        android:src="@drawable/ic_splash1"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.491"
         app:layout_constraintStart_toStartOf="parent"

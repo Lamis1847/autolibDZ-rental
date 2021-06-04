@@ -42,7 +42,7 @@ class VehiculesAdapter(val context: Context, var data: List<VehiculeModel>, var 
             vm.couleur =data[position].couleur
             vm.etat = data[position].etat
             vm.limiteurVitesse = vm.limiteurVitesse
-            holder.detailsButton.findNavController().navigate(R.id.action_listeVehiculeFragment_to_DetailsVehiculeFragment)
+            holder.detailsButton.findNavController().navigate(R.id.action_listeVehiculeFragment_to_detailsVehiculeFragment)
 
         }
 

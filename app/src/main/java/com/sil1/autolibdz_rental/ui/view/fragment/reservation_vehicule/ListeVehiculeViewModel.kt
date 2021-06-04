@@ -11,8 +11,8 @@ class ListeVehiculeViewModel : ViewModel(){
     private val TAG = "TAG-ListeVehiculeDisplayViewModel"
     var vehicules=  MutableLiveData<ArrayList<VehiculeModel>>()
 
-     fun  getListeVehicule()  {
-        VehiculeRepository.getListeVehicules(TAG) {
+     fun  getListeVehicule(id : String)  {
+        VehiculeRepository.getListeVehicules(TAG,id) {
             Log.i(TAG, "view model here")
             vehicules.value = it?.value
         }

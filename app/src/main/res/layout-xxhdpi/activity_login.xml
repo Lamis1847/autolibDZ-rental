@@ -20,6 +20,7 @@
         <EditText
             android:id="@+id/Email"
             android:layout_width="338dp"
+            android:fontFamily="@font/gothammedium"
             android:layout_height="56dp"
             android:layout_marginTop="52dp"
             android:background="@drawable/ic_input_background"
@@ -38,6 +39,7 @@
 
         <EditText
             android:id="@+id/Pass"
+            android:fontFamily="@font/gothammedium"
             android:layout_width="338dp"
             android:layout_height="56dp"
             android:layout_marginTop="12dp"

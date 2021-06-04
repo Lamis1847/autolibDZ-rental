@@ -1,42 +1,42 @@
 package com.sil1.autolibdz_rental.data.model
 
-import com.google.gson.annotations.SerializedName
+//import com.google.gson.annotations.SerializedName
 
 data class VehiculeModel(
-    @SerializedName("numChassis")
+   // @SerializedName("numChassis")
     var numChassis:Int,
-    @SerializedName("numImmatriculation")
+    //@SerializedName("numImmatriculation")
     var numImmatriculation:Int,
-    @SerializedName("modele")
+    //@SerializedName("modele")
     var modele:String,
-    @SerializedName("marque")
+   // @SerializedName("marque")
     var marque:String,
-    @SerializedName("couleur")
+    //@SerializedName("couleur")
     var couleur:String,
-    @SerializedName("etat")
+   // @SerializedName("etat")
     var etat:String,
-    @SerializedName("tempsDeRefroidissement")
+    //@SerializedName("tempsDeRefroidissement")
     var tempsDeRefroidissement:Int,
-    @SerializedName("pressionHuileMoteur")
+    //@SerializedName("pressionHuileMoteur")
     var pressionHuileMoteur:Int,
-    @SerializedName("chargeBatterie")
+    //@SerializedName("chargeBatterie")
     var chargeBatterie:Int,
-    @SerializedName("anomalieCircuit")
+    //@SerializedName("anomalieCircuit")
     var anomalieCircuit:String,
-    @SerializedName("pressionPneus")
+    //@SerializedName("pressionPneus")
     var pressionPneus:Int,
-    @SerializedName("niveauMinimumHuile")
+    //@SerializedName("niveauMinimumHuile")
     var niveauMinimumHuile:Int,
-    @SerializedName("regulateurVitesse")
+    //@SerializedName("regulateurVitesse")
     var regulateurVitesse:Int,
-    @SerializedName("limiteurVitesse")
+    //@SerializedName("limiteurVitesse")
     var limiteurVitesse:Int,
-    @SerializedName("idAgentMaintenance")
+    //@SerializedName("idAgentMaintenance")
     var idAgentMaintenance:Int,
-    @SerializedName("idBorne")
+    //@SerializedName("idBorne")
     var idBorne:Int,
-    @SerializedName("idCloudinary")
+    //@SerializedName("idCloudinary")
     var idCloudinary:String,
-    @SerializedName("secureUrl")
+    //@SerializedName("secureUrl")
     var secureUrl:String,
 )

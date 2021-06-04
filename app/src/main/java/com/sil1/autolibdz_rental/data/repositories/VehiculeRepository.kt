@@ -22,9 +22,10 @@ class VehiculeRepository {
 
         fun getListeVehicules(
             TAG: String,
+            id:String,
             onResult: (MutableLiveData<ArrayList<VehiculeModel>>?) -> Unit
         ) {
-            val call = api.getListeVehicules()
+            val call = api.getListeVehicules(id)
 
             call.enqueue(object : Callback<List<VehiculeModel>> {
                 override fun onResponse(

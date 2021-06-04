@@ -1,31 +1,28 @@
 package com.sil1.autolibdz_rental.ui.view.activity
 
 import android.annotation.SuppressLint
-import android.content.Context
-import android.location.LocationManager
 import android.os.Bundle
 import android.view.Gravity
+import android.view.View
 import androidx.appcompat.app.AppCompatActivity
 import androidx.drawerlayout.widget.DrawerLayout
 import androidx.navigation.findNavController
 import androidx.navigation.ui.AppBarConfiguration
 import androidx.navigation.ui.navigateUp
 import androidx.navigation.ui.setupWithNavController
-import com.google.android.gms.location.FusedLocationProviderClient
-import com.google.android.gms.location.LocationServices
 import com.google.android.libraries.places.api.Places
 import com.google.android.material.floatingactionbutton.FloatingActionButton
 import com.google.android.material.navigation.NavigationView
 import com.sil1.autolibdz_rental.R
 import com.sil1.autolibdz_rental.databinding.ActivityHomeBinding
-import com.sil1.autolibdz_rental.ui.view.fragment.map_display.MapDisplayFragment
-import java.util.*
 
 
-class HomeActivity : AppCompatActivity(){
- //   private lateinit var mMap: GoogleMap
+class HomeActivity : AppCompatActivity(),MyDrawerController{
+
     private lateinit var appBarConfiguration: AppBarConfiguration
     private lateinit var binding: ActivityHomeBinding
+    private lateinit var  drawerLayout: DrawerLayout
+    private lateinit var menuButton: FloatingActionButton
 
     @SuppressLint("ResourceType")
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -33,16 +30,14 @@ class HomeActivity : AppCompatActivity(){
         if (!Places.isInitialized()) {
             Places.initialize( applicationContext, getString(R.string.api_key));
         }
-        var placesClient = Places.createClient(this)
-
-        //var fusedLocationProviderClient = LocationServices.getFusedLocationProviderClient(this)
+        Places.createClient(this)
 
         binding = ActivityHomeBinding.inflate(layoutInflater)
 
         setContentView(binding.root)
 
-        val menuButton: FloatingActionButton = binding.appBarHome.menuButton
-        val drawerLayout: DrawerLayout = binding.drawerLayout
+        menuButton = binding.appBarHome.menuButton
+        drawerLayout = binding.drawerLayout
 
         menuButton.setOnClickListener{
             // If the navigation drawer is not open then open it, if its already open then close it.
@@ -52,6 +47,7 @@ class HomeActivity : AppCompatActivity(){
 
         val navView: NavigationView = binding.navView
         val navController = findNavController(R.id.nav_host_fragment_content_home)
+
         // Passing each menu ID as a set of Ids because each
         // menu should be considered as top level destinations.
         appBarConfiguration = AppBarConfiguration(
@@ -67,5 +63,14 @@ class HomeActivity : AppCompatActivity(){
     override fun onSupportNavigateUp(): Boolean {
         val navController = findNavController(R.id.nav_host_fragment_content_home)
         return navController.navigateUp(appBarConfiguration) || super.onSupportNavigateUp()
+    }
+
+    override fun setDrawer_Locked() {
+        drawerLayout.setDrawerLockMode(DrawerLayout.LOCK_MODE_LOCKED_CLOSED)
+        menuButton.visibility = View.GONE
+    }
+
+    override fun setDrawer_UnLocked() {
+        drawerLayout.setDrawerLockMode(DrawerLayout.LOCK_MODE_UNLOCKED)
     }
 }

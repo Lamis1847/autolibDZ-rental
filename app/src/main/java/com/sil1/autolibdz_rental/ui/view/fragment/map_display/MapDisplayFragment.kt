@@ -17,6 +17,8 @@ import com.google.maps.GeoApiContext
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
+import androidx.navigation.findNavController
+import androidx.navigation.fragment.findNavController
 import com.google.android.gms.common.GooglePlayServicesNotAvailableException
 import com.google.android.gms.location.FusedLocationProviderClient
 import com.google.android.gms.location.LocationServices
@@ -34,6 +36,9 @@ import com.google.maps.model.DistanceMatrix
 import com.google.maps.model.TravelMode
 import com.sil1.autolibdz_rental.R
 import com.sil1.autolibdz_rental.data.model.Borne
+import com.sil1.autolibdz_rental.ui.view.activity.MyDrawerController
+import com.sil1.autolibdz_rental.ui.viewmodel.Reservation
+import com.sil1.autolibdz_rental.ui.viewmodel.Vehicule
 import kotlinx.android.synthetic.main.map_display_fragment.*
 import java.io.IOException
 import java.text.DecimalFormat
@@ -54,9 +59,23 @@ class MapDisplayFragment : Fragment() , OnMapReadyCallback , GoogleMap.OnMarkerC
     private lateinit var origin : LatLng
     private lateinit var destination : LatLng
     private lateinit var fusedLocationClient: FusedLocationProviderClient
+    private  var timeHumanReadable = ""
+    private  var timeInSeconds  = 0.0
+    private  var idBorneDepart : Int = 0
+    private  var idBorneDestination : Int = 0
+    private var myDrawerController: MyDrawerController? = null
 
     companion object {
         fun newInstance() = MapDisplayFragment()
+    }
+
+    override fun onAttach(activity: Activity) {
+        super.onAttach(activity)
+        myDrawerController = try {
+            activity as MyDrawerController
+        } catch (e: ClassCastException) {
+            throw ClassCastException("$activity must implement MyDrawerController")
+        }
     }
 
     override fun onCreateView(
@@ -69,11 +88,15 @@ class MapDisplayFragment : Fragment() , OnMapReadyCallback , GoogleMap.OnMarkerC
         val mapFragment = childFragmentManager.findFragmentById(R.id.mapFragment) as SupportMapFragment
 
         mapFragment.getMapAsync(this)
+        myDrawerController?.setDrawer_UnLocked();
 
         return view
 
     }
-
+    override fun onDestroyView() {
+        super.onDestroyView()
+        myDrawerController?.setDrawer_Locked()
+    }
      override fun onMapReady(googleMap : GoogleMap){
          try {
              MapsInitializer.initialize(this.activity)
@@ -87,40 +110,15 @@ class MapDisplayFragment : Fragment() , OnMapReadyCallback , GoogleMap.OnMarkerC
     @SuppressLint("FragmentLiveDataObserve")
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
-       viewModel = ViewModelProvider(this).get(MapDisplayViewModel::class.java)
+        //this vm is used to pass data between this fragment and list vehicule fragment
+        val resViewModel = ViewModelProvider(requireActivity()).get(Reservation::class.java)
+        viewModel = ViewModelProvider(this).get(MapDisplayViewModel::class.java)
         //bitmap = BitmapFactory.decodeResource(resources,R.drawable.ic_borne_marker)
         viewModel.bornes.observe(this, Observer {
                 bornes ->
                 updateMap(bornes)
         })
 
-        if (ActivityCompat.checkSelfPermission(
-                requireActivity(),
-                Manifest.permission.ACCESS_FINE_LOCATION
-            ) != PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(
-                requireActivity(),
-                Manifest.permission.ACCESS_COARSE_LOCATION
-            ) != PackageManager.PERMISSION_GRANTED
-        ) {
-            // TODO: Consider calling
-            //    ActivityCompat#requestPermissions
-            // here to request the missing permissions, and then overriding
-            //   public void onRequestPermissionsResult(int requestCode, String[] permissions,
-            //                                          int[] grantResults)
-            // to handle the case where the user grants the permission. See the documentation
-            // for ActivityCompat#requestPermissions for more details.
-            return
-        }
-        fusedLocationClient.lastLocation
-            .addOnSuccessListener { location : Location? ->
-                Toast.makeText(requireActivity(), "HEyyyyyo",Toast.LENGTH_SHORT).show()
-
-                if (location != null) {
-                    Toast.makeText(requireActivity(), "i'm at : ${location.longitude}",Toast.LENGTH_SHORT).show()
-                    Log.i(TAG, "Location : ${location.longitude}")
-                }
-                // Got last known location. In some rare situations this can be null.
-            }
         buttonChoixBorneDepart.setOnClickListener(){
             //To know which borne the user is choosing at the moment
             clickedOnBorneDepart = true
@@ -139,6 +137,8 @@ class MapDisplayFragment : Fragment() , OnMapReadyCallback , GoogleMap.OnMarkerC
             startActivityForResult(intent, AUTOCOMPLETE_REQUEST_CODE)
         }
         buttonChoixBorneDestination.setOnClickListener(){
+            Toast.makeText(requireActivity(),"Yofffffff",Toast.LENGTH_SHORT).show()
+
             clickedOnBorneDepart = false
             clickedOnBorneDestination = true
 
@@ -156,6 +156,15 @@ class MapDisplayFragment : Fragment() , OnMapReadyCallback , GoogleMap.OnMarkerC
         }
         buttonSuivant.setOnClickListener(){
             makeDistanceCalculationCall(origin,destination)
+            Log.i(TAG,"it stopped here")
+
+            resViewModel.idBorneDepart = idBorneDepart
+            resViewModel.idBorneDestination = idBorneDestination
+            resViewModel.tempsEstimeEnSecondes = timeInSeconds
+            resViewModel.tempsEstimeHumanReadable = timeHumanReadable
+            resViewModel.distanceEstime = totalDistance
+            Log.i(TAG,"it works here")
+            findNavController().navigate(R.id.action_nav_home_to_listeVehiculeFragment)
         }
 
     }
@@ -198,25 +207,25 @@ class MapDisplayFragment : Fragment() , OnMapReadyCallback , GoogleMap.OnMarkerC
             buttonSuivant.visibility = View.VISIBLE
         }
         // Retrieve the data from the marker.
-        val clickCount = marker.tag as? Int
+        val id = marker.tag as? Int
 
         // Check if a click count was set, then display the click count.
-        clickCount?.let {
-            val newClickCount = it + 1
-            marker.tag = newClickCount
+        id?.let {
             Log.i(
                 TAG,
-                "${marker.title} has been clicked $newClickCount times.",
+                "${marker.title} has been clicked on",
             )
             if(clickedOnBorneDepart) {
                 buttonChoixBorneDepart.text = "Borne de " + marker.title
                 origin = marker.position
+                idBorneDepart = id
 
             }
             else {
                 if(clickedOnBorneDestination) {
                     buttonChoixBorneDestination.text = "Borne de " + marker.title
                     destination = marker.position
+                    idBorneDestination = id
 
                 }
             }
@@ -242,7 +251,8 @@ class MapDisplayFragment : Fragment() , OnMapReadyCallback , GoogleMap.OnMarkerC
                                 .position(latlng)
                                 // .icon(BitmapDescriptorFactory.fromResource(R.drawable.ic_marker))
                                 .title(borne.nomBorne))
-                        marker.tag = 0
+
+                        marker.tag = borne.idBorne
                     }
                 }
                 //test :
