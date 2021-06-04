@@ -1,5 +1,6 @@
 package com.sil1.autolibdz_rental.ui.view.fragment.profil
 
+import android.app.Activity
 import android.os.Bundle
 import android.util.Log
 import androidx.fragment.app.Fragment
@@ -13,6 +14,7 @@ import com.sil1.autolibdz_rental.data.model.LocataireRetro
 import kotlinx.android.synthetic.main.fragment_profil.*
 import java.util.ArrayList
 import androidx.lifecycle.Observer
+import com.sil1.autolibdz_rental.ui.view.activity.MyDrawerController
 
 
 //// TODO: Rename parameter arguments, choose names that match
@@ -37,19 +39,33 @@ class ProfilFragment : Fragment() {
 //            param2 = it.getString(ARG_PARAM2)
 //        }
 //    }
-var list= mutableListOf<String>()
-var list2= mutableListOf<String>()
- var boolean:Boolean=false
+    var list= mutableListOf<String>()
+    var list2= mutableListOf<String>()
+    var boolean:Boolean=false
+    private var myDrawerController: MyDrawerController? = null
+
+    override fun onAttach(activity: Activity) {
+        super.onAttach(activity)
+        myDrawerController = try {
+            activity as MyDrawerController
+        } catch (e: ClassCastException) {
+            throw ClassCastException("$activity must implement MyDrawerController")
+        }
+    }
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
         // Inflate the layout for this fragment
+        myDrawerController?.setDrawer_UnLocked();
         return inflater.inflate(R.layout.fragment_profil, container, false)
 
 
     }
-
+    override fun onDestroyView() {
+        super.onDestroyView()
+        myDrawerController?.setDrawer_Locked()
+    }
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
         var viewModel = ViewModelProvider(this).get(ProfilViewModel::class.java)

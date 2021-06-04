@@ -31,4 +31,5 @@
     <style name="FontStyle" parent="android:Widget.TextView">
         <item name="android:fontFamily">@font/gothamblack</item>
     </style>
+
 </resources>
