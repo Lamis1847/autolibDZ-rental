@@ -23,49 +23,57 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
-    <Button
-        android:id="@+id/button11"
-        android:layout_width="90dp"
+    <android.widget.Button
+        android:id="@+id/tout"
+        android:layout_width="80dp"
         android:layout_height="40dp"
         android:layout_marginBottom="8dp"
-        android:text="Button"
+        android:background="@drawable/button_reservations_states"
+        android:text="@string/reservation_tout"
+        android:textAllCaps="false"
         app:layout_constraintBottom_toTopOf="@+id/guideline2"
-        app:layout_constraintEnd_toStartOf="@+id/button15"
+        app:layout_constraintEnd_toStartOf="@+id/en_cours"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent" />
 
-    <Button
-        android:id="@+id/button15"
-        android:layout_width="90dp"
+    <android.widget.Button
+        android:id="@+id/en_cours"
+        android:layout_width="80dp"
         android:layout_height="40dp"
         android:layout_marginBottom="8dp"
-        android:text="Button"
+        android:background="@drawable/button_reservations_states"
+        android:text="En cours"
+        android:textAllCaps="false"
         app:layout_constraintBottom_toTopOf="@+id/guideline2"
-        app:layout_constraintEnd_toStartOf="@+id/button16"
+        app:layout_constraintEnd_toStartOf="@+id/annulées"
         app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toEndOf="@+id/button11" />
+        app:layout_constraintStart_toEndOf="@+id/tout" />
 
-    <Button
-        android:id="@+id/button16"
-        android:layout_width="90dp"
+    <android.widget.Button
+        android:id="@+id/annulées"
+        android:layout_width="80dp"
         android:layout_height="40dp"
         android:layout_marginBottom="8dp"
-        android:text="Button"
+        android:background="@drawable/button_reservations_states"
+        android:text="Annulée"
+        android:textAllCaps="false"
         app:layout_constraintBottom_toTopOf="@+id/guideline2"
-        app:layout_constraintEnd_toStartOf="@+id/button17"
+        app:layout_constraintEnd_toStartOf="@+id/terminées"
         app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toEndOf="@+id/button15" />
+        app:layout_constraintStart_toEndOf="@+id/en_cours" />
 
-    <Button
-        android:id="@+id/button17"
-        android:layout_width="90dp"
+    <android.widget.Button
+        android:id="@+id/terminées"
+        android:layout_width="80dp"
         android:layout_height="40dp"
         android:layout_marginBottom="8dp"
-        android:text="Button"
+        android:background="@drawable/button_reservations_states"
+        android:text="Terminée"
+        android:textAllCaps="false"
         app:layout_constraintBottom_toTopOf="@+id/guideline2"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toEndOf="@+id/button16" />
+        app:layout_constraintStart_toEndOf="@+id/annulées" />
 
     <androidx.fragment.app.FragmentContainerView
         android:id="@+id/fragmentContainerView2"
@@ -75,7 +83,8 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/guideline2" />
+        app:layout_constraintTop_toTopOf="@+id/guideline2"
+        tools:layout="@layout/fragment_reservations" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

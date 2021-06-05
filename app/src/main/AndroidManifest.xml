@@ -12,7 +12,8 @@
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
-        android:theme="@style/Theme.AutolibDZrental">
+        android:theme="@style/Theme.AutolibDZrental"
+        android:name=".data.room.App">
         <activity android:name=".ui.view.activity.ReservationsActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

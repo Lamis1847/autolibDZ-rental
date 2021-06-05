@@ -4,10 +4,14 @@ import android.text.method.HideReturnsTransformationMethod
 import android.text.method.PasswordTransformationMethod
 import android.widget.EditText
 import android.widget.ImageView
+import androidx.lifecycle.MutableLiveData
 import com.sil1.autolibdz_rental.R
+import com.sil1.autolibdz_rental.data.model.Reservation
 
 var userToken :String =""
 var idTokenUser :String = ""
+var reservationsFiltred = MutableLiveData<List<Reservation>>()
+var reservations = MutableLiveData<List<Reservation>>()
 
 class utils {
     companion object {

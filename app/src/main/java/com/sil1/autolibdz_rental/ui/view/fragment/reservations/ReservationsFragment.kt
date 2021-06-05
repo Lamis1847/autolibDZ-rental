@@ -6,12 +6,18 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.LinearLayout
+import android.widget.Toast
+import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.sil1.autolibdz_rental.R
+import com.sil1.autolibdz_rental.data.model.Reservation
 import com.sil1.autolibdz_rental.ui.view.fragment.profil.ReservationViewModel
+import com.sil1.autolibdz_rental.utils.reservations
+import com.sil1.autolibdz_rental.utils.reservationsFiltred
 import kotlinx.android.synthetic.main.fragment_reservations.*
+import java.util.*
 
 //// TODO: Rename parameter arguments, choose names that match
 //// the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -47,12 +53,26 @@ private lateinit var adapter: ReservationAdapter
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
+//        val test = Reservation(1,"test","test",12,12,"test","test","test", Date("12/02/2021"),12,12)
+//        val test2 = mutableListOf<Reservation>(test)
+//        adapter.setReservations(test2)
+        adapter = ReservationAdapter(requireActivity())
+
         var viewModel = ViewModelProvider(this).get(ReservationViewModel::class.java)
         viewModel.getReservations();
-        viewModel.reservations.observe(requireActivity(), Observer {
+        reservations.observe(requireActivity(), Observer {
                 reservations ->
             adapter.setReservations(reservations)
         })
+
+        reservationsFiltred.observe(requireActivity(),Observer {
+                reservationsFiltred ->
+            adapter.setReservations(reservationsFiltred)
+
+        })
+        recycleview.layoutManager= LinearLayoutManager(requireActivity())
+        recycleview.adapter = adapter
+
     }
 //    companion object {
 //        /**

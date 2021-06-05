@@ -18,11 +18,11 @@ class ReservationRepository {
         }
 
 
-        fun getReservations(TAG: String,id:String): MutableLiveData<ArrayList<Reservation>> {
+        fun getReservations(TAG: String,id:String): MutableLiveData<List<Reservation>> {
             var call = api.getReservations(id) // consommation de l'api
             var reservationRespond: List<Reservation>?
-            var reservationList = ArrayList<Reservation>()
-            var finalList = MutableLiveData<ArrayList<Reservation>>()
+            var reservationList = mutableListOf<Reservation>()
+            var finalList = MutableLiveData<List<Reservation>>()
 
             call.enqueue(object : Callback<List<Reservation>> {
                 override fun onResponse(call: Call<List<Reservation>>, response: Response<List<Reservation>>) {
