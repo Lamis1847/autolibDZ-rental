@@ -33,7 +33,7 @@
     <Button
         android:id="@+id/detailsButton"
         android:layout_width="97dp"
-        android:layout_height="32dp"
+        android:layout_height="35dp"
         android:layout_marginTop="1dp"
         android:layout_marginEnd="8dp"
         android:fontFamily="@font/gothambold"
@@ -47,7 +47,7 @@
     <Button
         android:id="@+id/reserverButton"
         android:layout_width="97dp"
-        android:layout_height="33dp"
+        android:layout_height="42dp"
         android:layout_marginEnd="8dp"
         android:backgroundTint="@color/validate_color"
         android:fontFamily="@font/gothambold"

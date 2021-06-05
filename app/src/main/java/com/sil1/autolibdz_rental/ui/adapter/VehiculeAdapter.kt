@@ -1,8 +1,6 @@
 package com.sil1.autolibdz_rental.ui.adapter
 
 import android.content.Context
-import android.net.Uri
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -13,9 +11,21 @@ import androidx.navigation.findNavController
 import androidx.recyclerview.widget.RecyclerView
 import com.sil1.autolibdz_rental.R
 import com.sil1.autolibdz_rental.data.model.VehiculeModel
+import com.sil1.autolibdz_rental.ui.viewmodel.Reservation
 import com.sil1.autolibdz_rental.ui.viewmodel.Vehicule
 
-class VehiculesAdapter(val context: Context, var data: List<VehiculeModel>, var vm: Vehicule): RecyclerView.Adapter<MyViewHolder>()
+class VehiculesAdapter(
+    val context: Context,
+    var data: List<VehiculeModel>,
+    var vm: Vehicule,
+    var vmRes: Reservation,
+    var resViewModel: Reservation,
+    /*idBorneDepart: Int,
+    idBorneDestination: Int,
+    tempsEstimeEnSecondes: Double,
+    tempsEstimeHumanReadable: String,
+    distanceEstime: Long,*/
+): RecyclerView.Adapter<MyViewHolder>()
 {
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MyViewHolder {
         return MyViewHolder(LayoutInflater.from(context).inflate(R.layout.vehicule_layout, parent, false))
@@ -26,16 +36,7 @@ class VehiculesAdapter(val context: Context, var data: List<VehiculeModel>, var 
 
     override fun onBindViewHolder(holder: MyViewHolder, position: Int) {
         holder.nomVehicule.text = data[position].marque + " "+ data[position].modele
-    /*    if(data[position]...secureUrl != null){
-            val imgUri: Uri = Uri.parse(data[position].secureUrl)
-            holder.imageVehicule.setImageURI(imgUri)
-            ///Log.i("ESSAI", "view model here"+vm.secureUrl)
-        }
-        else{
-            holder.imageVehicule.setImageResource(R.drawable.vehiculeimg)
-        }
-*/
-
+        //holder.imageVehicule.setImageResource(data[position].imageVehicule)
 
         holder.detailsButton.setOnClickListener{
             vm.marque = data[position].marque
@@ -50,20 +51,27 @@ class VehiculesAdapter(val context: Context, var data: List<VehiculeModel>, var 
             vm.chargeBatterie =data[position].chargeBatterie
             vm.couleur =data[position].couleur
             vm.etat = data[position].etat
-            vm.limiteurVitesse = data[position].limiteurVitesse
-           /* if(data[position].secureUrl != null) {
-                vm.secureUrl = data[position].secureUrl
-            }*/
-
-            holder.detailsButton.findNavController().navigate(R.id.action_listeVehiculeFragment_to_DetailsVehiculeFragment)
+            vm.limiteurVitesse = vm.limiteurVitesse
+           /* vmRes.idBorneDepart = resViewModel.idBorneDepart
+            vmRes.idBorneDestination = resViewModel.idBorneDestination
+            vmRes.tempsEstimeEnSecondes = resViewModel.tempsEstimeEnSecondes
+            vmRes.tempsEstimeHumanReadable = resViewModel.tempsEstimeHumanReadable
+            vmRes.distanceEstime = resViewModel.distanceEstime*/
+            holder.detailsButton.findNavController().navigate(R.id.action_listeVehiculeFragment_to_detailsVehiculeFragment)
 
         }
-
-        holder.reserverButton.setOnClickListener {
+        holder.reserverButton.setOnClickListener{
             vm.marque = data[position].marque
             vm.modele =  data[position].modele
+            vmRes.idBorneDepart = resViewModel.idBorneDepart
+            vmRes.idBorneDestination = resViewModel.idBorneDestination
+            vmRes.tempsEstimeEnSecondes = resViewModel.tempsEstimeEnSecondes
+            vmRes.tempsEstimeHumanReadable = resViewModel.tempsEstimeHumanReadable
+            vmRes.distanceEstime = resViewModel.distanceEstime
             holder.reserverButton.findNavController().navigate(R.id.action_listeVehiculeFragment_to_infosReservationFragment)
         }
+
+
 
     }
 

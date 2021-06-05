@@ -7,10 +7,13 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.lifecycle.ViewModelProvider
+import androidx.navigation.findNavController
 import androidx.navigation.fragment.findNavController
 import com.sil1.autolibdz_rental.R
+import com.sil1.autolibdz_rental.ui.viewmodel.Reservation
 import com.sil1.autolibdz_rental.ui.viewmodel.Vehicule
 import kotlinx.android.synthetic.main.fragment_details_vehicule.*
+import kotlinx.android.synthetic.main.vehicule_layout.*
 
 
 class DetailsVehiculeFragment : Fragment() {
@@ -26,7 +29,9 @@ class DetailsVehiculeFragment : Fragment() {
         super.onActivityCreated(savedInstanceState)
 
         val vm = ViewModelProvider(requireActivity()).get(Vehicule::class.java)
-            nomVehiculeD.text = vm.marque +" "+ vm.modele
+        val vmRes = ViewModelProvider(requireActivity()).get(Reservation::class.java)
+
+        nomVehiculeD.text = vm.marque +" "+ vm.modele
             matriculeVehiculeD.text = vm.modele
             marqueD.text = vm.marque
             etatVehiculeD.text = vm.etat
@@ -41,6 +46,9 @@ class DetailsVehiculeFragment : Fragment() {
             anomalieCD.text = vm.anomalieCircuit
             regulateurVD.text = vm.regulateurVitesse.toString()
             limiteurVD.text=vm.limiteurVitesse.toString()
+            reseverButtonD.setOnClickListener {
+                findNavController().navigate(R.id.action_listeVehiculeFragment_to_infosReservationFragment)
+            }
           /*  if(vm.secureUrl != "") {
                 val imgUri: Uri = Uri.parse(vm.secureUrl)
                 VehiculeImageViewD.setImageURI(imgUri)

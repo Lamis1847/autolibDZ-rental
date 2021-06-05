@@ -1,6 +1,5 @@
 package com.sil1.autolibdz_rental.ui.viewmodel
 import androidx.lifecycle.ViewModel
-import com.google.gson.annotations.SerializedName
 
 class Vehicule:ViewModel(){
     var numChassis=0

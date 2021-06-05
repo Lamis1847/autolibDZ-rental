@@ -4,12 +4,12 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:layout_marginTop="10dp"
-    tools:context=".InfosReservationFragment">
+    android:layout_marginTop="0dp"
+    tools:context=".ui.view.fragment.reservation_vehicule.InfosReservationFragment">
 
     <androidx.cardview.widget.CardView
         android:id="@+id/cardView7"
-        android:layout_width="398dp"
+        android:layout_width="0dp"
         android:layout_height="122dp"
         android:backgroundTint="@color/palette_yellow"
         app:cardCornerRadius="20dp"
@@ -25,6 +25,7 @@
             android:paddingTop="30sp"
             android:text="Informations sur votre réservation"
             android:textAlignment="center"
+            android:textColor="@color/black"
             android:textSize="25sp"
             tools:layout_editor_absoluteX="1dp"
             tools:layout_editor_absoluteY="-5dp" />
@@ -43,7 +44,7 @@
         app:layout_constraintTop_toBottomOf="@+id/cardView7" />
 
     <TextView
-        android:id="@+id/textView6"
+        android:id="@+id/textView30"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="28dp"
@@ -78,10 +79,10 @@
         app:layout_constraintTop_toBottomOf="@+id/cardView6" />
 
     <Button
-        android:id="@+id/button3"
+        android:id="@+id/confirmerButton"
         android:layout_width="118dp"
         android:layout_height="wrap_content"
-        android:layout_marginTop="28dp"
+        android:layout_marginTop="18dp"
         android:backgroundTint="@color/validate_color"
         android:fontFamily="@font/gothambold"
         android:text="Confirmer"
@@ -91,7 +92,7 @@
         app:layout_constraintTop_toBottomOf="@+id/textView11" />
 
     <Button
-        android:id="@+id/button4"
+        android:id="@+id/modifierButton"
         android:layout_width="118dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="10dp"
@@ -100,10 +101,10 @@
         android:textAllCaps="false"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/button3" />
+        app:layout_constraintTop_toBottomOf="@+id/confirmerButton" />
 
     <Button
-        android:id="@+id/button5"
+        android:id="@+id/annulerButton"
         android:layout_width="118dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="10dp"
@@ -111,12 +112,10 @@
         android:fontFamily="@font/gothambold"
         android:text="Annuler"
         android:textAllCaps="false"
-        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/button4"
-        app:layout_constraintVertical_bias="0.109" />
+        app:layout_constraintTop_toBottomOf="@+id/modifierButton" />
 
     <androidx.cardview.widget.CardView
         android:id="@+id/cardView3"
@@ -144,7 +143,7 @@
                 android:src="@drawable/ic_localisation" />
 
             <TextView
-                android:id="@+id/textView13"
+                android:id="@+id/borneDepartTextViewI"
                 android:layout_width="292dp"
                 android:layout_height="40dp"
                 android:layout_weight="1"
@@ -164,7 +163,7 @@
         app:cardCornerRadius="10dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView6">
+        app:layout_constraintTop_toBottomOf="@+id/textView30">
 
         <LinearLayout
             android:layout_width="wrap_content"
@@ -181,7 +180,7 @@
                 android:src="@drawable/ic_localisation" />
 
             <TextView
-                android:id="@+id/textView14"
+                android:id="@+id/borneDestinationTextViewI"
                 android:layout_width="292dp"
                 android:layout_height="40dp"
                 android:layout_weight="1"
@@ -217,7 +216,7 @@
                 android:src="@drawable/ic_car" />
 
             <TextView
-                android:id="@+id/textView15"
+                android:id="@+id/nomVehiculeTextViewI"
                 android:layout_width="292dp"
                 android:layout_height="40dp"
                 android:layout_weight="1"
@@ -254,7 +253,7 @@
                 android:src="@drawable/ic_vector" />
 
             <TextView
-                android:id="@+id/textView16"
+                android:id="@+id/priceTextViewI"
                 android:layout_width="292dp"
                 android:layout_height="match_parent"
                 android:layout_weight="1"

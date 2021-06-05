@@ -1,47 +1,42 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    tools:context=".ui.view.fragment.splashscreen.SplashFragmentOne"
-    android:background="@color/white">
+    xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <ImageView
         android:id="@+id/imageViewHandCar"
-        android:layout_width="wrap_content"
-        android:layout_height="294dp"
-        android:layout_marginTop="88dp"
+        android:layout_width="295dp"
+        android:layout_height="249dp"
+        android:layout_marginTop="48dp"
         android:src="@drawable/ic_splash1"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.491"
+        app:layout_constraintHorizontal_bias="0.52"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
         android:id="@+id/textViewSplashOne"
-        android:layout_width="334dp"
+        android:layout_width="292dp"
         android:layout_height="95dp"
-        android:layout_marginTop="30dp"
+        android:layout_marginTop="16dp"
         android:fontFamily="@font/gothambold"
         android:gravity="center"
         android:text="@string/textViewSplashOne"
         android:textColor="@color/black"
-        android:textSize="24sp"
+        android:textSize="25sp"
         android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.493"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/imageViewHandCar" />
 
     <ImageView
         android:id="@+id/imageViewRound3_S1"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="25dp"
+        android:layout_width="0dp"
+        android:layout_height="15dp"
+        android:layout_marginStart="40dp"
+        android:layout_marginTop="16dp"
         android:src="@drawable/ic_rond_1"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.234"
         app:layout_constraintStart_toEndOf="@+id/imageViewRound2_S1"
         app:layout_constraintTop_toBottomOf="@+id/textViewSplashOne" />
 
@@ -49,20 +44,18 @@
         android:id="@+id/imageViewRound1_S1"
         android:layout_width="15dp"
         android:layout_height="15dp"
-        android:layout_marginStart="104dp"
-        android:layout_marginLeft="104dp"
-        android:layout_marginTop="25dp"
+        android:layout_marginStart="84dp"
+        android:layout_marginTop="16dp"
         android:src="@drawable/ic_rond_2"
         app:layout_constraintStart_toStartOf="@+id/textViewSplashOne"
         app:layout_constraintTop_toBottomOf="@+id/textViewSplashOne" />
 
     <ImageView
         android:id="@+id/imageViewRound2_S1"
-        android:layout_width="15dp"
+        android:layout_width="0dp"
         android:layout_height="15dp"
-        android:layout_marginStart="45dp"
-        android:layout_marginLeft="45dp"
-        android:layout_marginTop="25dp"
+        android:layout_marginStart="40dp"
+        android:layout_marginTop="16dp"
         android:src="@drawable/ic_rond_1"
         app:layout_constraintStart_toEndOf="@+id/imageViewRound1_S1"
         app:layout_constraintTop_toBottomOf="@+id/textViewSplashOne" />
@@ -71,16 +64,15 @@
         android:id="@+id/textViewPasserOne"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="60dp"
         android:fontFamily="@font/gothambold"
+        android:layout_marginTop="32dp"
         android:text="@string/passer"
         android:textColor="@color/black"
         android:textSize="20sp"
         android:textStyle="bold"
-        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.498"
+        app:layout_constraintHorizontal_bias="0.501"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/imageViewRound2_S1"
-        app:layout_constraintVertical_bias="0.927" />
+        app:layout_constraintTop_toBottomOf="@+id/imageViewRound2_S1" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>
