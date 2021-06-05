@@ -7,6 +7,7 @@ import android.widget.ImageView
 import com.sil1.autolibdz_rental.R
 
 var userToken :String =""
+val sharedPrefFile: String = "kotlinsharedpreference"
 var idTokenUser :String = ""
 
 class utils {
