@@ -1,5 +1,6 @@
 package com.sil1.autolibdz_rental.data.repositories
 
+import android.annotation.SuppressLint
 import android.content.Context
 import android.content.Intent
 import android.widget.Toast
@@ -30,6 +31,7 @@ class LogInRepository {
             email: String,
             password: String
         ) {
+
             var signinbody = SignInBody(email, password)
             val authLocataireRequest = api.userLogin(signinbody) // consommation de l'api
 
@@ -39,6 +41,7 @@ class LogInRepository {
 
             authLocataireRequest.enqueue(object : Callback<LoginUser> {
 
+                @SuppressLint("RestrictedApi")
                 override fun onResponse(call: Call<LoginUser>, response: Response<LoginUser>) {
                     if (!response.isSuccessful()) {
                         val gson = Gson()
@@ -46,13 +49,12 @@ class LogInRepository {
                             response.errorBody()!!.charStream(),
                             LoginUser::class.java
                         )
-                        Toast.makeText(context, "Erreur dans le login", Toast.LENGTH_LONG).show();
+                        Toast.makeText(context, "Erreur dans le login", Toast.LENGTH_LONG).show()
 
                     } else {
                         val resp = response.body()
 
                         if (resp != null) {
-
                             userToken = resp?.token.toString()
 
                             var jwt = JWT(userToken)
@@ -74,6 +76,7 @@ class LogInRepository {
                         * val preferences = getSharedPreferences(sharedPrefFile, Context.MODE_PRIVATE)
                         * val userID = preferences.getString("userID", "Default")
                         */
+
                     }
                 }
 
@@ -81,7 +84,6 @@ class LogInRepository {
                     Toast.makeText(context, "Erreur", Toast.LENGTH_SHORT).show()
                 }
             })
-
         }
     }
 }

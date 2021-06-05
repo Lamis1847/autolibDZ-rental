@@ -4,19 +4,32 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/mobile_navigation"
     app:startDestination="@+id/nav_home">
-
     <fragment
         android:id="@+id/nav_home"
         android:name="com.sil1.autolibdz_rental.ui.view.fragment.map_display.MapDisplayFragment"
         android:label="@string/menu_home"
-        tools:layout="@layout/map_display_fragment" />
+        tools:layout="@layout/map_display_fragment" >
+        <action
+            android:id="@+id/action_nav_home_to_listeVehiculeFragment"
+            app:destination="@id/listeVehiculeFragment" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/nav_profil"
+        android:label="@string/menu_profil"
+        tools:layout="@layout/fragment_profil" />
 
     <fragment
         android:id="@+id/nav_history"
-        android:name="com.sil1.autolibdz_rental.ui.view.fragment.ExampleFragment"
+        android:name="com.sil1.autolibdz_rental.ui.view.fragment.profil.ProfilFragment"
         android:label="@string/menu_history"
         tools:layout="@layout/fragment_example" />
 
+    <fragment
+        android:id="@+id/nav_transaction"
+        android:name="com.sil1.autolibdz_rental.ui.view.fragment.ExampleFragment"
+        android:label="@string/menu_transactions"
+        tools:layout="@layout/fragment_example" />
     <fragment
         android:id="@+id/nav_reclamation"
         android:name="com.sil1.autolibdz_rental.ui.view.fragment.ExampleFragment"
@@ -28,11 +41,28 @@
         android:label="@string/menu_assistance"
         tools:layout="@layout/fragment_example" />
     <fragment
-        android:id="@+id/nav_balance"
-        android:name="com.sil1.autolibdz_rental.ui.view.fragment.ExampleFragment"
-        android:label="@string/menu_balance"
-        tools:layout="@layout/fragment_example" />
-
+        android:id="@+id/listeVehiculeFragment"
+        android:name="com.sil1.autolibdz_rental.ui.view.activity.ListeVehiculeFragment"
+        android:label="fragment_liste_vehicule"
+        tools:layout="@layout/fragment_liste_vehicule" >
+        <action
+            android:id="@+id/action_listeVehiculeFragment_to_detailsVehiculeFragment"
+            app:destination="@id/detailsVehiculeFragment" />
+        <action
+            android:id="@+id/action_ListeVehiculeFragment_pop"
+            app:popUpTo="@id/listeVehiculeFragment"
+            app:popUpToInclusive="true" />
+    </fragment>
+    <fragment
+        android:id="@+id/detailsVehiculeFragment"
+        android:name="com.sil1.autolibdz_rental.ui.view.activity.DetailsVehiculeFragment"
+        android:label="fragment_details_vehicule"
+        tools:layout="@layout/fragment_details_vehicule">
+    <action
+        android:id="@+id/action_DetailsVehiculeFragment_pop"
+        app:popUpTo="@id/detailsVehiculeFragment"
+        app:popUpToInclusive="true" />
+    </fragment>
 
 
 </navigation>

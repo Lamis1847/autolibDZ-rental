@@ -9,20 +9,26 @@
             android:icon="@drawable/ic_home"
             android:title="@string/menu_home" />
         <item
+            android:id="@+id/nav_profil"
+            android:icon="@drawable/ic_baseline_account_circle_24"
+            android:title="@string/menu_profil" />
+        <item
             android:id="@+id/nav_history"
-            android:icon="@drawable/ic_reload"
+            android:icon="@drawable/ic_baseline_history_24"
             android:title="@string/menu_history" />
+
+        <item
+            android:id="@+id/nav_transaction"
+            android:icon="@drawable/ic_baseline_payment_24"
+            android:title="@string/menu_transactions" />
         <item
             android:id="@+id/nav_reclamation"
             android:icon="@drawable/ic_warning"
             android:title="@string/menu_reclamation" />
         <item
             android:id="@+id/nav_assistance"
-            android:icon="@drawable/ic_reload"
+            android:icon="@drawable/ic_face_agent"
             android:title="@string/menu_assistance" />
-        <item
-            android:id="@+id/nav_balance"
-            android:icon="@drawable/ic_money"
-            android:title="@string/menu_balance" />
+
     </group>
 </menu>

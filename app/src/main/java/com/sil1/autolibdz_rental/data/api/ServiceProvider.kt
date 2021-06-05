@@ -1,8 +1,6 @@
 package com.sil1.autolibdz_rental.data.api
 
-import com.sil1.autolibdz_rental.data.model.Borne
-import com.sil1.autolibdz_rental.data.model.LoginUser
-import com.sil1.autolibdz_rental.data.model.SignInBody
+import com.sil1.autolibdz_rental.data.model.*
 import okhttp3.MultipartBody
 import okhttp3.RequestBody
 import okhttp3.ResponseBody
@@ -20,4 +18,22 @@ interface ServiceProvider {
     fun userLogin(
         @Body info: SignInBody
     ):Call<LoginUser>
+
+    //add new  Locataire
+    @POST("api/locataire/createLocataire")
+    fun ajouterLocataire(@Body userData: Locataire): Call<SignUpResponse>
+
+    //add new  Locataire with google api , password == mail
+    @POST("api/locataire/createLocataireGmail")
+    fun ajouterLocataireGoogle(@Body token: SignUpGoogleBody): Call<SignUpResponse>
+
+    //récupérer les informations d'un locataire
+    @GET("api/locataire/{id}")
+    fun getLocataire(@Path("id") id:String /*@Header("Authorization") token: String*/): Call<LocataireRetro>
+
+    @PUT("api/locataire/{id}")
+    fun editLocataire(@Path("id") id:String,@Body locataire:LocataireRetro/*@Header("Authorization") token: String*/): Call<LocataireModificationResponse>
+    @GET("/api/bornes/{id}/vehicules")
+    fun getListeVehicules(/*@Header("Authorization") token: String*/@Path("id") id:String  ): Call<List<VehiculeModel>>
+
 }
