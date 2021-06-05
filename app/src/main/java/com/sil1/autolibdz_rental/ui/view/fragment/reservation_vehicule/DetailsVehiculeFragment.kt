@@ -1,7 +1,6 @@
 package com.sil1.autolibdz_rental.ui.view.activity
 
 import android.annotation.SuppressLint
-import android.net.Uri
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
@@ -12,13 +11,9 @@ import androidx.navigation.fragment.findNavController
 import com.sil1.autolibdz_rental.R
 import com.sil1.autolibdz_rental.ui.viewmodel.Vehicule
 import kotlinx.android.synthetic.main.fragment_details_vehicule.*
-import kotlinx.android.synthetic.main.vehicule_layout.*
 
 
 class DetailsVehiculeFragment : Fragment() {
-
-
-
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?

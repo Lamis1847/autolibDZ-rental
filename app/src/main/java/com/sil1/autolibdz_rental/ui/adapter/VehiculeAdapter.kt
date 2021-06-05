@@ -1,6 +1,7 @@
 package com.sil1.autolibdz_rental.ui.adapter
 
 import android.content.Context
+import android.net.Uri
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
@@ -25,8 +26,16 @@ class VehiculesAdapter(val context: Context, var data: List<VehiculeModel>, var 
 
     override fun onBindViewHolder(holder: MyViewHolder, position: Int) {
         holder.nomVehicule.text = data[position].marque + " "+ data[position].modele
-        //holder.nbPlaces.text = data[position].nbPlaces.toString()
-        //holder.imageVehicule.setImageResource(data[position].imageVehicule)
+    /*    if(data[position]...secureUrl != null){
+            val imgUri: Uri = Uri.parse(data[position].secureUrl)
+            holder.imageVehicule.setImageURI(imgUri)
+            ///Log.i("ESSAI", "view model here"+vm.secureUrl)
+        }
+        else{
+            holder.imageVehicule.setImageResource(R.drawable.vehiculeimg)
+        }
+*/
+
 
         holder.detailsButton.setOnClickListener{
             vm.marque = data[position].marque
@@ -41,9 +50,19 @@ class VehiculesAdapter(val context: Context, var data: List<VehiculeModel>, var 
             vm.chargeBatterie =data[position].chargeBatterie
             vm.couleur =data[position].couleur
             vm.etat = data[position].etat
-            vm.limiteurVitesse = vm.limiteurVitesse
+            vm.limiteurVitesse = data[position].limiteurVitesse
+           /* if(data[position].secureUrl != null) {
+                vm.secureUrl = data[position].secureUrl
+            }*/
+
             holder.detailsButton.findNavController().navigate(R.id.action_listeVehiculeFragment_to_DetailsVehiculeFragment)
 
+        }
+
+        holder.reserverButton.setOnClickListener {
+            vm.marque = data[position].marque
+            vm.modele =  data[position].modele
+            holder.reserverButton.findNavController().navigate(R.id.action_listeVehiculeFragment_to_infosReservationFragment)
         }
 
     }
