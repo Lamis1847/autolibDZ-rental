@@ -1,6 +1,7 @@
 package com.sil1.autolibdz_rental.data.repositories
 
 import android.content.Context
+import android.content.Intent
 import android.widget.Toast
 import com.auth0.android.jwt.JWT
 import com.google.gson.Gson
@@ -8,6 +9,8 @@ import com.sil1.autolibdz_rental.data.api.ServiceBuilder
 import com.sil1.autolibdz_rental.data.api.ServiceProvider
 import com.sil1.autolibdz_rental.data.model.LoginUser
 import com.sil1.autolibdz_rental.data.model.SignInBody
+import com.sil1.autolibdz_rental.ui.view.activity.HomeActivity
+import com.sil1.autolibdz_rental.utils.sharedPrefFile
 import com.sil1.autolibdz_rental.utils.userToken
 import retrofit2.Call
 import retrofit2.Callback
@@ -30,6 +33,10 @@ class LogInRepository {
             var signinbody = SignInBody(email, password)
             val authLocataireRequest = api.userLogin(signinbody) // consommation de l'api
 
+            val sharedPref = context.getSharedPreferences(
+                sharedPrefFile, Context.MODE_PRIVATE
+            )
+
             authLocataireRequest.enqueue(object : Callback<LoginUser> {
 
                 override fun onResponse(call: Call<LoginUser>, response: Response<LoginUser>) {
@@ -43,25 +50,30 @@ class LogInRepository {
 
                     } else {
                         val resp = response.body()
+
+                        if (resp != null) {
+
+                            userToken = resp?.token.toString()
+
+                            var jwt = JWT(userToken)
+                            var claimID = jwt.getClaim("id") //claimID to have the connected user's ID
+                            var claimRole = jwt.getClaim("role")
+
+                            with(sharedPref?.edit()) {
+                                this?.putString("userID", claimID.asString())
+                                this?.putString("userRole", claimRole.asString())
+                                this?.putBoolean("connected", true)
+                                this?.apply()
+                            }
+                        }
+
                         Toast.makeText(context, "Connexion établie", Toast.LENGTH_SHORT).show()
-
-                        userToken = resp?.token.toString()
-
-                        var jwt = JWT(userToken)
-                        var claimID = jwt.getClaim("id") //claimID to have the connected user's ID
-                        var claimRole = jwt.getClaim("role")
-
-                        /*//saving the information from the token
-                        val sharedPreference =  getSharedPreferences("com.example.autoLibDZ", Context.MODE_PRIVATE)
-                        var editor = sharedPreference.edit()
-                        editor.putString("userID", claimID.asString())
-                        editor.putString("userRole",claimRole.asString())
-                        editor.putBoolean("connected",true)
-                        editor.commit()*/
-
-                        //val intent = Intent(context,ProfilActivity::class.java)
-                        //startActivity(intent)
-                        //finish()*/
+                        val myIntent = Intent(context, HomeActivity::class.java)
+                        context.startActivity(myIntent)
+                        /*get DATA example : (in other activities)
+                        * val preferences = getSharedPreferences(sharedPrefFile, Context.MODE_PRIVATE)
+                        * val userID = preferences.getString("userID", "Default")
+                        */
                     }
                 }
 
