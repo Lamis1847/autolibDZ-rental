@@ -33,5 +33,10 @@ class InfosReservationFragment : Fragment() {
         borneDepartTextViewI.text = "Borne" + " " +  resViewModel.nomBorneDepart
         borneDestinationTextViewI.text = "Borne" + " " + resViewModel.nomBorneDestination
         priceTextViewI.text = ((resViewModel.distanceEstime * 162.34) + (resViewModel.tempsEstimeEnSecondes * 48.7 / 60)).toString() + "DA"
+
+        confirmerButton.setOnClickListener {
+            findNavController().navigate(R.id.action_infosReservationFragment_to_vehiculeReserveFragment)
+
+        }
         }
 }
