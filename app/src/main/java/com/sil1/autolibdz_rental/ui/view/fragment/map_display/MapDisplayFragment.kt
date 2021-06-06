@@ -1,9 +1,10 @@
 package com.sil1.autolibdz_rental.ui.view.fragment.map_display
 
+import android.Manifest
 import android.annotation.SuppressLint
 import android.app.Activity
 import android.content.Intent
-import android.location.Geocoder
+import android.content.pm.PackageManager
 import android.location.Location
 import android.os.Bundle
 import android.util.Log
@@ -12,10 +13,12 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
 import androidx.core.app.ActivityCompat
-import androidx.core.content.ContextCompat
+import com.google.maps.GeoApiContext
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
+import androidx.navigation.findNavController
+import androidx.navigation.fragment.findNavController
 import com.google.android.gms.common.GooglePlayServicesNotAvailableException
 import com.google.android.gms.location.FusedLocationProviderClient
 import com.google.android.gms.location.LocationServices
@@ -24,14 +27,21 @@ import com.google.android.gms.maps.model.LatLng
 import com.google.android.gms.maps.model.Marker
 import com.google.android.gms.maps.model.MarkerOptions
 import com.google.android.libraries.places.api.model.Place
-import com.google.android.libraries.places.api.model.TypeFilter
 import com.google.android.libraries.places.widget.Autocomplete
 import com.google.android.libraries.places.widget.AutocompleteActivity
 import com.google.android.libraries.places.widget.model.AutocompleteActivityMode
+import com.google.maps.DistanceMatrixApi
+import com.google.maps.PendingResult
+import com.google.maps.model.DistanceMatrix
+import com.google.maps.model.TravelMode
 import com.sil1.autolibdz_rental.R
 import com.sil1.autolibdz_rental.data.model.Borne
+import com.sil1.autolibdz_rental.ui.view.activity.MyDrawerController
+import com.sil1.autolibdz_rental.ui.viewmodel.Reservation
+import com.sil1.autolibdz_rental.ui.viewmodel.Vehicule
 import kotlinx.android.synthetic.main.map_display_fragment.*
 import java.io.IOException
+import java.text.DecimalFormat
 import java.util.*
 import kotlin.properties.Delegates
 
@@ -41,44 +51,52 @@ class MapDisplayFragment : Fragment() , OnMapReadyCallback , GoogleMap.OnMarkerC
     private var mapReady = false
     private lateinit var marker: Marker
     private lateinit var viewModel: MapDisplayViewModel
-    //private lateinit var bitmap: Bitmap
-    var fusedLocationProviderClient: FusedLocationProviderClient? = null
-    private var geocoder: Geocoder? = null
-    private val TAG = "Maps Fragment"
+    private val TAG = "MapsFragment"
     private val AUTOCOMPLETE_REQUEST_CODE = 1
-    private val defaultLocation = LatLng(-33.8523341, 151.2106085)
-    private var locationPermissionGranted = false
     private var clickedOnBorneDepart : Boolean = false
     private var clickedOnBorneDestination : Boolean = false
-   // private var choiceDone : Boolean = false
-    // The geographical location where the device is currently located. That is, the last-known
-   // location retrieved by the Fused Location Provider.
-    private var lastKnownLocation: Location? = null
+    private var totalDistance = 0L
+    private lateinit var origin : LatLng
+    private lateinit var destination : LatLng
+    private lateinit var fusedLocationClient: FusedLocationProviderClient
+    private  var timeHumanReadable = ""
+    private  var timeInSeconds  = 0.0
+    private  var idBorneDepart : Int = 0
+    private  var idBorneDestination : Int = 0
+    private var myDrawerController: MyDrawerController? = null
 
     companion object {
-        private const val PERMISSIONS_REQUEST_ACCESS_FINE_LOCATION = 1
         fun newInstance() = MapDisplayFragment()
     }
 
+    override fun onAttach(activity: Activity) {
+        super.onAttach(activity)
+        myDrawerController = try {
+            activity as MyDrawerController
+        } catch (e: ClassCastException) {
+            throw ClassCastException("$activity must implement MyDrawerController")
+        }
+    }
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
         val view: View = inflater.inflate(R.layout.map_display_fragment, container, false)
+        fusedLocationClient = LocationServices.getFusedLocationProviderClient(requireActivity())
 
         val mapFragment = childFragmentManager.findFragmentById(R.id.mapFragment) as SupportMapFragment
 
         mapFragment.getMapAsync(this)
-
-
-        // geocoder = Geocoder(context)
-       // fusedLocationProviderClient = LocationServices.getFusedLocationProviderClient(requireActivity())
+        myDrawerController?.setDrawer_UnLocked();
 
         return view
 
     }
-
+    override fun onDestroyView() {
+        super.onDestroyView()
+        myDrawerController?.setDrawer_Locked()
+    }
      override fun onMapReady(googleMap : GoogleMap){
          try {
              MapsInitializer.initialize(this.activity)
@@ -92,17 +110,13 @@ class MapDisplayFragment : Fragment() , OnMapReadyCallback , GoogleMap.OnMarkerC
     @SuppressLint("FragmentLiveDataObserve")
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
-       viewModel = ViewModelProvider(this).get(MapDisplayViewModel::class.java)
-
+        //this vm is used to pass data between this fragment and list vehicule fragment
+        val resViewModel = ViewModelProvider(requireActivity()).get(Reservation::class.java)
+        viewModel = ViewModelProvider(this).get(MapDisplayViewModel::class.java)
         //bitmap = BitmapFactory.decodeResource(resources,R.drawable.ic_borne_marker)
         viewModel.bornes.observe(this, Observer {
                 bornes ->
                 updateMap(bornes)
-            // Turn on the My Location layer and the related control on the map.
-            //updateLocationUI()
-
-            // Get the current location of the device and set the position of the map.
-            //getDeviceLocation()
         })
 
         buttonChoixBorneDepart.setOnClickListener(){
@@ -123,6 +137,8 @@ class MapDisplayFragment : Fragment() , OnMapReadyCallback , GoogleMap.OnMarkerC
             startActivityForResult(intent, AUTOCOMPLETE_REQUEST_CODE)
         }
         buttonChoixBorneDestination.setOnClickListener(){
+            Toast.makeText(requireActivity(),"Yofffffff",Toast.LENGTH_SHORT).show()
+
             clickedOnBorneDepart = false
             clickedOnBorneDestination = true
 
@@ -137,6 +153,18 @@ class MapDisplayFragment : Fragment() , OnMapReadyCallback , GoogleMap.OnMarkerC
                     .build(it1)
             }
             startActivityForResult(intent, AUTOCOMPLETE_REQUEST_CODE)
+        }
+        buttonSuivant.setOnClickListener(){
+            makeDistanceCalculationCall(origin,destination)
+            Log.i(TAG,"it stopped here")
+
+            resViewModel.idBorneDepart = idBorneDepart
+            resViewModel.idBorneDestination = idBorneDestination
+            resViewModel.tempsEstimeEnSecondes = timeInSeconds
+            resViewModel.tempsEstimeHumanReadable = timeHumanReadable
+            resViewModel.distanceEstime = totalDistance
+            Log.i(TAG,"it works here")
+            findNavController().navigate(R.id.action_nav_home_to_listeVehiculeFragment)
         }
 
     }
@@ -179,22 +207,27 @@ class MapDisplayFragment : Fragment() , OnMapReadyCallback , GoogleMap.OnMarkerC
             buttonSuivant.visibility = View.VISIBLE
         }
         // Retrieve the data from the marker.
-        val clickCount = marker.tag as? Int
+        val id = marker.tag as? Int
 
         // Check if a click count was set, then display the click count.
-        clickCount?.let {
-            val newClickCount = it + 1
-            marker.tag = newClickCount
+        id?.let {
             Log.i(
                 TAG,
-                "${marker.title} has been clicked $newClickCount times.",
+                "${marker.title} has been clicked on",
             )
-           // Toast.makeText(context,"${marker.title} has been clicked $newClickCount times.",Toast.LENGTH_SHORT).show()
-            if(clickedOnBorneDepart)
+            if(clickedOnBorneDepart) {
                 buttonChoixBorneDepart.text = "Borne de " + marker.title
+                origin = marker.position
+                idBorneDepart = id
+
+            }
             else {
-                if(clickedOnBorneDestination)
+                if(clickedOnBorneDestination) {
                     buttonChoixBorneDestination.text = "Borne de " + marker.title
+                    destination = marker.position
+                    idBorneDestination = id
+
+                }
             }
 
         }
@@ -218,10 +251,16 @@ class MapDisplayFragment : Fragment() , OnMapReadyCallback , GoogleMap.OnMarkerC
                                 .position(latlng)
                                 // .icon(BitmapDescriptorFactory.fromResource(R.drawable.ic_marker))
                                 .title(borne.nomBorne))
-                        marker.tag = 0
+
+                        marker.tag = borne.idBorne
                     }
                 }
+                //test :
+                /*  origin = LatLng(36.7029047,3.1428341)
+                destination = LatLng(36.78136937881909, 3.057437731395777)
+                makeDistanceCalculationCall(origin,destination)*/
                 // Set a listener for marker click.
+
                 mMap.setOnMarkerClickListener(this)
             }
         }
@@ -230,10 +269,67 @@ class MapDisplayFragment : Fragment() , OnMapReadyCallback , GoogleMap.OnMarkerC
         }
 
         //mMap.moveCamera(CameraUpdateFactory.newLatLng(sydney))
-
-
-
     }
+
+    /*
+    * Cette fonction nous permet d'instancier distancematrixAPI afin de calculer
+    * le temps estimée et la durée estimé du trajet entre deux bornes
+    */
+
+    fun geoContextDistanceApi(): GeoApiContext {
+        return GeoApiContext.Builder()
+            .apiKey(getString(R.string.api_key))
+            .build()
+    }
+
+    /*
+   * Cette fonction nous permet de faire une transformation du metre vers le km
+   */
+
+    fun getDistanceInKm(totalDistance: Double): String {
+        if (totalDistance == 0.0 || totalDistance < -1)
+            return "0 Km"
+        else if (totalDistance > 0 && totalDistance < 1000)
+            return totalDistance.toInt().toString() + " meters"
+        val df = DecimalFormat("#.##")
+        return df.format(totalDistance / 1000) + " Km"
+    }
+    private fun getDistance(): String {
+        Log.e(TAG, "Total Distance -> $totalDistance")
+        return getDistanceInKm(totalDistance.toDouble())
+    }
+
+    /*
+   * Cette fonction nous permet de calculer
+   * le temps estimée et la durée estimé du trajet entre deux bornes
+   */
+    private fun makeDistanceCalculationCall(depart:LatLng , dest:LatLng ) {
+        Toast.makeText(requireActivity(),"Yo je suis la ${depart.longitude}",Toast.LENGTH_SHORT).show()
+
+        val origin = arrayOf(depart.latitude.toString() + "," + depart.longitude)
+        val destination = arrayOf(dest.latitude.toString() + "," + dest.longitude.toString())
+        DistanceMatrixApi.getDistanceMatrix(geoContextDistanceApi(), origin, destination)
+            .mode(TravelMode.DRIVING)
+            .setCallback(object : PendingResult.Callback<DistanceMatrix> {
+                override fun onResult(result: DistanceMatrix) {
+                    val timeHumanReadable = result.rows[0].elements[0].duration.humanReadable
+                    val timeInSeconds = result.rows[0].elements[0].duration.inSeconds
+                    totalDistance = result.rows[0].elements[0].distance.inMeters
+                    Log.e(TAG, "Total Duration in seconds -> $timeInSeconds")
+                    Log.e(TAG, "Total Duration -> $timeHumanReadable")
+                    Log.e(TAG, "Total Distance -> ${getDistance()}")
+                }
+
+                override fun onFailure(e: Throwable) {
+                    Log.i("error",e.message.toString())
+                    e.printStackTrace()
+                }
+            })
+    }
+
+
+
+
 
 
 

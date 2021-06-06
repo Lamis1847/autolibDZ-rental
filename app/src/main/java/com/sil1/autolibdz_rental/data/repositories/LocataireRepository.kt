@@ -46,7 +46,7 @@ call.enqueue(object:Callback<LocataireModificationResponse>{
 })
 return boolean
 }
-        fun getLocataire(TAG: String,id:String): MutableLiveData<ArrayList<LocataireRetro?>> {
+        fun getLocataire(TAG: String,id:String?): MutableLiveData<ArrayList<LocataireRetro?>> {
             var call = api.getLocataire(id) // consommation de l'api
             var locataireRespond: LocataireRetro?
             var locatairelist = ArrayList<LocataireRetro?>()
