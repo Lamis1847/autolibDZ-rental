@@ -3,7 +3,6 @@ package com.sil1.autolibdz_rental.ui.view.fragment.profil
 import android.app.Activity
 import android.content.Context
 import android.os.Bundle
-import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
@@ -97,7 +96,7 @@ class ProfilFragment : Fragment() {
             nom.text.clear()
             prenom.text.clear()
             email.text.clear()
-            password.text.clear()
+            new_password.text.clear()
 
         }
 
