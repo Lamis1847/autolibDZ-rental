@@ -7,6 +7,7 @@ import java.util.*
 @Entity(tableName = "Reservations")
 data class ReservationRoom(
     @PrimaryKey
+
     var reservationId:Int,
     var borneDepart:String,
     var BorneDestination:String,

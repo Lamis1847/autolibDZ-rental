@@ -87,12 +87,25 @@ dependencies {
     
         //google signup
     implementation 'com.google.android.gms:play-services-auth:19.0.0'
-    //room
-    def room_version = "2.3.0"
-    implementation "androidx.room:room-runtime:$room_version"
-    kapt "androidx.room:room-compiler:$room_version"
-    implementation "androidx.room:room-ktx:$room_version"
-    testImplementation "androidx.room:room-testing:$room_version"
+        //room
+        def room_version = "2.3.0"
+        implementation "androidx.room:room-runtime:$room_version"
+        kapt "androidx.room:room-compiler:$room_version"
+        implementation "androidx.room:room-ktx:$room_version"
+        testImplementation "androidx.room:room-testing:$room_version"
+
+    def work_version = "2.5.0"
+
+    // Kotlin + coroutines
+    implementation "androidx.work:work-runtime-ktx:$work_version"
+// optional - GCMNetworkManager support
+    implementation "androidx.work:work-gcm:$work_version"
+
+    // optional - Test helpers
+    androidTestImplementation "androidx.work:work-testing:$work_version"
+
+    // optional - Multiprocess support
+    implementation "androidx.work:work-multiprocess:$work_version"
 
 
 }
