@@ -6,13 +6,13 @@ import androidx.room.*
 @Dao
 interface ReservationDao {
     @Insert(onConflict = OnConflictStrategy.REPLACE)
-    fun addReservation(reservation:ReservationRoom)
+    fun addReservation(reservation:Reservation)
     @Update
-    fun updateReservation(reservation:ReservationRoom)
+    fun updateReservation(reservation:Reservation)
     @Delete
-    fun deleteReservation(reservation:ReservationRoom)
+    fun deleteReservation(reservation:Reservation)
     @Query("SELECT * FROM Reservations")
-    fun selectReservations():MutableLiveData<List<ReservationRoom>>
+    fun selectReservations():List<Reservation>
 
 }
 
