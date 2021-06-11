@@ -1,0 +1,66 @@
+package com.sil1.autolibdz_rental.ui.view.fragment.abonnement_payment
+
+import android.app.Dialog
+import androidx.lifecycle.ViewModelProvider
+import android.os.Bundle
+import androidx.fragment.app.Fragment
+import android.view.LayoutInflater
+import android.view.View
+import android.view.ViewGroup
+import android.view.Window
+import androidx.core.os.bundleOf
+import androidx.lifecycle.Observer
+import androidx.navigation.findNavController
+import com.afollestad.materialdialogs.MaterialDialog
+import com.sil1.autolibdz_rental.R
+import kotlinx.android.synthetic.main.abonnement_payment_fragment.*
+import kotlinx.android.synthetic.main.infos_trajet_fragment.*
+
+class AbonnementPaymentFragment : Fragment() {
+    private lateinit var viewModel: AbonnementPaymentViewModel
+
+    override fun onCreateView(
+        inflater: LayoutInflater, container: ViewGroup?,
+        savedInstanceState: Bundle?
+    ): View? {
+        return inflater.inflate(R.layout.abonnement_payment_fragment, container, false)
+    }
+
+    override fun onActivityCreated(savedInstanceState: Bundle?) {
+        super.onActivityCreated(savedInstanceState)
+        viewModel = ViewModelProvider(this).get(AbonnementPaymentViewModel::class.java)
+
+        viewModel.prixAPayer = arguments?.getDouble("prixAPayer")!! //force as non null
+
+        viewModel.getUserBalance()
+
+        aPayerText.text = "-" + String.format("%.2f", viewModel.prixAPayer)  + " DZD"
+
+        viewModel.balance.observe(requireActivity(), Observer {
+            balanceText.text = String.format("%.2f", it.userBalance)  + " DZD"
+            newBalance.text = String.format("%.2f",  it.userBalance.minus(viewModel.prixAPayer))  + " DZD"
+        })
+
+        payAbonnementButton.setOnClickListener{
+            val dialog = MaterialDialog(requireActivity())
+                .title(R.string.procedePayment)
+                .message(R.string.procedePaymentText)
+                .positiveButton(R.string.checkout) { dialog ->
+                    dialog.dismiss()
+                    viewModel.payWithAbonnement()
+
+                    var bundle = bundleOf("prixAPayer" to viewModel.prixAPayer)
+                    requireActivity().findNavController(R.id.payment_test).navigate(R.id.action_abonnementPaymentFragment_to_factureAbonnementFragment22, bundle)
+                }
+                .negativeButton(R.string.annuler)  { dialog ->
+                    dialog.dismiss()
+                }
+            dialog.show()
+        }
+
+        backToTrajetInfos.setOnClickListener{
+
+        }
+    }
+
+}

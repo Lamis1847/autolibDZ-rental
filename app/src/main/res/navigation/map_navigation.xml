@@ -19,4 +19,9 @@
         android:name="com.sil1.autolibdz_rental.ui.view.fragment.departure_borne_choice.DepartureBorneChoiceFragment"
         android:label="departure_borne_choice_fragment"
         tools:layout="@layout/departure_borne_choice_fragment" />
+    <fragment
+        android:id="@+id/stripeCardFragment"
+        android:name="com.sil1.autolibdz_rental.ui.view.fragment.stripe_card.StripeCardFragment"
+        android:label="stripe_card_fragment"
+        tools:layout="@layout/stripe_card_fragment" />
 </navigation>

@@ -60,4 +60,34 @@
     <string name="PREFERENCE_FILE_KEY">com.sil1.autolibdz_rental</string>
     <!-- END OF SHAREDPREF-->
 
+
+    <!--Bank card fragment-->
+    <string name="effectuerPaiementFragTitle">Effectuer un paiement</string>
+    <string name="emailExample">email@example.com</string>
+    <string name="cardNumber">Numéro de la carte</string>
+    <string name="expirationDate">Date d\'expiration</string>
+    <string name="expirationDateExample">2022/05</string>
+    <string name="ccv">CCV</string>
+    <string name="ccvExample">123</string>
+    <string name="checkout">Checkout</string>
+    <string name="annuler">Annuler</string>
+    <string name="procedePayment">Procéder au paiement</string>
+    <string name="procedePaymentText">Notez que l\'opération de paiement est irréversible. Etes-vous sûrs de vouloir continuer?</string>
+
+
+    <!--paying from abonnement fragment-->
+    <string name="montantRestant">Montant restant</string>
+    <string name="montantAPayer">Montant à payer</string>
+    <string name="montantTotal">Total</string>
+    <string name="abonnement">Abonnement</string>
+
+    <!--Facturation-->
+    <string name="facture">Facture</string>
+    <string name="type">Type</string>
+    <string name="date">Date</string>
+    <string name="paymentMethod">Méthode de paiement</string>
+    <string name="bankCard">Carte bancaire</string>
+    <string name="sendByEmail">Envoyez par email</string>
+    <string name="skip">Passer</string>
+
 </resources>

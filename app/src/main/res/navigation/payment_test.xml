@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/payment_test"
+    app:startDestination="@id/infosTrajetFragment">
+
+    <fragment
+        android:id="@+id/stripeCardFragment2"
+        android:name="com.sil1.autolibdz_rental.ui.view.fragment.stripe_card.StripeCardFragment"
+        android:label="stripe_card_fragment"
+        tools:layout="@layout/stripe_card_fragment" >
+        <action
+            android:id="@+id/action_stripeCardFragment2_to_factureCarteFragment"
+            app:destination="@id/factureCarteFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/abonnementPaymentFragment"
+        android:name="com.sil1.autolibdz_rental.ui.view.fragment.abonnement_payment.AbonnementPaymentFragment"
+        android:label="abonnement_payment_fragment"
+        tools:layout="@layout/abonnement_payment_fragment" >
+        <action
+            android:id="@+id/action_abonnementPaymentFragment_to_factureAbonnementFragment22"
+            app:destination="@id/factureAbonnementFragment2" />
+    </fragment>
+    <fragment
+        android:id="@+id/factureAbonnementFragment2"
+        android:name="com.sil1.autolibdz_rental.ui.view.fragment.facture_abonnement.FactureAbonnementFragment"
+        android:label="facture_abonnement_fragment"
+        tools:layout="@layout/facture_abonnement_fragment" />
+    <fragment
+        android:id="@+id/factureCarteFragment"
+        android:name="com.sil1.autolibdz_rental.ui.view.fragment.facture_carte.FactureCarteFragment"
+        android:label="facture_carte_fragment"
+        tools:layout="@layout/facture_carte_fragment" />
+    <fragment
+        android:id="@+id/infosTrajetFragment"
+        android:name="com.sil1.autolibdz_rental.ui.view.fragment.infos_trajet.InfosTrajetFragment"
+        android:label="infos_trajet_fragment"
+        tools:layout="@layout/infos_trajet_fragment" >
+        <action
+            android:id="@+id/action_infosTrajetFragment_to_stripeCardFragment"
+            app:destination="@id/stripeCardFragment2" />
+
+        <action
+            android:id="@+id/action_infosTrajetFragment_to_abonnementPaymentFragment"
+            app:destination="@id/abonnementPaymentFragment" />
+    </fragment>
+</navigation>
