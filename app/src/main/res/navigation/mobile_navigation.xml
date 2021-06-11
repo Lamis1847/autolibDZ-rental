@@ -16,6 +16,7 @@
 
     <fragment
         android:id="@+id/nav_profil"
+        android:name="com.sil1.autolibdz_rental.ui.view.fragment.profil.ProfilFragment"
         android:label="@string/menu_profil"
         tools:layout="@layout/fragment_profil" />
 
@@ -23,7 +24,7 @@
         android:id="@+id/nav_history"
         android:name="com.sil1.autolibdz_rental.ui.view.fragment.profil.ProfilFragment"
         android:label="@string/menu_history"
-        tools:layout="@layout/fragment_example" />
+        tools:layout="@layout/fragment_profil" />
 
     <fragment
         android:id="@+id/nav_transaction"
