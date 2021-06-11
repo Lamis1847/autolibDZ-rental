@@ -55,7 +55,7 @@ class ListeVehiculeFragment : Fragment() {
         super.onActivityCreated(savedInstanceState)
         recyclerViewVehicule.layoutManager = LinearLayoutManager(requireActivity())
 
-
+        nomBorne.text = resViewModel.nomBorneDepart
         viewModel.vehicules.observe(viewLifecycleOwner, Observer {
             checkList()
         })
@@ -65,12 +65,6 @@ class ListeVehiculeFragment : Fragment() {
 
     fun checkList() {
         val data = viewModel.vehicules.value
-
-     /*   val idBorneDepart = resViewModel.idBorneDepart
-        val idBorneDestination = resViewModel.idBorneDestination
-        val distanceEstime = resViewModel.distanceEstime
-        val tempsEstimeEnSecondes = resViewModel.tempsEstimeEnSecondes
-        val tempsEstimeHumanReadable = resViewModel.tempsEstimeHumanReadable*/
         val vm = ViewModelProvider(requireActivity()).get(Vehicule::class.java)
         val vmRes = ViewModelProvider(requireActivity()).get(Reservation::class.java)
         if(data != null){

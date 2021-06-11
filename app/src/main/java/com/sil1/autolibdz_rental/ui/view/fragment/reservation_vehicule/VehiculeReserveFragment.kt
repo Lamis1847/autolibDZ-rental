@@ -6,6 +6,7 @@ import android.os.Handler
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.databinding.DataBindingUtil.setContentView
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
@@ -17,10 +18,8 @@ class VehiculeReserveFragment : Fragment() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-
-
-
     }
+
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -29,7 +28,7 @@ class VehiculeReserveFragment : Fragment() {
         // Inflate the layout for this fragment
         return inflater.inflate(R.layout.fragment_vehicule_reserve, container, false)
         Thread.sleep(3000);
-        //findNavController().navigate()
+        findNavController().navigate(R.id.action_vehiculeReserveFragment_to_vehiculeReserve2Fragment)
     }
 
 

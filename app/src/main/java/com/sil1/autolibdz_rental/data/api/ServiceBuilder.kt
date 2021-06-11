@@ -1,10 +1,12 @@
 package com.sil1.autolibdz_rental.data.api
 
+import com.google.gson.GsonBuilder
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 import java.util.concurrent.TimeUnit
+
 
 object ServiceBuilder {
 
@@ -20,11 +22,16 @@ object ServiceBuilder {
             .writeTimeout(5, TimeUnit.MINUTES)
             .build()
 
+    var gson = GsonBuilder()
+        .setLenient()
+        .create()
+
+
     // Create Retrofit Builder
     private val builder : Retrofit.Builder = Retrofit.Builder()
             .client(okHttp)
             .baseUrl(BASE_URL)
-            .addConverterFactory(GsonConverterFactory.create())
+            .addConverterFactory(GsonConverterFactory.create(gson))
 
     //create Retrofit Instance
     private val retrofit = builder.build()

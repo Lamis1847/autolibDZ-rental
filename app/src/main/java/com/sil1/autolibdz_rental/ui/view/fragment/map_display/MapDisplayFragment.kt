@@ -167,7 +167,7 @@ class MapDisplayFragment : Fragment() , OnMapReadyCallback , GoogleMap.OnMarkerC
             resViewModel.tempsEstimeEnSecondes = timeInSeconds
             resViewModel.tempsEstimeHumanReadable = timeHumanReadable
             resViewModel.distanceEstime = totalDistance
-            Log.i(TAG,"it works here")
+            Log.i(TAG,"it works here"+timeHumanReadable)
             findNavController().navigate(R.id.action_nav_home_to_listeVehiculeFragment)
         }
 
