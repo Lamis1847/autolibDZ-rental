@@ -11,7 +11,7 @@ class ProfilViewModel : ViewModel() {
     private val TAG = "TAG-ProfilViewModel"
 
 
-    private var id:String="193"; //changer cet id selon l'utilisateur
+    private var id:String="1"; //changer cet id selon l'utilisateur
 
     var locataire = MutableLiveData<ArrayList<LocataireRetro?>>()
 
