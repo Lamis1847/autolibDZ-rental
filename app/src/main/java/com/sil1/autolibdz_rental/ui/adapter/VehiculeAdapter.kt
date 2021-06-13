@@ -64,7 +64,7 @@ class VehiculesAdapter(
             vm.marque = data[position].marque
             vm.modele =  data[position].modele
             vm.secureUrl = data[position].secureUrl
-
+            vm.numChassis = data[position].numChassis
             vmRes.idBorneDepart = resViewModel.idBorneDepart
             vmRes.idBorneDestination = resViewModel.idBorneDestination
             vmRes.tempsEstimeEnSecondes = resViewModel.tempsEstimeEnSecondes

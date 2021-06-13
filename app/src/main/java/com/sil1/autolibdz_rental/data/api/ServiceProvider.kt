@@ -34,6 +34,6 @@ interface ServiceProvider {
     @GET("/api/bornes/{id}/vehicules")
     fun getListeVehicules(@Path("id") id:String  ): Call<List<VehiculeModel>>
 
-    @POST("api/reservations")
+    @POST("api/reservation")
     fun ajouterReservation(@Body reservation: ReservationModel): Call<ReservationResponse>
 }
