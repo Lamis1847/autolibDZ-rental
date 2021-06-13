@@ -2,6 +2,7 @@ package com.sil1.autolibdz_rental.ui.view.activity
 
 import android.app.Activity
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -65,10 +66,12 @@ class ListeVehiculeFragment : Fragment() {
 
     fun checkList() {
         val data = viewModel.vehicules.value
+        Log.i("distanceEstime",resViewModel.distanceEstime.toString() )
+        Log.i("tempsEstimeEnSecondes",resViewModel.tempsEstimeEnSecondes.toString() )
         val vm = ViewModelProvider(requireActivity()).get(Vehicule::class.java)
         val vmRes = ViewModelProvider(requireActivity()).get(Reservation::class.java)
         if(data != null){
-            recyclerViewVehicule.adapter = VehiculesAdapter(requireActivity() ,data,vm,vmRes,  resViewModel/*, idBorneDepart, idBorneDestination, tempsEstimeEnSecondes, tempsEstimeHumanReadable, distanceEstime*/)
+            recyclerViewVehicule.adapter = VehiculesAdapter(requireActivity() ,data,vm,vmRes,resViewModel)
         }
     }
 

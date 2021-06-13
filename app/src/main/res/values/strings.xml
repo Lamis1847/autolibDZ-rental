@@ -1,4 +1,4 @@
-<resources>
+<resources xmlns:tools="http://schemas.android.com/tools">
     <string name="app_name">AutolibDZ</string>
     <string name="title_activity_home">Accueil</string>
     <string name="navigation_drawer_open">Open navigation drawer</string>
@@ -55,11 +55,8 @@
     <string name="save">Sauvgarder</string>
     <string name="logOut">Se déconnecter</string>
     <string name="pwd">    Mot de passe</string>
-
     <!-- END OF Strings used for profil interface-->
-
     <!-- FOR KEY SHAREDPREF-->
     <string name="PREFERENCE_FILE_KEY">com.sil1.autolibdz_rental</string>
     <!-- END OF SHAREDPREF-->
-
 </resources>

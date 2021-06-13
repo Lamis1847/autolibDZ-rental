@@ -43,12 +43,16 @@ class InfosReservationFragment : Fragment() {
         val vm = ViewModelProvider(requireActivity()).get(Vehicule::class.java)
         val resViewModel = ViewModelProvider(requireActivity()).get(Reservation::class.java)
 
-
         nomVehiculeTextViewI.text = vm.marque +" "+ vm.modele
         borneDepartTextViewI.text = "Borne" + " " +  resViewModel.nomBorneDepart
         borneDestinationTextViewI.text = "Borne" + " " + resViewModel.nomBorneDestination
         var prix = ((resViewModel.distanceEstime * 0.621371 * 162.34) + (resViewModel.tempsEstimeEnSecondes * 48.7 / 60))
         priceTextViewI.text = prix.toString() + "DA"
+        
+        Log.i("distanceEstime",resViewModel.distanceEstime.toString() )
+        Log.i("tempsEstimeEnSecondes",resViewModel.tempsEstimeEnSecondes.toString() )
+
+
         confirmerButton.setOnClickListener {
             var reservation = ReservationModel(
                 "En cours",
@@ -62,10 +66,8 @@ class InfosReservationFragment : Fragment() {
             )
             viewModel.ajouterReservation(reservation)
 
-
             viewModel.reservation.observe(viewLifecycleOwner, Observer {
                 val data = viewModel.reservation.value
-                Log.i("HELLO2",data.toString())
                 val bundle = bundleOf("codePin" to (data?.codePin))
               findNavController().navigate(R.id.action_infosReservationFragment_to_vehiculeReserveFragment,bundle)
 
@@ -74,8 +76,6 @@ class InfosReservationFragment : Fragment() {
         annulerButton.setOnClickListener {
             findNavController().navigate(R.id.action_infosReservationFragment_to_nav_home)
         }
-
-
         }
 
 

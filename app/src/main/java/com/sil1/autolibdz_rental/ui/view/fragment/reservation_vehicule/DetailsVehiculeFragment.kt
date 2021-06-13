@@ -31,9 +31,8 @@ class DetailsVehiculeFragment : Fragment() {
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
 
-        val vm = ViewModelProvider(requireActivity()).get(Vehicule::class.java)
-        val vmRes = ViewModelProvider(requireActivity()).get(Reservation::class.java)
-
+            val vm = ViewModelProvider(requireActivity()).get(Vehicule::class.java)
+            val vmRes = ViewModelProvider(requireActivity()).get(Reservation::class.java)
             nomVehiculeD.text = vm.marque +" "+ vm.modele
             matriculeVehiculeD.text = vm.modele
             marqueD.text = vm.marque

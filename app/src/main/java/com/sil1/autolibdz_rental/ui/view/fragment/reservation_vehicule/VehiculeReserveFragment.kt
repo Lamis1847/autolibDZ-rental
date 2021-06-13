@@ -33,7 +33,6 @@ class VehiculeReserveFragment : Fragment() {
         splash()
         rootview = inflater.inflate(R.layout.fragment_vehicule_reserve, container, false)
         var codePin = arguments?.get("codePin")
-        Log.i("HELLO1",codePin.toString())
 
         bundle = bundleOf("codePin" to codePin)
         return rootview

@@ -56,9 +56,14 @@ class VehiculesAdapter(
             vm.etat = data[position].etat
             vm.limiteurVitesse =  data[position].limiteurVitesse
             vm.secureUrl = data[position].secureUrl
-
+            vmRes.idBorneDepart = resViewModel.idBorneDepart
+            vmRes.idBorneDestination = resViewModel.idBorneDestination
+            vmRes.tempsEstimeEnSecondes = resViewModel.tempsEstimeEnSecondes
+            vmRes.tempsEstimeHumanReadable = resViewModel.tempsEstimeHumanReadable
+            Log.i("AAAAAdistanceEstime",resViewModel.distanceEstime.toString() )
+            Log.i("AAAAAtempsEstimeEnSecondes",resViewModel.tempsEstimeEnSecondes.toString())
+            vmRes.distanceEstime = resViewModel.distanceEstime
             holder.detailsButton.findNavController().navigate(R.id.action_listeVehiculeFragment_to_detailsVehiculeFragment)
-
         }
         holder.reserverButton.setOnClickListener{
             vm.marque = data[position].marque
@@ -69,6 +74,8 @@ class VehiculesAdapter(
             vmRes.idBorneDestination = resViewModel.idBorneDestination
             vmRes.tempsEstimeEnSecondes = resViewModel.tempsEstimeEnSecondes
             vmRes.tempsEstimeHumanReadable = resViewModel.tempsEstimeHumanReadable
+            Log.i("AAAAAdistanceEstime",resViewModel.distanceEstime.toString() )
+            Log.i("AAAAAtempsEstimeEnSecondes",resViewModel.tempsEstimeEnSecondes.toString())
             vmRes.distanceEstime = resViewModel.distanceEstime
             holder.reserverButton.findNavController().navigate(R.id.action_listeVehiculeFragment_to_infosReservationFragment)
         }
