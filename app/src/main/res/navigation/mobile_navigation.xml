@@ -53,6 +53,9 @@
             android:id="@+id/action_ListeVehiculeFragment_pop"
             app:popUpTo="@id/listeVehiculeFragment"
             app:popUpToInclusive="true" />
+        <action
+            android:id="@+id/action_listeVehiculeFragment_to_infosReservationFragment"
+            app:destination="@id/infosReservationFragment" />
     </fragment>
     <fragment
         android:id="@+id/detailsVehiculeFragment"
@@ -63,6 +66,39 @@
         android:id="@+id/action_DetailsVehiculeFragment_pop"
         app:popUpTo="@id/detailsVehiculeFragment"
         app:popUpToInclusive="true" />
+        <action
+            android:id="@+id/action_detailsVehiculeFragment_to_infosReservationFragment"
+            app:destination="@id/infosReservationFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/infosReservationFragment"
+        android:name="com.sil1.autolibdz_rental.ui.view.fragment.reservation_vehicule.InfosReservationFragment"
+        android:label="fragment_infos_reservation"
+        tools:layout="@layout/fragment_infos_reservation" >
+        <action
+            android:id="@+id/action_infosReservationFragment_to_vehiculeReserveFragment"
+            app:destination="@id/vehiculeReserveFragment" />
+        <action
+            android:id="@+id/action_infosReservationFragment_to_nav_home"
+            app:destination="@id/nav_home" />
+    </fragment>
+    <fragment
+        android:id="@+id/vehiculeReserveFragment"
+        android:name="com.sil1.autolibdz_rental.ui.view.fragment.reservation_vehicule.VehiculeReserveFragment"
+        android:label="fragment_vehicule_reserve"
+        tools:layout="@layout/fragment_vehicule_reserve" >
+        <action
+            android:id="@+id/action_vehiculeReserveFragment_to_vehiculeReserve2Fragment"
+            app:destination="@id/vehiculeReserve2Fragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/vehiculeReserve2Fragment"
+        android:name="com.sil1.autolibdz_rental.ui.view.fragment.reservation_vehicule.VehiculeReserve2Fragment"
+        android:label="fragment_vehicule_reserve2"
+        tools:layout="@layout/fragment_vehicule_reserve2" >
+        <action
+            android:id="@+id/action_vehiculeReserve2Fragment_to_nav_home"
+            app:destination="@id/nav_home" />
     </fragment>
 
 

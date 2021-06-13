@@ -1,5 +1,6 @@
 package com.sil1.autolibdz_rental.ui.adapter
 
+import android.annotation.SuppressLint
 import android.content.Context
 import android.util.Log
 import android.view.LayoutInflater
@@ -8,13 +9,24 @@ import android.view.ViewGroup
 import android.widget.Button
 import android.widget.ImageView
 import android.widget.TextView
+import android.widget.Toast
+import androidx.core.net.toUri
 import androidx.navigation.findNavController
 import androidx.recyclerview.widget.RecyclerView
+import com.bumptech.glide.Glide
 import com.sil1.autolibdz_rental.R
 import com.sil1.autolibdz_rental.data.model.VehiculeModel
+import com.sil1.autolibdz_rental.ui.viewmodel.Reservation
 import com.sil1.autolibdz_rental.ui.viewmodel.Vehicule
 
-class VehiculesAdapter(val context: Context, var data: List<VehiculeModel>, var vm: Vehicule): RecyclerView.Adapter<MyViewHolder>()
+class VehiculesAdapter(
+    val context: Context,
+    var data: List<VehiculeModel>,
+    var vm: Vehicule,
+    var vmRes: Reservation,
+    var resViewModel: Reservation,
+
+): RecyclerView.Adapter<MyViewHolder>()
 {
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MyViewHolder {
         return MyViewHolder(LayoutInflater.from(context).inflate(R.layout.vehicule_layout, parent, false))
@@ -23,10 +35,11 @@ class VehiculesAdapter(val context: Context, var data: List<VehiculeModel>, var 
 
     override fun getItemCount() = data.size
 
+    @SuppressLint("WrongConstant")
     override fun onBindViewHolder(holder: MyViewHolder, position: Int) {
         holder.nomVehicule.text = data[position].marque + " "+ data[position].modele
-        //holder.nbPlaces.text = data[position].nbPlaces.toString()
-        //holder.imageVehicule.setImageResource(data[position].imageVehicule)
+
+        Glide.with(context).load(this!!.data!![position].secureUrl).into(holder.imageVehicule)
 
         holder.detailsButton.setOnClickListener{
             vm.marque = data[position].marque
@@ -41,10 +54,33 @@ class VehiculesAdapter(val context: Context, var data: List<VehiculeModel>, var 
             vm.chargeBatterie =data[position].chargeBatterie
             vm.couleur =data[position].couleur
             vm.etat = data[position].etat
-            vm.limiteurVitesse = vm.limiteurVitesse
+            vm.limiteurVitesse =  data[position].limiteurVitesse
+            vm.secureUrl = data[position].secureUrl
+            vmRes.idBorneDepart = resViewModel.idBorneDepart
+            vmRes.idBorneDestination = resViewModel.idBorneDestination
+            vmRes.tempsEstimeEnSecondes = resViewModel.tempsEstimeEnSecondes
+            vmRes.tempsEstimeHumanReadable = resViewModel.tempsEstimeHumanReadable
+            Log.i("AAAAAdistanceEstime",resViewModel.distanceEstime.toString() )
+            Log.i("AAAAAtempsEstimeEnSecondes",resViewModel.tempsEstimeEnSecondes.toString())
+            vmRes.distanceEstime = resViewModel.distanceEstime
             holder.detailsButton.findNavController().navigate(R.id.action_listeVehiculeFragment_to_detailsVehiculeFragment)
-
         }
+        holder.reserverButton.setOnClickListener{
+            vm.marque = data[position].marque
+            vm.modele =  data[position].modele
+            vm.secureUrl = data[position].secureUrl
+            vm.numChassis = data[position].numChassis
+            vmRes.idBorneDepart = resViewModel.idBorneDepart
+            vmRes.idBorneDestination = resViewModel.idBorneDestination
+            vmRes.tempsEstimeEnSecondes = resViewModel.tempsEstimeEnSecondes
+            vmRes.tempsEstimeHumanReadable = resViewModel.tempsEstimeHumanReadable
+            Log.i("AAAAAdistanceEstime",resViewModel.distanceEstime.toString() )
+            Log.i("AAAAAtempsEstimeEnSecondes",resViewModel.tempsEstimeEnSecondes.toString())
+            vmRes.distanceEstime = resViewModel.distanceEstime
+            holder.reserverButton.findNavController().navigate(R.id.action_listeVehiculeFragment_to_infosReservationFragment)
+        }
+
+
 
     }
 

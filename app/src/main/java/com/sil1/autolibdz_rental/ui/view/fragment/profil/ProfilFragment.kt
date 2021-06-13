@@ -65,7 +65,7 @@ class ProfilFragment : Fragment() {
                 locataire ->
             updateLocataire(locataire)
         })
-        button.setOnClickListener{
+        reseverButtonD.setOnClickListener{
             list2.add(nom.text.toString())
             list2.add(prenom.text.toString())
             list2.add(email.text.toString())
