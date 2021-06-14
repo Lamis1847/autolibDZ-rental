@@ -57,12 +57,15 @@ class MapDisplayFragment : Fragment() , OnMapReadyCallback , GoogleMap.OnMarkerC
     private var clickedOnBorneDestination : Boolean = false
     private var totalDistance = 0L
     private lateinit var origin : LatLng
+    private lateinit var resViewModel : Reservation
     private lateinit var destination : LatLng
     private lateinit var fusedLocationClient: FusedLocationProviderClient
     private  var timeHumanReadable = ""
-    private  var timeInSeconds  = 0.0
+    private  var timeInSeconds  = 0L
     private  var idBorneDepart : Int = 0
     private  var idBorneDestination : Int = 0
+    private  var nomBorneDepart : String = ""
+    private  var nomBorneDestination : String = ""
     private var myDrawerController: MyDrawerController? = null
     private val REQUEST_CHECK_SETTINGS = 0x1
     private var currentLocation : LatLng = LatLng(36.6993,3.1755)
@@ -114,7 +117,7 @@ class MapDisplayFragment : Fragment() , OnMapReadyCallback , GoogleMap.OnMarkerC
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
         //this vm is used to pass data between this fragment and list vehicule fragment
-        val resViewModel = ViewModelProvider(requireActivity()).get(Reservation::class.java)
+         resViewModel = ViewModelProvider(requireActivity()).get(Reservation::class.java)
         viewModel = ViewModelProvider(this).get(MapDisplayViewModel::class.java)
         //bitmap = BitmapFactory.decodeResource(resources,R.drawable.ic_borne_marker)
 
@@ -164,14 +167,12 @@ class MapDisplayFragment : Fragment() , OnMapReadyCallback , GoogleMap.OnMarkerC
         }
         buttonSuivant.setOnClickListener{
             makeDistanceCalculationCall(origin,destination)
-
             resViewModel.idBorneDepart = idBorneDepart
             resViewModel.idBorneDestination = idBorneDestination
-            resViewModel.tempsEstimeEnSecondes = timeInSeconds
-            resViewModel.tempsEstimeHumanReadable = timeHumanReadable
-            resViewModel.distanceEstime = totalDistance
-
+            resViewModel.nomBorneDepart = nomBorneDepart
+            resViewModel.nomBorneDestination = nomBorneDestination
             findNavController().navigate(R.id.action_nav_home_to_listeVehiculeFragment)
+
         }
 
 
@@ -276,6 +277,7 @@ class MapDisplayFragment : Fragment() , OnMapReadyCallback , GoogleMap.OnMarkerC
                 buttonChoixBorneDepart.text = "Borne de " + marker.title
                 origin = marker.position
                 idBorneDepart = id
+                nomBorneDepart = marker.title
 
             }
             else {
@@ -283,6 +285,7 @@ class MapDisplayFragment : Fragment() , OnMapReadyCallback , GoogleMap.OnMarkerC
                     buttonChoixBorneDestination.text = "Borne de " + marker.title
                     destination = marker.position
                     idBorneDestination = id
+                    nomBorneDestination = marker.title
 
                 }
             }
@@ -357,7 +360,6 @@ class MapDisplayFragment : Fragment() , OnMapReadyCallback , GoogleMap.OnMarkerC
    * le temps estimée et la durée estimé du trajet entre deux bornes
    */
     private fun makeDistanceCalculationCall(depart:LatLng , dest:LatLng ) {
-        //Toast.makeText(requireActivity(),"Yo je suis la ${depart.longitude}",Toast.LENGTH_SHORT).show()
 
         val origin = arrayOf(depart.latitude.toString() + "," + depart.longitude)
         val destination = arrayOf(dest.latitude.toString() + "," + dest.longitude.toString())
@@ -365,19 +367,23 @@ class MapDisplayFragment : Fragment() , OnMapReadyCallback , GoogleMap.OnMarkerC
             .mode(TravelMode.DRIVING)
             .setCallback(object : PendingResult.Callback<DistanceMatrix> {
                 override fun onResult(result: DistanceMatrix) {
-                    val timeHumanReadable = result.rows[0].elements[0].duration.humanReadable
-                    val timeInSeconds = result.rows[0].elements[0].duration.inSeconds
+                    timeHumanReadable = result.rows[0].elements[0].duration.humanReadable
+                    timeInSeconds = result.rows[0].elements[0].duration.inSeconds
                     totalDistance = result.rows[0].elements[0].distance.inMeters
                     Log.e(TAG, "Total Duration in seconds -> $timeInSeconds")
                     Log.e(TAG, "Total Duration -> $timeHumanReadable")
                     Log.e(TAG, "Total Distance -> ${getDistance()}")
-                }
 
+                    resViewModel.tempsEstimeEnSecondes = timeInSeconds.toDouble()
+                    resViewModel.tempsEstimeHumanReadable = timeHumanReadable
+                    resViewModel.distanceEstime = totalDistance
+                }
                 override fun onFailure(e: Throwable) {
                     Log.i("error",e.message.toString())
                     e.printStackTrace()
                 }
             })
+
     }
     fun createLocationRequest() {
         val locationRequest = LocationRequest.create()?.apply {

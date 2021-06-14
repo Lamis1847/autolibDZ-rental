@@ -60,8 +60,8 @@ class VehiculesAdapter(
             vmRes.idBorneDestination = resViewModel.idBorneDestination
             vmRes.tempsEstimeEnSecondes = resViewModel.tempsEstimeEnSecondes
             vmRes.tempsEstimeHumanReadable = resViewModel.tempsEstimeHumanReadable
-            Log.i("AAAAAdistanceEstime",resViewModel.distanceEstime.toString() )
-            Log.i("AAAAAtempsEstimeEnSecondes",resViewModel.tempsEstimeEnSecondes.toString())
+            Log.i("VehiculeAdapter","distanceEstime"+resViewModel.distanceEstime.toString() )
+            Log.i("VehiculeAdapter","distanceEstime"+resViewModel.tempsEstimeEnSecondes.toString())
             vmRes.distanceEstime = resViewModel.distanceEstime
             holder.detailsButton.findNavController().navigate(R.id.action_listeVehiculeFragment_to_detailsVehiculeFragment)
         }
@@ -74,8 +74,10 @@ class VehiculesAdapter(
             vmRes.idBorneDestination = resViewModel.idBorneDestination
             vmRes.tempsEstimeEnSecondes = resViewModel.tempsEstimeEnSecondes
             vmRes.tempsEstimeHumanReadable = resViewModel.tempsEstimeHumanReadable
-            Log.i("AAAAAdistanceEstime",resViewModel.distanceEstime.toString() )
-            Log.i("AAAAAtempsEstimeEnSecondes",resViewModel.tempsEstimeEnSecondes.toString())
+            Log.i("VehiculeAdapter","idBornDepart"+resViewModel.idBorneDepart.toString() )
+
+            Log.i("VehiculeAdapter","distanceEstime"+resViewModel.distanceEstime.toString() )
+            Log.i("VehiculeAdapter","tempsEstimeEnSecondes"+resViewModel.tempsEstimeEnSecondes.toString())
             vmRes.distanceEstime = resViewModel.distanceEstime
             holder.reserverButton.findNavController().navigate(R.id.action_listeVehiculeFragment_to_infosReservationFragment)
         }

@@ -1,6 +1,7 @@
 package com.sil1.autolibdz_rental.ui.view.fragment.reservation_vehicule
 
 import android.annotation.SuppressLint
+import android.app.Activity
 import android.os.Bundle
 import android.util.Log
 import android.view.LayoutInflater
@@ -20,48 +21,65 @@ import com.sil1.autolibdz_rental.ui.viewmodel.Vehicule
 import kotlinx.android.synthetic.main.fragment_infos_reservation.*
 import com.sil1.autolibdz_rental.data.model.ReservationResponse
 import com.sil1.autolibdz_rental.data.model.VehiculeModel
+import com.sil1.autolibdz_rental.ui.view.activity.MyDrawerController
 import com.sil1.autolibdz_rental.ui.view.fragment.ListeVehiculeViewModel
 
 
 class InfosReservationFragment : Fragment() {
     private lateinit var viewModel: InfosReservationViewModel
-    lateinit var resViewModel : Reservation
-
+    private var myDrawerController: MyDrawerController? = null
+    override fun onAttach(activity: Activity) {
+        super.onAttach(activity)
+        myDrawerController = try {
+            activity as MyDrawerController
+        } catch (e: ClassCastException) {
+            throw ClassCastException("$activity must implement MyDrawerController")
+        }
+    }
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
         viewModel = ViewModelProvider(requireActivity()).get(InfosReservationViewModel::class.java)
+        myDrawerController?.setDrawer_Locked();
 
         return inflater.inflate(R.layout.fragment_infos_reservation, container, false)
     }
-
+    override fun onDestroyView() {
+        super.onDestroyView()
+        //myDrawerController?.setDrawer_UnLocked()
+    }
 
     @SuppressLint("SetTextI18n")
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
         val vm = ViewModelProvider(requireActivity()).get(Vehicule::class.java)
-        val resViewModel = ViewModelProvider(requireActivity()).get(Reservation::class.java)
+        val vmRes = ViewModelProvider(requireActivity()).get(Reservation::class.java)
 
         nomVehiculeTextViewI.text = vm.marque +" "+ vm.modele
-        borneDepartTextViewI.text = "Borne" + " " +  resViewModel.nomBorneDepart
-        borneDestinationTextViewI.text = "Borne" + " " + resViewModel.nomBorneDestination
-        var prix = ((resViewModel.distanceEstime * 0.621371 * 162.34) + (resViewModel.tempsEstimeEnSecondes * 48.7 / 60))
+        borneDepartTextViewI.text = "Borne" + " " +  vmRes.nomBorneDepart
+        borneDestinationTextViewI.text = "Borne" + " " + vmRes.nomBorneDestination
+        val distanceEstime = vmRes.distanceEstime
+        val tempsEstime = vmRes.tempsEstimeEnSecondes
+
+        Log.i("InfosRes","distanceEstime"+distanceEstime.toString() )
+        Log.i("InfosRes","tempsEstimeEnSecondes"+tempsEstime.toString() )
+        //j'ai changé la formule car c trop cher
+       // var prix = ((distanceEstime * 162.34 / 1000) + (tempsEstime * 48.7 / 60))
+        var prix = ((distanceEstime * 100 / 1000) + (tempsEstime * 30/ 60))
+
         priceTextViewI.text = prix.toString() + "DA"
-        
-        Log.i("distanceEstime",resViewModel.distanceEstime.toString() )
-        Log.i("tempsEstimeEnSecondes",resViewModel.tempsEstimeEnSecondes.toString() )
 
 
         confirmerButton.setOnClickListener {
             var reservation = ReservationModel(
                 "En cours",
-                vm.numChassis,
                 3,
-                resViewModel.idBorneDepart,
-                resViewModel.idBorneDestination,
-                resViewModel.tempsEstimeEnSecondes.toInt(),
-                resViewModel.distanceEstime.toFloat(),
+                vm.numChassis,
+                vmRes.idBorneDepart,
+                vmRes.idBorneDestination,
+                vmRes.tempsEstimeEnSecondes.toInt(),
+                vmRes.distanceEstime.toFloat(),
                 prix.toFloat()
             )
             viewModel.ajouterReservation(reservation)

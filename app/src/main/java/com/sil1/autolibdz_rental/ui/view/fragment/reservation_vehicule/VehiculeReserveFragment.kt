@@ -18,6 +18,7 @@ import kotlin.math.absoluteValue
 class VehiculeReserveFragment : Fragment() {
     private lateinit var rootview:View
     private lateinit var bundle:Bundle
+    private val TAG = "_vehiculeResFragment"
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
