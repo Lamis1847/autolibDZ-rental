@@ -17,7 +17,9 @@ data class Reservation(
     val modeleVehicule:String?,
     val marqueVehicule:String?,
     val nomBorneDestination:String?,
+    val secureUrl:String?,
     val dateReservation:Date?,
     val dure:Int,
-    val distance:Int?) {
+    val distance:Int?
+    ) {
 }
