@@ -1,4 +1,4 @@
-package com.sil1.autolibdz_rental.ui.view.fragment
+package com.sil1.autolibdz_rental.ui.view.fragment.reservation_vehicule
 
 import android.Manifest
 import android.app.Activity
@@ -12,40 +12,47 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.core.app.ActivityCompat
+import androidx.lifecycle.ViewModelProvider
+import com.bumptech.glide.Glide
 import com.google.android.gms.location.*
-import com.google.android.gms.maps.CameraUpdateFactory
 import com.google.android.gms.maps.model.LatLng
 import com.google.android.gms.tasks.Task
 import com.sil1.autolibdz_rental.R
 import com.sil1.autolibdz_rental.ui.view.activity.MyDrawerController
-import kotlinx.android.synthetic.main.fragment_example.*
+import com.sil1.autolibdz_rental.ui.viewmodel.Vehicule
+import kotlinx.android.synthetic.main.fragment_details_vehicule.*
+import kotlinx.android.synthetic.main.fragment_vehicule_reserve2.*
 
-// TODO: Rename parameter arguments, choose names that match
-// the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
-private const val ARG_PARAM1 = "param1"
-private const val ARG_PARAM2 = "param2"
-
-/**
- * A simple [Fragment] subclass.
- * Use the [ExampleFragment.newInstance] factory method to
- * create an instance of this fragment.
- */
-class ExampleFragment : Fragment() {
-
-    private var myDrawerController: MyDrawerController? = null
-    private val TAG = "_exampleFragment"
+class VehiculeReserve2Fragment : Fragment() {
+    private val TAG = "_VehiculeDeverouillerFragment"
     private lateinit var fusedLocationClient: FusedLocationProviderClient
     private lateinit var locationCallback: LocationCallback
     var requestingLocationUpdates = true
     private lateinit var mCurrentLocation : Location
     private lateinit var locationRequest : LocationRequest
     private lateinit var vehiculeLocation : LatLng
+    private var myDrawerController: MyDrawerController? = null
+    override fun onAttach(activity: Activity) {
+        super.onAttach(activity)
+        myDrawerController = try {
+            activity as MyDrawerController
+        } catch (e: ClassCastException) {
+            throw ClassCastException("$activity must implement MyDrawerController")
+        }
+    }
+    override fun onDestroyView() {
+        super.onDestroyView()
+       // myDrawerController?.setDrawer_UnLocked()
+    }
 
+    var code=""
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        myDrawerController?.setDrawer_UnLocked()
+        var codePin= arguments?.get("codePin")
+        code = codePin.toString()
+        myDrawerController?.setDrawer_Locked();
         fusedLocationClient = LocationServices.getFusedLocationProviderClient(requireActivity())
 
         getCurrentLocation()
@@ -63,19 +70,27 @@ class ExampleFragment : Fragment() {
                 locationResult ?: return
                 for (location in locationResult.locations){
                     calculateDistance(vehiculeLocation.latitude,vehiculeLocation.longitude,location.latitude,location.longitude)
-
+                    // write the condition to enable deverouiller button
                     Log.i(TAG,"resss == ${location.latitude}")
                 }
             }
         }
-        return inflater.inflate(R.layout.fragment_example, container, false)
+        return inflater.inflate(R.layout.fragment_vehicule_reserve2, container, false)
     }
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
+        val vm = ViewModelProvider(requireActivity()).get(Vehicule::class.java)
+        Glide.with(requireActivity()).load(vm.secureUrl).into(imageVehicule1)
+        codePINTextView1.text = code
 
-
-        deverouiller_button.setOnClickListener{
+        deverrouillerButton1.setOnClickListener {
+            verrouillerButton1?.isEnabled = true
+            deverrouillerButton1?.isEnabled = false
+        }
+        verrouillerButton1.setOnClickListener {
+            deverrouillerButton1?.isEnabled = true
+            verrouillerButton1?.isEnabled = false
         }
     }
     override fun onResume() {
@@ -83,11 +98,11 @@ class ExampleFragment : Fragment() {
         if (requestingLocationUpdates) startLocationUpdates()
     }
     fun createLocationRequest() {
-         locationRequest = LocationRequest.create()?.apply {
-             interval = 10000
-             fastestInterval = 5000
-             priority = LocationRequest.PRIORITY_HIGH_ACCURACY
-         }!!
+        locationRequest = LocationRequest.create()?.apply {
+            interval = 10000
+            fastestInterval = 5000
+            priority = LocationRequest.PRIORITY_HIGH_ACCURACY
+        }!!
     }
     private fun startLocationUpdates() {
         if (ActivityCompat.checkSelfPermission(
@@ -163,17 +178,4 @@ class ExampleFragment : Fragment() {
         return results[0]
     }
 
-    override fun onAttach(activity: Activity) {
-        super.onAttach(activity)
-        myDrawerController = try {
-            activity as MyDrawerController
-        } catch (e: ClassCastException) {
-            throw ClassCastException("$activity must implement MyDrawerController")
-        }
-    }
-
-    override fun onDestroyView() {
-        super.onDestroyView()
-        // myDrawerController?.setDrawer_Locked()
-    }
 }
