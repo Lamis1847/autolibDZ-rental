@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="AutoImportSettings">
+    <option name="autoReloadType" value="NONE" />
+  </component>
+  <component name="ChangeListManager">
+    <list default="true" id="f702e4a7-216e-4eae-8a55-b49476ad327e" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/sil1/autolibdz_rental/data/model/ReservationModel.kt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/sil1/autolibdz_rental/data/model/ReservationResponse.kt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/sil1/autolibdz_rental/data/repositories/ReservationRepository.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../.idea/misc.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build.gradle" beforeDir="false" afterPath="$PROJECT_DIR$/build.gradle" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/sil1/autolibdz_rental/data/api/ServiceBuilder.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/sil1/autolibdz_rental/data/api/ServiceBuilder.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/sil1/autolibdz_rental/data/api/ServiceProvider.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/sil1/autolibdz_rental/data/api/ServiceProvider.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/sil1/autolibdz_rental/ui/adapter/VehiculeAdapter.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/sil1/autolibdz_rental/ui/adapter/VehiculeAdapter.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/sil1/autolibdz_rental/ui/view/fragment/map_display/MapDisplayFragment.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/sil1/autolibdz_rental/ui/view/fragment/map_display/MapDisplayFragment.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/sil1/autolibdz_rental/ui/view/fragment/reservation_vehicule/DetailsVehiculeFragment.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/sil1/autolibdz_rental/ui/view/fragment/reservation_vehicule/DetailsVehiculeFragment.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/sil1/autolibdz_rental/ui/view/fragment/reservation_vehicule/InfosReservationFragment.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/sil1/autolibdz_rental/ui/view/fragment/reservation_vehicule/InfosReservationFragment.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/sil1/autolibdz_rental/ui/view/fragment/reservation_vehicule/ListeVehiculeFragment.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/sil1/autolibdz_rental/ui/view/fragment/reservation_vehicule/ListeVehiculeFragment.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/sil1/autolibdz_rental/ui/view/fragment/reservation_vehicule/VehiculeReserveFragment.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/sil1/autolibdz_rental/ui/view/fragment/reservation_vehicule/VehiculeReserveFragment.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/res/layout/fragment_vehicule_reserve2.xml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/res/layout/fragment_vehicule_reserve2.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/res/values/strings.xml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/res/values/strings.xml" afterDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="ExternalProjectsManager">
+    <system id="GRADLE">
+      <state>
+        <projects_view>
+          <tree_state>
+            <expand />
+            <select />
+          </tree_state>
+        </projects_view>
+      </state>
+    </system>
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/.." />
+  </component>
+  <component name="ProjectId" id="1tp1VzJhCQIy0CBk6QaBECNvYIe" />
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent">
+    <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
+    <property name="android.project.structure.last.selected" value="SDK Location" />
+    <property name="android.project.structure.proportion" value="0.15" />
+    <property name="android.sdk.path" value="$USER_HOME$/AppData/Local/Android/sdk" />
+    <property name="dart.analysis.tool.window.visible" value="false" />
+    <property name="settings.editor.selected.configurable" value="AndroidSdkUpdater" />
+    <property name="show.migrate.to.gradle.popup" value="false" />
+  </component>
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="f702e4a7-216e-4eae-8a55-b49476ad327e" name="Default Changelist" comment="" />
+      <created>1623451244452</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1623451244452</updated>
+    </task>
+    <servers />
+  </component>
+</project>

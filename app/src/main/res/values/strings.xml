@@ -62,6 +62,7 @@
     <!-- FOR KEY SHAREDPREF-->
     <string name="PREFERENCE_FILE_KEY">com.sil1.autolibdz_rental</string>
     <string name="reservation_tout">Tout</string>
+    <string name="codePin_tip">Utiliser le code PIN pour déverouiller l"ordinateur de bord qui se trouve à l'intérieur du véhicule.</string>
     <!-- END OF SHAREDPREF-->
 
 </resources>

@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+    <ImageView
+        android:id="@+id/imageVehicule"
+        android:layout_width="154dp"
+        android:layout_height="104dp"
+        android:layout_marginTop="16dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.059"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/vehiculeimg" />
+
+    <TextView
+        android:id="@+id/nomVehicule"
+        android:layout_width="100dp"
+        android:layout_height="wrap_content"
+        android:ellipsize="end"
+        android:fontFamily="@font/gothambold"
+        android:text="Peugeot 308"
+        android:textAlignment="center"
+        app:layout_constraintBottom_toBottomOf="@+id/imageVehicule"
+        app:layout_constraintEnd_toStartOf="@+id/detailsButton"
+        app:layout_constraintStart_toEndOf="@+id/imageVehicule"
+        app:layout_constraintTop_toTopOf="@+id/imageVehicule"
+        app:layout_constraintVertical_bias="0.25" />
+
+    <Button
+        android:id="@+id/detailsButton"
+        android:layout_width="97dp"
+        android:layout_height="35dp"
+        android:layout_marginTop="1dp"
+        android:layout_marginEnd="8dp"
+        android:fontFamily="@font/gothambold"
+        android:text="Détails"
+        android:textAllCaps="false"
+        android:textSize="12sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="@+id/reserverButton"
+        app:layout_constraintTop_toBottomOf="@+id/reserverButton" />
+
+    <Button
+        android:id="@+id/reserverButton"
+        android:layout_width="97dp"
+        android:layout_height="42dp"
+        android:layout_marginEnd="8dp"
+        android:backgroundTint="@color/validate_color"
+        android:fontFamily="@font/gothambold"
+        android:text="Réserver"
+        android:textAllCaps="false"
+        android:textSize="12sp"
+        app:layout_constraintBottom_toBottomOf="@+id/nomVehicule"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/nomVehicule"
+        app:layout_constraintVertical_bias="0.411" />
+
+    <View
+        android:id="@+id/divider"
+        android:layout_width="380dp"
+        android:layout_height="1dp"
+        android:layout_marginStart="1dp"
+        android:layout_marginEnd="1dp"
+        android:background="?android:attr/listDivider"
+        android:backgroundTint="@color/black"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.482"
+        app:layout_constraintStart_toStartOf="parent" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>
