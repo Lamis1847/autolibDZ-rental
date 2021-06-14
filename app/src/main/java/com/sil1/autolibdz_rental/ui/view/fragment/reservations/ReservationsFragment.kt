@@ -1,5 +1,10 @@
+@file:Suppress("DEPRECATION")
+
 package com.sil1.autolibdz_rental.ui.view.fragment.reservations
 
+import android.content.Context
+import android.net.ConnectivityManager
+import android.net.NetworkInfo
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
@@ -13,6 +18,7 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.sil1.autolibdz_rental.R
 import com.sil1.autolibdz_rental.data.model.Reservation
+import com.sil1.autolibdz_rental.data.room.RoomService
 import com.sil1.autolibdz_rental.ui.view.fragment.profil.ReservationViewModel
 import com.sil1.autolibdz_rental.utils.reservations
 import com.sil1.autolibdz_rental.utils.reservationsFiltred
@@ -56,41 +62,71 @@ private lateinit var adapter: ReservationAdapter
 //        val test = Reservation(1,"test","test",12,12,"test","test","test", Date("12/02/2021"),12,12)
 //        val test2 = mutableListOf<Reservation>(test)
 //        adapter.setReservations(test2)
+        textView3.setBackgroundResource(R.color.white)
+        tout.isSelected = true;
+
+    if(!checkNetwork() && RoomService.database.getReservationDao().selectReservations() == null)
+
+    else
+        {
+
+            en_cours.setOnClickListener {
+                reservationsFiltred.value =
+                    reservations.value?.filter { it.etat.equals("en cours", true) }
+                en_cours.isSelected = true;
+                annulées.isSelected = false;
+                terminées.isSelected = false;
+                tout.isSelected = false;
+
+            }
+
+        annulées.setOnClickListener {
+            reservationsFiltred.value = reservations.value?.filter {
+                it.etat.equals("annulée", true)
+            }
+            en_cours.isSelected = false;
+            annulées.isSelected = true;
+            terminées.isSelected = false;
+            tout.isSelected = false;
+        }
+        terminées.setOnClickListener {
+            reservationsFiltred.value = reservations.value?.filter {
+                it.etat.equals("terminée", true)
+            }
+            en_cours.isSelected = false;
+            annulées.isSelected = false;
+            terminées.isSelected = true;
+            tout.isSelected = false;
+        }
+        tout.setOnClickListener {
+            reservationsFiltred.value = reservations.value
+            en_cours.isSelected = false;
+            annulées.isSelected = false;
+            terminées.isSelected = false;
+            tout.isSelected = true;
+        }
         adapter = ReservationAdapter(requireActivity())
 
         var viewModel = ViewModelProvider(this).get(ReservationViewModel::class.java)
         viewModel.getReservations();
-        reservations.observe(requireActivity(), Observer {
-                reservations ->
+        reservations.observe(requireActivity(), Observer { reservations ->
             adapter.setReservations(reservations)
         })
 
-        reservationsFiltred.observe(requireActivity(),Observer {
-                reservationsFiltred ->
+        reservationsFiltred.observe(requireActivity(), Observer { reservationsFiltred ->
             adapter.setReservations(reservationsFiltred)
 
         })
-        recycleview.layoutManager= LinearLayoutManager(requireActivity())
+        recycleview.layoutManager = LinearLayoutManager(requireActivity())
         recycleview.adapter = adapter
 
+
     }
-//    companion object {
-//        /**
-//         * Use this factory method to create a new instance of
-//         * this fragment using the provided parameters.
-//         *
-//         * @param param1 Parameter 1.
-//         * @param param2 Parameter 2.
-//         * @return A new instance of fragment ReservationsFragment.
-//         */
-//        // TODO: Rename and change types and number of parameters
-//        @JvmStatic
-//        fun newInstance(param1: String, param2: String) =
-//            ReservationsFragment().apply {
-//                arguments = Bundle().apply {
-//                    putString(ARG_PARAM1, param1)
-//                    putString(ARG_PARAM2, param2)
-//                }
-//            }
-//    }
+    }}
+
+private fun checkNetwork(): Boolean {
+    val cm = RoomService.context.getSystemService(Context.CONNECTIVITY_SERVICE) as ConnectivityManager
+    val activeNetwork: NetworkInfo? = cm.activeNetworkInfo
+    val isConnected: Boolean = activeNetwork?.isConnectedOrConnecting == true
+    return isConnected
 }

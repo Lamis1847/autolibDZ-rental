@@ -2,6 +2,7 @@
 <androidx.cardview.widget.CardView
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     app:cardBackgroundColor="#F5F3F5"
@@ -55,15 +56,16 @@
         android:layout_marginTop="16dp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/imageView4"
-        app:srcCompat="@drawable/ic_calendar" />
+        app:srcCompat="@drawable/ic_vehicule" />
 
     <TextView
         android:id="@+id/borneDepart"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="23dp"
-        android:layout_marginTop="16dp"
+        android:layout_marginStart="24dp"
+        android:layout_marginTop="20dp"
         android:text="TextView"
+        android:fontFamily="@font/gothammedium"
         app:layout_constraintStart_toEndOf="@+id/imageView3"
         app:layout_constraintTop_toTopOf="parent" />
 
@@ -71,8 +73,9 @@
         android:id="@+id/dateReservation"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="16dp"
+        android:layout_marginStart="17dp"
         android:layout_marginTop="24dp"
+        android:fontFamily="@font/gothammedium"
         android:text="TextView"
         app:layout_constraintStart_toEndOf="@+id/imageView6"
         app:layout_constraintTop_toBottomOf="@+id/nomVehicule" />
@@ -81,8 +84,9 @@
         android:id="@+id/nomVehicule"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="16dp"
+        android:layout_marginStart="23dp"
         android:layout_marginTop="24dp"
+        android:fontFamily="@font/gothammedium"
         android:text="TextView"
         app:layout_constraintStart_toEndOf="@+id/imageView8"
         app:layout_constraintTop_toBottomOf="@+id/borneDestination" />
@@ -91,8 +95,9 @@
         android:id="@+id/borneDestination"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="23dp"
-        android:layout_marginTop="24dp"
+        android:layout_marginStart="24dp"
+        android:layout_marginTop="26dp"
+        android:fontFamily="@font/gothammedium"
         android:text="TextView"
         app:layout_constraintStart_toEndOf="@+id/imageView4"
         app:layout_constraintTop_toBottomOf="@+id/borneDepart" />
@@ -102,7 +107,8 @@
         android:layout_width="70dp"
         android:layout_height="30dp"
         android:layout_marginStart="76dp"
-        android:layout_marginBottom="24dp"
+        android:layout_marginBottom="16dp"
+        android:fontFamily="@font/gothammedium"
         android:gravity="center"
         android:text="TextView"
         android:textColor="#FFFFFF"
@@ -110,15 +116,17 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toEndOf="@+id/dateReservation" />
 
-    <Button
+    <android.widget.Button
         android:id="@+id/detail"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="80dp"
+        android:layout_height="30dp"
         android:layout_marginEnd="16dp"
         android:layout_marginBottom="16dp"
-        android:text="Détail >"
+        android:background="@drawable/button_details"
+        android:fontFamily="@font/gothammedium"
+        android:text="Détails >"
         android:textAllCaps="false"
-        android:backgroundTint="#252834"
+        android:textColor="#FFFFFF"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent" />
 </androidx.constraintlayout.widget.ConstraintLayout>

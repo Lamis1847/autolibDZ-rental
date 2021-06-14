@@ -8,6 +8,7 @@ import androidx.lifecycle.MutableLiveData
 import com.sil1.autolibdz_rental.R
 import com.sil1.autolibdz_rental.data.model.Reservation
 
+var idReservation:Int = 0
 var userToken :String =""
 var idTokenUser :String = ""
 var reservationsFiltred = MutableLiveData<List<Reservation>>()

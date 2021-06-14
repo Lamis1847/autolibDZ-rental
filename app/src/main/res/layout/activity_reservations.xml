@@ -6,85 +6,17 @@
     android:layout_height="match_parent"
     tools:context=".ui.view.activity.ReservationsActivity">
 
-    <androidx.constraintlayout.widget.Guideline
-        android:id="@+id/guideline2"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        app:layout_constraintGuide_begin="119dp" />
-
-    <TextView
-        android:id="@+id/textView3"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
-        android:text="Historique"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
-    <android.widget.Button
-        android:id="@+id/tout"
-        android:layout_width="80dp"
-        android:layout_height="40dp"
-        android:layout_marginBottom="8dp"
-        android:background="@drawable/button_reservations_states"
-        android:text="@string/reservation_tout"
-        android:textAllCaps="false"
-        app:layout_constraintBottom_toTopOf="@+id/guideline2"
-        app:layout_constraintEnd_toStartOf="@+id/en_cours"
-        app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toStartOf="parent" />
-
-    <android.widget.Button
-        android:id="@+id/en_cours"
-        android:layout_width="80dp"
-        android:layout_height="40dp"
-        android:layout_marginBottom="8dp"
-        android:background="@drawable/button_reservations_states"
-        android:text="En cours"
-        android:textAllCaps="false"
-        app:layout_constraintBottom_toTopOf="@+id/guideline2"
-        app:layout_constraintEnd_toStartOf="@+id/annulées"
-        app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toEndOf="@+id/tout" />
-
-    <android.widget.Button
-        android:id="@+id/annulées"
-        android:layout_width="80dp"
-        android:layout_height="40dp"
-        android:layout_marginBottom="8dp"
-        android:background="@drawable/button_reservations_states"
-        android:text="Annulée"
-        android:textAllCaps="false"
-        app:layout_constraintBottom_toTopOf="@+id/guideline2"
-        app:layout_constraintEnd_toStartOf="@+id/terminées"
-        app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toEndOf="@+id/en_cours" />
-
-    <android.widget.Button
-        android:id="@+id/terminées"
-        android:layout_width="80dp"
-        android:layout_height="40dp"
-        android:layout_marginBottom="8dp"
-        android:background="@drawable/button_reservations_states"
-        android:text="Terminée"
-        android:textAllCaps="false"
-        app:layout_constraintBottom_toTopOf="@+id/guideline2"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toEndOf="@+id/annulées" />
-
     <androidx.fragment.app.FragmentContainerView
-        android:id="@+id/fragmentContainerView2"
-        android:name="com.sil1.autolibdz_rental.ui.view.fragment.reservations.ReservationsFragment"
+        android:id="@+id/fragmentContainerView"
+        android:name="androidx.navigation.fragment.NavHostFragment"
         android:layout_width="0dp"
         android:layout_height="0dp"
+        app:defaultNavHost="true"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/guideline2"
-        tools:layout="@layout/fragment_reservations" />
+        app:layout_constraintTop_toTopOf="parent"
+        app:navGraph="@navigation/graph_reservation" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

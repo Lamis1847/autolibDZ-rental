@@ -23,43 +23,7 @@ class ReservationsActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_reservations)
-        textView3.setBackgroundResource(R.color.white)
-        tout.isSelected = true;
 
-
-en_cours.setOnClickListener{
-reservationsFiltred.value= reservations.value?.filter { it.etat.equals("en cours",true) }
-    en_cours.isSelected = true;
-    annulées.isSelected = false;
-    terminées.isSelected = false;
-    tout.isSelected = false;
-
-}
-
-        annulées.setOnClickListener {
-            reservationsFiltred.value = reservations.value?.filter {
-                it.etat.equals("annulée", true)
-            }
-            en_cours.isSelected = false;
-            annulées.isSelected = true;
-            terminées.isSelected = false;
-            tout.isSelected = false;
-        }
-            terminées.setOnClickListener {
-            reservationsFiltred.value= reservations.value?.filter { it.etat.equals("terminée",true)
-            }
-                en_cours.isSelected = false;
-                annulées.isSelected = false;
-                terminées.isSelected = true;
-                tout.isSelected = false;
-        }
-            tout.setOnClickListener {
-                reservationsFiltred.value= reservations.value
-                en_cours.isSelected = false;
-                annulées.isSelected = false;
-                terminées.isSelected = false;
-                tout.isSelected = true;
-                }
 
             }
 

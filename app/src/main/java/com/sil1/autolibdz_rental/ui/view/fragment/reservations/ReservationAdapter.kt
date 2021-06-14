@@ -7,9 +7,13 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
 import android.widget.TextView
+import androidx.navigation.NavController
+import androidx.navigation.findNavController
+import androidx.navigation.fragment.NavHostFragment
 import androidx.recyclerview.widget.RecyclerView
 import com.sil1.autolibdz_rental.R
 import com.sil1.autolibdz_rental.data.model.Reservation
+import com.sil1.autolibdz_rental.utils.idReservation
 import java.text.DateFormat
 import java.text.SimpleDateFormat
 
@@ -35,12 +39,16 @@ class ReservationAdapter(val context: Context): RecyclerView.Adapter<MyViewHolde
                 today = formatter.format(data[position].dateReservation)
             }
         holder.dateReservation.text = today
-        holder.nomVehicule.text= data[position].marqueVehicule + data[position].modeleVehicule
+        holder.nomVehicule.text= data[position].marqueVehicule + " "+ data[position].modeleVehicule
         holder.etat.text=data[position].etat.toString()
         when(holder.etat.text.toString()) {
            "En cours" -> holder.etat.setBackgroundResource(R.color.palette_yellow)
             "Terminée"->holder.etat.setBackgroundResource(R.color.terminée)
             "Annulée" -> holder.etat.setBackgroundResource(R.color.annulée)
+        }
+        holder.detail.setOnClickListener {view ->
+            idReservation=data[position].idReservation
+            view?.findNavController()?.navigate(R.id.action_detail)
         }
     }
 
