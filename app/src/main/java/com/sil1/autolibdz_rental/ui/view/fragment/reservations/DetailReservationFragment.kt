@@ -60,6 +60,7 @@ class DetailReservationFragment : Fragment() {
             .into(vehiculeD)
         activity?.onBackPressedDispatcher?.addCallback(requireActivity(), object : OnBackPressedCallback(true) {
             override fun handleOnBackPressed() {
+               reservationsFiltred= reservations
                 view?.findNavController()?.navigate(R.id.action_detailReservationFragment3_to_nav_history)
 
             }
