@@ -8,14 +8,19 @@ import android.text.method.HideReturnsTransformationMethod
 import android.text.method.PasswordTransformationMethod
 import android.widget.EditText
 import android.widget.ImageView
+import androidx.lifecycle.MutableLiveData
 import androidx.core.content.ContextCompat
 import androidx.core.graphics.drawable.DrawableCompat
 import com.sil1.autolibdz_rental.R
+import com.sil1.autolibdz_rental.data.model.Reservation
 
+var idReservation:Int = 0
 
 var userToken :String =""
 val sharedPrefFile: String = "kotlinsharedpreference"
 var idTokenUser :String = ""
+var reservationsFiltred = MutableLiveData<List<Reservation>>()
+var reservations = MutableLiveData<List<Reservation>>()
 
 class utils {
     companion object {

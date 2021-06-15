@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/graph_reservation"
+    app:startDestination="@id/reservationsFragment">
+
+    <fragment
+        android:id="@+id/reservationsFragment"
+        android:name="com.sil1.autolibdz_rental.ui.view.fragment.reservations.ReservationsFragment"
+        android:label="fragment_reservations"
+        tools:layout="@layout/fragment_reservations" >
+        <action
+            android:id="@+id/action_detail"
+            app:destination="@id/detailReservationFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/detailReservationFragment"
+        android:name="com.sil1.autolibdz_rental.ui.view.fragment.reservations.DetailReservationFragment"
+        android:label="fragment_detail_reservation"
+        tools:layout="@layout/fragment_detail_reservation" />
+</navigation>

@@ -9,4 +9,6 @@
     <dimen name="small_text">15dp</dimen>
     <dimen name="normal_text">30dp</dimen>
     <dimen name="inputHeight">40dp</dimen>
+    <dimen name="strokeReservation">1dp</dimen>
+    <dimen name="reservationRadius">7dp</dimen>
 </resources>
