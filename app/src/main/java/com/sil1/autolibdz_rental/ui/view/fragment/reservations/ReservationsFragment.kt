@@ -10,20 +10,14 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.LinearLayout
-import android.widget.Toast
-import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.sil1.autolibdz_rental.R
-import com.sil1.autolibdz_rental.data.model.Reservation
 import com.sil1.autolibdz_rental.data.room.RoomService
-import com.sil1.autolibdz_rental.ui.view.fragment.profil.ReservationViewModel
 import com.sil1.autolibdz_rental.utils.reservations
 import com.sil1.autolibdz_rental.utils.reservationsFiltred
 import kotlinx.android.synthetic.main.fragment_reservations.*
-import java.util.*
 
 //// TODO: Rename parameter arguments, choose names that match
 //// the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -63,15 +57,18 @@ private lateinit var adapter: ReservationAdapter
 //        val test2 = mutableListOf<Reservation>(test)
 //        adapter.setReservations(test2)
         textView3.setBackgroundResource(R.color.white)
-        tout.isSelected = true;
 
-    if(!checkNetwork() && RoomService.database.getReservationDao().selectReservations() == null)
+
+        if(!checkNetwork() && RoomService.database.getReservationDao().selectReservations() == null)
 
     else
         {
-
+            tout.isSelected = true;
+            if(progressBar != null) {
+                progressBar.visibility = View.VISIBLE
+            }
             en_cours.setOnClickListener {
-                reservationsFiltred.value =
+                reservationsFiltred?.value =
                     reservations.value?.filter { it.etat.equals("en cours", true) }
                 en_cours.isSelected = true;
                 annulées.isSelected = false;
@@ -81,7 +78,7 @@ private lateinit var adapter: ReservationAdapter
             }
 
         annulées.setOnClickListener {
-            reservationsFiltred.value = reservations.value?.filter {
+            reservationsFiltred?.value = reservations.value?.filter {
                 it.etat.equals("annulée", true)
             }
             en_cours.isSelected = false;
@@ -90,7 +87,7 @@ private lateinit var adapter: ReservationAdapter
             tout.isSelected = false;
         }
         terminées.setOnClickListener {
-            reservationsFiltred.value = reservations.value?.filter {
+            reservationsFiltred?.value = reservations.value?.filter {
                 it.etat.equals("terminée", true)
             }
             en_cours.isSelected = false;
@@ -99,7 +96,7 @@ private lateinit var adapter: ReservationAdapter
             tout.isSelected = false;
         }
         tout.setOnClickListener {
-            reservationsFiltred.value = reservations.value
+            reservationsFiltred?.value = reservations.value
             en_cours.isSelected = false;
             annulées.isSelected = false;
             terminées.isSelected = false;
@@ -109,14 +106,22 @@ private lateinit var adapter: ReservationAdapter
 
         var viewModel = ViewModelProvider(this).get(ReservationViewModel::class.java)
         viewModel.getReservations();
+            reservationsFiltred.observe(requireActivity(), Observer { reservationsFiltred ->
+                if(reservationsFiltred!=null)
+                    adapter.setReservations(reservationsFiltred)
+                if(progressBar != null) {
+                    progressBar.visibility = View.INVISIBLE
+                }
+            })
         reservations.observe(requireActivity(), Observer { reservations ->
             adapter.setReservations(reservations)
+            if(progressBar != null) {
+                progressBar.visibility = View.INVISIBLE
+            }
+
         })
 
-        reservationsFiltred.observe(requireActivity(), Observer { reservationsFiltred ->
-            adapter.setReservations(reservationsFiltred)
 
-        })
         recycleview.layoutManager = LinearLayoutManager(requireActivity())
         recycleview.adapter = adapter
 

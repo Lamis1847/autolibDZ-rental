@@ -14,6 +14,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.sil1.autolibdz_rental.R
 import com.sil1.autolibdz_rental.data.model.Reservation
 import com.sil1.autolibdz_rental.utils.idReservation
+import com.sil1.autolibdz_rental.utils.reservationsFiltred
 import java.text.DateFormat
 import java.text.SimpleDateFormat
 
@@ -48,7 +49,9 @@ class ReservationAdapter(val context: Context): RecyclerView.Adapter<MyViewHolde
         }
         holder.detail.setOnClickListener {view ->
             idReservation=data[position].idReservation
-            view?.findNavController()?.navigate(R.id.action_detail)
+            if(reservationsFiltred!=null)
+            view?.findNavController()?.navigate(R.id.action_nav_history_to_detailReservationFragment32)
+
         }
     }
 

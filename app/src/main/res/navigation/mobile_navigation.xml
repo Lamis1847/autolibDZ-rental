@@ -22,9 +22,13 @@
 
     <fragment
         android:id="@+id/nav_history"
-        android:name="com.sil1.autolibdz_rental.ui.view.fragment.profil.ProfilFragment"
+        android:name="com.sil1.autolibdz_rental.ui.view.fragment.reservations.ReservationsFragment"
         android:label="@string/menu_history"
-        tools:layout="@layout/fragment_profil" />
+        tools:layout="@layout/fragment_reservations" >
+        <action
+            android:id="@+id/action_nav_history_to_detailReservationFragment32"
+            app:destination="@id/detailReservationFragment3" />
+    </fragment>
 
     <fragment
         android:id="@+id/nav_transaction"
@@ -99,6 +103,15 @@
         <action
             android:id="@+id/action_vehiculeReserve2Fragment_to_nav_home"
             app:destination="@id/nav_home" />
+    </fragment>
+    <fragment
+        android:id="@+id/detailReservationFragment3"
+        android:name="com.sil1.autolibdz_rental.ui.view.fragment.reservations.DetailReservationFragment"
+        android:label="fragment_detail_reservation"
+        tools:layout="@layout/fragment_detail_reservation" >
+        <action
+            android:id="@+id/action_detailReservationFragment3_to_nav_history"
+            app:destination="@id/nav_history" />
     </fragment>
 
 

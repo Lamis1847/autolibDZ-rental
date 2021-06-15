@@ -1,4 +1,4 @@
-package com.sil1.autolibdz_rental.ui.view.fragment.profil
+package com.sil1.autolibdz_rental.ui.view.fragment.reservations
 
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel

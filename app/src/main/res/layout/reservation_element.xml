@@ -106,7 +106,7 @@
         android:id="@+id/etat"
         android:layout_width="70dp"
         android:layout_height="30dp"
-        android:layout_marginStart="76dp"
+        android:layout_marginEnd="40dp"
         android:layout_marginBottom="16dp"
         android:fontFamily="@font/gothammedium"
         android:gravity="center"
@@ -114,7 +114,7 @@
         android:textColor="#FFFFFF"
         android:textStyle="bold"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/dateReservation" />
+        app:layout_constraintEnd_toStartOf="@+id/detail" />
 
     <android.widget.Button
         android:id="@+id/detail"

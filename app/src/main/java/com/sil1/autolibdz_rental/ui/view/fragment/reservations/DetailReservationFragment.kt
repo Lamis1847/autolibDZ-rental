@@ -5,10 +5,13 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.activity.OnBackPressedCallback
+import androidx.navigation.findNavController
 import com.bumptech.glide.Glide
 import com.sil1.autolibdz_rental.R
 import com.sil1.autolibdz_rental.utils.idReservation
 import com.sil1.autolibdz_rental.utils.reservations
+import com.sil1.autolibdz_rental.utils.reservationsFiltred
 import kotlinx.android.synthetic.main.fragment_detail_reservation.*
 import kotlinx.android.synthetic.main.fragment_profil.*
 import java.text.DateFormat
@@ -31,17 +34,17 @@ class DetailReservationFragment : Fragment() {
         super.onActivityCreated(savedInstanceState)
         val formatter: DateFormat = SimpleDateFormat("dd/MM/yyyy")
         var today:String? = "-"
-        val reservation = reservations.value?.filter { it.idReservation==idReservation }
+        val reservation = reservations.value?.filter { it?.idReservation==idReservation }
         if(reservation?.get(0)?.dateReservation!=null) {
-            today = formatter.format(reservations.value!![idReservation].nomBorneDepart)
+            today = formatter.format(reservation?.get(0)?.dateReservation)
         }
         dateR.text= today
         departR.text= reservation?.get(0)?.nomBorneDepart.toString()
-        dureeR.text= reservation?.get(0)?.dure.toString()
+        dureeR.text= reservation?.get(0)?.dure.toString() + " min"
         if(reservation?.get(0)?.distance.toString().contains("null",true))
         distanceR.text= "-"
         else
-            distanceR.text= "-"
+            distanceR.text= reservation?.get(0)?.distance.toString() + " km"
 
 
         destinationR.text= reservation?.get(0)?.nomBorneDestination.toString()
@@ -55,5 +58,15 @@ class DetailReservationFragment : Fragment() {
         }
         Glide.with(requireActivity()).load(reservation?.get(0)?.secureUrl)
             .into(vehiculeD)
+        activity?.onBackPressedDispatcher?.addCallback(requireActivity(), object : OnBackPressedCallback(true) {
+            override fun handleOnBackPressed() {
+                view?.findNavController()?.navigate(R.id.action_detailReservationFragment3_to_nav_history)
+
             }
+        })
+
+
+    }
+
+
 }
