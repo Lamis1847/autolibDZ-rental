@@ -5,6 +5,7 @@ import android.widget.Toast
 import androidx.lifecycle.MutableLiveData
 import com.sil1.autolibdz_rental.data.api.ServiceBuilder
 import com.sil1.autolibdz_rental.data.api.ServiceProvider
+import com.sil1.autolibdz_rental.data.model.LocataireEditEmail
 import com.sil1.autolibdz_rental.data.model.LocataireModificationResponse
 import com.sil1.autolibdz_rental.data.model.LocataireRetro
 import retrofit2.Call
@@ -19,34 +20,34 @@ class LocataireRepository {
             ServiceBuilder.buildService(ServiceProvider::class.java)
         }
 
-fun editLocataire(TAG:String,id:String,locataire:LocataireRetro):Boolean
-{
-var call = api.editLocataire(id,locataire) // fonction de modification dans l'api
-var updateRespond:LocataireModificationResponse
-var boolean=true
+        fun editLocataire(TAG:String,id:String,locataire:LocataireEditEmail):String
+        {
+            var call = api.editLocataire(id,locataire) // fonction de modification dans l'api
+            var updateRespond:LocataireModificationResponse?=LocataireModificationResponse("")
 
-call.enqueue(object:Callback<LocataireModificationResponse>{
-    override fun onResponse(
-        call: Call<LocataireModificationResponse>,
-        response: Response<LocataireModificationResponse>
-    ) {
-        if (!response.isSuccessful) {
-            boolean=false
-            Log.i(TAG, "CODE:" + response.code().toString())
-        } else {
-            Log.i(TAG, "REPONSES: updated successfully")
-    }}
+            call.enqueue(object:Callback<LocataireModificationResponse>{
+                override fun onResponse(
+                    call: Call<LocataireModificationResponse>,
+                    response: Response<LocataireModificationResponse>
+                ) {
+                    if (!response.isSuccessful) {
+                        updateRespond = response.body()
+                        Log.i(TAG, "CODE:" + response.code().toString())
+                    } else {
+                        updateRespond = response.body()
+                        Log.i(TAG, "REPONSES: updated successfully")
+                    }}
 
-    override fun onFailure(call: Call<LocataireModificationResponse>, t: Throwable) {
-        boolean=false
-        Log.i(TAG, "error CODE:" + t.message)
+                override fun onFailure(call: Call<LocataireModificationResponse>, t: Throwable) {
+                    Log.i(TAG, "error CODE:" + t.message)
 
-    }
+                }
 
-})
-return boolean
-}
-        fun getLocataire(TAG: String,id:String?): MutableLiveData<ArrayList<LocataireRetro?>> {
+            })
+
+            return updateRespond!!.message
+        }
+        fun getLocataire(TAG: String,id:String): MutableLiveData<ArrayList<LocataireRetro?>> {
             var call = api.getLocataire(id) // consommation de l'api
             var locataireRespond: LocataireRetro?
             var locatairelist = ArrayList<LocataireRetro?>()

@@ -31,8 +31,8 @@ interface ServiceProvider {
     @GET("api/locataire/{id}")
     fun getLocataire(@Path("id") id:String? /*@Header("Authorization") token: String*/): Call<LocataireRetro>
 
-    @PUT("api/locataire/{id}")
-    fun editLocataire(@Path("id") id:String,@Body locataire:LocataireRetro/*@Header("Authorization") token: String*/): Call<LocataireModificationResponse>
+    @PUT("api/email/{id}")
+    fun editLocataire(@Path("id") id:String,@Body locataire:LocataireEditEmail/*@Header("Authorization") token: String*/): Call<LocataireModificationResponse>
     @GET("/api/bornes/{id}/vehicules")
     fun getListeVehicules(/*@Header("Authorization") token: String*/@Path("id") id:String  ): Call<List<VehiculeModel>>
 

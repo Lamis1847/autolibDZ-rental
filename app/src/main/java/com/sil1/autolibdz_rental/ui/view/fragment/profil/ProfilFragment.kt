@@ -14,6 +14,7 @@ import com.sil1.autolibdz_rental.data.model.LocataireRetro
 import kotlinx.android.synthetic.main.fragment_profil.*
 import java.util.ArrayList
 import androidx.lifecycle.Observer
+import com.sil1.autolibdz_rental.data.model.LocataireEditEmail
 import com.sil1.autolibdz_rental.ui.view.activity.MyDrawerController
 import com.sil1.autolibdz_rental.utils.sharedPrefFile
 
@@ -42,7 +43,7 @@ class ProfilFragment : Fragment() {
 //    }
     var list= mutableListOf<String>()
     var list2= mutableListOf<String>()
-    var boolean:Boolean=false
+    var boolean:String=""
     private var myDrawerController: MyDrawerController? = null
 
     override fun onAttach(activity: Activity) {
@@ -70,7 +71,7 @@ class ProfilFragment : Fragment() {
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
         val preferences = this.activity?.getSharedPreferences(sharedPrefFile, Context.MODE_PRIVATE)
-        val userID = preferences?.getString("userID", "Default")
+        val userID="3"
         var viewModel = ViewModelProvider(this).get(ProfilViewModel::class.java)
        viewModel.getLocataire(userID)
         viewModel.locataire.observe(requireActivity(), Observer {
@@ -78,26 +79,11 @@ class ProfilFragment : Fragment() {
             updateLocataire(locataire)
         })
         button.setOnClickListener{
-            list2.add(nom.text.toString())
-            list2.add(prenom.text.toString())
-            list2.add(email.text.toString())
-            if(!(list2.isEmpty()))
-            if(!list.equals(list2))
-            {
-                val locataire=LocataireRetro(null,nom.text.toString(),prenom.text.toString(),email.text.toString(),"test123456",null,false)
-               boolean= viewModel.updateLocataire(locataire,"193") //il faut changer l'id après!
-            //    Log.i("testTAG", "Display locataire List: call enqueue")
-                if(boolean)
-                Toast.makeText(requireActivity(), "mise à jour avec succès", Toast.LENGTH_LONG).show()
-                else
-                Toast.makeText(requireActivity(), "erreur de mise à jour", Toast.LENGTH_LONG).show()
-            }
-
-            nom.text.clear()
-            prenom.text.clear()
+            val locataire=LocataireEditEmail(email.text.toString(),password.text.toString())
+            boolean= viewModel.updateLocataire(locataire,"3") //il faut changer l'id après!
             email.text.clear()
-            new_password.text.clear()
-
+            password.text.clear()
+            Toast.makeText(requireActivity(), "boolean", Toast.LENGTH_LONG).show()
         }
 
     }
@@ -107,8 +93,6 @@ class ProfilFragment : Fragment() {
             nom.setText(locataire.get(0)?.nom)
             prenom.setText(locataire.get(0)?.prenom)
             email.setText(locataire.get(0)?.email)
-        list.add(locataire.get(0)?.nom.toString())
-        list.add(locataire.get(0)?.prenom.toString())
         list.add(locataire.get(0)?.email.toString())
 
     }
