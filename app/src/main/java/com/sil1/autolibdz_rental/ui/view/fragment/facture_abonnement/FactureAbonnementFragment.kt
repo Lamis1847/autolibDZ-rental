@@ -7,6 +7,7 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.activity.OnBackPressedCallback
 import androidx.navigation.findNavController
 import com.sil1.autolibdz_rental.R
 import kotlinx.android.synthetic.main.facture_abonnement_fragment.*
@@ -34,6 +35,10 @@ class FactureAbonnementFragment : Fragment() {
 
         viewModel.prixAPayer = arguments?.getDouble("prixAPayer")!!
         payedFactureText.text = String.format("%.2f", viewModel.prixAPayer)  + " DZD"
+
+        activity?.onBackPressedDispatcher?.addCallback(requireActivity(), object : OnBackPressedCallback(true) {
+            override fun handleOnBackPressed() {}
+        })
 
         /*date and time of transaction*/
         var currentDateTime= LocalDateTime.now()

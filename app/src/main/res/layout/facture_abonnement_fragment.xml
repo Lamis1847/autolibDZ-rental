@@ -219,7 +219,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginHorizontal="@dimen/btn_margin_horizontal"
-        android:layout_marginTop="24dp"
+        android:layout_marginTop="32dp"
         android:background="@drawable/ic_btn_rounded_corners"
         android:stateListAnimator="@null"
         android:text="@string/sendByEmail"

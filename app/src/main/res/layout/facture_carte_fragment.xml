@@ -209,11 +209,11 @@
         android:background="@drawable/ic_stripe"/>
     <!--send by email button-->
     <androidx.appcompat.widget.AppCompatButton
-        android:id="@+id/payAbonnementButton"
+        android:id="@+id/sendFactureEmail"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginHorizontal="@dimen/btn_margin_horizontal"
-        android:layout_marginTop="24dp"
+        android:layout_marginTop="32dp"
         android:background="@drawable/ic_btn_rounded_corners"
         android:stateListAnimator="@null"
         android:text="@string/sendByEmail"
@@ -222,7 +222,8 @@
         android:textSize="14sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/payedFactureText" />
+        app:layout_constraintTop_toBottomOf="@+id/payedFactureText"
+        android:onClick="sendEmail"/>
 
     <TextView
         android:id="@+id/skipBtn"
@@ -235,5 +236,5 @@
         android:textSize="20sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/payAbonnementButton" />
+        app:layout_constraintTop_toBottomOf="@+id/sendFactureEmail" />
 </androidx.constraintlayout.widget.ConstraintLayout>

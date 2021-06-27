@@ -12,7 +12,6 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
-
         android:paddingStart="@dimen/card_padding"
         android:paddingEnd="@dimen/card_padding">
 

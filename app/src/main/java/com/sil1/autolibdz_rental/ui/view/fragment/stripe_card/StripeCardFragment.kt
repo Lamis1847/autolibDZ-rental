@@ -1,11 +1,16 @@
 package com.sil1.autolibdz_rental.ui.view.fragment.stripe_card
 
 import android.app.Activity
+import android.content.Context
+import android.content.SharedPreferences
 import android.os.Bundle
 import android.os.Handler
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.CheckBox
+import android.widget.Toast
 import androidx.appcompat.app.AlertDialog
 import androidx.core.os.bundleOf
 import androidx.fragment.app.Fragment
@@ -20,6 +25,7 @@ import com.kaopiz.kprogresshud.KProgressHUD
 import com.sil1.autolibdz_rental.R
 import com.stripe.android.Stripe
 import kotlinx.android.synthetic.main.abonnement_payment_fragment.*
+import kotlinx.android.synthetic.main.activity_sign_up.*
 import kotlinx.android.synthetic.main.stripe_card_fragment.*
 import java.lang.ref.WeakReference
 import java.util.*
@@ -30,6 +36,7 @@ class StripeCardFragment : Fragment() {
     //private lateinit var paymentIntentClientSecret: String
     private lateinit var stripe: Stripe
     private lateinit var hud: KProgressHUD
+    protected val sharedPrefFile = "CreditCardInfo"
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -43,12 +50,64 @@ class StripeCardFragment : Fragment() {
         viewModel = ViewModelProvider(this).get(StripeCardViewModel::class.java)
         viewModel.prixAPayer = arguments?.getDouble("prixAPayer")!!
 
+        val sharedPreferences: SharedPreferences = requireActivity().getSharedPreferences(sharedPrefFile,
+            Context.MODE_PRIVATE)
+
+        //check whether to use saved cardNumber
+        val sharedCardValue = sharedPreferences.getString("credit_card_number", "default")
+        if (sharedCardValue!="default"){
+            val dialog = MaterialDialog(requireActivity())
+                .title(R.string.useSavedCreditCard)
+                .message(R.string.useSavedCreditCardText)
+                .positiveButton(R.string.yes) { dialog ->
+                    emailInput.setText(sharedPreferences.getString("email", "default"))
+                    cardNumberInput.setText(sharedCardValue)
+                    ccvInput.setText(sharedPreferences.getString("ccv", "123"))
+                    expirationDateInput.text = sharedPreferences.getString("exp_date", "2022/06")
+                }
+                .negativeButton(R.string.no)  { dialog ->
+                    dialog.dismiss()
+                }
+
+            dialog.show()
+        }
+
         stripe = Stripe(
             requireActivity().applicationContext,
             "pk_test_51IpB9FFlA46GQCJtPCuVBzXAaWbT4Nwiy6RchGcxO2OeOHNLrQXBm0TgR4LcICPZQ9cgMKqkytKN2pUU9vGjkZSw00WhixIzkx"
         )
 
-        payButton.setOnClickListener { startCheckout() }
+        payButton.setOnClickListener {
+            var inputValidation = true
+            //input validation
+            if (cardNumberInput.text?.isEmpty() == true) {
+                inputValidation= false
+                cardNumberInput.setHintTextColor(resources.getColor(R.color.redAlert))
+            }
+            else if (!cardNumberInput.isCardValid) {
+                inputValidation= false
+                Toast.makeText(context, "Carte non valide", Toast.LENGTH_SHORT).show()
+            }
+            if (emailInput.text.isEmpty()) {
+                inputValidation= false
+                emailInput.setHintTextColor(resources.getColor(R.color.redAlert))
+            }
+            if (ccvInput.text.isEmpty()) {
+                inputValidation= false
+                ccvInput.setHintTextColor(resources.getColor(R.color.redAlert))
+            }
+            if (inputValidation) {
+                val editor: SharedPreferences.Editor = sharedPreferences.edit()
+                editor.putString("email", emailInput.text.toString())
+                editor.putString("credit_card_number", cardNumberInput.text.toString())
+                editor.putString("ccv", ccvInput.text.toString())
+                editor.putString("exp_date", expirationDateInput.text.toString())
+                editor.apply()
+                editor.commit()
+
+                startCheckout()
+            }
+        }
 
         expirationDateInput.setOnClickListener {
              showCalendar()
@@ -73,9 +132,7 @@ class StripeCardFragment : Fragment() {
             positiveButton {
                 viewModel.updateExpirationDate(datePicked)
             }
-            negativeButton {
-
-            }
+            negativeButton {}
         }
     }
 

@@ -73,23 +73,29 @@
     <string name="expirationDateExample">2022/05</string>
     <string name="ccv">CCV</string>
     <string name="ccvExample">123</string>
-    <string name="checkout">Checkout</string>
+    <string name="checkout">Payer</string>
     <string name="annuler">Annuler</string>
     <string name="procedePayment">Procéder au paiement</string>
     <string name="procedePaymentText">Notez que l\'opération de paiement est irréversible. Etes-vous sûrs de vouloir continuer?</string>
-
+    <string name="useSavedCreditCard">Utilisez votre carte</string>
+    <string name="useSavedCreditCardText">Souhaitez-vous utiliser la carte de crédit sauvegardée afin d\'effectuer le paiement?</string>
+    <string name="yes">Oui</string>
+    <string name="no">Non</string>
 
     <!--paying from abonnement fragment-->
     <string name="montantRestant">Montant restant</string>
     <string name="montantAPayer">Montant à payer</string>
     <string name="montantTotal">Total</string>
     <string name="abonnement">Abonnement</string>
+    <string name="invalidCard">Carte non valide</string>
+    <string name="waitPlease">Patientez s\'il vous plait</string>
+    <string name="paymentOngoing">Paiement en cours</string>
 
     <!--Facturation-->
     <string name="facture">Facture</string>
     <string name="type">Type</string>
     <string name="date">Date</string>
-    <string name="paymentMethod">Méthode de paiement</string>
+    <string name="paymentMethod">Méthode</string>
     <string name="bankCard">Carte bancaire</string>
     <string name="sendByEmail">Envoyez par email</string>
     <string name="skip">Terminer</string>
