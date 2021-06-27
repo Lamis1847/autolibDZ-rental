@@ -73,7 +73,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView3"
-
+        android:onClick="takePermisPic"
         >
 
         <ImageView
@@ -109,7 +109,7 @@
         android:fontFamily="@font/gothamlight"
         android:gravity="center"
         android:text="photo de pemis"
-        android:textColor="#FFCB00"
+        android:textColor="@color/palette_grey_700"
         android:textSize="18sp"
         android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
@@ -124,7 +124,9 @@
         android:background="@drawable/x_circle_grey"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/permis_path">
+        app:layout_constraintTop_toBottomOf="@+id/permis_path"
+        android:onClick="takeSelfiePic"
+        >
 
         <ImageView
             android:id="@+id/selfie_pic"
@@ -157,7 +159,7 @@
         android:fontFamily="@font/gothamlight"
         android:gravity="center"
         android:text="prendre un selfie"
-        android:textColor="#FFCB00"
+        android:textColor="@color/palette_grey_700"
         android:textSize="18sp"
         android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
