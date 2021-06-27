@@ -7,52 +7,47 @@
     <uses-permission android:name="android.permission.INTERNET" />
 
     <application
+        android:name=".data.room.App"
         android:allowBackup="true"
         android:icon="@drawable/ic_logo_1"
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
-        android:theme="@style/Theme.AutolibDZrental"
-        android:name=".data.room.App">
-        <activity android:name=".ui.view.activity.ReservationsActivity"
-
-            android:theme="@style/Theme.AutolibDZrental">
-<!--            <intent-filter>-->
-<!--                <action android:name="android.intent.action.MAIN" />-->
-<!--                <category android:name="android.intent.category.LAUNCHER" />-->
-<!--            </intent-filter>-->
-        </activity>
-
-
-
-
-
-        <activity
-            android:name=".ui.view.activity.LoginActivity"
-            android:theme="@style/Theme.AutolibDZrental.NoActionBar"></activity>
-        <activity
-            android:name=".ui.view.activity.SignUpActivity"
-            android:theme="@style/Theme.AutolibDZrental.NoActionBar"></activity>
-
-        <activity
-            android:name=".ui.view.activity.HomeActivity"
-            android:screenOrientation="portrait"
-            android:label="@string/app_name"
-            android:theme="@style/Theme.AutolibDZrental.NoActionBar">
+        android:theme="@style/Theme.AutolibDZrental">
+        <activity android:name=".ui.view.activity.ValidationActivity"
+            android:theme="@style/Theme.AutolibDZrental.NoActionBar"
+            >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
-
         </activity>
-<!--            <intent-filter>-->
-<!--                <action android:name="android.intent.action.MAIN" />-->
+        <activity
+            android:name=".ui.view.activity.ReservationsActivity"
+            android:theme="@style/Theme.AutolibDZrental">
 
-<!--                <category android:name="android.intent.category.LAUNCHER" />-->
-<!--            </intent-filter>-->
+            <!-- <intent-filter> -->
+            <!-- <action android:name="android.intent.action.MAIN" /> -->
+            <!-- <category android:name="android.intent.category.LAUNCHER" /> -->
+            <!-- </intent-filter> -->
+        </activity>
+        <activity
+            android:name=".ui.view.activity.LoginActivity"
+            android:theme="@style/Theme.AutolibDZrental.NoActionBar" />
+        <activity
+            android:name=".ui.view.activity.SignUpActivity"
+            android:theme="@style/Theme.AutolibDZrental.NoActionBar" />
+        <activity
+            android:name=".ui.view.activity.HomeActivity"
+            android:label="@string/app_name"
+            android:screenOrientation="portrait"
+            android:theme="@style/Theme.AutolibDZrental.NoActionBar">
 
-
+        </activity> <!-- <intent-filter> -->
+        <!-- <action android:name="android.intent.action.MAIN" /> -->
+        <!-- <category android:name="android.intent.category.LAUNCHER" /> -->
+        <!-- </intent-filter> -->
         <meta-data
             android:name="com.google.android.gms.version"
             android:value="@integer/google_play_services_version" /> <!-- The API key for Google Maps-based APIs. -->
