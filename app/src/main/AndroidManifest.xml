@@ -15,16 +15,22 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.AutolibDZrental">
-        <activity android:name=".ui.view.activity.validation.ValidationResActivity"></activity>
-        <activity android:name=".ui.view.activity.validation.ValidationReadyActivity" />
+        <activity android:name=".ui.view.activity.validation.ValidationResActivity"
+                  android:theme="@style/Theme.AutolibDZrental.NoActionBar"
+            />
+        <activity android:name=".ui.view.activity.validation.ValidationReadyActivity"
+                  android:theme="@style/Theme.AutolibDZrental.NoActionBar"
+            />
         <activity
             android:name=".ui.view.activity.validation.ValidationActivity"
             android:theme="@style/Theme.AutolibDZrental.NoActionBar">
+
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
+
         </activity>
         <activity
             android:name=".ui.view.activity.ReservationsActivity"
@@ -40,7 +46,9 @@
             android:theme="@style/Theme.AutolibDZrental.NoActionBar" />
         <activity
             android:name=".ui.view.activity.SignUpActivity"
-            android:theme="@style/Theme.AutolibDZrental.NoActionBar" />
+            android:theme="@style/Theme.AutolibDZrental.NoActionBar" >
+
+        </activity>
         <activity
             android:name=".ui.view.activity.HomeActivity"
             android:label="@string/app_name"

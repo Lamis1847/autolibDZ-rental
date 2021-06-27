@@ -89,4 +89,8 @@ class ValidationActivity : AppCompatActivity() {
         ActivityCompat.requestPermissions(this, perms, permsRequestCode)
 
     }
+
+    fun continuer(view: View) {
+        startActivity(Intent(this,ValidationReadyActivity::class.java))
+    }
 }
