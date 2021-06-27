@@ -1,4 +1,4 @@
-package com.sil1.autolibdz_rental.ui.view.activity
+package com.sil1.autolibdz_rental.ui.view.activity.validation
 
 import android.Manifest
 import android.content.Intent
