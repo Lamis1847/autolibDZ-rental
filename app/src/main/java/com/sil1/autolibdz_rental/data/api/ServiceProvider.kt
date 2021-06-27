@@ -28,7 +28,7 @@ interface ServiceProvider {
     @GET("api/locataire/{id}")
     fun getLocataire(@Path("id") id:String /*@Header("Authorization") token: String*/): Call<LocataireRetro>
 
-    @PUT("api/locataire/{id}")
+    @PUT("api/email/{id}")
     fun editLocataire(@Path("id") id:String,@Body locataire:LocataireRetro/*@Header("Authorization") token: String*/): Call<LocataireModificationResponse>
     //récupérer les reservation d'un locataire
     @GET("api/reservation/historique/locataires/{id}")

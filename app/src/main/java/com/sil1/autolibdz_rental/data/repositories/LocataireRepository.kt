@@ -19,11 +19,10 @@ class LocataireRepository {
             ServiceBuilder.buildService(ServiceProvider::class.java)
         }
 
-fun editLocataire(TAG:String,id:String,locataire:LocataireRetro):Boolean
+fun editLocataire(TAG:String,id:String,locataire:LocataireRetro):String
 {
 var call = api.editLocataire(id,locataire) // fonction de modification dans l'api
-var updateRespond:LocataireModificationResponse
-var boolean=true
+var updateRespond:LocataireModificationResponse?=LocataireModificationResponse("")
 
 call.enqueue(object:Callback<LocataireModificationResponse>{
     override fun onResponse(
@@ -31,20 +30,21 @@ call.enqueue(object:Callback<LocataireModificationResponse>{
         response: Response<LocataireModificationResponse>
     ) {
         if (!response.isSuccessful) {
-            boolean=false
+            updateRespond = response.body()
             Log.i(TAG, "CODE:" + response.code().toString())
         } else {
+            updateRespond = response.body()
             Log.i(TAG, "REPONSES: updated successfully")
     }}
 
     override fun onFailure(call: Call<LocataireModificationResponse>, t: Throwable) {
-        boolean=false
         Log.i(TAG, "error CODE:" + t.message)
 
     }
 
 })
-return boolean
+
+return updateRespond!!.message
 }
         fun getLocataire(TAG: String,id:String): MutableLiveData<ArrayList<LocataireRetro?>> {
             var call = api.getLocataire(id) // consommation de l'api
