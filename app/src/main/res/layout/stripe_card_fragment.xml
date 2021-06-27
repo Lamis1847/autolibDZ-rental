@@ -113,7 +113,7 @@
             android:layout_marginHorizontal="@dimen/view_margin_horizontal"
             android:background="@drawable/ic_input_white"
             android:fontFamily="@font/gothambook"
-            android:hint="@string/cardNumber"
+            android:hint="@string/creditCardNumberExample"
             android:inputType="textEmailAddress"
             android:paddingVertical="@dimen/input_padding_vertical"
             android:paddingStart="8dp"
@@ -144,7 +144,7 @@
                     android:layout_marginTop="@dimen/input_title_margin_top"
                     android:layout_marginBottom="@dimen/input_title_margin_bottom"/>
 
-                <EditText
+                <TextView
                     android:id="@+id/expirationDateInput"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
@@ -153,8 +153,7 @@
                     android:drawableLeft="@drawable/ic_calendar_yellow"
                     android:drawablePadding="12dp"
                     android:fontFamily="@font/gothambook"
-                    android:hint="@string/expirationDateExample"
-                    android:inputType="date"
+                    android:text="@string/expirationDateExample"
                     android:paddingVertical="@dimen/input_padding_vertical"
                     android:paddingStart="8dp"
                     android:textSize="@dimen/input_text"
@@ -231,6 +230,6 @@
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/formLayout"
-        app:layout_constraintVertical_bias="0.47" />
+        app:layout_constraintVertical_bias="0.17" />
 </androidx.constraintlayout.widget.ConstraintLayout>
 

@@ -3,27 +3,301 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/frameLayout6"
+    android:background="@color/palette_grey_200"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".ui.view.fragment.infos_trajet.InfosTrajetFragment">
 
-    <Button
-        android:id="@+id/payWithStripe"
-        android:layout_width="wrap_content"
+    <FrameLayout
+        android:id="@+id/frameLayout5"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginStart="24dp"
-        android:layout_marginBottom="24dp"
-        android:text="Stripe"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
 
-    <Button
-        android:id="@+id/payWithAbonnement"
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="230dp"
+            android:background="@drawable/ic_ellipse"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="left|center_vertical"
+            android:layout_marginTop="4dp"
+            android:layout_marginLeft="24dp"
+            android:fontFamily="@font/gothammedium"
+            android:justificationMode="inter_word"
+            android:lineSpacingExtra="8dp"
+            android:text="@string/thankYouTrajet"
+            android:textColor="@color/white"
+            android:textSize="28sp" />
+    </FrameLayout>
+
+    <TextView
+        android:id="@+id/textView8"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginEnd="24dp"
-        android:layout_marginBottom="24dp"
-        android:text="Abonnement"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent" />
+        android:layout_marginTop="22dp"
+        android:fontFamily="@font/gothambook"
+        android:text="@string/detailsTrajet"
+        android:textColor="@color/black"
+        android:textSize="18sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/frameLayout5" />
+
+    <TextView
+        android:id="@+id/textView9"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="24dp"
+        android:fontFamily="@font/gothambook"
+        android:paddingLeft="32dp"
+        android:paddingRight="72dp"
+        android:drawableLeft="@drawable/ic_pin_yellow"
+        android:drawablePadding="12dp"
+        android:paddingVertical="6dp"
+        android:text="Départ"
+        android:textColor="@color/white"
+        android:background="@drawable/_rectangle_blue_rounded_right"
+        android:textSize="18sp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView8" />
+
+    <TextView
+        android:id="@+id/borneDepartText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/gothambook"
+        android:paddingVertical="6dp"
+        android:paddingStart="28dp"
+        android:text="Borne de départ"
+        android:textColor="@color/textGray"
+        android:textSize="16sp"
+        app:layout_constraintBottom_toBottomOf="@+id/textView9"
+        app:layout_constraintStart_toEndOf="@+id/textView9"
+        app:layout_constraintTop_toTopOf="@+id/textView9" />
+
+    <TextView
+        android:id="@+id/textView10"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="12dp"
+        android:fontFamily="@font/gothambook"
+        android:paddingHorizontal="32dp"
+        android:drawableLeft="@drawable/ic_pin_yellow"
+        android:drawablePadding="12dp"
+        android:paddingVertical="6dp"
+        android:text="Destination"
+        android:textColor="@color/white"
+        android:background="@drawable/_rectangle_blue_rounded_right"
+        android:textSize="18sp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView9" />
+
+    <TextView
+        android:id="@+id/borneArriveeText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/gothambook"
+        android:paddingVertical="6dp"
+        android:paddingStart="28dp"
+        android:text="Borne d'arrivée"
+        android:textColor="@color/textGray"
+        android:textSize="16sp"
+        app:layout_constraintBottom_toBottomOf="@+id/textView10"
+        app:layout_constraintStart_toEndOf="@+id/textView10"
+        app:layout_constraintTop_toTopOf="@+id/textView10" />
+
+    <TextView
+        android:id="@+id/textView11"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="12dp"
+        android:fontFamily="@font/gothambook"
+        android:paddingLeft="20dp"
+        android:paddingRight="26dp"
+        android:drawableLeft="@drawable/ic_distance"
+        android:drawablePadding="12dp"
+        android:paddingVertical="6dp"
+        android:text="Kilométrage"
+        android:textColor="@color/white"
+        android:background="@drawable/_rectangle_blue_rounded_right"
+        android:textSize="18sp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView10" />
+
+    <TextView
+        android:id="@+id/kilometrageText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/gothambook"
+        android:paddingVertical="6dp"
+        android:paddingStart="28dp"
+        android:text="30 KM"
+        android:textColor="@color/textGray"
+        android:textSize="16sp"
+        app:layout_constraintBottom_toBottomOf="@+id/textView11"
+        app:layout_constraintStart_toEndOf="@+id/textView11"
+        app:layout_constraintTop_toTopOf="@+id/textView11" />
+
+    <TextView
+        android:id="@+id/textView12"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="12dp"
+        android:fontFamily="@font/gothambook"
+        android:paddingLeft="26dp"
+        android:paddingRight="80dp"
+        android:drawableLeft="@drawable/ic_clock"
+        android:drawablePadding="12dp"
+        android:paddingVertical="6dp"
+        android:text="Durée"
+        android:textColor="@color/white"
+        android:background="@drawable/_rectangle_blue_rounded_right"
+        android:textSize="18sp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView11" />
+
+    <TextView
+        android:id="@+id/dureeText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/gothambook"
+        android:paddingVertical="6dp"
+        android:paddingStart="28dp"
+        android:text="20 min"
+        android:textColor="@color/textGray"
+        android:textSize="16sp"
+        app:layout_constraintBottom_toBottomOf="@+id/textView12"
+        app:layout_constraintStart_toEndOf="@+id/textView12"
+        app:layout_constraintTop_toTopOf="@+id/textView12" />
+
+    <TextView
+        android:id="@+id/textView13"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="12dp"
+        android:fontFamily="@font/gothambook"
+        android:paddingLeft="26dp"
+        android:paddingRight="100dp"
+        android:drawableLeft="@drawable/ic_money_yellow"
+        android:drawablePadding="12dp"
+        android:paddingVertical="6dp"
+        android:text="Prix"
+        android:textColor="@color/white"
+        android:background="@drawable/_rectangle_blue_rounded_right"
+        android:textSize="18sp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView12" />
+
+    <TextView
+        android:id="@+id/prixText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/gothambook"
+        android:paddingStart="24dp"
+        android:paddingVertical="6dp"
+        android:text="100.00 DA"
+        android:textColor="@color/textGray"
+        android:textSize="16sp"
+        app:layout_constraintBottom_toBottomOf="@+id/textView13"
+        app:layout_constraintStart_toEndOf="@+id/textView13"
+        app:layout_constraintTop_toTopOf="@+id/textView13" />
+
+    <!--Seperator-->
+    <View
+        android:id="@+id/view2"
+        android:layout_width="320dp"
+        android:layout_height="0.5dp"
+        android:layout_marginTop="24dp"
+        android:background="#868FAC"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView13" />
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="32dp"
+        android:orientation="horizontal"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/view2">
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:layout_marginRight="32dp">
+            <androidx.appcompat.widget.AppCompatImageButton
+                android:id="@+id/payWithStripe"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:background="@drawable/_square_yellow_card_icon" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:gravity="center_horizontal"
+                android:fontFamily="@font/gothammedium"
+                android:text="@string/bankCard"
+                android:textColor="@color/textGray"
+                android:textSize="14sp" />
+        </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:layout_marginLeft="32dp">
+        <androidx.appcompat.widget.AppCompatImageButton
+            android:id="@+id/payWithAbonnement"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:background="@drawable/_square_yellow_autolib"
+            android:paddingHorizontal="8dp" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:gravity="center_horizontal"
+            android:fontFamily="@font/gothammedium"
+            android:text="@string/abonnement"
+            android:textColor="@color/textGray"
+            android:textSize="14sp" />
+    </LinearLayout>
+    </LinearLayout>
+
+
+    <!--    <androidx.appcompat.widget.AppCompatButton-->
+    <!--        android:id="@+id/payWithStripe"-->
+    <!--        android:layout_width="wrap_content"-->
+    <!--        android:layout_height="wrap_content"-->
+    <!--        android:layout_marginStart="24dp"-->
+    <!--        android:layout_marginBottom="24dp"-->
+    <!--        android:background="@drawable/ic_btn_rounded_corners"-->
+    <!--        android:text="Stripe"-->
+    <!--        app:layout_constraintBottom_toBottomOf="parent"-->
+    <!--        app:layout_constraintStart_toStartOf="parent"-->
+    <!--        app:layout_constraintTop_toBottomOf="@+id/view2" />-->
+
+    <!--    <androidx.appcompat.widget.AppCompatButton-->
+    <!--        android:id="@+id/payWithAbonnement"-->
+    <!--        android:layout_width="wrap_content"-->
+    <!--        android:layout_height="wrap_content"-->
+    <!--        android:layout_marginEnd="24dp"-->
+    <!--        android:layout_marginBottom="24dp"-->
+    <!--        android:background="@drawable/ic_btn_rounded_corners"-->
+    <!--        android:paddingHorizontal="8dp"-->
+    <!--        android:text="Abonnement"-->
+    <!--        app:layout_constraintBottom_toBottomOf="parent"-->
+    <!--        app:layout_constraintEnd_toEndOf="parent"-->
+    <!--        app:layout_constraintTop_toBottomOf="@+id/view2" />-->
 </androidx.constraintlayout.widget.ConstraintLayout>

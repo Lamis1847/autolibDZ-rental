@@ -27,7 +27,8 @@ class InfosTrajetFragment : Fragment() {
         super.onActivityCreated(savedInstanceState)
         viewModel = ViewModelProvider(this).get(InfosTrajetViewModel::class.java)
 
-        var bundle = bundleOf("prixAPayer" to 100.00)
+        prixText.setText("100.00 DA")
+        var bundle = bundleOf("prixAPayer" to 250.00)
 
         payWithStripe.setOnClickListener {toStripePayment(bundle) }
         payWithAbonnement.setOnClickListener {toAbonnementPayment(bundle)}

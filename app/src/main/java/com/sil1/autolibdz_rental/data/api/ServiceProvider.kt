@@ -40,4 +40,7 @@ interface ServiceProvider {
     @POST("api/abonnement/{id}")
     fun payWithAbonnement(@Path("id") id: Int , @Field("prix") prix: Double): Call<ResponseBody>
 
+    //create transaction
+    @POST("api/transaction")
+    fun createTransaction(@Body transaction: Transaction): Call<ResponseBody>
 }

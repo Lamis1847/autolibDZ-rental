@@ -6,6 +6,7 @@ import com.sil1.autolibdz_rental.data.api.ServiceBuilder
 import com.sil1.autolibdz_rental.data.api.ServiceProvider
 import com.sil1.autolibdz_rental.data.model.Balance
 import com.sil1.autolibdz_rental.data.model.PaymentIntent
+import com.sil1.autolibdz_rental.data.model.Transaction
 import okhttp3.ResponseBody
 import retrofit2.Call
 import retrofit2.Callback
@@ -44,7 +45,7 @@ class AbonnementRepository {
             })
         }
 
-        fun payWithAbonnement(TAG: String, id: Int, amount: Double, onResult: (ResponseBody?) -> Unit){
+        fun payWithAbonnement(TAG: String, id: Int, amount: Double, onResult: (Response<ResponseBody>?) -> Unit){
             var call = api.payWithAbonnement(id, amount)
 
             call.enqueue(object : Callback<ResponseBody> {
@@ -55,7 +56,28 @@ class AbonnementRepository {
                         Log.i(TAG, "CODE:" + response.code().toString() + " Message: " + response.message())
                         onResult(null)
                     }
-                    onResult(response.body())
+                    onResult(response)
+                }
+
+                override fun onFailure(call: Call<ResponseBody>, t: Throwable) {
+                    Log.i( TAG, "error CODE:" + t.message)
+                    onResult(null)
+                }
+            })
+        }
+
+        fun createTransaction(TAG: String, transaction: Transaction, onResult: (Response<ResponseBody>?) -> Unit) {
+            var call = api.createTransaction(transaction)
+
+            call.enqueue(object : Callback<ResponseBody> {
+                override fun onResponse(call: Call<ResponseBody>, response: Response<ResponseBody>) {
+                    Log.i(TAG, "Creating transaction")
+
+                    if (!response.isSuccessful) {
+                        Log.i(TAG, "CODE:" + response.code().toString() + " Message: " + response.message())
+                        onResult(null)
+                    }
+                    onResult(response)
                 }
 
                 override fun onFailure(call: Call<ResponseBody>, t: Throwable) {

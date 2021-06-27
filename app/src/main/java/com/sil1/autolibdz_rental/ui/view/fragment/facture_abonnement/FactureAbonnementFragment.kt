@@ -7,6 +7,7 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.navigation.findNavController
 import com.sil1.autolibdz_rental.R
 import kotlinx.android.synthetic.main.facture_abonnement_fragment.*
 import java.time.LocalDateTime
@@ -41,6 +42,10 @@ class FactureAbonnementFragment : Fragment() {
         val formatted = currentDateTime.format(formatter)
 
         factureDateText.text = formatted
+
+        skipBtn.setOnClickListener{
+            requireActivity().findNavController(R.id.payment_test).navigate(R.id.action_factureAbonnementFragment2_to_paymentEndFragment)
+        }
     }
 
 }

@@ -10,7 +10,7 @@
     <dimen name="normal_text">30dp</dimen>
     <dimen name="inputHeight">40dp</dimen>
 
-    <dimen name="input_padding_vertical">14dp</dimen>
+    <dimen name="input_padding_vertical">16dp</dimen>
     <dimen name="view_margin_horizontal">18dp</dimen>
     <dimen name="btn_margin_horizontal">24dp</dimen>
     <dimen name="input_title_margin_bottom">8dp</dimen>
@@ -22,10 +22,16 @@
     <dimen name="input_elevation">2dp</dimen>
 
     <dimen name="payment_detail_text">16sp</dimen>
-    <dimen name="payment_amount_text">18sp</dimen>
+    <dimen name="payment_amount_text">14sp</dimen>
     <dimen name="payment_view_margin_horizontal">24dp</dimen>
 
     <dimen name="facture_view_margin_horizontal">20dp</dimen>
     <dimen name="facture_details_text">16sp</dimen>
 
+    <dimen name="card_padding">20dp</dimen>
+
+    <dimen name="md_action_button_min_width">64dp</dimen>
+    <dimen name="md_action_button_corner_radius">2dp</dimen>
+    <dimen name="md_action_button_textsize">14sp</dimen>
+    <dimen name="md_action_button_padding_horizontal">12dp</dimen>
 </resources>

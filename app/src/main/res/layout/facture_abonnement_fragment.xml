@@ -36,11 +36,11 @@
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:fontFamily="@font/gothambook"
-                android:paddingStart="24dp"
+                android:fontFamily="@font/gothambold"
+                android:gravity="center_horizontal"
                 android:text="@string/facture"
                 android:textColor="@color/black"
-                android:textSize="@dimen/appbar_title" />
+                android:textSize="20dp" />
 
         </androidx.appcompat.widget.Toolbar>
 
@@ -59,14 +59,14 @@
             android:layout_height="208.82dp"
             android:layout_marginTop="8dp"
             android:layout_gravity="center_horizontal"
-            android:elevation="5dp"
+            android:elevation="3dp"
             android:background="@drawable/ic_square_gray" />
 
         <ImageView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
-            android:elevation="5dp"
+            android:elevation="3dp"
             android:background="@drawable/ic_logo_dark" />
 
         <TextView
@@ -77,7 +77,7 @@
             android:gravity="center_horizontal"
             android:layout_gravity="center_horizontal|bottom"
             android:layout_marginBottom="24dp"
-            android:elevation="5dp"
+            android:elevation="3dp"
             android:text="Carte d'abonnement"
             android:textColor="@color/black"
             android:textSize="16sp"/>
@@ -114,7 +114,7 @@
             android:fontFamily="@font/gothambook"
             android:text="Réservation"
             android:layout_alignParentEnd="true"
-            android:textColor="@color/black"
+            android:textColor="@color/textGray"
             android:textSize="@dimen/facture_details_text" />
     </RelativeLayout>
 
@@ -146,7 +146,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:fontFamily="@font/gothambook"
-            android:textColor="@color/black"
+            android:textColor="@color/textGray"
             android:layout_alignParentEnd="true"
             android:gravity="right"
             android:textSize="@dimen/facture_details_text"
@@ -182,7 +182,7 @@
             android:layout_height="wrap_content"
             android:layout_alignParentEnd="true"
             android:fontFamily="@font/gothambook"
-            android:textColor="@color/black"
+            android:textColor="@color/textGray"
             android:gravity="right"
             android:textSize="@dimen/facture_details_text"
             android:text="@string/abonnement"
@@ -231,7 +231,7 @@
         app:layout_constraintTop_toBottomOf="@+id/payedFactureText" />
 
     <TextView
-        android:id="@+id/skip"
+        android:id="@+id/skipBtn"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="18dp"

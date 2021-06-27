@@ -60,12 +60,16 @@
     <string name="PREFERENCE_FILE_KEY">com.sil1.autolibdz_rental</string>
     <!-- END OF SHAREDPREF-->
 
+<!--    trajet-->
+    <string name="thankYouTrajet">Merci d\'avoir pris \nla route avec \nAutoLibDZ!</string>
+    <string name="detailsTrajet">Voici les détails de votre trajet :</string>
 
     <!--Bank card fragment-->
     <string name="effectuerPaiementFragTitle">Effectuer un paiement</string>
     <string name="emailExample">email@example.com</string>
     <string name="cardNumber">Numéro de la carte</string>
     <string name="expirationDate">Date d\'expiration</string>
+    <string name="creditCardNumberExample">3700 0000 0000 002</string>
     <string name="expirationDateExample">2022/05</string>
     <string name="ccv">CCV</string>
     <string name="ccvExample">123</string>
@@ -88,6 +92,14 @@
     <string name="paymentMethod">Méthode de paiement</string>
     <string name="bankCard">Carte bancaire</string>
     <string name="sendByEmail">Envoyez par email</string>
-    <string name="skip">Passer</string>
+    <string name="skip">Terminer</string>
 
+
+<!--    paiement end-->
+    <string name="paymentDone">Paiement effectué</string>
+    <string name="thankYouPayment">Merci d\'avoir utilisé AutolibDz !</string>
+    <string name="done">Done</string>
+    
+<!--    transaction-->
+    <string name="transactionType">Nature de la réservation</string>
 </resources>
