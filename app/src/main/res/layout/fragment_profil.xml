@@ -15,11 +15,13 @@
     <!-- TODO: Update blank fragment layout -->
     <TextView
         android:id="@+id/changerMdp"
+        android:fontFamily="@font/gothambold"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="32dp"
         android:padding="10dp"
-        android:text="Modifier mon mot de passe"
+        android:text="@string/changerMdp"
+        android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/password" />
@@ -191,7 +193,7 @@
         android:id="@+id/SauvgarderP"
         android:layout_width="160dp"
         android:layout_height="wrap_content"
-        android:layout_marginTop="32dp"
+        android:layout_marginTop="16dp"
         android:backgroundTint="#FFCB00"
         android:focusable="false"
         android:stateListAnimator="@null"
