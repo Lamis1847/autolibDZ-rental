@@ -25,6 +25,7 @@ class ListeVehiculeFragment : Fragment() {
     private lateinit var viewModel: ListeVehiculeViewModel
     private var myDrawerController: MyDrawerController? = null
     lateinit var resViewModel : Reservation
+    private val TAG = "_listeVehiculeFragment"
 
     override fun onAttach(activity: Activity) {
         super.onAttach(activity)
@@ -51,7 +52,7 @@ class ListeVehiculeFragment : Fragment() {
 
     override fun onDestroyView() {
         super.onDestroyView()
-        myDrawerController?.setDrawer_UnLocked()
+        //myDrawerController?.setDrawer_UnLocked()
     }
 
     override  fun onActivityCreated(savedInstanceState: Bundle?) {
@@ -73,8 +74,8 @@ class ListeVehiculeFragment : Fragment() {
 
     fun checkList() {
         val data = viewModel.vehicules.value
-        Log.i("distanceEstime",resViewModel.distanceEstime.toString() )
-        Log.i("tempsEstimeEnSecondes",resViewModel.tempsEstimeEnSecondes.toString() )
+        Log.i(TAG,"distanceEstime"+resViewModel.distanceEstime.toString() )
+        Log.i(TAG,"tempsEstimeEnSecondes"+resViewModel.tempsEstimeEnSecondes.toString() )
         val vm = ViewModelProvider(requireActivity()).get(Vehicule::class.java)
         val vmRes = ViewModelProvider(requireActivity()).get(Reservation::class.java)
         if(data != null){

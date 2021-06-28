@@ -1,0 +1,209 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/AbonnementPaymentFragLayout"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/palette_grey_200"
+    tools:context=".ui.view.fragment.abonnement_payment.AbonnementPaymentFragment">
+
+    <com.google.android.material.appbar.AppBarLayout
+        android:id="@+id/appBarLayout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@null"
+        android:theme="@style/AppTheme.AppBarOverlay"
+        app:elevation="0dp"
+        android:layout_marginTop="12dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <androidx.appcompat.widget.Toolbar
+            android:id="@+id/toolbar"
+            android:layout_width="match_parent"
+            android:layout_height="?android:attr/actionBarSize"
+            app:popupTheme="@style/AppTheme.PopupOverlay"
+            app:theme="@style/AppTheme.Toolbar">
+
+            <androidx.appcompat.widget.AppCompatImageButton
+                android:id="@+id/backToTrajetInfos"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@drawable/ic_back_icon"
+                android:layout_marginStart="24dp"
+            />
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/gothambook"
+                android:paddingStart="24dp"
+                android:text="@string/effectuerPaiementFragTitle"
+                android:textColor="@color/black"
+                android:textSize="@dimen/appbar_title" />
+
+        </androidx.appcompat.widget.Toolbar>
+
+    </com.google.android.material.appbar.AppBarLayout>
+
+<!--rectangle and title-->
+    <FrameLayout
+        android:id="@+id/frameLayout4"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="18dp"
+        app:layout_constraintTop_toBottomOf="@+id/appBarLayout">
+
+        <View
+            android:layout_width="167.76dp"
+            android:layout_height="213.55dp"
+            android:layout_gravity="center_horizontal"
+            android:background="@drawable/ic_rect_gradient_yellow" />
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:background="@drawable/ic_logo_autolib" />
+    </FrameLayout>
+
+    <TextView
+        android:id="@+id/abonnementText"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/gothambook"
+        android:gravity="center_horizontal"
+        android:text="@string/abonnement"
+        android:textColor="@color/black"
+        android:textSize="@dimen/payment_amount_text"
+        app:layout_constraintTop_toBottomOf="@+id/frameLayout4"
+        android:layout_marginTop="12dp"/>
+    <!--payment details-->
+    <LinearLayout
+        android:id="@+id/montantRestantLayout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="@dimen/payment_view_margin_horizontal"
+        android:orientation="horizontal"
+        android:layout_marginTop="32dp"
+        android:layout_marginBottom="8dp"
+        app:layout_constraintTop_toBottomOf="@+id/abonnementText">
+        <!--icon & title-->
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:drawableLeft="@drawable/ic_money_yellow"
+            android:drawablePadding="12dp"
+            android:fontFamily="@font/gothambook"
+            android:gravity="center_vertical"
+            android:text="@string/montantRestant"
+            android:textColor="@color/black"
+            android:textSize="@dimen/payment_detail_text" />
+        <!--money amount-->
+        <TextView
+            android:id="@+id/balanceText"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:fontFamily="@font/gothambook"
+            android:gravity="right"
+            android:text="000.00 $"
+            android:textColor="@color/textGray"
+            android:textSize="@dimen/payment_amount_text" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/montantAPayerLayout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_marginTop="8dp"
+        android:layout_marginBottom="8dp"
+        android:layout_marginHorizontal="@dimen/payment_view_margin_horizontal"
+        app:layout_constraintTop_toBottomOf="@+id/montantRestantLayout"
+        >
+        <!--icon & title-->
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:drawableLeft="@drawable/ic_car"
+            android:drawablePadding="12dp"
+            android:gravity="center_vertical"
+            android:fontFamily="@font/gothambook"
+            android:textColor="@color/black"
+            android:textSize="@dimen/payment_detail_text"
+            android:text="@string/montantAPayer" />
+        <!--money amount-->
+        <TextView
+            android:id="@+id/aPayerText"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:fontFamily="@font/gothambook"
+            android:textColor="@color/textGray"
+            android:gravity="right"
+            android:textSize="@dimen/payment_amount_text"
+            android:text="000.00 $"
+            />
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/totalLayout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_marginTop="8dp"
+        android:layout_marginBottom="8dp"
+        android:layout_marginHorizontal="@dimen/payment_view_margin_horizontal"
+        app:layout_constraintTop_toBottomOf="@+id/montantAPayerLayout"
+        >
+        <!--icon & title-->
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:drawableLeft="@drawable/ic_credit_card_yellow"
+            android:drawablePadding="12dp"
+            android:gravity="center_vertical"
+            android:fontFamily="@font/gothambook"
+            android:textColor="@color/black"
+            android:textSize="@dimen/payment_detail_text"
+            android:textStyle="bold"
+            android:text="@string/montantTotal" />
+        <!--money amount-->
+        <TextView
+            android:id="@+id/newBalance"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:fontFamily="@font/gothambook"
+            android:textColor="@color/textGray"
+            android:gravity="right"
+            android:textStyle="bold"
+            android:textSize="@dimen/payment_amount_text"
+            android:text="000.00 $"
+            />
+    </LinearLayout>
+    <!--checkout button-->
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/payAbonnementButton"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="@dimen/btn_margin_horizontal"
+        android:layout_marginTop="32dp"
+        android:background="@drawable/ic_btn_rounded_corners"
+        android:stateListAnimator="@null"
+        android:text="@string/checkout"
+        android:textAllCaps="false"
+        android:textColor="@color/white"
+        android:textSize="14sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/totalLayout"
+        app:layout_constraintVertical_bias="0.25" />
+</androidx.constraintlayout.widget.ConstraintLayout>
+
