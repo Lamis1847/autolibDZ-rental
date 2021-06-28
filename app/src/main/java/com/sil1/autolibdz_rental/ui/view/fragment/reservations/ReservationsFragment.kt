@@ -68,6 +68,7 @@ private lateinit var adapter: ReservationAdapter
 
     else
         {
+
             tout.isSelected = true;
             if(progressBar != null) {
                 progressBar.visibility = View.VISIBLE
@@ -129,7 +130,6 @@ private lateinit var adapter: ReservationAdapter
 
         recycleview.layoutManager = LinearLayoutManager(requireActivity())
         recycleview.adapter = adapter
-
 
     }
     }}
