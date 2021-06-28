@@ -5,6 +5,7 @@ import android.app.Activity
 import android.content.pm.PackageManager
 import android.location.Location
 import android.os.Bundle
+import android.os.Handler
 import android.os.Looper
 import android.util.Log
 import androidx.fragment.app.Fragment
@@ -13,6 +14,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.core.app.ActivityCompat
 import androidx.lifecycle.ViewModelProvider
+import androidx.navigation.findNavController
 import com.bumptech.glide.Glide
 import com.google.android.gms.location.*
 import com.google.android.gms.maps.model.LatLng
@@ -22,6 +24,11 @@ import com.sil1.autolibdz_rental.ui.view.activity.MyDrawerController
 import com.sil1.autolibdz_rental.ui.viewmodel.Vehicule
 import kotlinx.android.synthetic.main.fragment_details_vehicule.*
 import kotlinx.android.synthetic.main.fragment_vehicule_reserve2.*
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.GlobalScope
+import kotlinx.coroutines.launch
+import java.net.HttpURLConnection
+import java.net.URL
 
 class VehiculeReserve2Fragment : Fragment() {
     private val TAG = "_VehiculeDeverouillerFragment"
@@ -52,6 +59,8 @@ class VehiculeReserve2Fragment : Fragment() {
     ): View? {
         var codePin= arguments?.get("codePin")
         code = codePin.toString()
+
+
         myDrawerController?.setDrawer_Locked();
         fusedLocationClient = LocationServices.getFusedLocationProviderClient(requireActivity())
 
@@ -81,6 +90,7 @@ class VehiculeReserve2Fragment : Fragment() {
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
         val vm = ViewModelProvider(requireActivity()).get(Vehicule::class.java)
+        val viewModel = ViewModelProvider(requireActivity()).get(InfosReservationViewModel::class.java)
         Glide.with(requireActivity()).load(vm.secureUrl).into(imageVehicule1)
         codePINTextView1.text = code
 
@@ -91,6 +101,17 @@ class VehiculeReserve2Fragment : Fragment() {
         verrouillerButton1.setOnClickListener {
             deverrouillerButton1?.isEnabled = true
             verrouillerButton1?.isEnabled = false
+        }
+
+        val mainLooper = Looper.getMainLooper()
+
+        GlobalScope.launch(Dispatchers.IO) {
+            val idReservation = 148
+            viewModel.getTrajet(requireContext(), idReservation)
+            Thread.sleep(3000)
+            launch(Dispatchers.Main) {
+                requireActivity().findNavController(R.id.mobile_navigation).navigate(R.id.action_vehiculeReserve2Fragment_to_infosTrajetFragment)
+            }
         }
     }
     override fun onResume() {

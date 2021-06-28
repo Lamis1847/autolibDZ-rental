@@ -22,10 +22,6 @@ class TransactionViewModel: ViewModel() {
     val balance: LiveData<Balance>
         get() = _balance
 
-    private val _position = MutableLiveData<Int>()
-    public val position: LiveData<Int>
-        get() = _position
-
     fun updateTransactionList(list: ArrayList<Transaction>) = _transactionList.postValue(list)
 
     fun getUserTransactions(context: Context) {
