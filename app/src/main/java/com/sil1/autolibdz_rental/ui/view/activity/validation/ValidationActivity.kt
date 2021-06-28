@@ -12,10 +12,12 @@ import android.view.View
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.app.ActivityCompat
+import androidx.lifecycle.ViewModelProvider
 import com.cloudinary.android.MediaManager
 import com.cloudinary.android.callback.ErrorInfo
 import com.cloudinary.android.callback.UploadCallback
 import com.sil1.autolibdz_rental.R
+import com.sil1.autolibdz_rental.ui.view.fragment.profil.ProfilViewModel
 import kotlinx.android.synthetic.main.activity_validation.*
 import java.io.ByteArrayOutputStream
 
@@ -31,6 +33,8 @@ class ValidationActivity : AppCompatActivity() {
     var tookSelfie = false
     var tookPermis = false
 
+    lateinit var viewModel:ValidationVm
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_validation)
@@ -42,6 +46,18 @@ class ValidationActivity : AppCompatActivity() {
         config["api_secret"] = "VI0hz_4ir15jp-Slkb_heb44-LI"
 
         MediaManager.init(this, config)
+
+
+        viewModel = ViewModelProvider(this).get(ValidationVm::class.java)
+
+        viewModel.callResult.observe(this,{
+
+            if(it){
+                startActivity(Intent(this@ValidationActivity, ValidationReadyActivity::class.java))
+            }else{
+                Toast.makeText(this,"please check your internet connection",Toast.LENGTH_SHORT).show()
+            }
+        })
     }
 
     fun takeSelfiePic(view: View) {
@@ -121,6 +137,8 @@ class ValidationActivity : AppCompatActivity() {
 
         var permisUrl = ""
         var selfieUrl = ""
+        var selfieId = ""
+        var permisId = ""
 
         Log.e("upload-", "upload : starting")
 
@@ -140,7 +158,8 @@ class ValidationActivity : AppCompatActivity() {
                 override fun onSuccess(requestId: String?, resultData: MutableMap<Any?, Any?>?) {
                     Log.e("upload-", "upload : ${resultData!!}")
 
-                    selfieUrl = resultData["secure_url"].toString()
+                    selfieUrl = resultData!!["secure_url"].toString()
+                    selfieId = resultData!!["public_id"].toString()
 
                     val newstream = ByteArrayOutputStream()
                     permisBitmap!!.compress(Bitmap.CompressFormat.PNG, 100, newstream)
@@ -154,10 +173,10 @@ class ValidationActivity : AppCompatActivity() {
                         override fun onSuccess(requestId: String?, resultData: MutableMap<Any?, Any?>?) {
 
                             permisUrl = resultData!!["secure_url"].toString()
+                            permisId = resultData!!["public_id"].toString()
+                            Log.e("upload-call",permisUrl+"$requestId  $selfieUrl    $selfieId")
+                            viewModel.envoyerValidationDemande(245,selfieUrl,permisUrl,permisId,selfieId)
 
-
-
-                            startActivity(Intent(this@ValidationActivity, ValidationReadyActivity::class.java))
                         }
 
                         override fun onError(requestId: String?, error: ErrorInfo?) {}
