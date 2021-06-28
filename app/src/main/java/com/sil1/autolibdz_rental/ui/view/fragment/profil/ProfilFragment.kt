@@ -64,22 +64,19 @@ class ProfilFragment : Fragment() {
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
         val preferences = requireActivity().getSharedPreferences(sharedPrefFile, Context.MODE_PRIVATE)
-        val token = preferences.getString("token", "default")
-        val userID = preferences.getString("userID", "1")
-        Log.i("iddd",userID.toString())
-        Log.i("Fragment",token.toString())
-
+        val userIDd = preferences.getString("userID", "Default")
+        val userID="254"
         var viewModel = ViewModelProvider(this).get(ProfilViewModel::class.java)
-        viewModel.getLocataire(token,userID)
+        viewModel.getLocataire(userID)
         viewModel.locataire.observe(requireActivity(), Observer {
                 locataire ->
             updateLocataire(locataire)
         })
         SauvgarderP.setOnClickListener{
             val locataire=LocataireEditEmail(email.text.toString(),password.text.toString())
-            viewModel.updateMailLocataire(locataire,token,userID,requireActivity()) //il faut changer l'id après!
+            viewModel.updateMailLocataire(locataire,"254",requireActivity()) //il faut changer l'id après!
             password.text.clear()
-            viewModel.getLocataire(token,userID)
+            viewModel.getLocataire(userID)
 
         }
 
@@ -98,5 +95,23 @@ class ProfilFragment : Fragment() {
 
     }
 
-
+//    companion object {
+//        /**
+//         * Use this factory method to create a new instance of
+//         * this fragment using the provided parameters.
+//         *
+//         * @param param1 Parameter 1.
+//         * @param param2 Parameter 2.
+//         * @return A new instance of fragment ProfilFragment.
+//         */
+//        // TODO: Rename and change types and number of parameters
+//        @JvmStatic
+//        fun newInstance(param1: String, param2: String) =
+//            ProfilFragment().apply {
+//                arguments = Bundle().apply {
+//                    putString(ARG_PARAM1, param1)
+//                    putString(ARG_PARAM2, param2)
+//                }
+//            }
+//    }
 }
