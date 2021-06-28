@@ -13,10 +13,21 @@
 
 
     <!-- TODO: Update blank fragment layout -->
+    <TextView
+        android:id="@+id/changerMdp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="32dp"
+        android:padding="10dp"
+        android:text="Modifier mon mot de passe"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/password" />
+
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/constraintLayout"
         android:layout_width="match_parent"
-        android:layout_height="120dp"
+        android:layout_height="150dp"
         android:background="#FFCB00"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
@@ -28,8 +39,8 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginBottom="32dp"
-            android:text="Mon profil"
             android:fontFamily="@font/gothamlight"
+            android:text="Mon profil"
             android:textStyle="bold"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
@@ -135,9 +146,10 @@
         android:background="@drawable/edit_text_profil"
         android:elevation="7dp"
         android:ems="10"
+        android:inputType="textPassword"
+        android:maxLength="50"
         android:fontFamily="@font/gothamlight"
         android:hint="Mot de passe"
-        android:inputType="date"
         android:padding="10dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="1.0"
@@ -176,21 +188,22 @@
         app:layout_constraintTop_toBottomOf="@+id/emailLabel" />
 
     <Button
-        android:id="@+id/button"
+        android:id="@+id/SauvgarderP"
         android:layout_width="160dp"
         android:layout_height="wrap_content"
-        android:layout_marginTop="103dp"
+        android:layout_marginTop="32dp"
         android:backgroundTint="#FFCB00"
+        android:focusable="false"
         android:stateListAnimator="@null"
         android:text="Sauvgarder"
         android:textAllCaps="false"
         android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/password" />
+        app:layout_constraintTop_toBottomOf="@+id/changerMdp" />
 
     <Button
-        android:id="@+id/button2"
+        android:id="@+id/DeconnecterP"
         android:layout_width="160dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="16dp"
@@ -199,11 +212,12 @@
         android:stateListAnimator="@null"
         android:text="Se déconnecter"
         android:textAllCaps="false"
+        android:focusable="false"
         android:textStyle="bold"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/button" />
+        app:layout_constraintTop_toBottomOf="@+id/SauvgarderP" />
 
     <!--    android:drawableEnd="@drawable/phone"-->
 

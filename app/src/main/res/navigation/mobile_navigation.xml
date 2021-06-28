@@ -16,14 +16,23 @@
 
     <fragment
         android:id="@+id/nav_profil"
+        android:name="com.sil1.autolibdz_rental.ui.view.fragment.profil.ProfilFragment"
         android:label="@string/menu_profil"
-        tools:layout="@layout/fragment_profil" />
+        tools:layout="@layout/fragment_profil" >
+        <action
+            android:id="@+id/action_nav_profil_to_motDePasseFragment"
+            app:destination="@id/motDePasseFragment" />
+    </fragment>
 
     <fragment
         android:id="@+id/nav_history"
-        android:name="com.sil1.autolibdz_rental.ui.view.fragment.profil.ProfilFragment"
+        android:name="com.sil1.autolibdz_rental.ui.view.fragment.reservations.ReservationsFragment"
         android:label="@string/menu_history"
-        tools:layout="@layout/fragment_example" />
+        tools:layout="@layout/fragment_reservations" >
+        <action
+            android:id="@+id/action_nav_history_to_detailReservationFragment32"
+            app:destination="@id/detailReservationFragment3" />
+    </fragment>
 
     <fragment
         android:id="@+id/nav_transaction"
@@ -52,6 +61,9 @@
             android:id="@+id/action_ListeVehiculeFragment_pop"
             app:popUpTo="@id/listeVehiculeFragment"
             app:popUpToInclusive="true" />
+        <action
+            android:id="@+id/action_listeVehiculeFragment_to_infosReservationFragment"
+            app:destination="@id/infosReservationFragment" />
     </fragment>
     <fragment
         android:id="@+id/detailsVehiculeFragment"
@@ -62,7 +74,54 @@
         android:id="@+id/action_DetailsVehiculeFragment_pop"
         app:popUpTo="@id/detailsVehiculeFragment"
         app:popUpToInclusive="true" />
+        <action
+            android:id="@+id/action_detailsVehiculeFragment_to_infosReservationFragment"
+            app:destination="@id/infosReservationFragment" />
     </fragment>
+    <fragment
+        android:id="@+id/infosReservationFragment"
+        android:name="com.sil1.autolibdz_rental.ui.view.fragment.reservation_vehicule.InfosReservationFragment"
+        android:label="fragment_infos_reservation"
+        tools:layout="@layout/fragment_infos_reservation" >
+        <action
+            android:id="@+id/action_infosReservationFragment_to_vehiculeReserveFragment"
+            app:destination="@id/vehiculeReserveFragment" />
+        <action
+            android:id="@+id/action_infosReservationFragment_to_nav_home"
+            app:destination="@id/nav_home" />
+    </fragment>
+    <fragment
+        android:id="@+id/vehiculeReserveFragment"
+        android:name="com.sil1.autolibdz_rental.ui.view.fragment.reservation_vehicule.VehiculeReserveFragment"
+        android:label="fragment_vehicule_reserve"
+        tools:layout="@layout/fragment_vehicule_reserve" >
+        <action
+            android:id="@+id/action_vehiculeReserveFragment_to_vehiculeReserve2Fragment"
+            app:destination="@id/vehiculeReserve2Fragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/vehiculeReserve2Fragment"
+        android:name="com.sil1.autolibdz_rental.ui.view.fragment.reservation_vehicule.VehiculeReserve2Fragment"
+        android:label="fragment_vehicule_reserve2"
+        tools:layout="@layout/fragment_vehicule_reserve2" >
+        <action
+            android:id="@+id/action_vehiculeReserve2Fragment_to_nav_home"
+            app:destination="@id/nav_home" />
+    </fragment>
+    <fragment
+        android:id="@+id/detailReservationFragment3"
+        android:name="com.sil1.autolibdz_rental.ui.view.fragment.reservations.DetailReservationFragment"
+        android:label="fragment_detail_reservation"
+        tools:layout="@layout/fragment_detail_reservation" >
+        <action
+            android:id="@+id/action_detailReservationFragment3_to_nav_history"
+            app:destination="@id/nav_history" />
+    </fragment>
+    <fragment
+        android:id="@+id/motDePasseFragment"
+        android:name="com.sil1.autolibdz_rental.ui.view.fragment.profil.MotDePasseFragment"
+        android:label="fragment_mot_de_passe"
+        tools:layout="@layout/fragment_mot_de_passe" />
 
 
 </navigation>

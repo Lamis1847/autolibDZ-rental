@@ -11,7 +11,7 @@
     <TextView
         android:id="@+id/detailsTitleTextView"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_height="22dp"
         android:layout_marginTop="16dp"
         android:fontFamily="@font/gothambook"
         android:text="Détails"
@@ -21,11 +21,14 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.497"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"
+
+
+        />
 
     <ImageView
         android:id="@+id/VehiculeImageViewD"
-        android:layout_width="406dp"
+        android:layout_width="0dp"
         android:layout_height="133dp"
         android:layout_marginTop="15dp"
         android:layout_marginBottom="16dp"
@@ -38,8 +41,8 @@
 
     <TextView
         android:id="@+id/nomVehiculeD"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="0dp"
+        android:layout_height="23dp"
         android:layout_marginStart="64dp"
         android:layout_marginTop="16dp"
         android:fontFamily="@font/gothambold"
@@ -52,7 +55,7 @@
     <androidx.cardview.widget.CardView
         android:id="@+id/cardView2"
         android:layout_width="wrap_content"
-        android:layout_height="20dp"
+        android:layout_height="0dp"
         android:backgroundTint="@color/validate_color"
         app:cardCornerRadius="10dp"
         app:layout_constraintBottom_toBottomOf="@+id/nomVehiculeD"
@@ -76,7 +79,7 @@
     <ScrollView
         android:id="@+id/scrollView2"
         android:layout_width="390dp"
-        android:layout_height="521dp"
+        android:layout_height="wrap_content"
         android:layout_marginTop="8dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -94,8 +97,8 @@
                 <androidx.cardview.widget.CardView
                     android:id="@+id/matriculeVehiculeLayoutD"
 
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
+                    android:layout_width="0dp"
+                    android:layout_height="71dp"
 
                     android:layout_marginEnd="32dp"
                     app:cardCornerRadius="10dp"
@@ -135,8 +138,8 @@
 
                 <androidx.cardview.widget.CardView
                     android:id="@+id/numeroChassisLayoutD"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
+                    android:layout_width="0dp"
+                    android:layout_height="70dp"
                     android:layout_marginStart="32dp"
                     app:cardCornerRadius="10dp"
                     app:layout_constraintBottom_toBottomOf="parent"
@@ -180,8 +183,8 @@
 
                 <androidx.cardview.widget.CardView
                     android:id="@+id/marqueLayoutD"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
+                    android:layout_width="0dp"
+                    android:layout_height="65dp"
                     android:layout_marginStart="8dp"
                     app:cardCornerRadius="10dp"
                     app:layout_constraintBottom_toBottomOf="parent"
@@ -214,8 +217,8 @@
 
                 <androidx.cardview.widget.CardView
                     android:id="@+id/modeleLayoutD"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
+                    android:layout_width="0dp"
+                    android:layout_height="65dp"
                     android:layout_marginStart="8dp"
                     android:layout_marginEnd="8dp"
                     app:cardCornerRadius="10dp"
@@ -250,8 +253,8 @@
 
                 <androidx.cardview.widget.CardView
                     android:id="@+id/couleurLayoutD"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
+                    android:layout_width="0dp"
+                    android:layout_height="65dp"
                     android:layout_marginEnd="8dp"
                     app:cardCornerRadius="10dp"
                     app:layout_constraintBottom_toBottomOf="@id/modeleLayoutD"
@@ -290,7 +293,7 @@
 
                 <androidx.cardview.widget.CardView
                     android:id="@+id/tempsRLayoutD"
-                    android:layout_width="178dp"
+                    android:layout_width="0dp"
                     android:layout_height="62dp"
                     android:layout_marginStart="8dp"
                     app:cardCornerRadius="10dp"
@@ -324,7 +327,7 @@
 
                 <androidx.cardview.widget.CardView
                     android:id="@+id/pressionHLayoutD"
-                    android:layout_width="178dp"
+                    android:layout_width="0dp"
                     android:layout_height="62dp"
                     android:layout_marginEnd="8dp"
                     app:cardCornerRadius="10dp"
@@ -364,10 +367,9 @@
 
                 <androidx.cardview.widget.CardView
                     android:id="@+id/chargeBLayoutD"
-                    android:layout_width="178dp"
+                    android:layout_width="172dp"
                     android:layout_height="62dp"
                     android:layout_marginStart="8dp"
-                    android:layout_marginBottom="12dp"
                     app:cardCornerRadius="10dp"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
@@ -399,8 +401,8 @@
 
                 <androidx.cardview.widget.CardView
                     android:id="@+id/pressionPneuLayoutD"
-                    android:layout_width="178dp"
-                    android:layout_height="62dp"
+                    android:layout_width="172dp"
+                    android:layout_height="65dp"
                     android:layout_marginEnd="8dp"
                     app:cardCornerRadius="10dp"
                     app:layout_constraintBottom_toBottomOf="@+id/chargeBLayoutD"
@@ -439,7 +441,7 @@
 
                 <androidx.cardview.widget.CardView
                     android:id="@+id/niveauHMLayoutD"
-                    android:layout_width="178dp"
+                    android:layout_width="172dp"
                     android:layout_height="62dp"
                     android:layout_marginStart="8dp"
                     android:layout_marginBottom="15dp"
@@ -474,7 +476,7 @@
 
                 <androidx.cardview.widget.CardView
                     android:id="@+id/anomalieCLayoutD"
-                    android:layout_width="178dp"
+                    android:layout_width="172dp"
                     android:layout_height="62dp"
                     android:layout_marginEnd="8dp"
                     app:cardCornerRadius="10dp"
@@ -514,7 +516,7 @@
 
                 <androidx.cardview.widget.CardView
                     android:id="@+id/regulateurVLayoutD"
-                    android:layout_width="178dp"
+                    android:layout_width="172dp"
                     android:layout_height="62dp"
                     android:layout_marginStart="8dp"
                     android:layout_marginBottom="15dp"
@@ -549,7 +551,7 @@
 
                 <androidx.cardview.widget.CardView
                     android:id="@+id/limiteurVLayoutD"
-                    android:layout_width="178dp"
+                    android:layout_width="172dp"
                     android:layout_height="62dp"
                     android:layout_marginEnd="8dp"
                     app:cardCornerRadius="10dp"
@@ -587,8 +589,8 @@
 
 
     <Button
-        android:id="@+id/button"
-        android:layout_width="wrap_content"
+        android:id="@+id/reseverButtonD"
+        android:layout_width="121dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="64dp"
         android:layout_marginBottom="32dp"
@@ -600,36 +602,37 @@
         app:layout_constraintVertical_bias="0.555" />
 
     <Button
-        android:id="@+id/button2"
-        android:layout_width="wrap_content"
+        android:id="@+id/annulerButtonD"
+        android:layout_width="114dp"
         android:layout_height="wrap_content"
         android:layout_marginEnd="60dp"
         android:backgroundTint="@color/error_color"
         android:fontFamily="@font/gothambold"
         android:text="Annuler"
 
-        app:layout_constraintBottom_toBottomOf="@+id/button"
+        app:layout_constraintBottom_toBottomOf="@+id/reseverButtonD"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="1.0"
-        app:layout_constraintStart_toEndOf="@+id/button"
-        app:layout_constraintTop_toTopOf="@+id/button"
+        app:layout_constraintStart_toEndOf="@+id/reseverButtonD"
+        app:layout_constraintTop_toTopOf="@+id/reseverButtonD"
         app:layout_constraintVertical_bias="0.0" />
 
     <Button
         android:id="@+id/goBackButtonDetailsVehicule"
         android:layout_width="40dp"
         android:layout_height="36dp"
-        android:layout_marginTop="1dp"
-
         android:backgroundTint="@color/grey_light"
         android:fontFamily="@font/gothambook"
         app:icon="@drawable/ic_back_icon"
-        app:iconTint="@color/grey_light"
+        app:iconTint="@color/back_button"
         app:layout_constraintBottom_toBottomOf="@+id/detailsTitleTextView"
         app:layout_constraintEnd_toStartOf="@+id/detailsTitleTextView"
         app:layout_constraintHorizontal_bias="0.096"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="@+id/detailsTitleTextView"
-        app:layout_constraintVertical_bias="0.466" />
+        app:layout_constraintVertical_bias="0.466"
+
+
+        />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

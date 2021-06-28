@@ -3,6 +3,7 @@ plugins {
     id 'kotlin-android'
     id 'com.google.secrets_gradle_plugin' version '0.5'
     id 'kotlin-android-extensions'
+    id 'kotlin-kapt'
 
 }
 
@@ -15,8 +16,8 @@ android {
         minSdkVersion 22
         targetSdkVersion 30
         versionCode 1
-        versionName "1.0" 
-
+        versionName "1.0"
+        vectorDrawables.useSupportLibrary = true
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
     }
 
@@ -83,9 +84,19 @@ dependencies {
 
     //circular image library
     implementation 'de.hdodenhof:circleimageview:3.1.0'
-    
-        //google signup
+
+    //google signup
     implementation 'com.google.android.gms:play-services-auth:19.0.0'
     //SerializedName
     implementation 'com.google.code.gson:gson:2.8.5'
+    implementation 'com.github.bumptech.glide:glide:4.12.0'
+    implementation 'com.google.code.gson:gson:2.8.5'
+
+    def room_version = "2.3.0"
+    implementation "androidx.room:room-runtime:$room_version"
+    kapt "androidx.room:room-compiler:$room_version"
+    implementation "androidx.room:room-ktx:$room_version"
+    testImplementation "androidx.room:room-testing:$room_version"
+
+
 }

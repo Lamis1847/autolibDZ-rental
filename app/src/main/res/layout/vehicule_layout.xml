@@ -18,12 +18,12 @@
 
     <TextView
         android:id="@+id/nomVehicule"
-        android:layout_width="wrap_content"
+        android:layout_width="100dp"
         android:layout_height="wrap_content"
         android:ellipsize="end"
         android:fontFamily="@font/gothambold"
-        android:maxLines="1"
         android:text="Peugeot 308"
+        android:textAlignment="center"
         app:layout_constraintBottom_toBottomOf="@+id/imageVehicule"
         app:layout_constraintEnd_toStartOf="@+id/detailsButton"
         app:layout_constraintStart_toEndOf="@+id/imageVehicule"
@@ -33,7 +33,7 @@
     <Button
         android:id="@+id/detailsButton"
         android:layout_width="97dp"
-        android:layout_height="32dp"
+        android:layout_height="35dp"
         android:layout_marginTop="1dp"
         android:layout_marginEnd="8dp"
         android:fontFamily="@font/gothambold"
@@ -47,7 +47,7 @@
     <Button
         android:id="@+id/reserverButton"
         android:layout_width="97dp"
-        android:layout_height="33dp"
+        android:layout_height="42dp"
         android:layout_marginEnd="8dp"
         android:backgroundTint="@color/validate_color"
         android:fontFamily="@font/gothambold"

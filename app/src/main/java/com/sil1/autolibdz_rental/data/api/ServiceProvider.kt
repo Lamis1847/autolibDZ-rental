@@ -1,9 +1,6 @@
 package com.sil1.autolibdz_rental.data.api
 
 import com.sil1.autolibdz_rental.data.model.*
-import okhttp3.MultipartBody
-import okhttp3.RequestBody
-import okhttp3.ResponseBody
 import retrofit2.Call
 import retrofit2.http.*
 
@@ -31,9 +28,21 @@ interface ServiceProvider {
     @GET("api/locataire/{id}")
     fun getLocataire(@Path("id") id:String? /*@Header("Authorization") token: String*/): Call<LocataireRetro>
 
-    @PUT("api/email/{id}")
-    fun editLocataire(@Path("id") id:String,@Body locataire:LocataireEditEmail/*@Header("Authorization") token: String*/): Call<LocataireModificationResponse>
-    @GET("/api/bornes/{id}/vehicules")
-    fun getListeVehicules(/*@Header("Authorization") token: String*/@Path("id") id:String  ): Call<List<VehiculeModel>>
+    @PUT("api/locataire/email/{id}")
+    fun editMailLocataire(@Path("id") id:String?,@Body locataire:LocataireEditEmail/*@Header("Authorization") token: String*/): Call<LocataireModificationResponse>
 
+    @PUT("api/locataire/password/{id}")
+    fun editPasswordLocataire(@Path("id") id:String?,@Body locataire:LocataireEditPassword/*@Header("Authorization") token: String*/): Call<LocataireModificationResponse>
+
+    //récupérer les reservation d'un locataire
+    @GET("api/reservation/historique/locataires/{id}")
+    fun getReservations(@Path("id") id:String /*@Header("Authorization") token: String*/): Call<List<Reservation>>
+
+
+
+    @GET("/api/bornes/{id}/vehicules")
+    fun getListeVehicules(@Path("id") id:String  ): Call<List<VehiculeModel>>
+
+    @POST("api/reservation")
+    fun ajouterReservation(@Body reservation: ReservationModel): Call<ReservationResponse>
 }

@@ -3,6 +3,7 @@ package com.sil1.autolibdz_rental.ui.view.fragment.profil
 import android.app.Activity
 import android.content.Context
 import android.os.Bundle
+import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
@@ -14,6 +15,7 @@ import com.sil1.autolibdz_rental.data.model.LocataireRetro
 import kotlinx.android.synthetic.main.fragment_profil.*
 import java.util.ArrayList
 import androidx.lifecycle.Observer
+import androidx.navigation.findNavController
 import com.sil1.autolibdz_rental.data.model.LocataireEditEmail
 import com.sil1.autolibdz_rental.ui.view.activity.MyDrawerController
 import com.sil1.autolibdz_rental.utils.sharedPrefFile
@@ -33,17 +35,9 @@ class ProfilFragment : Fragment() {
 //    // TODO: Rename and change types of parameters
 //    private var param1: String? = null
 //    private var param2: String? = null
-//
-//    override fun onCreate(savedInstanceState: Bundle?) {
-//        super.onCreate(savedInstanceState)
-//        arguments?.let {
-//            param1 = it.getString(ARG_PARAM1)
-//            param2 = it.getString(ARG_PARAM2)
-//        }
-//    }
+
     var list= mutableListOf<String>()
     var list2= mutableListOf<String>()
-    var boolean:String=""
     private var myDrawerController: MyDrawerController? = null
 
     override fun onAttach(activity: Activity) {
@@ -59,35 +53,39 @@ class ProfilFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         // Inflate the layout for this fragment
+        val view: View = inflater.inflate(R.layout.fragment_profil, container, false)
         myDrawerController?.setDrawer_UnLocked();
-        return inflater.inflate(R.layout.fragment_profil, container, false)
-
-
+        return view
     }
     override fun onDestroyView() {
         super.onDestroyView()
-        myDrawerController?.setDrawer_Locked()
+       // myDrawerController?.setDrawer_Locked()
     }
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
-        val preferences = this.activity?.getSharedPreferences(sharedPrefFile, Context.MODE_PRIVATE)
-        val userID="3"
+        val preferences = requireActivity().getSharedPreferences(sharedPrefFile, Context.MODE_PRIVATE)
+        val userIDd = preferences.getString("userID", "Default")
+        val userID="254"
         var viewModel = ViewModelProvider(this).get(ProfilViewModel::class.java)
-       viewModel.getLocataire(userID)
+        viewModel.getLocataire(userID)
         viewModel.locataire.observe(requireActivity(), Observer {
                 locataire ->
             updateLocataire(locataire)
         })
-        button.setOnClickListener{
-            val locataire=LocataireEditEmail(email.text.toString(),password.text.toString())
-            boolean= viewModel.updateLocataire(locataire,"3") //il faut changer l'id après!
-            email.text.clear()
-            password.text.clear()
-            Toast.makeText(requireActivity(), "boolean", Toast.LENGTH_LONG).show()
+        SauvgarderP.setOnClickListener{
+                val locataire=LocataireEditEmail(email.text.toString(),password.text.toString())
+                viewModel.updateMailLocataire(locataire,"254",requireActivity()) //il faut changer l'id après!
+                password.text.clear()
+                viewModel.getLocataire(userID)
+
         }
 
+            changerMdp.setOnClickListener{
+                view?.findNavController()?.navigate(R.id.action_nav_profil_to_motDePasseFragment)
+
+            }
     }
-    private fun updateLocataire(locataire: ArrayList<LocataireRetro?>)
+     private fun updateLocataire(locataire: ArrayList<LocataireRetro?>)
     {
 
             nom.setText(locataire.get(0)?.nom)
