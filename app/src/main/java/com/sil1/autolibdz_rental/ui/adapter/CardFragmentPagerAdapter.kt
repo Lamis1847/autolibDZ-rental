@@ -27,6 +27,7 @@ class CardFragmentPagerAdapter(fm: FragmentManager, baseElevation: Float) :
     }
 
     override fun getCount(): Int {
+
         return mFragments.size
     }
 

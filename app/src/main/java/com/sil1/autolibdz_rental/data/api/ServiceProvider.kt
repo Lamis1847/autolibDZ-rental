@@ -64,7 +64,12 @@ interface ServiceProvider {
     @POST("api/transaction")
     fun createTransaction(@Header("Authorization") token:String, @Body transaction: Transaction): Call<ResponseBody>
 
-    //get user's transactions
+    //get user's stripe transactions
     @GET("api/transaction/{id}")
-    fun getUserTransactions(@Header("Authorization") token:String, @Path("id") id: Int): Call<Transaction>
+    fun getUserTransactions(@Path("id") id: Int, @Header("Authorization") token:String ): Call<ArrayList<Transaction>>
+
+//    //get user's abonnement transactions
+//    @GET("api/transaction/{id}/filter")
+//    fun getUserAbonnementTransactions(@Path("id") id: Int, @Header("Authorization") token:String ): Call<ArrayList<Transaction>>
+
 }

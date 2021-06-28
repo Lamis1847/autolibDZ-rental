@@ -9,6 +9,6 @@ interface TransactionCardAdapter {
     val number: Int
 
     companion object {
-        const val MAX_ELEVATION_FACTOR = 5
+        const val MAX_ELEVATION_FACTOR = 8
     }
 }

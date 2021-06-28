@@ -65,7 +65,7 @@
     <string name="codePin_tip">Utiliser le code PIN pour déverouiller l"ordinateur de bord qui se trouve à l'intérieur du véhicule.</string>
     <!-- END OF SHAREDPREF-->
 
-<!--    trajet-->
+    <!--    trajet-->
     <string name="thankYouTrajet">Merci d\'avoir pris \nla route avec \nAutoLibDZ!</string>
     <string name="detailsTrajet">Voici les détails de votre trajet :</string>
 
@@ -106,11 +106,13 @@
     <string name="skip">Terminer</string>
 
 
-<!--    paiement end-->
+    <!--    paiement end-->
     <string name="paymentDone">Paiement effectué</string>
     <string name="thankYouPayment">Merci d\'avoir utilisé AutolibDz !</string>
     <string name="done">Done</string>
-    
-<!--    transaction-->
+
+    <!--    transaction-->
     <string name="transactionType">Nature de la réservation</string>
+    <string name="history">Historique</string>
+    <string name="transactions">Transactions</string>
 </resources>

@@ -10,8 +10,11 @@ import com.sil1.autolibdz_rental.data.model.Transaction
 import com.sil1.autolibdz_rental.data.repositories.AbonnementRepository
 import com.sil1.autolibdz_rental.data.repositories.StripeRepository
 import com.sil1.autolibdz_rental.utils.sharedPrefFile
+import kotlinx.android.synthetic.main.facture_abonnement_fragment.*
 import okhttp3.ResponseBody
 import retrofit2.Response
+import java.time.LocalDateTime
+import java.time.format.DateTimeFormatter
 
 class AbonnementPaymentViewModel : ViewModel() {
     private val TAG = "TAG-AbonnementPaymentViewModel"
@@ -56,10 +59,16 @@ class AbonnementPaymentViewModel : ViewModel() {
     }
 
     private fun createTransaction(token:String, id: Int) {
-        //val idReservation = 1
+        val idReservation = 1
 
-        //val transaction = Transaction(id, idReservation,prixAPayer, "Paiement Carte d\'abonnement")
+        /*date and time of transaction*/
+        var currentDateTime= LocalDateTime.now()
 
-        //AbonnementRepository.createTransaction(TAG, token, transaction) {}
+        val formatter = DateTimeFormatter.ofPattern("dd-MM HH:mm")
+        val formatted = currentDateTime.format(formatter)
+
+        val transaction = Transaction(id, idReservation, formatted ,prixAPayer, "Paiement Carte d\'abonnement")
+
+        AbonnementRepository.createTransaction(TAG, token, transaction) {}
     }
 }

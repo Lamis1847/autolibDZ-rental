@@ -30,7 +30,7 @@
     <dimen name="facture_view_margin_horizontal">20dp</dimen>
     <dimen name="facture_details_text">16sp</dimen>
 
-    <dimen name="card_padding">20dp</dimen>
+    <dimen name="card_padding">50dp</dimen>
 
     <dimen name="md_action_button_min_width">64dp</dimen>
     <dimen name="md_action_button_corner_radius">2dp</dimen>

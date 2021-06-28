@@ -2,10 +2,12 @@ package com.sil1.autolibdz_rental.utils
 
 import android.view.View
 import androidx.cardview.widget.CardView
+import androidx.lifecycle.ViewModel
 import androidx.viewpager.widget.ViewPager
 import com.sil1.autolibdz_rental.ui.adapter.TransactionCardAdapter
+import com.sil1.autolibdz_rental.ui.view.fragment.transactions.TransactionViewModel
 
-class ShadowTransformer(var mViewPager: ViewPager, var mAdapter: TransactionCardAdapter): ViewPager.OnPageChangeListener, ViewPager.PageTransformer {
+class ShadowTransformer(var mViewPager: ViewPager, var mAdapter: TransactionCardAdapter, var mViewModel: TransactionViewModel): ViewPager.OnPageChangeListener, ViewPager.PageTransformer {
 
     //  private lateinit var mViewPager: ViewPager
     //  private lateinit var mAdapter: CardAdapter
@@ -13,12 +15,13 @@ class ShadowTransformer(var mViewPager: ViewPager, var mAdapter: TransactionCard
     private var mScalingEnabled = false
     init {
         mViewPager.addOnPageChangeListener(this)
+
     }
-    /* fun ShadowTransformer(viewPager: ViewPager, adapter: CardAdapter) {
-         mViewPager = viewPager
-         viewPager.addOnPageChangeListener(this)
-         mAdapter = adapter
-     }*/
+//    fun ShadowTransformer(viewPager: ViewPager, adapter: TransactionCardAdapter, viewModel: ViewModel) {
+//         mViewPager = viewPager
+//         viewPager.addOnPageChangeListener(this)
+//         mAdapter = adapter
+//     }
 
     fun enableScaling(enable: Boolean) {
         if (mScalingEnabled && !enable) { // shrink main card
@@ -70,11 +73,13 @@ class ShadowTransformer(var mViewPager: ViewPager, var mAdapter: TransactionCard
 // and the views weren't created yet
         if (currentCard != null) {
             if (mScalingEnabled) {
-                currentCard.scaleX = (1 + 0.1 * (1 - realOffset)).toFloat()
-                currentCard.scaleY = (1 + 0.1 * (1 - realOffset)).toFloat()
+                currentCard.setScaleX((1 + 0.1 * (1 - realOffset)).toFloat())
+                currentCard.setScaleY((1 + 0.1 * (1 - realOffset)).toFloat())
             }
-            currentCard.cardElevation = baseElevation + (baseElevation
-                    * (TransactionCardAdapter.MAX_ELEVATION_FACTOR - 1) * (1 - realOffset))
+            currentCard.setCardElevation(
+                baseElevation + (baseElevation
+                        * (TransactionCardAdapter.MAX_ELEVATION_FACTOR - 1) * (1 - realOffset))
+            )
         }
         val nextCard: CardView? = mAdapter.getCardViewAt(nextPosition)
         // We might be scrolling fast enough so that the next (or previous) card
@@ -90,7 +95,14 @@ class ShadowTransformer(var mViewPager: ViewPager, var mAdapter: TransactionCard
         mLastOffset = positionOffset
     }
 
-    override  fun onPageSelected(position: Int) {}
+    override fun onPageSelected(position: Int) {
+        if (position == 0) {
+            mViewModel.getAbonnementTransactions()
+        }
+        else {
+            mViewModel.getStripeTransactions()
+        }
+    }
 
     override fun onPageScrollStateChanged(state: Int) {}
     override fun transformPage(page: View, position: Float) {

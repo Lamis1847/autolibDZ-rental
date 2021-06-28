@@ -10,6 +10,8 @@ import com.sil1.autolibdz_rental.data.model.Transaction
 import com.sil1.autolibdz_rental.data.repositories.AbonnementRepository
 import com.sil1.autolibdz_rental.data.repositories.StripeRepository
 import com.sil1.autolibdz_rental.utils.sharedPrefFile
+import java.time.LocalDateTime
+import java.time.format.DateTimeFormatter
 import java.util.*
 
 class StripeCardViewModel : ViewModel() {
@@ -45,10 +47,16 @@ class StripeCardViewModel : ViewModel() {
 
         val token = sharedPref.getString("token", "default")!!
         val id = sharedPref.getString("userID", "1")!!.toInt()
-        //val idReservation = 2
 
-        //val transaction = Transaction(id, idReservation,prixAPayer, "Stripe")
+        val idReservation = 2
 
-        //AbonnementRepository.createTransaction(TAG, token, transaction) {}
+        var currentDateTime= LocalDateTime.now()
+
+        val formatter = DateTimeFormatter.ofPattern("dd-MM HH:mm")
+        val formatted = currentDateTime.format(formatter)
+
+        val transaction = Transaction(id, idReservation,formatted, prixAPayer, "Stripe")
+
+        AbonnementRepository.createTransaction(TAG, token, transaction) {}
     }
 }
