@@ -37,7 +37,7 @@ interface ServiceProvider {
 
     //récupérer les reservation d'un locataire
     @GET("api/reservation/historique/locataires/{id}")
-    fun getReservations(@Header("authorization") token: String,@Path("id") id:String /*@Header("Authorization") token: String*/): Call<List<Reservation>>
+    fun getReservations(@Header("authorization") token: String?,@Path("id") id:String? /*@Header("Authorization") token: String*/): Call<List<Reservation>>
 
 
 

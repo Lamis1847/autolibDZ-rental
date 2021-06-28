@@ -26,10 +26,10 @@ class ReservationRepository {
             ServiceBuilder.buildService(ServiceProvider::class.java)
         }
 
-        fun getReservations(TAG: String, id: String): MutableLiveData<List<Reservation>> {
+        fun getReservations(TAG: String,token:String?, id: String?): MutableLiveData<List<Reservation>> {
             if (checkNetwork()) {
                 //    return RoomService.database.getReservationDao().selectReservations();
-                var call = api.getReservations(id) // consommation de l'api
+                var call = api.getReservations("Basic $token",id) // consommation de l'api
                 var reservationRespond: List<Reservation>?
                 var reservationList = mutableListOf<Reservation>()
                 var finalList = MutableLiveData<List<Reservation>>()
