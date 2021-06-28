@@ -14,6 +14,7 @@ data class LocataireRetro(
 //    @SerializedName("motDePasse")
     var motDePasse:String?,
 //    @SerializedName("Active")
-    var Active:Boolean?
+    var Active:Boolean?,
+    var isDeleted:Boolean?
     )
 

@@ -17,6 +17,5 @@ class MapDisplayViewModel : ViewModel() {
 
      fun getAllBornes(){
          bornes = BorneRepository.getAllBornes(TAG)
-
      }
 }
