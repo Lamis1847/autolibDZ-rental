@@ -1,8 +1,10 @@
 package com.sil1.autolibdz_rental.ui.view.activity
 
 import android.annotation.SuppressLint
+import android.content.Context
 import android.content.IntentSender
 import android.os.Bundle
+import android.util.Log
 import android.view.Gravity
 import android.view.View
 import androidx.appcompat.app.AppCompatActivity
@@ -18,7 +20,9 @@ import com.google.android.libraries.places.api.Places
 import com.google.android.material.floatingactionbutton.FloatingActionButton
 import com.google.android.material.navigation.NavigationView
 import com.sil1.autolibdz_rental.R
+import com.sil1.autolibdz_rental.data.room.RoomService.context
 import com.sil1.autolibdz_rental.databinding.ActivityHomeBinding
+import com.sil1.autolibdz_rental.utils.sharedPrefFile
 
 
 class HomeActivity : AppCompatActivity(),MyDrawerController{

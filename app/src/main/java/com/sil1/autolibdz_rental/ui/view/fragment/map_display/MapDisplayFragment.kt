@@ -3,6 +3,7 @@ package com.sil1.autolibdz_rental.ui.view.fragment.map_display
 import android.Manifest
 import android.annotation.SuppressLint
 import android.app.Activity
+import android.content.Context
 import android.content.Intent
 import android.content.IntentSender
 import android.content.pm.PackageManager
@@ -16,6 +17,7 @@ import androidx.core.app.ActivityCompat
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
+import androidx.lifecycle.ViewModelProviders
 import androidx.navigation.fragment.findNavController
 import com.google.android.gms.common.GooglePlayServicesNotAvailableException
 import com.google.android.gms.common.api.ResolvableApiException
@@ -37,8 +39,10 @@ import com.google.maps.model.DistanceMatrix
 import com.google.maps.model.TravelMode
 import com.sil1.autolibdz_rental.R
 import com.sil1.autolibdz_rental.data.model.Borne
+import com.sil1.autolibdz_rental.data.room.RoomService
 import com.sil1.autolibdz_rental.ui.view.activity.MyDrawerController
 import com.sil1.autolibdz_rental.ui.viewmodel.Reservation
+import com.sil1.autolibdz_rental.utils.sharedPrefFile
 import kotlinx.android.synthetic.main.map_display_fragment.*
 import java.io.IOException
 import java.text.DecimalFormat
@@ -71,6 +75,7 @@ class MapDisplayFragment : Fragment() , OnMapReadyCallback , GoogleMap.OnMarkerC
     private var currentLocation : LatLng = LatLng(36.6993,3.1755)
     private lateinit var  listBornes: ArrayList<Borne>
     private  var markers : ArrayList<Marker> = ArrayList<Marker>()
+    private var token : String  = ""
     companion object {
         fun newInstance() = MapDisplayFragment()
     }
@@ -90,6 +95,7 @@ class MapDisplayFragment : Fragment() , OnMapReadyCallback , GoogleMap.OnMarkerC
     ): View? {
         val view: View = inflater.inflate(R.layout.map_display_fragment, container, false)
         //in order to get the current location
+
         createLocationRequest()
 
         fusedLocationClient = LocationServices.getFusedLocationProviderClient(requireActivity())
@@ -116,9 +122,20 @@ class MapDisplayFragment : Fragment() , OnMapReadyCallback , GoogleMap.OnMarkerC
     @SuppressLint("FragmentLiveDataObserve")
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
+        val sharedPref = RoomService.context.getSharedPreferences(
+            sharedPrefFile, Context.MODE_PRIVATE
+        )
+        token = sharedPref.getString("token","defaultvalue").toString()
+        val userID = sharedPref.getString("userID","defaultvalue")
+        if (token != null) {
+            Log.i(TAG, token)
+        }
         //this vm is used to pass data between this fragment and list vehicule fragment
          resViewModel = ViewModelProvider(requireActivity()).get(Reservation::class.java)
-        viewModel = ViewModelProvider(this).get(MapDisplayViewModel::class.java)
+
+        val factory = MapDisplayViewModelFactory(token)
+        viewModel = ViewModelProviders.of(this, factory).get(MapDisplayViewModel::class.java)
+       // viewModel = ViewModelProvider(this).get(MapDisplayViewModel::class.java)
         //bitmap = BitmapFactory.decodeResource(resources,R.drawable.ic_borne_marker)
 
         viewModel.bornes.observe(this, Observer {
@@ -133,7 +150,8 @@ class MapDisplayFragment : Fragment() , OnMapReadyCallback , GoogleMap.OnMarkerC
             //To know which borne the user is choosing at the moment
             clickedOnBorneDepart = true
             clickedOnBorneDestination = false
-
+            //filtrer les bornes à afficher
+            verifyBornesDeDepart()
             // Set the fields to specify which types of place data to
             // return after the user has made a selection.
 

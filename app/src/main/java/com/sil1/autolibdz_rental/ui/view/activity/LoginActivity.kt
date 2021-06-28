@@ -33,6 +33,8 @@ class LoginActivity : AppCompatActivity() {
 
             var loginActivity = LogInRepository.Companion
            loginActivity.login(this, email, password)
+           // val intent = Intent(this, HomeActivity::class.java)
+           // startActivity(intent)
 
         }
         createAccount.setOnClickListener {

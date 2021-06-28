@@ -64,6 +64,7 @@ class LogInRepository {
                             with(sharedPref?.edit()) {
                                 this?.putString("userID", claimID.asString())
                                 this?.putString("userRole", claimRole.asString())
+                                this?.putString("token", userToken)
                                 this?.putBoolean("connected", true)
                                 this?.apply()
                             }

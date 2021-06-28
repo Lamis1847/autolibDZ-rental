@@ -8,7 +8,7 @@ import retrofit2.http.*
 interface ServiceProvider {
     // Getting all bornes of our system
     @GET("api/bornes/all")
-    fun getAllBornes(/*@Header("Authorization") token: String*/): Call<List<Borne>>
+    fun getAllBornes(@Header("authorization") token:String): Call<List<Borne>>
 
     //authentification locataire
     @POST("api/auth/locataire")
@@ -37,8 +37,8 @@ interface ServiceProvider {
 
 
     @GET("/api/bornes/{id}/vehicules")
-    fun getListeVehicules(@Path("id") id:String  ): Call<List<VehiculeModel>>
+    fun getListeVehicules(@Path("id") id:String,@Header("authorization") token:String  ): Call<List<VehiculeModel>>
 
     @POST("api/reservation")
-    fun ajouterReservation(@Body reservation: ReservationModel): Call<ReservationResponse>
+    fun ajouterReservation(@Body reservation: ReservationModel,@Header("authorization") token:String): Call<ReservationResponse>
 }

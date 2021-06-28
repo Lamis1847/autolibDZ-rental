@@ -2,6 +2,7 @@ package com.sil1.autolibdz_rental.ui.view.fragment.reservation_vehicule
 
 import android.annotation.SuppressLint
 import android.app.Activity
+import android.content.Context
 import android.os.Bundle
 import android.util.Log
 import android.view.LayoutInflater
@@ -12,6 +13,7 @@ import androidx.fragment.app.Fragment
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
+import androidx.lifecycle.ViewModelProviders
 import androidx.navigation.fragment.findNavController
 import com.sil1.autolibdz_rental.R
 import com.sil1.autolibdz_rental.data.model.ReservationModel
@@ -21,8 +23,12 @@ import com.sil1.autolibdz_rental.ui.viewmodel.Vehicule
 import kotlinx.android.synthetic.main.fragment_infos_reservation.*
 import com.sil1.autolibdz_rental.data.model.ReservationResponse
 import com.sil1.autolibdz_rental.data.model.VehiculeModel
+import com.sil1.autolibdz_rental.data.room.RoomService
 import com.sil1.autolibdz_rental.ui.view.activity.MyDrawerController
 import com.sil1.autolibdz_rental.ui.view.fragment.ListeVehiculeViewModel
+import com.sil1.autolibdz_rental.ui.view.fragment.map_display.MapDisplayViewModel
+import com.sil1.autolibdz_rental.ui.view.fragment.map_display.MapDisplayViewModelFactory
+import com.sil1.autolibdz_rental.utils.sharedPrefFile
 
 
 class InfosReservationFragment : Fragment() {
@@ -40,7 +46,6 @@ class InfosReservationFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        viewModel = ViewModelProvider(requireActivity()).get(InfosReservationViewModel::class.java)
         myDrawerController?.setDrawer_Locked();
 
         return inflater.inflate(R.layout.fragment_infos_reservation, container, false)
@@ -53,6 +58,15 @@ class InfosReservationFragment : Fragment() {
     @SuppressLint("SetTextI18n")
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
+        val sharedPref = RoomService.context.getSharedPreferences(
+            sharedPrefFile, Context.MODE_PRIVATE
+        )
+
+        val token = sharedPref.getString("token","defaultvalue").toString()
+        val userID = sharedPref.getString("userID","defaultvalue")?.toInt()
+        val factory = InfosReservationViewModelFactory(token)
+        viewModel = ViewModelProviders.of(this, factory).get(InfosReservationViewModel::class.java)
+
         val vm = ViewModelProvider(requireActivity()).get(Vehicule::class.java)
         val vmRes = ViewModelProvider(requireActivity()).get(Reservation::class.java)
 
@@ -72,17 +86,21 @@ class InfosReservationFragment : Fragment() {
 
 
         confirmerButton.setOnClickListener {
-            var reservation = ReservationModel(
-                "En cours",
-                3,
-                vm.numChassis,
-                vmRes.idBorneDepart,
-                vmRes.idBorneDestination,
-                vmRes.tempsEstimeEnSecondes.toInt(),
-                vmRes.distanceEstime.toFloat(),
-                prix.toFloat()
-            )
-            viewModel.ajouterReservation(reservation)
+            var reservation = userID?.let { it1 ->
+                ReservationModel(
+                    "En cours",
+                    it1,
+                    vm.numChassis,
+                    vmRes.idBorneDepart,
+                    vmRes.idBorneDestination,
+                    vmRes.tempsEstimeEnSecondes.toInt(),
+                    vmRes.distanceEstime.toFloat(),
+                    prix.toFloat()
+                )
+            }
+            if (reservation != null) {
+                viewModel.ajouterReservation(reservation,token)
+            }
 
             viewModel.reservation.observe(viewLifecycleOwner, Observer {
                 val data = viewModel.reservation.value
