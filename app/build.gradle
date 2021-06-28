@@ -102,6 +102,9 @@ dependencies {
     implementation "androidx.room:room-ktx:$room_version"
     testImplementation "androidx.room:room-testing:$room_version"
 
+
+    implementation "com.cloudinary:cloudinary-android:1.30.0"
+
     //lifecycle (used for payment op)
     implementation 'androidx.lifecycle:lifecycle-runtime-ktx:2.3.1'
 
@@ -118,6 +121,7 @@ dependencies {
     //dialogs
     implementation 'com.afollestad.material-dialogs:core:3.3.0'
     implementation 'com.afollestad.material-dialogs:datetime:3.2.1'
+
 
     //desugar (required to have localdate and time on API<26)
     coreLibraryDesugaring("com.android.tools:desugar_jdk_libs:1.1.5")

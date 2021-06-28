@@ -46,6 +46,9 @@ interface ServiceProvider {
     @POST("api/reservation")
     fun ajouterReservation(@Body reservation: ReservationModel): Call<ReservationResponse>
 
+
+    @POST("api/identites")
+    fun envoyerValidationDemande(@Body validationBody: ValidationBody): Call<Any>
     //create payment intent
     @FormUrlEncoded
     @POST("api/payment/create-payment-intent")
@@ -67,4 +70,5 @@ interface ServiceProvider {
     //get user's transactions
     @GET("api/transaction/{id}")
     fun getUserTransactions(@Header("Authorization") token:String, @Path("id") id: Int): Call<Transaction>
+
 }
