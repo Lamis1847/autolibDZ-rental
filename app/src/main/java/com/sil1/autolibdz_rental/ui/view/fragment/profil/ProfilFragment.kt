@@ -69,8 +69,7 @@ class ProfilFragment : Fragment() {
             if(!(list2.isEmpty()))
             if(!list.equals(list2))
             {
-                val locataire=LocataireRetro(null,nom.text.toString(),prenom.text.toString(),email.text.toString(),"test123456",null)
-               boolean= viewModel.updateLocataire(locataire,"193") //il faut changer l'id après!
+               viewModel.updateLocataire(locataire,"193") //il faut changer l'id après!
             //    Log.i("testTAG", "Display locataire List: call enqueue")
                 if(boolean)
                 Toast.makeText(requireActivity(), "mise à jour avec succès", Toast.LENGTH_LONG).show()
