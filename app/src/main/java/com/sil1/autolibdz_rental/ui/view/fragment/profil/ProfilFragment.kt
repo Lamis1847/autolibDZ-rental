@@ -66,9 +66,6 @@ class ProfilFragment : Fragment() {
             updateLocataire(locataire)
         })
         reseverButtonD.setOnClickListener{
-            list2.add(nom.text.toString())
-            list2.add(prenom.text.toString())
-            list2.add(email.text.toString())
             if(!(list2.isEmpty()))
             if(!list.equals(list2))
             {
@@ -95,9 +92,6 @@ class ProfilFragment : Fragment() {
             nom.setText(locataire.get(0)?.nom)
             prenom.setText(locataire.get(0)?.prenom)
             email.setText(locataire.get(0)?.email)
-        list.add(locataire.get(0)?.nom.toString())
-        list.add(locataire.get(0)?.prenom.toString())
-        list.add(locataire.get(0)?.email.toString())
 
     }
 

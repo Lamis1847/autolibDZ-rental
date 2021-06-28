@@ -15,7 +15,6 @@ import com.sil1.autolibdz_rental.R
 import com.sil1.autolibdz_rental.data.model.Reservation
 
 var idReservation:Int = 0
-
 var userToken :String =""
 val sharedPrefFile: String = "kotlinsharedpreference"
 var idTokenUser :String = ""
