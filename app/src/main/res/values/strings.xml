@@ -57,6 +57,14 @@
     <string name="pwd">    Mot de passe</string>
     <!-- END OF Strings used for profil interface-->
     <!-- FOR KEY SHAREDPREF-->
+    <string name="api_key" templateMergeStrategy="preserve" translatable="false">AIzaSyA9DGuUN735F-CarxUPOfblxOMC5m3K8p8</string>
+    <string-array name="reclamation_array">
+        <item>bug</item>
+        <item>service</item>
+        <item>autre</item>
+    </string-array>
+
+
     <string name="PREFERENCE_FILE_KEY">com.sil1.autolibdz_rental</string>
     <!-- END OF SHAREDPREF-->
 </resources>

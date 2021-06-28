@@ -18,6 +18,5 @@ class InfosReservationViewModel: ViewModel() {
             Log.i(TAG, "view model here")
             reservation.value = it?.value
         }
-
     }
 }

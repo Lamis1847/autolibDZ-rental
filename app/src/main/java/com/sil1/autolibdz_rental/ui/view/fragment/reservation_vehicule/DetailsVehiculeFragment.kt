@@ -7,6 +7,8 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
+import androidx.activity.OnBackPressedCallback
 import androidx.core.net.toUri
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.findNavController
@@ -23,14 +25,20 @@ class DetailsVehiculeFragment : Fragment() {
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
+
     ): View? {
+
         return inflater.inflate(R.layout.fragment_details_vehicule, container, false)
     }
 
     @SuppressLint("SetTextI18n")
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
-
+        activity?.onBackPressedDispatcher?.addCallback(requireActivity(), object : OnBackPressedCallback(true) {
+            override fun handleOnBackPressed() {
+                Toast.makeText(requireActivity(), "Disabled Back Press", Toast.LENGTH_SHORT).show()
+            }
+        })
             val vm = ViewModelProvider(requireActivity()).get(Vehicule::class.java)
             val vmRes = ViewModelProvider(requireActivity()).get(Reservation::class.java)
             nomVehiculeD.text = vm.marque +" "+ vm.modele
@@ -52,8 +60,12 @@ class DetailsVehiculeFragment : Fragment() {
             reseverButtonD.setOnClickListener {
                 findNavController().navigate(R.id.action_detailsVehiculeFragment_to_infosReservationFragment)
             }
-            goBackButtonDetailsVehicule.setOnClickListener{ this.findNavController().navigate(R.id.action_DetailsVehiculeFragment_pop)
+        goBackButtonDetailsVehicule.setOnClickListener{ this.findNavController().navigate(R.id.action_DetailsVehiculeFragment_pop)}
+        annulerButtonD.setOnClickListener{ this.findNavController().navigate(R.id.action_DetailsVehiculeFragment_pop)
         }
+
+
     }
+
 }
 

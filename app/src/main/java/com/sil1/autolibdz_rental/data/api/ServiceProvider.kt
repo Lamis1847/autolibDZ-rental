@@ -36,4 +36,7 @@ interface ServiceProvider {
 
     @POST("api/reservation")
     fun ajouterReservation(@Body reservation: ReservationModel): Call<ReservationResponse>
+
+    @POST("api/reclamation")
+    fun ajouterReclamation(@Body reclamation: ReclamationModel): Call<ReclamationResponse>
 }
