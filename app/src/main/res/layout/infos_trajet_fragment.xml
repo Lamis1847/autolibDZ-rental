@@ -119,7 +119,7 @@
         android:fontFamily="@font/gothambook"
         android:paddingLeft="20dp"
         android:paddingRight="26dp"
-        android:drawableLeft="@drawable/ic_distance"
+        android:drawableLeft="@drawable/ic_distance_bigger"
         android:drawablePadding="12dp"
         android:paddingVertical="6dp"
         android:text="Kilométrage"

@@ -28,15 +28,17 @@ interface ServiceProvider {
 
     //récupérer les informations d'un locataire
     @GET("api/locataire/{id}")
-    fun getLocataire(@Path("id") id:String /*@Header("Authorization") token: String*/): Call<LocataireRetro>
+    fun getLocataire(@Path("id") id:String? /*@Header("Authorization") token: String*/): Call<LocataireRetro>
 
-    @PUT("api/locataire/{id}")
-    fun editLocataire(@Path("id") id:String,@Body locataire:LocataireRetro/*@Header("Authorization") token: String*/): Call<LocataireModificationResponse>
+    @PUT("api/locataire/email/{id}")
+    fun editMailLocataire(@Path("id") id:String?,@Body locataire:LocataireEditEmail/*@Header("Authorization") token: String*/): Call<LocataireModificationResponse>
+
+    @PUT("api/locataire/password/{id}")
+    fun editPasswordLocataire(@Path("id") id:String?,@Body locataire:LocataireEditPassword/*@Header("Authorization") token: String*/): Call<LocataireModificationResponse>
+
     //récupérer les reservation d'un locataire
     @GET("api/reservation/historique/locataires/{id}")
     fun getReservations(@Path("id") id:String /*@Header("Authorization") token: String*/): Call<List<Reservation>>
-
-
 
     @GET("/api/bornes/{id}/vehicules")
     fun getListeVehicules(@Path("id") id:String  ): Call<List<VehiculeModel>>
@@ -51,14 +53,18 @@ interface ServiceProvider {
 
     //make payment with subscription card
     @GET("api/abonnement/{id}")
-    fun getUserBalance(@Path("id") id: Int): Call<Balance>
+    fun getUserBalance(@Header("Authorization") token:String, @Path("id") id: Int): Call<Balance>
 
     //make payment with abonnement card
     @FormUrlEncoded
     @POST("api/abonnement/{id}")
-    fun payWithAbonnement(@Path("id") id: Int , @Field("prix") prix: Double): Call<ResponseBody>
+    fun payWithAbonnement(@Header("Authorization") token:String, @Path("id") id: Int , @Field("prix") prix: Double): Call<ResponseBody>
 
     //create transaction
     @POST("api/transaction")
-    fun createTransaction(@Body transaction: Transaction): Call<ResponseBody>
+    fun createTransaction(@Header("Authorization") token:String, @Body transaction: Transaction): Call<ResponseBody>
+
+    //get user's transactions
+    @GET("api/transaction/{id}")
+    fun getUserTransactions(@Header("Authorization") token:String, @Path("id") id: Int): Call<Transaction>
 }

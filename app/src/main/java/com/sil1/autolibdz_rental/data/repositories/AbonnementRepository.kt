@@ -21,8 +21,8 @@ class AbonnementRepository {
         }
 
 
-        fun getUserBalance(TAG: String, id: Int, onResult: (Balance?) -> Unit){
-            var call = api.getUserBalance(id)
+        fun getUserBalance(TAG: String, token: String, id: Int, onResult: (Balance?) -> Unit){
+            var call = api.getUserBalance("Basic $token", id)
 
             call.enqueue(object : Callback<Balance> {
                 override fun onResponse(call: Call<Balance>, response: Response<Balance>) {
@@ -45,8 +45,8 @@ class AbonnementRepository {
             })
         }
 
-        fun payWithAbonnement(TAG: String, id: Int, amount: Double, onResult: (Response<ResponseBody>?) -> Unit){
-            var call = api.payWithAbonnement(id, amount)
+        fun payWithAbonnement(TAG: String, token:String , id: Int, amount: Double, onResult: (Response<ResponseBody>?) -> Unit){
+            var call = api.payWithAbonnement("Basic $token", id, amount)
 
             call.enqueue(object : Callback<ResponseBody> {
                 override fun onResponse(call: Call<ResponseBody>, response: Response<ResponseBody>) {
@@ -66,8 +66,8 @@ class AbonnementRepository {
             })
         }
 
-        fun createTransaction(TAG: String, transaction: Transaction, onResult: (Response<ResponseBody>?) -> Unit) {
-            var call = api.createTransaction(transaction)
+        fun createTransaction(TAG: String, token: String, transaction: Transaction, onResult: (Response<ResponseBody>?) -> Unit) {
+            var call = api.createTransaction( "Basic $token" ,transaction)
 
             call.enqueue(object : Callback<ResponseBody> {
                 override fun onResponse(call: Call<ResponseBody>, response: Response<ResponseBody>) {

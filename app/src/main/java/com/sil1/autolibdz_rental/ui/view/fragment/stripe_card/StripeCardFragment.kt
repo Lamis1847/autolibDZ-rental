@@ -142,7 +142,7 @@ class StripeCardFragment : Fragment() {
             .message(R.string.procedePaymentText)
             .positiveButton(R.string.checkout) { dialog ->
                 //create payment intent
-                viewModel.createPaymentIntent(viewModel.prixAPayer!!.times(100).toInt())
+                viewModel.createPaymentIntent(viewModel.prixAPayer!!.times(100).toInt(), requireContext())
                 hud = KProgressHUD.create(requireActivity())
                     .setStyle(KProgressHUD.Style.SPIN_INDETERMINATE)
                     .setLabel("Patientez s'il vous plait")

@@ -4,6 +4,7 @@ import android.app.Dialog
 import androidx.lifecycle.ViewModelProvider
 import android.os.Bundle
 import android.os.Handler
+import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
@@ -35,7 +36,7 @@ class AbonnementPaymentFragment : Fragment() {
 
         viewModel.prixAPayer = arguments?.getDouble("prixAPayer")!! //force as non null
 
-        viewModel.getUserBalance()
+        viewModel.getUserBalance(requireContext())
 
         aPayerText.text = "-" + String.format("%.2f", viewModel.prixAPayer)  + " DZD"
 
@@ -50,7 +51,7 @@ class AbonnementPaymentFragment : Fragment() {
                 .message(R.string.procedePaymentText)
                 .positiveButton(R.string.checkout) { dialog ->
                     dialog.dismiss()
-                    viewModel.payWithAbonnement()
+                    viewModel.payWithAbonnement(requireContext())
 
                     hud = KProgressHUD.create(requireActivity())
                         .setStyle(KProgressHUD.Style.SPIN_INDETERMINATE)

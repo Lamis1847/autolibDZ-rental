@@ -33,17 +33,17 @@ class HomeActivity : AppCompatActivity(),MyDrawerController{
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
-        if (!Places.isInitialized()) {
-            Places.initialize( applicationContext, getString(R.string.api_key));
-        }
-        Places.createClient(this)
-
         binding = ActivityHomeBinding.inflate(layoutInflater)
 
         setContentView(binding.root)
 
         menuButton = binding.appBarHome.menuButton
         drawerLayout = binding.drawerLayout
+
+        if (!Places.isInitialized()) {
+            Places.initialize( applicationContext, getString(R.string.api_key));
+        }
+        Places.createClient(this)
 
         menuButton.setOnClickListener{
             // If the navigation drawer is not open then open it, if its already open then close it.
