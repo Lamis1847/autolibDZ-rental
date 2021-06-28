@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/palette_grey_200"
+    tools:context=".ui.view.fragment.payment_end.PaymentEndFragment">
+
+    <FrameLayout
+        android:id="@+id/frameLayout5"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="100dp"
+            android:background="@drawable/ic_yellow_half_circle" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal|bottom"
+            android:layout_marginBottom="32dp"
+            android:fontFamily="@font/gothammedium"
+            android:gravity="center_horizontal"
+            android:text="@string/paymentDone"
+            android:textColor="@color/white"
+            android:textSize="22sp" />
+    </FrameLayout>
+
+    <TextView
+        android:id="@+id/textView8"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="32dp"
+        android:elevation="3dp"
+        android:fontFamily="@font/gothambook"
+        android:text="@string/thankYouPayment"
+        android:textColor="@color/black"
+        android:textSize="18sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/frameLayout5" />
+
+    <ImageView
+        android:id="@+id/letterImageView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="clip_horizontal|bottom"
+        android:background="@drawable/thankyou_letter"
+        android:layout_marginTop="64dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView8" />
+
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/paymentDoneBtn"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="@dimen/btn_margin_horizontal"
+        android:layout_marginTop="32dp"
+        android:background="@drawable/ic_btn_rounded_corners"
+        android:stateListAnimator="@null"
+        android:text="@string/done"
+        android:textAllCaps="false"
+        android:textColor="@color/white"
+        android:textSize="14sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/letterImageView"
+        app:layout_constraintVertical_bias="0.27" />
+</androidx.constraintlayout.widget.ConstraintLayout>
