@@ -36,8 +36,6 @@ class ProfilFragment : Fragment() {
 //    private var param1: String? = null
 //    private var param2: String? = null
 
-    var list= mutableListOf<String>()
-    var list2= mutableListOf<String>()
     private var myDrawerController: MyDrawerController? = null
 
     override fun onAttach(activity: Activity) {
@@ -94,7 +92,6 @@ class ProfilFragment : Fragment() {
             nom.setText(locataire.get(0)?.nom)
             prenom.setText(locataire.get(0)?.prenom)
             email.setText(locataire.get(0)?.email)
-            list.add(locataire.get(0)?.email.toString())
 
     }
 
