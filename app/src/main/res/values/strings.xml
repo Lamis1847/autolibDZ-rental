@@ -40,7 +40,7 @@
     <string name="createAccount">Pas de compte ? <u><b>Inscrivez-vous</b></u></string>
     <string name="rememberMe">Se souvenir de moi</string>
     <!-- END OF Strings used for LOG IN interface -->
-
+    <string name="changerMdp"><u>Changer mon mot de passe</u></string>
     <!-- Strings used for FRAGMENTS-->
     <string name="textViewSplashOne">Réservez et localisez un véhicule</string>
     <string name="textViewSplashTwo">Déverouillez-le</string>
