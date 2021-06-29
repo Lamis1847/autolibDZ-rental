@@ -36,8 +36,6 @@ class ProfilFragment : Fragment() {
 //    private var param1: String? = null
 //    private var param2: String? = null
 
-    var list= mutableListOf<String>()
-    var list2= mutableListOf<String>()
     private var myDrawerController: MyDrawerController? = null
 
     override fun onAttach(activity: Activity) {
@@ -64,19 +62,22 @@ class ProfilFragment : Fragment() {
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
         val preferences = requireActivity().getSharedPreferences(sharedPrefFile, Context.MODE_PRIVATE)
-        val userIDd = preferences.getString("userID", "Default")
-        val userID="254"
+        val token = preferences.getString("token", "default")
+        val userID = preferences.getString("userID", "1")
+        Log.i("iddd",userID.toString())
+        Log.i("Fragment",token.toString())
+
         var viewModel = ViewModelProvider(this).get(ProfilViewModel::class.java)
-        viewModel.getLocataire(userID)
+        viewModel.getLocataire(token,userID)
         viewModel.locataire.observe(requireActivity(), Observer {
                 locataire ->
             updateLocataire(locataire)
         })
         SauvgarderP.setOnClickListener{
             val locataire=LocataireEditEmail(email.text.toString(),password.text.toString())
-            viewModel.updateMailLocataire(locataire,"254",requireActivity()) //il faut changer l'id après!
+            viewModel.updateMailLocataire(locataire,token,userID,requireActivity()) //il faut changer l'id après!
             password.text.clear()
-            viewModel.getLocataire(userID)
+            viewModel.getLocataire(token,userID)
 
         }
 
@@ -91,27 +92,8 @@ class ProfilFragment : Fragment() {
         nom.setText(locataire.get(0)?.nom)
         prenom.setText(locataire.get(0)?.prenom)
         email.setText(locataire.get(0)?.email)
-        list.add(locataire.get(0)?.email.toString())
 
     }
 
-//    companion object {
-//        /**
-//         * Use this factory method to create a new instance of
-//         * this fragment using the provided parameters.
-//         *
-//         * @param param1 Parameter 1.
-//         * @param param2 Parameter 2.
-//         * @return A new instance of fragment ProfilFragment.
-//         */
-//        // TODO: Rename and change types and number of parameters
-//        @JvmStatic
-//        fun newInstance(param1: String, param2: String) =
-//            ProfilFragment().apply {
-//                arguments = Bundle().apply {
-//                    putString(ARG_PARAM1, param1)
-//                    putString(ARG_PARAM2, param2)
-//                }
-//            }
-//    }
+
 }

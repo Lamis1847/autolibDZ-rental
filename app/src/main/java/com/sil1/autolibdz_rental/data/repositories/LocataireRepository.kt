@@ -22,9 +22,9 @@ class LocataireRepository {
         val api: ServiceProvider by lazy {
             ServiceBuilder.buildService(ServiceProvider::class.java)
         }
-        fun editPasswordLocataire(TAG:String,id:String?,locataire:LocataireEditPassword,context:Context)
+        fun editPasswordLocataire(TAG:String?,token:String?,id:String?,locataire:LocataireEditPassword,context:Context)
         {
-            var call = api.editPasswordLocataire(id,locataire) // fonction de modification dans l'api
+            var call = api.editPasswordLocataire("Basic $token",id,locataire) // fonction de modification dans l'api
 
             call.enqueue(object:Callback<LocataireModificationResponse>{
                 override fun onResponse(
@@ -52,9 +52,9 @@ class LocataireRepository {
         }
 
 
-        fun editMailLocataire(TAG:String,id:String?,locataire:LocataireEditEmail,context:Context)
+        fun editMailLocataire(TAG:String?,token:String?,id:String?,locataire:LocataireEditEmail,context:Context)
         {
-            var call = api.editMailLocataire(id,locataire) // fonction de modification dans l'api
+            var call = api.editMailLocataire("Basic $token",id,locataire) // fonction de modification dans l'api
 
             call.enqueue(object:Callback<LocataireModificationResponse>{
                 override fun onResponse(
@@ -81,9 +81,10 @@ class LocataireRepository {
             })
 
         }
-        fun getLocataire(TAG: String,id:String?): MutableLiveData<ArrayList<LocataireRetro?>> {
-            var call = api.getLocataire(id) // consommation de l'api
+        fun getLocataire(TAG: String?,token:String?,id:String?): MutableLiveData<ArrayList<LocataireRetro?>> {
+            var call = api.getLocataire("Basic $token",id) // consommation de l'api
             var locataireRespond: LocataireRetro?
+            Log.i("repositorytoken",token.toString())
             var locatairelist = ArrayList<LocataireRetro?>()
             var finalList = MutableLiveData<ArrayList<LocataireRetro?>>()
             call.enqueue(object : Callback<LocataireRetro> {
