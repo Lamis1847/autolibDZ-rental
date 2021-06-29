@@ -18,6 +18,7 @@ import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.ViewModelProviders
 import androidx.navigation.fragment.findNavController
+import com.afollestad.materialdialogs.MaterialDialog
 import com.google.android.gms.common.GooglePlayServicesNotAvailableException
 import com.google.android.gms.common.api.ResolvableApiException
 import com.google.android.gms.location.*
@@ -38,12 +39,14 @@ import com.google.maps.model.DistanceMatrix
 import com.google.maps.model.TravelMode
 import com.sil1.autolibdz_rental.R
 import com.sil1.autolibdz_rental.data.model.Borne
+import com.sil1.autolibdz_rental.data.model.Identite
 import com.sil1.autolibdz_rental.data.repositories.LocataireRepository
 import com.sil1.autolibdz_rental.data.room.RoomService
 import com.sil1.autolibdz_rental.ui.view.activity.MyDrawerController
 import com.sil1.autolibdz_rental.ui.viewmodel.Reservation
 import com.sil1.autolibdz_rental.utils.sharedPrefFile
 import kotlinx.android.synthetic.main.map_display_fragment.*
+import kotlinx.android.synthetic.main.stripe_card_fragment.*
 import java.io.IOException
 import java.text.DecimalFormat
 import java.util.*
@@ -76,6 +79,7 @@ class MapDisplayFragment : Fragment() , OnMapReadyCallback , GoogleMap.OnMarkerC
     private lateinit var  listBornes: ArrayList<Borne>
     private  var markers : ArrayList<Marker> = ArrayList<Marker>()
     private var token : String  = ""
+    private  var valide: Int = 0
     companion object {
         fun newInstance() = MapDisplayFragment()
     }
@@ -126,6 +130,14 @@ class MapDisplayFragment : Fragment() , OnMapReadyCallback , GoogleMap.OnMarkerC
         val sharedPref = RoomService.context.getSharedPreferences(
             sharedPrefFile, Context.MODE_PRIVATE
         )
+
+        val dialog = MaterialDialog(requireActivity())
+            .title(R.string.compteValidationTitle)
+            .message(R.string.compteValidationMsg)
+            .positiveButton(R.string.compris) {
+                it.dismiss()
+            }
+
         token = sharedPref.getString("token","defaultvalue").toString()
         val userID = sharedPref.getString("userID","defaultvalue")
         if (token != null) {
@@ -133,9 +145,7 @@ class MapDisplayFragment : Fragment() , OnMapReadyCallback , GoogleMap.OnMarkerC
         }
         //recuperation de l'identite du locataire
         var locataireRepo = LocataireRepository.Companion
-        locataireRepo.getIdentiteLocataire(TAG, token, "258"){
-            Log.i(TAG,"locataire est valide : $it.valide")
-        }
+
 
         //this vm is used to pass data between this fragment and list vehicule fragment
          resViewModel = ViewModelProvider(requireActivity()).get(Reservation::class.java)
@@ -157,7 +167,17 @@ class MapDisplayFragment : Fragment() , OnMapReadyCallback , GoogleMap.OnMarkerC
             //To know which borne the user is choosing at the moment
             clickedOnBorneDepart = true
             clickedOnBorneDestination = false
+            if (userID != null) {
+                locataireRepo.getIdentiteLocataire(TAG, token, userID){
+                    Log.i(TAG,"locataire est valide : $it.valide")
+                    if (it != null) {
+                        valide = it.valide
+                    }
+
+                }
+            }
             //filtrer les bornes à afficher
+            if(valide==1){
             verifyBornesDeDepart()
             // Set the fields to specify which types of place data to
             // return after the user has made a selection.
@@ -169,13 +189,23 @@ class MapDisplayFragment : Fragment() , OnMapReadyCallback , GoogleMap.OnMarkerC
                 Autocomplete.IntentBuilder(AutocompleteActivityMode.FULLSCREEN, fields)
                     .build(it1)
             }
-            startActivityForResult(intent, AUTOCOMPLETE_REQUEST_CODE)
+            startActivityForResult(intent, AUTOCOMPLETE_REQUEST_CODE)}
         }
         buttonChoixBorneDestination.setOnClickListener{
 
             clickedOnBorneDepart = false
             clickedOnBorneDestination = true
             //filter les bornes à afficher
+            if (userID != null) {
+                locataireRepo.getIdentiteLocataire(TAG, token, userID){
+                    Log.i(TAG,"locataire est valide : $it.valide")
+                    if (it != null) {
+                        valide = it.valide
+                    }
+
+                }
+            }
+            if(valide==1){
             verifyBornesDeDestination()
 
             // Set the fields to specify which types of place data to
@@ -188,7 +218,7 @@ class MapDisplayFragment : Fragment() , OnMapReadyCallback , GoogleMap.OnMarkerC
                 Autocomplete.IntentBuilder(AutocompleteActivityMode.FULLSCREEN, fields)
                     .build(it1)
             }
-            startActivityForResult(intent, AUTOCOMPLETE_REQUEST_CODE)
+            startActivityForResult(intent, AUTOCOMPLETE_REQUEST_CODE) }
         }
         buttonSuivant.setOnClickListener{
             makeDistanceCalculationCall(origin,destination)

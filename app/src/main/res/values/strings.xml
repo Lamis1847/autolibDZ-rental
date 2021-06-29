@@ -114,4 +114,11 @@
     
 <!--    transaction-->
     <string name="transactionType">Nature de la réservation</string>
+
+    <!--maps display fragment-->
+    <string name="compteValidationTitle">Opération impossible</string>
+    <string name="compteValidationMsg">Votre compte n\'a pas encore été validé</string>
+    <string name="compris">J\'ai compris</string>
+
+
 </resources>
