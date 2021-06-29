@@ -4,20 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".ReclamationFragment">
-
-    <Button
-        android:id="@+id/backButtonR"
-        android:layout_width="40dp"
-        android:layout_height="36dp"
-        android:backgroundTint="@color/grey_light"
-        app:icon="@drawable/ic_back_icon"
-        app:iconTint="@color/back_button"
-        app:layout_constraintBottom_toBottomOf="@+id/reclamationTitleTextView"
-        app:layout_constraintEnd_toStartOf="@+id/reclamationTitleTextView"
-        app:layout_constraintHorizontal_bias="0.096"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/reclamationTitleTextView" />
+    tools:context=".ui.view.fragment.reservation_vehicule.ReclamationFragment">
 
     <TextView
         android:id="@+id/reclamationTitleTextView"
