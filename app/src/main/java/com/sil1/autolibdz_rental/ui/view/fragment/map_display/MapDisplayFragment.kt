@@ -12,7 +12,6 @@ import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Toast
 import androidx.core.app.ActivityCompat
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
@@ -39,6 +38,7 @@ import com.google.maps.model.DistanceMatrix
 import com.google.maps.model.TravelMode
 import com.sil1.autolibdz_rental.R
 import com.sil1.autolibdz_rental.data.model.Borne
+import com.sil1.autolibdz_rental.data.repositories.LocataireRepository
 import com.sil1.autolibdz_rental.data.room.RoomService
 import com.sil1.autolibdz_rental.ui.view.activity.MyDrawerController
 import com.sil1.autolibdz_rental.ui.viewmodel.Reservation
@@ -130,6 +130,12 @@ class MapDisplayFragment : Fragment() , OnMapReadyCallback , GoogleMap.OnMarkerC
         if (token != null) {
             Log.i(TAG, token)
         }
+        //recuperation de l'identite du locataire
+        var locataireRepo = LocataireRepository.Companion
+        locataireRepo.getIdentiteLocataire(TAG, token, "258"){
+            Log.i(TAG,"locataire est valide : $it.valide")
+        }
+
         //this vm is used to pass data between this fragment and list vehicule fragment
          resViewModel = ViewModelProvider(requireActivity()).get(Reservation::class.java)
 
@@ -257,7 +263,7 @@ class MapDisplayFragment : Fragment() , OnMapReadyCallback , GoogleMap.OnMarkerC
                         place.latLng!!.longitude ) }
 
                     Log.i(TAG, "Place: ${place.name}, ${place.id}")
-                    mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(place.latLng,10f))
+                    mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(place.latLng,15f))
                 }
             }
             AutocompleteActivity.RESULT_ERROR -> {
@@ -470,7 +476,7 @@ class MapDisplayFragment : Fragment() , OnMapReadyCallback , GoogleMap.OnMarkerC
                         markerr ->
                         if(clickedOnBorneDepart){
                               val markerTag = markerr.tag as Borne
-                              markerr.isVisible = markerTag.nbVehicules>0
+                              markerr.isVisible = (markerTag.nbVehicules-markerTag.nbPlaces)>0
                     }
                 }
             }

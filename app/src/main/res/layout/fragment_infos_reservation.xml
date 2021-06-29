@@ -1,16 +1,22 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+
+<androidx.core.widget.NestedScrollView
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:layout_marginTop="0dp"
+    >
+<androidx.constraintlayout.widget.ConstraintLayout
+
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
     tools:context=".ui.view.fragment.reservation_vehicule.InfosReservationFragment">
 
     <androidx.cardview.widget.CardView
         android:id="@+id/cardView7"
-        android:layout_width="0dp"
-        android:layout_height="122dp"
+        android:layout_width="405dp"
+        android:layout_height="88dp"
         android:backgroundTint="@color/palette_yellow"
         app:cardCornerRadius="20dp"
         app:layout_constraintEnd_toEndOf="parent"
@@ -22,11 +28,11 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:fontFamily="@font/gothamblack"
-            android:paddingTop="30sp"
+            android:paddingTop="15sp"
             android:text="Informations sur votre réservation"
             android:textAlignment="center"
             android:textColor="@color/black"
-            android:textSize="25sp"
+            android:textSize="20sp"
             tools:layout_editor_absoluteX="1dp"
             tools:layout_editor_absoluteY="-5dp" />
     </androidx.cardview.widget.CardView>
@@ -80,7 +86,7 @@
 
     <Button
         android:id="@+id/confirmerButton"
-        android:layout_width="118dp"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="18dp"
         android:backgroundTint="@color/validate_color"
@@ -92,30 +98,18 @@
         app:layout_constraintTop_toBottomOf="@+id/textView11" />
 
     <Button
-        android:id="@+id/modifierButton"
-        android:layout_width="118dp"
+        android:id="@+id/annulerButton"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="10dp"
         android:fontFamily="@font/gothambold"
-        android:text="Modifier"
+        android:text="Annuler"
         android:textAllCaps="false"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/confirmerButton" />
 
-    <Button
-        android:id="@+id/annulerButton"
-        android:layout_width="118dp"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="10dp"
-        android:backgroundTint="@color/error_color"
-        android:fontFamily="@font/gothambold"
-        android:text="Annuler"
-        android:textAllCaps="false"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.498"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/modifierButton" />
+
 
     <androidx.cardview.widget.CardView
         android:id="@+id/cardView3"
@@ -266,3 +260,4 @@
     </androidx.cardview.widget.CardView>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
+</androidx.core.widget.NestedScrollView>

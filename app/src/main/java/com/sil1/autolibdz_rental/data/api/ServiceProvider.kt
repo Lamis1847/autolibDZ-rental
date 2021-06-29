@@ -34,10 +34,12 @@ interface ServiceProvider {
     @GET("api/reservation/historique/locataires/{id}")
     fun getReservations(@Path("id") id:String /*@Header("Authorization") token: String*/): Call<List<Reservation>>
 
-
-
     @GET("/api/bornes/{id}/vehicules")
     fun getListeVehicules(@Path("id") id:String,@Header("authorization") token:String  ): Call<List<VehiculeModel>>
+
+
+    @GET("/api/identites/locataire/{id}")
+    fun getIdentiteLocataire(@Path("id") id:String,/*@Header("authorization") token:String  */): Call<Identite>
 
     @POST("api/reservation")
     fun ajouterReservation(@Body reservation: ReservationModel,@Header("authorization") token:String): Call<ReservationResponse>

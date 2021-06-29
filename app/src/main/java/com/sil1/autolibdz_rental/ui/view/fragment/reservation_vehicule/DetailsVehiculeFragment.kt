@@ -36,7 +36,6 @@ class DetailsVehiculeFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         myDrawerController?.setDrawer_Locked();
-
         return inflater.inflate(R.layout.fragment_details_vehicule, container, false)
     }
     override fun onDestroyView() {

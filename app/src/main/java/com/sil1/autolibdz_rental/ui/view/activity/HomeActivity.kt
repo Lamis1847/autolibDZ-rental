@@ -62,7 +62,7 @@ class HomeActivity : AppCompatActivity(),MyDrawerController{
         // menu should be considered as top level destinations.
         appBarConfiguration = AppBarConfiguration(
             setOf(
-                R.id.nav_home, R.id.nav_profil, R.id.nav_history, R.id.nav_transaction, R.id.nav_reclamation, R.id.nav_assistance
+                R.id.nav_home, R.id.nav_profil, R.id.nav_history, R.id.nav_transaction, R.id.nav_reclamation
             ), drawerLayout
         )
         navView.setupWithNavController(navController)

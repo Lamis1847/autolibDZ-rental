@@ -69,13 +69,12 @@ class InfosReservationFragment : Fragment() {
 
         val vm = ViewModelProvider(requireActivity()).get(Vehicule::class.java)
         val vmRes = ViewModelProvider(requireActivity()).get(Reservation::class.java)
-
+        Log.i("InfosRes",vm.latitute.toString())
         nomVehiculeTextViewI.text = vm.marque +" "+ vm.modele
         borneDepartTextViewI.text = "Borne" + " " +  vmRes.nomBorneDepart
         borneDestinationTextViewI.text = "Borne" + " " + vmRes.nomBorneDestination
         val distanceEstime = vmRes.distanceEstime
         val tempsEstime = vmRes.tempsEstimeEnSecondes
-
         Log.i("InfosRes","distanceEstime"+distanceEstime.toString() )
         Log.i("InfosRes","tempsEstimeEnSecondes"+tempsEstime.toString() )
         //j'ai changé la formule car c trop cher

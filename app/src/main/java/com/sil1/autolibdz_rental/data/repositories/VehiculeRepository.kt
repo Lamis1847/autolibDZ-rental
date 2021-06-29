@@ -43,6 +43,8 @@ class VehiculeRepository {
                     val vehiculeRespond = response.body()
                     if (vehiculeRespond != null) {
                         for (m in vehiculeRespond!!) {
+                            Log.i(TAG, "Vehicule latitude:${m.latitude} longitude:${m.longitude}")
+
                             vehiculeList.add(m)
                         }
                         finalList.value = vehiculeList
