@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_margin="10dp"
+    android:padding="10dp"
+    android:layout_height="wrap_content">
+
+    <FrameLayout
+        android:id="@+id/imageFrame"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+        <ImageView
+            android:id="@+id/shadowTransaction"
+            android:layout_width="76dp"
+            android:layout_height="76dp"
+            android:background="@drawable/_shadow_yellow"/>
+        <ImageView
+            android:id="@+id/solidTransaction"
+            android:layout_width="62dp"
+            android:layout_height="62dp"
+            android:layout_gravity="center_horizontal|center_vertical"
+            android:background="@drawable/_square_yellow_shadow"/>
+        <ImageView
+            android:id="@+id/iconTransaction"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@drawable/ic_suitcase_white"
+            android:layout_gravity="center_vertical|center_horizontal"/>
+    </FrameLayout>
+
+    <TextView
+        android:id="@+id/modePaiement"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="14dp"
+        android:layout_marginTop="12dp"
+        android:fontFamily="@font/gothammedium"
+        android:lineSpacingExtra="14sp"
+        android:textColor="@color/black"
+        android:text="@string/transactionType"
+        android:textSize="16sp"
+        app:layout_constraintStart_toEndOf="@+id/imageFrame"
+        app:layout_constraintTop_toTopOf="@+id/imageFrame" />
+
+    <TextView
+        android:id="@+id/dateTransaction"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:fontFamily="@font/gothambook"
+        android:lineSpacingExtra="12sp"
+        android:text="10/06 16:10"
+        android:textColor="@color/palette_grey_700"
+        android:textSize="14sp"
+        app:layout_constraintStart_toStartOf="@+id/modePaiement"
+        app:layout_constraintTop_toBottomOf="@+id/modePaiement" />
+
+    <TextView
+        android:id="@+id/montant"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/gothambold"
+        android:lineSpacingExtra="12sp"
+        android:text="+ 15.00 $"
+        android:textColor="@color/greenOk"
+        android:textSize="14sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/modePaiement" />
+
+    <!--Seperator-->
+    <View
+        android:id="@+id/view2"
+        android:layout_width="340dp"
+        android:layout_height="0.5dp"
+        android:background="#868FAC"
+        android:layout_marginTop="8dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/imageFrame" />
+</androidx.constraintlayout.widget.ConstraintLayout>

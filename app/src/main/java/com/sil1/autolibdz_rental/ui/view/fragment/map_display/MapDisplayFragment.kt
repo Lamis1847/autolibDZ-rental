@@ -101,10 +101,11 @@ class MapDisplayFragment : Fragment() , OnMapReadyCallback , GoogleMap.OnMarkerC
         fusedLocationClient = LocationServices.getFusedLocationProviderClient(requireActivity())
         val mapFragment = childFragmentManager.findFragmentById(R.id.mapFragment) as SupportMapFragment
         mapFragment.getMapAsync(this)
-        myDrawerController?.setDrawer_UnLocked()
+
         return view
 
     }
+
     override fun onDestroyView() {
         super.onDestroyView()
         //myDrawerController?.setDrawer_UnLocked()
@@ -143,7 +144,7 @@ class MapDisplayFragment : Fragment() , OnMapReadyCallback , GoogleMap.OnMarkerC
         viewModel = ViewModelProviders.of(this, factory).get(MapDisplayViewModel::class.java)
        // viewModel = ViewModelProvider(this).get(MapDisplayViewModel::class.java)
         //bitmap = BitmapFactory.decodeResource(resources,R.drawable.ic_borne_marker)
-
+        myDrawerController?.setDrawer_UnLocked()
         viewModel.bornes.observe(this, Observer {
                 bornes ->
                 listBornes = bornes

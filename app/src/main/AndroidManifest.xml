@@ -5,26 +5,28 @@
     <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
     <uses-permission android:name="android.permission. ACCESS_COARSE_LOCATION" />
     <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.CAMERA" />
 
     <application
-        android:allowBackup="true"
+        android:name=".data.room.App"
         android:icon="@drawable/ic_logo_1"
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.AutolibDZrental"
-        android:name=".data.room.App">
-        <activity android:name=".ui.view.activity.ReservationsActivity"
 
-            android:theme="@style/Theme.AutolibDZrental">
-            <!--            <intent-filter>-->
-            <!--                <action android:name="android.intent.action.MAIN" />-->
-            <!--                <category android:name="android.intent.category.LAUNCHER" />-->
-            <!--            </intent-filter>-->
+        >
+        <activity android:name=".ui.view.activity.validation.ValidationResActivity"
+                  android:theme="@style/Theme.AutolibDZrental.NoActionBar"
+            />
+        <activity android:name=".ui.view.activity.validation.ValidationReadyActivity"
+                  android:theme="@style/Theme.AutolibDZrental.NoActionBar"
+            />
+
+        <activity
+            android:name=".ui.view.activity.validation.ValidationActivity"
+            android:theme="@style/Theme.AutolibDZrental.NoActionBar">
         </activity>
-
-
-
 
 
         <activity
@@ -40,11 +42,15 @@
             android:screenOrientation="portrait"
             android:theme="@style/Theme.AutolibDZrental.NoActionBar"></activity>
 
+
+
+
         <activity
             android:name=".ui.view.activity.SplashScreenActivity"
-            android:screenOrientation="portrait"
             android:label="@string/app_name"
-            android:theme="@style/Theme.AutolibDZrental.NoActionBar">
+            android:screenOrientation="portrait"
+            android:theme="@style/Theme.AutolibDZrental.NoActionBar" > <!-- <intent-filter> -->
+
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -55,13 +61,17 @@
 
     
 
-
         <meta-data
             android:name="com.google.android.gms.version"
             android:value="@integer/google_play_services_version" /> <!-- The API key for Google Maps-based APIs. -->
         <meta-data
             android:name="com.google.android.geo.API_KEY"
             android:value="${MAPS_API_KEY}" />
+
+        <meta-data
+            android:name="CLOUDINARY_URL"
+            android:value="cloudinary://417846431126524:VI0hz_4ir15jp-Slkb_heb44-LI@dkwni6a1d"/>
+
     </application>
 
 </manifest>
