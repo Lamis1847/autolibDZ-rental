@@ -12,23 +12,26 @@ import com.sil1.autolibdz_rental.data.repositories.TrajetRepository
 import com.sil1.autolibdz_rental.data.repositories.VehiculeRepository
 import com.sil1.autolibdz_rental.utils.sharedPrefFile
 
-class InfosReservationViewModel: ViewModel() {
+class InfosReservationViewModel(token : String): ViewModel() {
     private val TAG = "TAG-InfosReservationViewModel"
     var reservation=  MutableLiveData<ReservationResponse>()
+
 
     private val _trajet = MutableLiveData<Trajet>()
     val trajet: LiveData<Trajet>
         get() = _trajet
 
-    fun  ajouterReservation(res : ReservationModel)  {
-        ReservationRepository.ajouterReservation(TAG,res) {
+
+    fun  ajouterReservation(res : ReservationModel,token : String)  {
+        ReservationRepository.ajouterReservation(TAG,res,"Basic $token") {
+
             Log.i(TAG, "view model here")
             reservation.value = it?.value
         }
 
     }
 
-    public fun getTrajet(context: Context, idReservation: Int) {
+    fun getTrajet(context: Context, idReservation: Int) {
         val sharedPref = context.getSharedPreferences(
             sharedPrefFile, Context.MODE_PRIVATE
         )

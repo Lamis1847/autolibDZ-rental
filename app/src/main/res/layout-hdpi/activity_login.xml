@@ -27,7 +27,7 @@
             android:drawablePadding="18dp"
             android:ems="10"
             android:hint="Email"
-            android:inputType="textPersonName"
+            android:inputType="textEmailAddress"
             android:paddingLeft="15dp"
             android:textColorHighlight="@color/black"
             android:textColorLink="@color/black"
@@ -47,7 +47,7 @@
             android:drawablePadding="18dp"
             android:ems="10"
             android:hint="Mot de passe"
-            android:inputType="textPersonName"
+            android:inputType="textPassword"
             android:paddingLeft="15dp"
             android:textColorHighlight="@color/black"
             android:textColorLink="@color/black"
@@ -67,32 +67,21 @@
             app:layout_constraintTop_toTopOf="parent" />
 
 
-        <CheckBox
-            android:id="@+id/checkBox"
-            android:layout_width="232dp"
-            android:layout_height="54dp"
-            android:layout_marginTop="8dp"
-            android:fontFamily="@font/gothamblack"
-            android:text="@string/rememberMe"
-            android:textColor="@color/white"
-            android:textSize="17sp"
-            android:textStyle="bold"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.497"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/Pass" />
+
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 
     <Button
         android:id="@+id/connectButton"
-        android:layout_width="173dp"
+        android:layout_width="250dp"
         android:layout_height="55dp"
         android:layout_marginTop="24dp"
         android:backgroundTint="#FFCB00"
         android:fontFamily="@font/gothamblack"
         android:text="Se connecter"
         android:textColor="@color/white"
+        android:textSize="18sp"
+        android:textAllCaps="false"
         android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.503"

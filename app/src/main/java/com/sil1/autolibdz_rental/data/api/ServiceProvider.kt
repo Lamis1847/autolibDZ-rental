@@ -1,6 +1,5 @@
 package com.sil1.autolibdz_rental.data.api
 
-import com.google.gson.annotations.SerializedName
 import com.sil1.autolibdz_rental.data.model.*
 import okhttp3.ResponseBody
 import retrofit2.Call
@@ -10,7 +9,7 @@ import retrofit2.http.*
 interface ServiceProvider {
     // Getting all bornes of our system
     @GET("api/bornes/all")
-    fun getAllBornes(/*@Header("Authorization") token: String*/): Call<List<Borne>>
+    fun getAllBornes(@Header("authorization") token:String): Call<List<Borne>>
 
     //authentification locataire
     @POST("api/auth/locataire")
@@ -41,11 +40,21 @@ interface ServiceProvider {
     fun getReservations(@Path("id") id:String /*@Header("Authorization") token: String*/): Call<List<Reservation>>
 
     @GET("/api/bornes/{id}/vehicules")
-    fun getListeVehicules(@Path("id") id:String  ): Call<List<VehiculeModel>>
+    fun getListeVehicules(@Path("id") id:String,@Header("authorization") token:String  ): Call<List<VehiculeModel>>
+
+
+    @GET("/api/identites/locataire/{id}")
+    fun getIdentiteLocataire(@Path("id") id:String,/*@Header("authorization") token:String  */): Call<Identite>
+
+    @POST("api/reservation")
+    fun ajouterReservation(@Body reservation: ReservationModel,@Header("authorization") token:String): Call<ReservationResponse>
 
     @POST("api/reservation")
     fun ajouterReservation(@Body reservation: ReservationModel): Call<ReservationResponse>
 
+
+    @POST("api/identites")
+    fun envoyerValidationDemande(@Body validationBody: ValidationBody): Call<Any>
     //create payment intent
     @FormUrlEncoded
     @POST("api/payment/create-payment-intent")
@@ -72,9 +81,4 @@ interface ServiceProvider {
     @FormUrlEncoded
     @POST("api/trajet/getTrajetByReservation")
     fun getTrajetByReservation( @Header("Authorization") token:String,@Field("idReservation") idReservation: Int,): Call<Trajet>
-
-//    //get user's abonnement transactions
-//    @GET("api/transaction/{id}/filter")
-//    fun getUserAbonnementTransactions(@Path("id") id: Int, @Header("Authorization") token:String ): Call<ArrayList<Transaction>>
-
 }

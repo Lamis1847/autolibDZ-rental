@@ -2,9 +2,11 @@ package com.sil1.autolibdz_rental.ui.view.activity
 
 import android.Manifest
 import android.annotation.SuppressLint
+import android.content.Context
 import android.content.IntentSender
 import android.content.pm.PackageManager
 import android.os.Bundle
+import android.util.Log
 import android.view.Gravity
 import android.view.View
 import android.view.Window
@@ -24,7 +26,9 @@ import com.google.android.libraries.places.api.Places
 import com.google.android.material.floatingactionbutton.FloatingActionButton
 import com.google.android.material.navigation.NavigationView
 import com.sil1.autolibdz_rental.R
+import com.sil1.autolibdz_rental.data.room.RoomService.context
 import com.sil1.autolibdz_rental.databinding.ActivityHomeBinding
+import com.sil1.autolibdz_rental.utils.sharedPrefFile
 
 
 class HomeActivity : AppCompatActivity(),MyDrawerController{
@@ -88,7 +92,7 @@ class HomeActivity : AppCompatActivity(),MyDrawerController{
         // menu should be considered as top level destinations.
         appBarConfiguration = AppBarConfiguration(
             setOf(
-                R.id.nav_home, R.id.nav_profil, R.id.nav_history, R.id.nav_transaction, R.id.nav_reclamation, R.id.nav_assistance
+                R.id.nav_home, R.id.nav_profil, R.id.nav_history, R.id.nav_transaction, R.id.nav_reclamation
             ), drawerLayout
         )
         navView.setupWithNavController(navController)

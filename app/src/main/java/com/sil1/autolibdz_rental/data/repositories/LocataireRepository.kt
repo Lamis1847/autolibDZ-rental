@@ -6,6 +6,7 @@ import android.widget.Toast
 import androidx.lifecycle.MutableLiveData
 import com.sil1.autolibdz_rental.data.api.ServiceBuilder
 import com.sil1.autolibdz_rental.data.api.ServiceProvider
+import com.sil1.autolibdz_rental.data.model.Identite
 import com.sil1.autolibdz_rental.data.model.LocataireEditEmail
 import com.sil1.autolibdz_rental.data.model.LocataireEditPassword
 import com.sil1.autolibdz_rental.data.model.LocataireModificationResponse
@@ -116,6 +117,32 @@ class LocataireRepository {
             })
             return finalList
         }
+
+
+        fun getIdentiteLocataire(TAG: String, token: String, id: String, onResult: (Identite?) -> Unit){
+            var call = api.getIdentiteLocataire(id) //"Basic $token",
+
+            call.enqueue(object : Callback<Identite> {
+                override fun onResponse(call: Call<Identite>, response: Response<Identite>) {
+                    Log.i(TAG, "Getting user identite")
+
+                    if (!response.isSuccessful) {
+                        Log.i(TAG, "CODE:" + response.code().toString() + " Message: " + response.message())
+                        onResult(null)
+                    }
+                    val identite = response.body()  // Getting the balance
+                    identite?.toString()?.let { Log.i(TAG, it) }
+                    onResult(identite)
+                }
+
+
+                override fun onFailure(call: Call<Identite>, t: Throwable) {
+                    Log.i( TAG, "error CODE:" + t.message)
+                    onResult(null)
+                }
+            })
+        }
+
 
     }
 

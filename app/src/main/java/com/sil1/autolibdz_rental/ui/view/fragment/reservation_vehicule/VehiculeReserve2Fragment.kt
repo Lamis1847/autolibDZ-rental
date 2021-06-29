@@ -26,6 +26,11 @@ import com.kaopiz.kprogresshud.KProgressHUD
 import com.sil1.autolibdz_rental.R
 import com.sil1.autolibdz_rental.ui.view.activity.MyDrawerController
 import com.sil1.autolibdz_rental.ui.view.fragment.stripe_card.StripeCardViewModel
+import com.google.maps.DistanceMatrixApi
+import com.google.maps.GeoApiContext
+import com.google.maps.PendingResult
+import com.google.maps.model.DistanceMatrix
+import com.google.maps.model.TravelMode
 import com.sil1.autolibdz_rental.ui.viewmodel.Reservation
 import com.sil1.autolibdz_rental.ui.viewmodel.Vehicule
 import kotlinx.android.synthetic.main.fragment_details_vehicule.*
@@ -43,9 +48,11 @@ class VehiculeReserve2Fragment : Fragment() {
     private lateinit var fusedLocationClient: FusedLocationProviderClient
     private lateinit var locationCallback: LocationCallback
     var requestingLocationUpdates = true
+    var totalDistance : Long = 0
     private lateinit var mCurrentLocation : Location
     private lateinit var locationRequest : LocationRequest
     private lateinit var vehiculeLocation : LatLng
+    private lateinit var vm : Vehicule
     private var myDrawerController: MyDrawerController? = null
     private var idReservation = 0
     private lateinit var hud: KProgressHUD
@@ -67,6 +74,8 @@ class VehiculeReserve2Fragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
+         vm = ViewModelProvider(requireActivity()).get(Vehicule::class.java)
+
         var codePin= arguments?.get("codePin")
         code = codePin.toString()
 
@@ -78,21 +87,28 @@ class VehiculeReserve2Fragment : Fragment() {
 
         getCurrentLocation()
         createLocationRequest()
-        vehiculeLocation = LatLng(36.694709,4.058017) //36.694732,4.058094
+        vehiculeLocation = LatLng(vm.latitute.toDouble(), vm.longitude.toDouble()) //36.7045275 + 3.1730424
         val builder = LocationSettingsRequest.Builder()
             .addLocationRequest(locationRequest)
         val client: SettingsClient = LocationServices.getSettingsClient(requireActivity())
         val task: Task<LocationSettingsResponse> = client.checkLocationSettings(builder.build())
-        calculateDistance(36.702799,4.059917,36.694697,4.058107)
 
         locationCallback = object : LocationCallback() {
 
             override fun onLocationResult(locationResult: LocationResult?) {
                 locationResult ?: return
                 for (location in locationResult.locations){
-                    calculateDistance(vehiculeLocation.latitude,vehiculeLocation.longitude,location.latitude,location.longitude)
+                    Log.i(TAG,"Current location : latitude : ${location.latitude} ,longitude ${location.longitude}")
+                    Log.i(TAG,"Vehicule location : latitude : ${vehiculeLocation.latitude} ,longitude ${vehiculeLocation.longitude}")
+
+                    var res = calculateDistance(vehiculeLocation.latitude,vehiculeLocation.longitude,location.latitude,location.longitude)
+                    //var currentLocation : LatLng = LatLng(location.latitude,location.longitude)
+                   // makeDistanceCalculationCall(vehiculeLocation,currentLocation)
                     // write the condition to enable deverouiller button
-                    Log.i(TAG,"resss == ${location.latitude}")
+                    if(res<20){
+                        deverrouillerButton1?.isEnabled = true
+                    }
+
                 }
             }
         }
@@ -107,8 +123,10 @@ class VehiculeReserve2Fragment : Fragment() {
         signalerFinTrajetBtn.setOnClickListener { signalFinTrajet() }
 
         Glide.with(requireActivity()).load(vm.secureUrl).into(imageVehicule1)
+        Log.i(TAG,"vehicule location : ${vm.longitude} ${vm.latitute}")
         codePINTextView1.text = code
-
+        verrouillerButton1?.isEnabled = false
+        deverrouillerButton1?.isEnabled = false
         deverrouillerButton1.setOnClickListener {
             verrouillerButton1?.isEnabled = true
             deverrouillerButton1?.isEnabled = false
@@ -225,14 +243,14 @@ class VehiculeReserve2Fragment : Fragment() {
                     R.id.action_vehiculeReserve2Fragment_to_infosTrajetFragment,
                     bundle
                 )
-            }
-            else if ((viewModel.trajet.value?.dateFin == null) && (viewModel.trajet.value != null)){
+            } else if ((viewModel.trajet.value?.dateFin == null) && (viewModel.trajet.value != null)) {
                 val handler = Handler()
                 handler.postDelayed(Runnable { hud.dismiss() }, 500)
                 val dialog = MaterialDialog(requireActivity())
                     .title(R.string.signalODB)
                     .message(R.string.signalODBDetail)
-                    .positiveButton(R.string.yes) { dialog -> dialog.dismiss()
+                    .positiveButton(R.string.yes) { dialog ->
+                        dialog.dismiss()
                     }
 
                 dialog.show()

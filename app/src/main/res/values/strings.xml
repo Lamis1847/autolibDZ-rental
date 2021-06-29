@@ -117,5 +117,9 @@
     <string name="transactions">Transactions</string>
 
     <string name="signalODB">Fin de trajet</string>
-    <string name="signalODBDetail">Veuillez signalez la fin de trajet sur l\'ordinateur de bord de votre voiture d'abord.</string>
+    <string name="signalODBDetail">Veuillez signalez la fin de trajet sur l\'ordinateur de bord de votre voiture d\'abord.</string>
+    <!--maps display fragment-->
+    <string name="compteValidationTitle">Opération impossible</string>
+    <string name="compteValidationMsg">Votre compte n\'a pas encore été validé</string>
+    <string name="compris">J\'ai compris</string>
 </resources>

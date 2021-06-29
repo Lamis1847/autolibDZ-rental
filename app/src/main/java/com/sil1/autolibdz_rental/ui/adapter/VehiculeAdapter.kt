@@ -56,6 +56,8 @@ class VehiculesAdapter(
             vm.etat = data[position].etat
             vm.limiteurVitesse =  data[position].limiteurVitesse
             vm.secureUrl = data[position].secureUrl
+            vm.longitude = data[position].longitude
+            vm.latitute = data[position].latitude
             vmRes.idBorneDepart = resViewModel.idBorneDepart
             vmRes.idBorneDestination = resViewModel.idBorneDestination
             vmRes.tempsEstimeEnSecondes = resViewModel.tempsEstimeEnSecondes
@@ -70,12 +72,13 @@ class VehiculesAdapter(
             vm.modele =  data[position].modele
             vm.secureUrl = data[position].secureUrl
             vm.numChassis = data[position].numChassis
+            vm.longitude = data[position].longitude
+            vm.latitute = data[position].latitude
             vmRes.idBorneDepart = resViewModel.idBorneDepart
             vmRes.idBorneDestination = resViewModel.idBorneDestination
             vmRes.tempsEstimeEnSecondes = resViewModel.tempsEstimeEnSecondes
             vmRes.tempsEstimeHumanReadable = resViewModel.tempsEstimeHumanReadable
             Log.i("VehiculeAdapter","idBornDepart"+resViewModel.idBorneDepart.toString() )
-
             Log.i("VehiculeAdapter","distanceEstime"+resViewModel.distanceEstime.toString() )
             Log.i("VehiculeAdapter","tempsEstimeEnSecondes"+resViewModel.tempsEstimeEnSecondes.toString())
             vmRes.distanceEstime = resViewModel.distanceEstime
