@@ -19,6 +19,7 @@ import java.time.format.DateTimeFormatter
 class AbonnementPaymentViewModel : ViewModel() {
     private val TAG = "TAG-AbonnementPaymentViewModel"
     var prixAPayer: Double = 0.0
+    var idReservation: Int = 0
 
     private val _balance = MutableLiveData<Balance>()
     val balance: LiveData<Balance>
@@ -59,8 +60,6 @@ class AbonnementPaymentViewModel : ViewModel() {
     }
 
     private fun createTransaction(token:String, id: Int) {
-        val idReservation = 1
-
         /*date and time of transaction*/
         var currentDateTime= LocalDateTime.now()
 

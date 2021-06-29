@@ -25,6 +25,7 @@ class StripeCardViewModel : ViewModel() {
         get() = _paymentIntent
 
     var prixAPayer: Double = 0.0
+    var idReservation: Int = 0
 
     fun createPaymentIntent(prix: Int, context: Context){
         StripeRepository.createPaymentIntent(TAG , prix) {
@@ -47,8 +48,6 @@ class StripeCardViewModel : ViewModel() {
 
         val token = sharedPref.getString("token", "default")!!
         val id = sharedPref.getString("userID", "1")!!.toInt()
-
-        val idReservation = 2
 
         var currentDateTime= LocalDateTime.now()
 

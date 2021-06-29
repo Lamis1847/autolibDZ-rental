@@ -26,6 +26,7 @@ import com.sil1.autolibdz_rental.R
 import com.stripe.android.Stripe
 import kotlinx.android.synthetic.main.abonnement_payment_fragment.*
 import kotlinx.android.synthetic.main.activity_sign_up.*
+import kotlinx.android.synthetic.main.infos_trajet_fragment.*
 import kotlinx.android.synthetic.main.stripe_card_fragment.*
 import java.lang.ref.WeakReference
 import java.util.*
@@ -33,7 +34,6 @@ import java.util.*
 @Suppress("DEPRECATION")
 class StripeCardFragment : Fragment() {
     private lateinit var viewModel: StripeCardViewModel
-    //private lateinit var paymentIntentClientSecret: String
     private lateinit var stripe: Stripe
     private lateinit var hud: KProgressHUD
     protected val sharedPrefFile = "CreditCardInfo"
@@ -49,7 +49,7 @@ class StripeCardFragment : Fragment() {
         super.onActivityCreated(savedInstanceState)
         viewModel = ViewModelProvider(this).get(StripeCardViewModel::class.java)
         viewModel.prixAPayer = arguments?.getDouble("prixAPayer")!!
-
+        viewModel.idReservation = arguments?.getInt("idReservation")!!
         val sharedPreferences: SharedPreferences = requireActivity().getSharedPreferences(sharedPrefFile,
             Context.MODE_PRIVATE)
 
@@ -164,8 +164,6 @@ class StripeCardFragment : Fragment() {
             .negativeButton(R.string.annuler)  { dialog ->
                 dialog.dismiss()
             }
-
         dialog.show()
-
     }
 }

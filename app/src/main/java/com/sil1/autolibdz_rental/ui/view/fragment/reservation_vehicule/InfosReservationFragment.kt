@@ -86,7 +86,7 @@ class InfosReservationFragment : Fragment() {
 
             viewModel.reservation.observe(viewLifecycleOwner, Observer {
                 val data = viewModel.reservation.value
-                val bundle = bundleOf("codePin" to (data?.codePin))
+                val bundle = bundleOf("codePin" to (data?.codePin), "id" to (data?.id))
               findNavController().navigate(R.id.action_infosReservationFragment_to_vehiculeReserveFragment,bundle)
 
             })

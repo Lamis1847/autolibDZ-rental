@@ -34,7 +34,7 @@ class InfosReservationViewModel: ViewModel() {
         )
 
         val token = sharedPref.getString("token", "default")!!
-        val id = sharedPref.getString("userID", "1")!!.toInt()
+        val id = sharedPref.getString("userID", "0")!!.toInt()
 
         TrajetRepository.getTrajetByReservation(TAG, token, idReservation) {
             Log.i(TAG, "view model here")

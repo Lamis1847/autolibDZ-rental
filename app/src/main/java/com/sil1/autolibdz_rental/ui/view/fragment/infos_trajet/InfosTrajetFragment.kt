@@ -15,6 +15,8 @@ import kotlinx.android.synthetic.main.infos_trajet_fragment.*
 class InfosTrajetFragment : Fragment() {
 
     private lateinit var viewModel: InfosTrajetViewModel
+    private var idReservation = 0
+    private var prixAPayer = 0.0
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -27,9 +29,18 @@ class InfosTrajetFragment : Fragment() {
         super.onActivityCreated(savedInstanceState)
         viewModel = ViewModelProvider(this).get(InfosTrajetViewModel::class.java)
 
-        prixText.setText("100.00 DA")
-        var bundle = bundleOf("prixAPayer" to 250.00)
+        prixAPayer = arguments?.getFloat("idReservation")!!.toDouble()
+        idReservation = arguments?.getInt("idReservation")!!
+        prixText.text = prixAPayer.toString()
+        borneDepartText.text = arguments?.getString("borneDepart")!!.toString()
+        borneArriveeText.text = arguments?.getString("borneArrivee")!!.toString()
+        kilometrageText.text = arguments?.getFloat("kilometres")!!.toString()
+        dureeText.text = arguments?.getInt("dureeText")!!.toString()
 
+        var bundle = bundleOf(
+            "prixAPayer" to prixAPayer,
+            "idReservation" to idReservation
+        )
         payWithStripe.setOnClickListener {toStripePayment(bundle) }
         payWithAbonnement.setOnClickListener {toAbonnementPayment(bundle)}
     }

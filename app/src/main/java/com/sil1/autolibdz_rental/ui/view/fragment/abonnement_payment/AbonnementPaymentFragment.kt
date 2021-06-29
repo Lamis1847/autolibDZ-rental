@@ -35,6 +35,7 @@ class AbonnementPaymentFragment : Fragment() {
         viewModel = ViewModelProvider(this).get(AbonnementPaymentViewModel::class.java)
 
         viewModel.prixAPayer = arguments?.getDouble("prixAPayer")!! //force as non null
+        viewModel.idReservation = arguments?.getInt("idReservation")!!
 
         viewModel.getUserBalance(requireContext())
 

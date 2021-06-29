@@ -13,17 +13,24 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.core.app.ActivityCompat
+import androidx.core.os.bundleOf
+import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.findNavController
+import com.afollestad.materialdialogs.MaterialDialog
 import com.bumptech.glide.Glide
 import com.google.android.gms.location.*
 import com.google.android.gms.maps.model.LatLng
 import com.google.android.gms.tasks.Task
+import com.kaopiz.kprogresshud.KProgressHUD
 import com.sil1.autolibdz_rental.R
 import com.sil1.autolibdz_rental.ui.view.activity.MyDrawerController
+import com.sil1.autolibdz_rental.ui.view.fragment.stripe_card.StripeCardViewModel
+import com.sil1.autolibdz_rental.ui.viewmodel.Reservation
 import com.sil1.autolibdz_rental.ui.viewmodel.Vehicule
 import kotlinx.android.synthetic.main.fragment_details_vehicule.*
 import kotlinx.android.synthetic.main.fragment_vehicule_reserve2.*
+import kotlinx.android.synthetic.main.stripe_card_fragment.*
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.launch
@@ -32,6 +39,7 @@ import java.net.URL
 
 class VehiculeReserve2Fragment : Fragment() {
     private val TAG = "_VehiculeDeverouillerFragment"
+    private lateinit var viewModel: InfosReservationViewModel
     private lateinit var fusedLocationClient: FusedLocationProviderClient
     private lateinit var locationCallback: LocationCallback
     var requestingLocationUpdates = true
@@ -39,6 +47,8 @@ class VehiculeReserve2Fragment : Fragment() {
     private lateinit var locationRequest : LocationRequest
     private lateinit var vehiculeLocation : LatLng
     private var myDrawerController: MyDrawerController? = null
+    private var idReservation = 0
+    private lateinit var hud: KProgressHUD
     override fun onAttach(activity: Activity) {
         super.onAttach(activity)
         myDrawerController = try {
@@ -59,6 +69,8 @@ class VehiculeReserve2Fragment : Fragment() {
     ): View? {
         var codePin= arguments?.get("codePin")
         code = codePin.toString()
+
+        var idReservation= arguments?.get("id")
 
 
         myDrawerController?.setDrawer_Locked();
@@ -90,7 +102,10 @@ class VehiculeReserve2Fragment : Fragment() {
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
         val vm = ViewModelProvider(requireActivity()).get(Vehicule::class.java)
-        val viewModel = ViewModelProvider(requireActivity()).get(InfosReservationViewModel::class.java)
+        viewModel = ViewModelProvider(requireActivity()).get(InfosReservationViewModel::class.java)
+
+        signalerFinTrajetBtn.setOnClickListener { signalFinTrajet() }
+
         Glide.with(requireActivity()).load(vm.secureUrl).into(imageVehicule1)
         codePINTextView1.text = code
 
@@ -101,17 +116,6 @@ class VehiculeReserve2Fragment : Fragment() {
         verrouillerButton1.setOnClickListener {
             deverrouillerButton1?.isEnabled = true
             verrouillerButton1?.isEnabled = false
-        }
-
-        val mainLooper = Looper.getMainLooper()
-
-        GlobalScope.launch(Dispatchers.IO) {
-            val idReservation = 148
-            viewModel.getTrajet(requireContext(), idReservation)
-            Thread.sleep(3000)
-            launch(Dispatchers.Main) {
-                requireActivity().findNavController(R.id.mobile_navigation).navigate(R.id.action_vehiculeReserve2Fragment_to_infosTrajetFragment)
-            }
         }
     }
     override fun onResume() {
@@ -143,9 +147,6 @@ class VehiculeReserve2Fragment : Fragment() {
             // for ActivityCompat#requestPermissions for more details.
             return
         }
-        fusedLocationClient.requestLocationUpdates(locationRequest,
-            locationCallback,
-            Looper.getMainLooper())
     }
     override fun onPause() {
         super.onPause()
@@ -197,6 +198,47 @@ class VehiculeReserve2Fragment : Fragment() {
         // distance in meter
         Log.i(TAG,"Distance : ${results[0]}")
         return results[0]
+    }
+
+    fun signalFinTrajet() {
+        //create payment intent
+        val vmRes = ViewModelProvider(requireActivity()).get(Reservation::class.java)
+        viewModel.getTrajet(requireContext(), idReservation)
+        hud = KProgressHUD.create(requireActivity())
+            .setStyle(KProgressHUD.Style.SPIN_INDETERMINATE)
+            .setLabel("Patientez s'il vous plait")
+        hud.show()
+        viewModel.trajet.observe(requireActivity(), Observer {
+            if (viewModel.trajet.value?.dateFin != null) {
+                val handler = Handler()
+                handler.postDelayed(Runnable { hud.dismiss() }, 500)
+                Log.i("tralala", "date fin atteinte")
+                val bundle = bundleOf(
+                    "idReservation" to idReservation,
+                    "borneDepart" to vmRes.nomBorneDepart,
+                    "borneArrivee" to vmRes.nomBorneDestination,
+                    "kilometres" to viewModel.trajet.value!!.kmParcourue,
+                    "temps" to viewModel.trajet.value!!.tempsEstime,
+                    "prixAPayer" to viewModel.trajet.value!!.prixAPayer
+                )
+                requireActivity().findNavController(R.id.payment_test).navigate(
+                    R.id.action_vehiculeReserve2Fragment_to_infosTrajetFragment,
+                    bundle
+                )
+            }
+            else if ((viewModel.trajet.value?.dateFin == null) && (viewModel.trajet.value != null)){
+                val handler = Handler()
+                handler.postDelayed(Runnable { hud.dismiss() }, 500)
+                val dialog = MaterialDialog(requireActivity())
+                    .title(R.string.signalODB)
+                    .message(R.string.signalODBDetail)
+                    .positiveButton(R.string.yes) { dialog -> dialog.dismiss()
+                    }
+
+                dialog.show()
+                Log.i("tralala", "date fin NOOON atteinte")
+            }
+        })
     }
 
 }

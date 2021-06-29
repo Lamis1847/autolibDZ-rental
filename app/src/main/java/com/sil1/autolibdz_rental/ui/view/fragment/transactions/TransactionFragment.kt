@@ -84,31 +84,6 @@ class TransactionFragment : Fragment() {
                 transactionCardsRecycler.adapter = adapter
             }
         })
-
-        val viewModel = ViewModelProvider(requireActivity()).get(InfosReservationViewModel::class.java)
-//        GlobalScope.launch(Dispatchers.IO) {
-//            val idReservation = 148
-//            viewModel.getTrajet(requireContext(), idReservation)
-//
-//            Thread.sleep(3000)
-//            Log.i("tralala" , viewModel.trajet.value.toString() )
-//            launch(Dispatchers.Main) {
-//                requireActivity().findNavController(R.id.mobile_navigation).navigate(R.id.action_vehiculeReserve2Fragment_to_infosTrajetFragment)
-//            }
-//        }
-        val scheduler: ScheduledExecutorService = Executors.newSingleThreadScheduledExecutor()
-        scheduler.scheduleAtFixedRate(Runnable {
-            // TODO Auto-generated method stub
-            // Hit WebService
-            val idReservation = 148
-            viewModel.getTrajet(requireContext(), idReservation)
-            viewModel.trajet.observe(requireActivity(), Observer {
-                if (viewModel.trajet.value?.dateFin != null) {
-                    Log.i("tralala", "date fin atteinte")
-                }
-            })
-            Log.i("tralala", "date fin NOOON atteinte")
-        }, 0, 5, TimeUnit.SECONDS)
         return mview
     }
 
