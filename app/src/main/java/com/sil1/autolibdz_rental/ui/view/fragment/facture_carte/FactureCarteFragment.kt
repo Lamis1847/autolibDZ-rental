@@ -23,7 +23,7 @@ import kotlinx.android.synthetic.main.facture_abonnement_fragment.skipBtn
 import kotlinx.android.synthetic.main.facture_carte_fragment.*
 import java.time.LocalDateTime
 import java.time.format.DateTimeFormatter
-
+import androidx.navigation.fragment.findNavController
 
 class FactureCarteFragment : Fragment() {
 
@@ -60,7 +60,7 @@ class FactureCarteFragment : Fragment() {
         factureDateText.text = formatted
 
         skipBtn.setOnClickListener{
-            requireActivity().findNavController(R.id.payment_test).navigate(R.id.action_factureCarteFragment_to_paymentEndFragment)
+            findNavController().navigate(R.id.action_factureCarteFragment_to_paymentEndFragment)
         }
     }
 

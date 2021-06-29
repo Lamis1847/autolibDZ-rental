@@ -177,7 +177,7 @@ class MapDisplayFragment : Fragment() , OnMapReadyCallback , GoogleMap.OnMarkerC
                 }
             }
             //filtrer les bornes à afficher
-            if(valide==1){
+            if(valide==0){
             verifyBornesDeDepart()
             // Set the fields to specify which types of place data to
             // return after the user has made a selection.
@@ -190,6 +190,9 @@ class MapDisplayFragment : Fragment() , OnMapReadyCallback , GoogleMap.OnMarkerC
                     .build(it1)
             }
             startActivityForResult(intent, AUTOCOMPLETE_REQUEST_CODE)}
+            else {
+                dialog.show()
+            }
         }
         buttonChoixBorneDestination.setOnClickListener{
 
@@ -205,7 +208,7 @@ class MapDisplayFragment : Fragment() , OnMapReadyCallback , GoogleMap.OnMarkerC
 
                 }
             }
-            if(valide==1){
+            if(valide==0){
             verifyBornesDeDestination()
 
             // Set the fields to specify which types of place data to
@@ -219,6 +222,9 @@ class MapDisplayFragment : Fragment() , OnMapReadyCallback , GoogleMap.OnMarkerC
                     .build(it1)
             }
             startActivityForResult(intent, AUTOCOMPLETE_REQUEST_CODE) }
+            else {
+                dialog.show()
+            }
         }
         buttonSuivant.setOnClickListener{
             makeDistanceCalculationCall(origin,destination)

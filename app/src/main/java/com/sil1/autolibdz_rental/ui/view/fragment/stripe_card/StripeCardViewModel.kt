@@ -25,14 +25,13 @@ class StripeCardViewModel : ViewModel() {
         get() = _paymentIntent
 
     var prixAPayer: Double = 0.0
-    var idReservation: Int = 0
 
-    fun createPaymentIntent(prix: Int, context: Context){
+    fun createPaymentIntent(prix: Int, context: Context, idReservation: Int){
         StripeRepository.createPaymentIntent(TAG , prix) {
             Log.i(TAG, "view model here")
             _paymentIntent.postValue(it)
             if (it != null)
-                createTransaction(context)
+                createTransaction(context, idReservation )
         }
     }
 
@@ -41,7 +40,7 @@ class StripeCardViewModel : ViewModel() {
             _cardExpirationDate.postValue(cal!!)
     }
 
-    private fun createTransaction(context: Context) {
+    private fun createTransaction(context: Context, idReservation: Int) {
         val sharedPref = context.getSharedPreferences(
             sharedPrefFile, Context.MODE_PRIVATE
         )
@@ -54,7 +53,7 @@ class StripeCardViewModel : ViewModel() {
         val formatter = DateTimeFormatter.ofPattern("dd-MM HH:mm")
         val formatted = currentDateTime.format(formatter)
 
-        val transaction = Transaction(id, idReservation,formatted, prixAPayer, "Stripe")
+        val transaction = Transaction(id, idReservation,null, prixAPayer.toFloat(), "Stripe")
 
         AbonnementRepository.createTransaction(TAG, token, transaction) {}
     }

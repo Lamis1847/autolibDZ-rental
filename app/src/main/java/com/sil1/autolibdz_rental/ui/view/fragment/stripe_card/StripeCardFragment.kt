@@ -11,6 +11,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.CheckBox
 import android.widget.Toast
+import androidx.navigation.fragment.findNavController
 import androidx.appcompat.app.AlertDialog
 import androidx.core.os.bundleOf
 import androidx.fragment.app.Fragment
@@ -36,6 +37,7 @@ class StripeCardFragment : Fragment() {
     private lateinit var viewModel: StripeCardViewModel
     private lateinit var stripe: Stripe
     private lateinit var hud: KProgressHUD
+    var idReservation = 0
     protected val sharedPrefFile = "CreditCardInfo"
 
     override fun onCreateView(
@@ -49,7 +51,7 @@ class StripeCardFragment : Fragment() {
         super.onActivityCreated(savedInstanceState)
         viewModel = ViewModelProvider(this).get(StripeCardViewModel::class.java)
         viewModel.prixAPayer = arguments?.getDouble("prixAPayer")!!
-        viewModel.idReservation = arguments?.getInt("idReservation")!!
+        idReservation = arguments?.getInt("idReservation")!!
         val sharedPreferences: SharedPreferences = requireActivity().getSharedPreferences(sharedPrefFile,
             Context.MODE_PRIVATE)
 
@@ -142,7 +144,7 @@ class StripeCardFragment : Fragment() {
             .message(R.string.procedePaymentText)
             .positiveButton(R.string.checkout) { dialog ->
                 //create payment intent
-                viewModel.createPaymentIntent(viewModel.prixAPayer!!.times(100).toInt(), requireContext())
+                viewModel.createPaymentIntent(viewModel.prixAPayer!!.times(100).toInt(), requireContext(), idReservation)
                 hud = KProgressHUD.create(requireActivity())
                     .setStyle(KProgressHUD.Style.SPIN_INDETERMINATE)
                     .setLabel("Patientez s'il vous plait")
@@ -153,7 +155,7 @@ class StripeCardFragment : Fragment() {
                         val handler = Handler()
                         handler.postDelayed(Runnable { hud.dismiss() }, 500)
                         var bundle = bundleOf("prixAPayer" to viewModel.prixAPayer)
-                        requireActivity().findNavController(R.id.payment_test).navigate(
+                        findNavController().navigate(
                             R.id.action_stripeCardFragment2_to_factureCarteFragment,
                             bundle
                         )

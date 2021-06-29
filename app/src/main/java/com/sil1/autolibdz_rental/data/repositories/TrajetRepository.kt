@@ -17,11 +17,10 @@ class TrajetRepository {
 
         fun getTrajetByReservation(
             TAG: String,
-            token: String,
             idReservation: Int,
             onResult: (Trajet?) -> Unit
         ) {
-            var call = api.getTrajetByReservation( "Basic $token", idReservation)
+            var call = api.getTrajetByReservation(idReservation)
 
             call.enqueue(object : Callback<Trajet> {
                 override fun onResponse(

@@ -179,7 +179,7 @@
         android:label="fragment_payment_end"
         tools:layout="@layout/fragment_payment_end" >
         <action
-            android:id="@+id/action_paymentEndFragment_to_infosTrajetFragment"
-            app:destination="@id/infosTrajetFragment" />
+            android:id="@+id/action_paymentEndFragment_to_nav_home"
+            app:destination="@id/nav_home" />
     </fragment>
 </navigation>

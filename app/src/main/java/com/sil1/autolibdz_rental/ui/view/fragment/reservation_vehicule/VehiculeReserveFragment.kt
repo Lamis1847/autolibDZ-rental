@@ -23,6 +23,9 @@ class VehiculeReserveFragment : Fragment() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        var codePin = arguments?.get("codePin")
+        var id = arguments?.getInt("id")!!
+        bundle = bundleOf("codePin" to codePin, "id" to id)
     }
 
 
@@ -31,18 +34,17 @@ class VehiculeReserveFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         // Inflate the layout for this fragment
-        splash()
-        rootview = inflater.inflate(R.layout.fragment_vehicule_reserve, container, false)
-        var codePin = arguments?.get("codePin")
 
-        bundle = bundleOf("codePin" to codePin)
+        //splash()
+        rootview = inflater.inflate(R.layout.fragment_vehicule_reserve, container, false)
+        findNavController().navigate(R.id.action_vehiculeReserveFragment_to_vehiculeReserve2Fragment,bundle)
         return rootview
     }
 
-    fun splash(){
-        Thread(Runnable {
-            Thread.sleep(500)
-            findNavController().navigate(R.id.action_vehiculeReserveFragment_to_vehiculeReserve2Fragment,bundle)
-        }).start()
-    }
+//    fun splash(){
+//        Thread(Runnable {
+//            Thread.sleep(500)
+//            findNavController().navigate(R.id.action_vehiculeReserveFragment_to_vehiculeReserve2Fragment,bundle)
+//        }).start()
+//    }
 }

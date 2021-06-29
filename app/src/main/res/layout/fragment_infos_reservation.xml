@@ -1,14 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
-
-<androidx.core.widget.NestedScrollView
+<androidx.constraintlayout.widget.ConstraintLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    >
-<androidx.constraintlayout.widget.ConstraintLayout
-
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".ui.view.fragment.reservation_vehicule.InfosReservationFragment">
@@ -27,12 +21,12 @@
             android:id="@+id/textView3"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:fontFamily="@font/gothamblack"
-            android:paddingTop="15sp"
+            android:fontFamily="@font/gothammedium"
+            android:paddingTop="24dp"
             android:text="Informations sur votre réservation"
             android:textAlignment="center"
-            android:textColor="@color/black"
-            android:textSize="20sp"
+            android:textColor="@color/white"
+            android:textSize="25sp"
             tools:layout_editor_absoluteX="1dp"
             tools:layout_editor_absoluteY="-5dp" />
     </androidx.cardview.widget.CardView>
@@ -42,8 +36,9 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="36dp"
-        android:fontFamily="@font/gothambold"
+        android:fontFamily="@font/gothammedium"
         android:text="Départ"
+        android:textColor="@color/black"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.142"
         app:layout_constraintStart_toStartOf="parent"
@@ -54,8 +49,9 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="28dp"
-        android:fontFamily="@font/gothambold"
+        android:fontFamily="@font/gothammedium"
         android:text="Destination"
+        android:textColor="@color/black"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.158"
         app:layout_constraintStart_toStartOf="parent"
@@ -66,8 +62,9 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="28dp"
-        android:fontFamily="@font/gothambold"
+        android:fontFamily="@font/gothammedium"
         android:text="Véhicule"
+        android:textColor="@color/black"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.148"
         app:layout_constraintStart_toStartOf="parent"
@@ -115,7 +112,7 @@
         android:id="@+id/cardView3"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="28dp"
+        android:layout_marginTop="10dp"
         android:backgroundTint="@color/grey_light"
         app:cardCornerRadius="10dp"
         app:layout_constraintEnd_toEndOf="parent"
@@ -152,7 +149,7 @@
         android:id="@+id/cardView4"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="28dp"
+        android:layout_marginTop="10dp"
         app:cardBackgroundColor="@color/grey_light"
         app:cardCornerRadius="10dp"
         app:layout_constraintEnd_toEndOf="parent"
@@ -189,7 +186,7 @@
         android:id="@+id/cardView5"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="28dp"
+        android:layout_marginTop="10dp"
         app:cardBackgroundColor="@color/grey_light"
         app:cardCornerRadius="10dp"
         app:layout_constraintEnd_toEndOf="parent"
@@ -260,4 +257,3 @@
     </androidx.cardview.widget.CardView>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
-</androidx.core.widget.NestedScrollView>

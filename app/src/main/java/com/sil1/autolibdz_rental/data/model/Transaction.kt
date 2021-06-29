@@ -9,9 +9,9 @@ data class Transaction(
     @SerializedName("idReservation")
     var idReservation:Int,
     @SerializedName("dateTransaction")
-    var dateTransaction:String,
+    var dateTransaction:String?,
     @SerializedName("montant")
-    var montant:Double,
+    var montant:Float,
     @SerializedName("modePaiement")
     var modePaiement:String
 )

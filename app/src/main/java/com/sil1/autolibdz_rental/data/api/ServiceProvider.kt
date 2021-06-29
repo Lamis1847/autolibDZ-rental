@@ -78,7 +78,6 @@ interface ServiceProvider {
     fun getUserTransactions(@Path("id") id: Int, @Header("Authorization") token:String ): Call<ArrayList<Transaction>>
 
     //get user's stripe transactions
-    @FormUrlEncoded
-    @POST("api/trajet/getTrajetByReservation")
-    fun getTrajetByReservation( @Header("Authorization") token:String,@Field("idReservation") idReservation: Int,): Call<Trajet>
+    @GET("api/trajet/getTrajetByReservation/{id}")
+    fun getTrajetByReservation(@Path("id") idReservation: Int): Call<Trajet>
 }

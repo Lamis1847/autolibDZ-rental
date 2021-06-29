@@ -109,7 +109,7 @@
     <!--    paiement end-->
     <string name="paymentDone">Paiement effectué</string>
     <string name="thankYouPayment">Merci d\'avoir utilisé AutolibDz !</string>
-    <string name="done">Done</string>
+    <string name="done">Terminé</string>
 
     <!--    transaction-->
     <string name="transactionType">Nature de la réservation</string>

@@ -19,7 +19,6 @@ import java.time.format.DateTimeFormatter
 class AbonnementPaymentViewModel : ViewModel() {
     private val TAG = "TAG-AbonnementPaymentViewModel"
     var prixAPayer: Double = 0.0
-    var idReservation: Int = 0
 
     private val _balance = MutableLiveData<Balance>()
     val balance: LiveData<Balance>
@@ -43,7 +42,7 @@ class AbonnementPaymentViewModel : ViewModel() {
         }
     }
 
-    fun payWithAbonnement(context: Context) {
+    fun payWithAbonnement(context: Context , idReservation: Int) {
         val sharedPref = context.getSharedPreferences(
             sharedPrefFile, Context.MODE_PRIVATE
         )
@@ -54,19 +53,20 @@ class AbonnementPaymentViewModel : ViewModel() {
         AbonnementRepository.payWithAbonnement(TAG, token, id,prixAPayer) {
             Log.i(TAG, "view model here (checkout)")
             _response.postValue(it)
-            if (it?.message()=="OK")
-                createTransaction(token, id)
+            if (it!=null)
+                createTransaction(token, id, idReservation)
         }
     }
 
-    private fun createTransaction(token:String, id: Int) {
+    private fun createTransaction(token:String, id: Int, idReservation: Int) {
+        Log.i("heeeeeeeeeere", "here")
         /*date and time of transaction*/
         var currentDateTime= LocalDateTime.now()
 
-        val formatter = DateTimeFormatter.ofPattern("dd-MM HH:mm")
+        val formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd")
         val formatted = currentDateTime.format(formatter)
 
-        val transaction = Transaction(id, idReservation, formatted ,prixAPayer, "Paiement Carte d\'abonnement")
+        val transaction = Transaction(id, idReservation, null ,prixAPayer.toFloat(), "Paiement Carte d\'abonnement")
 
         AbonnementRepository.createTransaction(TAG, token, transaction) {}
     }

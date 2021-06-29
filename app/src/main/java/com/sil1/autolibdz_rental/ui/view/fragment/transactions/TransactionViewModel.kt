@@ -30,8 +30,7 @@ class TransactionViewModel: ViewModel() {
         )
 
         val token = sharedPref.getString("token", "default")!!
-        //val id = sharedPref.getString("userID", "1")!!.toInt()
-        val id = 1
+        val id = sharedPref.getString("userID", "1")!!.toInt()
 
         TransactionRepository.getUserTransactions(TAG, token, id) {
             Log.i(TAG, "view model here")
@@ -62,8 +61,7 @@ class TransactionViewModel: ViewModel() {
         )
 
         val token = sharedPref.getString("token", "default")!!
-        //val id = sharedPref.getString("userID", "1")!!.toInt()
-        val id = 1
+        val id = sharedPref.getString("userID", "1")!!.toInt()
 
         AbonnementRepository.getUserBalance(TAG, token, id) {
             Log.i(TAG, "view model here")

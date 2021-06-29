@@ -31,15 +31,8 @@ class InfosReservationViewModel(token : String): ViewModel() {
 
     }
 
-    fun getTrajet(context: Context, idReservation: Int) {
-        val sharedPref = context.getSharedPreferences(
-            sharedPrefFile, Context.MODE_PRIVATE
-        )
-
-        val token = sharedPref.getString("token", "default")!!
-        val id = sharedPref.getString("userID", "0")!!.toInt()
-
-        TrajetRepository.getTrajetByReservation(TAG, token, idReservation) {
+    fun getTrajet(idReservation: Int) {
+        TrajetRepository.getTrajetByReservation(TAG, idReservation) {
             Log.i(TAG, "view model here")
             _trajet.postValue(it)
         }

@@ -3,7 +3,10 @@ package com.sil1.autolibdz_rental.ui.view.activity
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.view.Window
+import android.view.WindowManager
 import android.widget.Toast
+import androidx.core.content.ContextCompat
 import com.google.android.gms.auth.api.signin.GoogleSignIn
 import com.google.android.gms.auth.api.signin.GoogleSignInAccount
 import com.google.android.gms.auth.api.signin.GoogleSignInClient
@@ -27,6 +30,17 @@ class SignUpActivity : AppCompatActivity() {
     lateinit var mGoogleSignInClient: GoogleSignInClient
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+
+        //status bar
+        val window: Window = this@SignUpActivity.window
+        window.addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS)
+        window.clearFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS)
+        window.statusBarColor = ContextCompat.getColor(
+            this@SignUpActivity,
+            R.color.palette_yellow
+        )
+
+
         setContentView(R.layout.activity_sign_up)
         //la création d'un nouveau user with input validation
         createButton.setOnClickListener {

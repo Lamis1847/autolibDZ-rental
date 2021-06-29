@@ -12,6 +12,7 @@ import android.view.ViewGroup
 import android.view.Window
 import androidx.core.os.bundleOf
 import androidx.lifecycle.Observer
+import androidx.navigation.fragment.findNavController
 import androidx.navigation.findNavController
 import com.afollestad.materialdialogs.MaterialDialog
 import com.kaopiz.kprogresshud.KProgressHUD
@@ -22,6 +23,7 @@ import kotlinx.android.synthetic.main.infos_trajet_fragment.*
 class AbonnementPaymentFragment : Fragment() {
     private lateinit var viewModel: AbonnementPaymentViewModel
     private lateinit var hud: KProgressHUD
+    var idReservation = 0
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -35,7 +37,7 @@ class AbonnementPaymentFragment : Fragment() {
         viewModel = ViewModelProvider(this).get(AbonnementPaymentViewModel::class.java)
 
         viewModel.prixAPayer = arguments?.getDouble("prixAPayer")!! //force as non null
-        viewModel.idReservation = arguments?.getInt("idReservation")!!
+        idReservation = arguments?.getInt("idReservation")!!
 
         viewModel.getUserBalance(requireContext())
 
@@ -44,6 +46,14 @@ class AbonnementPaymentFragment : Fragment() {
         viewModel.balance.observe(requireActivity(), Observer {
             balanceText.text = String.format("%.2f", it.userBalance)  + " DZD"
             newBalance.text = String.format("%.2f",  it.userBalance.minus(viewModel.prixAPayer))  + " DZD"
+
+
+            if (it.userBalance.minus(viewModel.prixAPayer) < 0) {
+                payAbonnementButton.isEnabled = false
+            }
+            else {
+                payAbonnementButton.isEnabled = false
+            }
         })
 
         payAbonnementButton.setOnClickListener{
@@ -52,7 +62,7 @@ class AbonnementPaymentFragment : Fragment() {
                 .message(R.string.procedePaymentText)
                 .positiveButton(R.string.checkout) { dialog ->
                     dialog.dismiss()
-                    viewModel.payWithAbonnement(requireContext())
+                    viewModel.payWithAbonnement(requireContext(), idReservation)
 
                     hud = KProgressHUD.create(requireActivity())
                         .setStyle(KProgressHUD.Style.SPIN_INDETERMINATE)
@@ -64,7 +74,7 @@ class AbonnementPaymentFragment : Fragment() {
                             val handler = Handler()
                             handler.postDelayed(Runnable { hud.dismiss() }, 500)
                             var bundle = bundleOf("prixAPayer" to viewModel.prixAPayer)
-                            requireActivity().findNavController(R.id.payment_test).navigate(R.id.action_abonnementPaymentFragment_to_factureAbonnementFragment22, bundle)
+                            findNavController().navigate(R.id.action_abonnementPaymentFragment_to_factureAbonnementFragment22, bundle)
                         }
                     })
                 }

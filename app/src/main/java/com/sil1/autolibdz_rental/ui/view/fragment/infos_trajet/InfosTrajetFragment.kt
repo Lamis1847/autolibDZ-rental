@@ -2,6 +2,7 @@ package com.sil1.autolibdz_rental.ui.view.fragment.infos_trajet
 
 import androidx.lifecycle.ViewModelProvider
 import android.os.Bundle
+import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
@@ -11,6 +12,7 @@ import androidx.databinding.DataBindingUtil.setContentView
 import androidx.navigation.findNavController
 import com.sil1.autolibdz_rental.R
 import kotlinx.android.synthetic.main.infos_trajet_fragment.*
+import androidx.navigation.fragment.findNavController
 
 class InfosTrajetFragment : Fragment() {
 
@@ -29,13 +31,15 @@ class InfosTrajetFragment : Fragment() {
         super.onActivityCreated(savedInstanceState)
         viewModel = ViewModelProvider(this).get(InfosTrajetViewModel::class.java)
 
-        prixAPayer = arguments?.getFloat("idReservation")!!.toDouble()
+        prixAPayer = arguments?.getDouble("prixAPayer")!!
         idReservation = arguments?.getInt("idReservation")!!
-        prixText.text = prixAPayer.toString()
+        prixText.text = prixAPayer.toString() + "DZD"
         borneDepartText.text = arguments?.getString("borneDepart")!!.toString()
         borneArriveeText.text = arguments?.getString("borneArrivee")!!.toString()
-        kilometrageText.text = arguments?.getFloat("kilometres")!!.toString()
-        dureeText.text = arguments?.getInt("dureeText")!!.toString()
+        kilometrageText.text = arguments?.get("kilometres")!!.toString() + "Km"
+        dureeText.text = arguments?.get("temps")!!.toString() + "min"
+
+        Log.i("idReservationinfotrajet", idReservation.toString())
 
         var bundle = bundleOf(
             "prixAPayer" to prixAPayer,
@@ -46,11 +50,11 @@ class InfosTrajetFragment : Fragment() {
     }
 
     fun toStripePayment(bundle: Bundle) {
-        requireActivity().findNavController(R.id.payment_test).navigate(R.id.action_infosTrajetFragment_to_stripeCardFragment,bundle)
+        findNavController().navigate(R.id.action_infosTrajetFragment_to_stripeCardFragment,bundle)
     }
 
     fun toAbonnementPayment(bundle: Bundle) {
-        requireActivity().findNavController(R.id.payment_test).navigate(R.id.action_infosTrajetFragment_to_abonnementPaymentFragment,bundle)
+        findNavController().navigate(R.id.action_infosTrajetFragment_to_abonnementPaymentFragment,bundle)
     }
 
 }
