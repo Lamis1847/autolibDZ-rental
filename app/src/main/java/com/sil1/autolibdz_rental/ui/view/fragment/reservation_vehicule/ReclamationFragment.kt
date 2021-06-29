@@ -62,10 +62,9 @@ class ReclamationFragment : Fragment() {
                 "\ndescription " + descriptionTextR.text.toString(), Toast.LENGTH_LONG).show()
         var reclamation = ReclamationModel(
             descriptionTextR.text.toString(),
-            "3",
             spinner2.selectedItem.toString()
         )
-        viewModel.ajouterReclamation(reclamation)
+        viewModel.ajouterReclamation(reclamation,  "272")
         viewModel.reclamation.observe(viewLifecycleOwner, Observer {
             val data = viewModel.reclamation.value
         })

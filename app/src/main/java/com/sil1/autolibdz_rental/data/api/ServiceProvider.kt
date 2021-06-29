@@ -1,6 +1,5 @@
 package com.sil1.autolibdz_rental.data.api
 
-import com.google.gson.annotations.SerializedName
 import com.sil1.autolibdz_rental.data.model.*
 import okhttp3.ResponseBody
 import retrofit2.Call
@@ -46,8 +45,8 @@ interface ServiceProvider {
     @POST("api/reservation")
     fun ajouterReservation(@Body reservation: ReservationModel): Call<ReservationResponse>
 
-    @POST("api/reclamation")
-    fun ajouterReclamation(@Body reservation: ReclamationModel): Call<ReclamationResponse>
+    @POST("api/reclamation/{id}")
+    fun ajouterReclamation(@Body reservation: ReclamationModel,@Path("id") id:String ): Call<ReclamationResponse>
 
 
     @POST("api/identites")

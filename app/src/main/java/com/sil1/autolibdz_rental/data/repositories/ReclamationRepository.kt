@@ -22,12 +22,13 @@ class ReclamationRepository {
 
         fun  ajouterReclamation(
             TAG: String,
+            id: String,
             reclamation: ReclamationModel,
             onResult: (MutableLiveData<ReclamationResponse>?) -> Unit
 
         )  {
             var reclamer = MutableLiveData<ReclamationResponse>()
-            val addReclamationRequest = api.ajouterReclamation(reclamation)// consommation de l'api
+            val addReclamationRequest = api.ajouterReclamation(reclamation,id)// consommation de l'api
             addReclamationRequest.enqueue(object : Callback<ReclamationResponse> {
                 override fun onResponse(
                     call: Call<ReclamationResponse>,
@@ -40,7 +41,7 @@ class ReclamationRepository {
                             ReclamationResponse::class.java
                         )
                         onResult(null)
-                        Log.i(TAG, "ERROR"+message+ "reclam"+ reclamation)
+                        Log.i(TAG, "ERROR"+message)
 
 
                     } else {
@@ -55,7 +56,7 @@ class ReclamationRepository {
 
                 override fun onFailure(call: Call<ReclamationResponse>, t: Throwable) {
 
-                    Log.i(TAG, "Erreur lors de l'envoie"+t.localizedMessage)
+                    Log.i(TAG, "Erreur lors de l'envoie:"+t.localizedMessage)
                     onResult(null)
                 }
             })

@@ -12,9 +12,8 @@ class ReclamationViewModel: ViewModel() {
     private val TAG = "TAG-ReclamationViewModel"
     var reclamation=  MutableLiveData<ReclamationResponse>()
 
-    fun  ajouterReclamation(res : ReclamationModel)  {
-        ReclamationRepository.ajouterReclamation(TAG,res) {
-            Log.i(TAG, "view model here")
+    fun  ajouterReclamation(res : ReclamationModel,id:String)  {
+        ReclamationRepository.ajouterReclamation(TAG,id,res) {
             reclamation.value = it?.value
         }
 
