@@ -61,9 +61,6 @@ class DetailsVehiculeFragment : Fragment() {
         pressionPneuD.text = vm.pressionPneus.toString()
         niveauHMD.text = vm.pressionHuileMoteur.toString()
         anomalieCD.text = vm.anomalieCircuit
-        regulateurVD.text = vm.regulateurVitesse.toString()
-        limiteurVD.text=vm.limiteurVitesse.toString()
-
         Glide.with(requireActivity()).load(vm.secureUrl).into(VehiculeImageViewD)
         reseverButtonD.setOnClickListener {
             findNavController().navigate(R.id.action_detailsVehiculeFragment_to_infosReservationFragment)
