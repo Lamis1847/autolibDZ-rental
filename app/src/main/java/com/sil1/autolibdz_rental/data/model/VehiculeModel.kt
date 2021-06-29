@@ -39,4 +39,8 @@ data class VehiculeModel(
     var idCloudinary:String,
     //@SerializedName("secureUrl")
     var secureUrl:String,
+    //@SerializedName("latitude")
+    var latitude:Float,
+    //@SerializedName("longitude")
+    var longitude:Float,
 )

@@ -22,7 +22,7 @@
     <color name="error_color">#F5365C</color>
     <color name="back_button">#252834</color>
     <color name="validate_color">#2DCE89</color>
-
-
-
+    <color name="textGray">#353535</color>
+    <color name="redAlert">#F5365C</color>
+    <color name="greenOk">#2DCE89</color>
 </resources>

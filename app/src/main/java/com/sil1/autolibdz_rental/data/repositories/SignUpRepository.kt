@@ -1,6 +1,8 @@
 package com.sil1.autolibdz_rental.data.repositories
 
 import android.content.Context
+import android.content.Intent
+import android.util.Log
 import android.widget.Toast
 import com.google.gson.Gson
 import com.sil1.autolibdz_rental.data.api.ServiceBuilder
@@ -8,6 +10,9 @@ import com.sil1.autolibdz_rental.data.api.ServiceProvider
 import com.sil1.autolibdz_rental.data.model.Locataire
 import com.sil1.autolibdz_rental.data.model.SignUpGoogleBody
 import com.sil1.autolibdz_rental.data.model.SignUpResponse
+import com.sil1.autolibdz_rental.ui.view.activity.HomeActivity
+import com.sil1.autolibdz_rental.ui.view.activity.LoginActivity
+import com.sil1.autolibdz_rental.ui.view.activity.validation.ValidationActivity
 import com.sil1.autolibdz_rental.utils.idTokenUser
 import retrofit2.Call
 import retrofit2.Callback
@@ -45,6 +50,8 @@ class SignUpRepository {
                             message.message,
                             Toast.LENGTH_LONG
                         ).show();
+
+
                     } else {
                         val resp = response.body()
                         Toast.makeText(
@@ -52,6 +59,8 @@ class SignUpRepository {
                             resp?.message,
                             Toast.LENGTH_SHORT
                         ).show()
+                        val myIntent = Intent(context, ValidationActivity::class.java)
+                        context.startActivity(myIntent)
                     }
                 }
 

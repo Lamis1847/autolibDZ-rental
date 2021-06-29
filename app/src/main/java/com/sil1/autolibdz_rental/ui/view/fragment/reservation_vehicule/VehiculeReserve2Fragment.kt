@@ -17,8 +17,14 @@ import com.bumptech.glide.Glide
 import com.google.android.gms.location.*
 import com.google.android.gms.maps.model.LatLng
 import com.google.android.gms.tasks.Task
+import com.google.maps.DistanceMatrixApi
+import com.google.maps.GeoApiContext
+import com.google.maps.PendingResult
+import com.google.maps.model.DistanceMatrix
+import com.google.maps.model.TravelMode
 import com.sil1.autolibdz_rental.R
 import com.sil1.autolibdz_rental.ui.view.activity.MyDrawerController
+import com.sil1.autolibdz_rental.ui.viewmodel.Reservation
 import com.sil1.autolibdz_rental.ui.viewmodel.Vehicule
 import kotlinx.android.synthetic.main.fragment_details_vehicule.*
 import kotlinx.android.synthetic.main.fragment_vehicule_reserve2.*
@@ -28,9 +34,11 @@ class VehiculeReserve2Fragment : Fragment() {
     private lateinit var fusedLocationClient: FusedLocationProviderClient
     private lateinit var locationCallback: LocationCallback
     var requestingLocationUpdates = true
+    var totalDistance : Long = 0
     private lateinit var mCurrentLocation : Location
     private lateinit var locationRequest : LocationRequest
     private lateinit var vehiculeLocation : LatLng
+    private lateinit var vm : Vehicule
     private var myDrawerController: MyDrawerController? = null
     override fun onAttach(activity: Activity) {
         super.onAttach(activity)
@@ -50,6 +58,8 @@ class VehiculeReserve2Fragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
+         vm = ViewModelProvider(requireActivity()).get(Vehicule::class.java)
+
         var codePin= arguments?.get("codePin")
         code = codePin.toString()
         myDrawerController?.setDrawer_Locked();
@@ -57,21 +67,28 @@ class VehiculeReserve2Fragment : Fragment() {
 
         getCurrentLocation()
         createLocationRequest()
-        vehiculeLocation = LatLng(36.694709,4.058017) //36.694732,4.058094
+        vehiculeLocation = LatLng(vm.latitute.toDouble(), vm.longitude.toDouble()) //36.7045275 + 3.1730424
         val builder = LocationSettingsRequest.Builder()
             .addLocationRequest(locationRequest)
         val client: SettingsClient = LocationServices.getSettingsClient(requireActivity())
         val task: Task<LocationSettingsResponse> = client.checkLocationSettings(builder.build())
-        calculateDistance(36.702799,4.059917,36.694697,4.058107)
 
         locationCallback = object : LocationCallback() {
 
             override fun onLocationResult(locationResult: LocationResult?) {
                 locationResult ?: return
                 for (location in locationResult.locations){
-                    calculateDistance(vehiculeLocation.latitude,vehiculeLocation.longitude,location.latitude,location.longitude)
+                    Log.i(TAG,"Current location : latitude : ${location.latitude} ,longitude ${location.longitude}")
+                    Log.i(TAG,"Vehicule location : latitude : ${vehiculeLocation.latitude} ,longitude ${vehiculeLocation.longitude}")
+
+                    var res = calculateDistance(vehiculeLocation.latitude,vehiculeLocation.longitude,location.latitude,location.longitude)
+                    //var currentLocation : LatLng = LatLng(location.latitude,location.longitude)
+                   // makeDistanceCalculationCall(vehiculeLocation,currentLocation)
                     // write the condition to enable deverouiller button
-                    Log.i(TAG,"resss == ${location.latitude}")
+                    if(res<20){
+                        deverrouillerButton1?.isEnabled = true
+                    }
+
                 }
             }
         }
@@ -80,10 +97,11 @@ class VehiculeReserve2Fragment : Fragment() {
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
-        val vm = ViewModelProvider(requireActivity()).get(Vehicule::class.java)
         Glide.with(requireActivity()).load(vm.secureUrl).into(imageVehicule1)
+        Log.i(TAG,"vehicule location : ${vm.longitude} ${vm.latitute}")
         codePINTextView1.text = code
-
+        verrouillerButton1?.isEnabled = false
+        deverrouillerButton1?.isEnabled = false
         deverrouillerButton1.setOnClickListener {
             verrouillerButton1?.isEnabled = true
             deverrouillerButton1?.isEnabled = false
@@ -176,6 +194,32 @@ class VehiculeReserve2Fragment : Fragment() {
         // distance in meter
         Log.i(TAG,"Distance : ${results[0]}")
         return results[0]
+    }
+
+    fun geoContextDistanceApi(): GeoApiContext {
+        return GeoApiContext.Builder()
+            .apiKey(getString(R.string.api_key))
+            .build()
+    }
+    private fun makeDistanceCalculationCall(depart:LatLng , dest:LatLng ) {
+
+        val origin = arrayOf(depart.latitude.toString() + "," + depart.longitude)
+        val destination = arrayOf(dest.latitude.toString() + "," + dest.longitude.toString())
+        DistanceMatrixApi.getDistanceMatrix(geoContextDistanceApi(), origin, destination)
+            .mode(TravelMode.DRIVING)
+            .setCallback(object : PendingResult.Callback<DistanceMatrix> {
+                override fun onResult(result: DistanceMatrix) {
+                    totalDistance = result.rows[0].elements[0].distance.inMeters
+
+                    Log.e(TAG, "Total Distance -> $totalDistance")
+
+                }
+                override fun onFailure(e: Throwable) {
+                    Log.i("error",e.message.toString())
+                    e.printStackTrace()
+                }
+            })
+
     }
 
 }

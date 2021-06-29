@@ -25,7 +25,7 @@
         android:gravity="center"
         android:text="@string/textViewSplashOne"
         android:textColor="@color/black"
-        android:textSize="35sp"
+        android:textSize="24sp"
         android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
