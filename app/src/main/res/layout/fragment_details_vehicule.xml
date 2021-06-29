@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/grey_background"
+    android:background="@color/palette_grey_200"
     android:backgroundTintMode="add"
     tools:context=".ui.view.activity.DetailsVehiculeFragment">
 
@@ -12,19 +12,17 @@
         android:id="@+id/detailsTitleTextView"
         android:layout_width="wrap_content"
         android:layout_height="22dp"
+        android:layout_marginStart="60dp"
         android:layout_marginTop="16dp"
         android:fontFamily="@font/gothambook"
         android:text="Détails"
-
+        android:textColor="@color/black"
         android:textSize="20dp"
+
+
         app:layout_constraintBottom_toTopOf="@+id/VehiculeImageViewD"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.497"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-
-
-        />
+        app:layout_constraintTop_toTopOf="parent" />
 
     <ImageView
         android:id="@+id/VehiculeImageViewD"
@@ -46,7 +44,7 @@
         android:layout_marginStart="64dp"
         android:layout_marginTop="16dp"
         android:fontFamily="@font/gothambold"
-
+        android:textColor="@color/black"
         android:text="TextView"
         android:textSize="20dp"
         app:layout_constraintStart_toStartOf="parent"
@@ -66,13 +64,13 @@
         <TextView
             android:id="@+id/etatVehiculeD"
             android:layout_width="80dp"
+            android:textColor="@color/black"
             android:layout_height="match_parent"
             android:backgroundTint="@color/validate_color"
             android:fontFamily="@font/gothambold"
             android:paddingTop="4dp"
             android:text="TextView"
             android:textAlignment="center"
-            android:textColor="@color/white"
             android:textSize="11dp" />
     </androidx.cardview.widget.CardView>
 
@@ -118,7 +116,7 @@
                             android:id="@+id/matriculeVehiculeTextViewD"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-
+                            android:textColor="@color/black"
                             android:fontFamily="@font/gothambold"
                             android:text="Matricule"
                             android:textAlignment="center" />
@@ -128,7 +126,7 @@
                             android:layout_width="match_parent"
                             android:layout_height="match_parent"
                             android:layout_marginTop="10dp"
-
+                            android:textColor="@color/black"
                             android:fontFamily="@font/gothambook"
                             android:text="TextView"
                             android:textAlignment="center"
@@ -159,6 +157,7 @@
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:fontFamily="@font/gothambold"
+                            android:textColor="@color/black"
 
                             android:text="N°Chassis"
                             android:textAlignment="center" />
@@ -170,6 +169,7 @@
                             android:layout_marginTop="10dp"
                             android:fontFamily="@font/gothambook"
                             android:text="TextView"
+                            android:textColor="@color/black"
                             android:textAlignment="center"
                             android:textFontWeight="900" />
                     </LinearLayout>
@@ -202,6 +202,7 @@
                             android:layout_height="wrap_content"
                             android:fontFamily="@font/gothambold"
                             android:text="Marque"
+                            android:textColor="@color/black"
                             android:textAlignment="center" />
 
                         <TextView
@@ -211,6 +212,7 @@
                             android:fontFamily="@font/gothambook"
                             android:paddingTop="15dp"
                             android:text="TextView"
+                            android:textColor="@color/black"
                             android:textAlignment="center" />
                     </LinearLayout>
                 </androidx.cardview.widget.CardView>
@@ -238,6 +240,7 @@
                             android:layout_height="wrap_content"
                             android:fontFamily="@font/gothambold"
                             android:text="Modèle"
+                            android:textColor="@color/black"
                             android:textAlignment="center" />
 
                         <TextView
@@ -247,6 +250,7 @@
                             android:fontFamily="@font/gothambook"
                             android:paddingTop="15dp"
                             android:text="TextView"
+                            android:textColor="@color/black"
                             android:textAlignment="center" />
                     </LinearLayout>
                 </androidx.cardview.widget.CardView>
@@ -272,6 +276,7 @@
                             android:layout_height="wrap_content"
                             android:fontFamily="@font/gothambold"
                             android:text="Couleur"
+                            android:textColor="@color/black"
                             android:textAlignment="center" />
 
                         <TextView
@@ -281,6 +286,7 @@
                             android:fontFamily="@font/gothambook"
                             android:paddingTop="15dp"
                             android:text="TextView"
+                            android:textColor="@color/black"
                             android:textAlignment="center" />
                     </LinearLayout>
                 </androidx.cardview.widget.CardView>
@@ -310,6 +316,7 @@
                             android:id="@+id/tempRTextViewD"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
+                            android:textColor="@color/black"
                             android:fontFamily="@font/gothambold"
                             android:text="Temps de refroidissement"
                             android:textAlignment="center" />
@@ -321,6 +328,7 @@
                             android:fontFamily="@font/gothambook"
                             android:paddingTop="10dp"
                             android:text="TextView"
+                            android:textColor="@color/black"
                             android:textAlignment="center" />
                     </LinearLayout>
                 </androidx.cardview.widget.CardView>
@@ -346,6 +354,7 @@
                             android:layout_height="wrap_content"
                             android:fontFamily="@font/gothambold"
                             android:text="Pression huile moteur"
+                            android:textColor="@color/black"
                             android:textAlignment="center" />
 
                         <TextView
@@ -355,6 +364,7 @@
                             android:fontFamily="@font/gothambook"
                             android:paddingTop="15dp"
                             android:text="TextView"
+                            android:textColor="@color/black"
                             android:textAlignment="center" />
                     </LinearLayout>
                 </androidx.cardview.widget.CardView>
@@ -381,6 +391,7 @@
                         android:orientation="vertical">
 
                         <TextView
+                            android:textColor="@color/black"
                             android:id="@+id/chargeBTextViewD"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
@@ -395,6 +406,7 @@
                             android:fontFamily="@font/gothambook"
                             android:paddingTop="15dp"
                             android:text="TextView"
+                            android:textColor="@color/black"
                             android:textAlignment="center" />
                     </LinearLayout>
                 </androidx.cardview.widget.CardView>
@@ -420,6 +432,7 @@
                             android:layout_height="wrap_content"
                             android:fontFamily="@font/gothambold"
                             android:text="Pression pneu"
+                            android:textColor="@color/black"
                             android:textAlignment="center" />
 
                         <TextView
@@ -429,6 +442,7 @@
                             android:fontFamily="@font/gothambook"
                             android:paddingTop="15dp"
                             android:text="TextView"
+                            android:textColor="@color/black"
                             android:textAlignment="center" />
                     </LinearLayout>
                 </androidx.cardview.widget.CardView>
@@ -460,6 +474,7 @@
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:fontFamily="@font/gothambold"
+                            android:textColor="@color/black"
                             android:text="Niveau minimum huile"
                             android:textAlignment="center" />
 
@@ -470,6 +485,7 @@
                             android:fontFamily="@font/gothambook"
                             android:paddingTop="15dp"
                             android:text="TextView"
+                            android:textColor="@color/black"
                             android:textAlignment="center" />
                     </LinearLayout>
                 </androidx.cardview.widget.CardView>
@@ -494,6 +510,7 @@
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:fontFamily="@font/gothambold"
+                            android:textColor="@color/black"
                             android:text="Anomalie circuit"
                             android:textAlignment="center" />
 
@@ -504,6 +521,7 @@
                             android:fontFamily="@font/gothambook"
                             android:paddingTop="15dp"
                             android:text="TextView"
+                            android:textColor="@color/black"
                             android:textAlignment="center" />
                     </LinearLayout>
                 </androidx.cardview.widget.CardView>
@@ -535,6 +553,7 @@
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:fontFamily="@font/gothambold"
+                            android:textColor="@color/black"
                             android:text="Régulateur vitesse"
                             android:textAlignment="center" />
 
@@ -545,6 +564,7 @@
                             android:fontFamily="@font/gothambook"
                             android:paddingTop="15dp"
                             android:text="TextView"
+                            android:textColor="@color/black"
                             android:textAlignment="center" />
                     </LinearLayout>
                 </androidx.cardview.widget.CardView>
@@ -569,6 +589,7 @@
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:fontFamily="@font/gothambold"
+                            android:textColor="@color/black"
                             android:text="Limiteur Vitesse"
                             android:textAlignment="center" />
 
@@ -578,6 +599,7 @@
                             android:layout_height="match_parent"
                             android:fontFamily="@font/gothambook"
                             android:paddingTop="15dp"
+                            android:textColor="@color/black"
                             android:text="TextView"
                             android:textAlignment="center" />
                     </LinearLayout>
