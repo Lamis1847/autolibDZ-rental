@@ -4,7 +4,7 @@ import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import com.sil1.autolibdz_rental.R
-import com.sil1.autolibdz_rental.ui.view.activity.HomeActivity
+import com.sil1.autolibdz_rental.ui.view.activity.LoginActivity
 import kotlinx.android.synthetic.main.activity_validation_ready.*
 
 class ValidationReadyActivity : AppCompatActivity() {
@@ -12,7 +12,7 @@ class ValidationReadyActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_validation_ready)
         validationUpload.setOnClickListener(){
-            val myIntent = Intent(this, HomeActivity::class.java)
+            val myIntent = Intent(this, LoginActivity::class.java)
             this.startActivity(myIntent)
         }
     }
