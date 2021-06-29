@@ -7,6 +7,7 @@ import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import com.sil1.autolibdz_rental.R
 import com.sil1.autolibdz_rental.data.repositories.LogInRepository
+import com.sil1.autolibdz_rental.utils.sharedPrefFile
 import kotlinx.android.synthetic.main.activity_login.*
 
 
@@ -14,6 +15,8 @@ class LoginActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_login)
+
+        start()
 
         connectButton.setOnClickListener {
 
@@ -33,11 +36,27 @@ class LoginActivity : AppCompatActivity() {
 
             var loginActivity = LogInRepository.Companion
            loginActivity.login(this, email, password)
+           // val intent = Intent(this, HomeActivity::class.java)
+           // startActivity(intent)
 
         }
         createAccount.setOnClickListener {
             val intent = Intent(this, SignUpActivity::class.java)
             startActivity(intent)
         }
+    }
+
+    fun start() {
+        val sharedPref = this.getSharedPreferences(
+            sharedPrefFile, Context.MODE_PRIVATE
+        )
+
+        val con = sharedPref.getBoolean("connected",false)
+        if (con){
+            val intent = Intent(this,HomeActivity::class.java)
+            startActivity(intent)
+            finish()
+        }
+
     }
 }

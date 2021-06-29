@@ -44,11 +44,7 @@
         android:name="com.sil1.autolibdz_rental.ui.view.fragment.ExampleFragment"
         android:label="@string/menu_reclamation"
         tools:layout="@layout/fragment_example" />
-    <fragment
-        android:id="@+id/nav_assistance"
-        android:name="com.sil1.autolibdz_rental.ui.view.fragment.ExampleFragment"
-        android:label="@string/menu_assistance"
-        tools:layout="@layout/fragment_example" />
+
     <fragment
         android:id="@+id/listeVehiculeFragment"
         android:name="com.sil1.autolibdz_rental.ui.view.activity.ListeVehiculeFragment"

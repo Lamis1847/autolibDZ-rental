@@ -27,7 +27,7 @@
             android:ems="10"
             android:fontFamily="@font/gothammedium"
             android:hint="Email"
-            android:inputType="textPersonName"
+            android:inputType="textEmailAddress"
             android:paddingLeft="15dp"
             android:textColorHighlight="@color/black"
             android:textColorLink="@color/black"
@@ -46,7 +46,7 @@
             android:drawablePadding="18dp"
             android:ems="10"
             android:hint="Mot de passe"
-            android:inputType="textPersonName"
+            android:inputType="textPassword"
             android:paddingLeft="15dp"
             android:textColorHighlight="@color/black"
             android:textColorLink="@color/black"
@@ -67,33 +67,21 @@
             app:layout_constraintTop_toTopOf="parent" />
 
 
-        <CheckBox
-            android:id="@+id/checkBox"
-            android:layout_width="283dp"
-            android:layout_height="57dp"
-            android:layout_marginTop="16dp"
-            android:fontFamily="@font/gothamblack"
-            android:text="@string/rememberMe"
-            android:textColor="@color/white"
-            android:textSize="23sp"
-            android:textStyle="bold"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.502"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/Pass" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 
     <Button
         android:id="@+id/connectButton"
-        android:layout_width="166dp"
+        android:layout_width="250dp"
         android:layout_height="57dp"
         android:layout_marginTop="20dp"
         android:backgroundTint="#FFCB00"
         android:fontFamily="@font/gothamblack"
         android:text="Se connecter"
         android:textColor="@color/white"
+        android:textAllCaps="false"
         android:textStyle="bold"
+        android:textSize="18sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/constraintLayout2" />
@@ -106,7 +94,7 @@
         android:fontFamily="@font/gothamblack"
         android:text="@string/passReset"
         android:textColor="#B7AE81"
-        android:textSize="20sp"
+        android:textSize="16sp"
         android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="@+id/connectButton"
         app:layout_constraintHorizontal_bias="0.471"
@@ -120,7 +108,7 @@
         android:layout_marginTop="16dp"
         android:fontFamily="@font/gothamblack"
         android:text="@string/createAccount"
-        android:textSize="20sp"
+        android:textSize="16sp"
         app:layout_constraintEnd_toEndOf="@+id/passReset"
         app:layout_constraintHorizontal_bias="0.51"
         app:layout_constraintStart_toStartOf="@+id/passReset"

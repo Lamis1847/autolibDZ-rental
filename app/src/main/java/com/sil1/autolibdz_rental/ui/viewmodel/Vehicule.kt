@@ -20,6 +20,8 @@ class Vehicule:ViewModel(){
     var idBorne=0
     var idCloudinary=""
     var secureUrl=""
+    var longitude=0f
+    var latitute=0f
 }
 
 
