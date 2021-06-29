@@ -25,10 +25,7 @@
             android:id="@+id/nav_reclamation"
             android:icon="@drawable/ic_warning"
             android:title="@string/menu_reclamation" />
-        <item
-            android:id="@+id/nav_assistance"
-            android:icon="@drawable/ic_face_agent"
-            android:title="@string/menu_assistance" />
+    
 
     </group>
 </menu>

@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    xmlns:android="http://schemas.android.com/apk/res/android">
+    <androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        android:id="@+id/cardView"
+        app:cardUseCompatPadding="true"
+        app:cardCornerRadius="18dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+
+        android:paddingStart="@dimen/card_padding"
+        android:paddingEnd="@dimen/card_padding">
+
+
+        <FrameLayout
+            android:layout_width="239.54dp"
+            android:layout_height="160.83dp"
+            android:layout_gravity="center_horizontal|center_vertical"
+            android:elevation="2dp"
+            android:background="@drawable/_rectangle_gradient_yellow" >
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="top|right"
+                android:layout_marginTop="30dp"
+                android:layout_marginRight="30dp"
+                android:elevation="2dp"
+                android:background="@drawable/ic_stripe_smaller" />
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="bottom|left"
+                android:elevation="2dp"
+                android:background="@drawable/ic_half_donut_stripe" />
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:elevation="2dp"
+                android:layout_marginLeft="12dp"
+                android:layout_gravity="center_vertical|left">
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="30dp"
+                    android:layout_marginBottom="-8dp"
+                    android:background="@drawable/ic_chip" />
+                <TextView
+                    android:id="@+id/creditCardNumberText"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="left|bottom"
+                    android:layout_marginLeft="12dp"
+                    android:fontFamily="@font/gothambook"
+                    android:text="@string/creditCardNumberExample"
+                    android:textColor="@color/textGray"
+                    android:textSize="14sp"/>
+                <TextView
+                    android:id="@+id/creditCardExpirationText"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="left|bottom"
+                    android:layout_marginLeft="12dp"
+                    android:fontFamily="@font/gothambook"
+                    android:text="@string/expirationDateExample"
+                    android:textColor="@color/textGray"
+                    android:textSize="8sp"/>
+            </LinearLayout>
+
+
+        </FrameLayout>
+
+    </androidx.cardview.widget.CardView>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Historique"
+        android:textSize="22sp"
+        android:fontFamily="@font/gothambook"
+        android:layout_marginTop="24dp"/>
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/stripeRecycler"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginTop="16dp"
+        android:layout_marginBottom="8dp" />
+</LinearLayout>

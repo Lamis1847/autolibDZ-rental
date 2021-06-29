@@ -91,10 +91,11 @@ class ReservationRepository {
         fun  ajouterReservation(
             TAG: String,
             reservation: ReservationModel,
+            token:String,
             onResult: (MutableLiveData<ReservationResponse>?) -> Unit
         )  {
             var reserver = MutableLiveData<ReservationResponse>()
-            val addReservationRequest = api.ajouterReservation(reservation)// consommation de l'api
+            val addReservationRequest = api.ajouterReservation(reservation,token)// consommation de l'api
             addReservationRequest.enqueue(object : Callback<ReservationResponse> {
                 override fun onResponse(
                     call: Call<ReservationResponse>,
