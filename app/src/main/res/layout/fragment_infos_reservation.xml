@@ -1,16 +1,16 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:layout_marginTop="0dp"
     tools:context=".ui.view.fragment.reservation_vehicule.InfosReservationFragment">
 
     <androidx.cardview.widget.CardView
         android:id="@+id/cardView7"
-        android:layout_width="0dp"
-        android:layout_height="122dp"
+        android:layout_width="405dp"
+        android:layout_height="88dp"
         android:backgroundTint="@color/palette_yellow"
         app:cardCornerRadius="20dp"
         app:layout_constraintEnd_toEndOf="parent"
@@ -21,11 +21,11 @@
             android:id="@+id/textView3"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:fontFamily="@font/gothamblack"
-            android:paddingTop="30sp"
+            android:fontFamily="@font/gothammedium"
+            android:paddingTop="24dp"
             android:text="Informations sur votre réservation"
             android:textAlignment="center"
-            android:textColor="@color/black"
+            android:textColor="@color/white"
             android:textSize="25sp"
             tools:layout_editor_absoluteX="1dp"
             tools:layout_editor_absoluteY="-5dp" />
@@ -36,8 +36,9 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="36dp"
-        android:fontFamily="@font/gothambold"
+        android:fontFamily="@font/gothammedium"
         android:text="Départ"
+        android:textColor="@color/black"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.142"
         app:layout_constraintStart_toStartOf="parent"
@@ -48,8 +49,9 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="28dp"
-        android:fontFamily="@font/gothambold"
+        android:fontFamily="@font/gothammedium"
         android:text="Destination"
+        android:textColor="@color/black"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.158"
         app:layout_constraintStart_toStartOf="parent"
@@ -60,8 +62,9 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="28dp"
-        android:fontFamily="@font/gothambold"
+        android:fontFamily="@font/gothammedium"
         android:text="Véhicule"
+        android:textColor="@color/black"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.148"
         app:layout_constraintStart_toStartOf="parent"
@@ -80,7 +83,7 @@
 
     <Button
         android:id="@+id/confirmerButton"
-        android:layout_width="118dp"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="18dp"
         android:backgroundTint="@color/validate_color"
@@ -92,36 +95,24 @@
         app:layout_constraintTop_toBottomOf="@+id/textView11" />
 
     <Button
-        android:id="@+id/modifierButton"
-        android:layout_width="118dp"
+        android:id="@+id/annulerButton"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="10dp"
         android:fontFamily="@font/gothambold"
-        android:text="Modifier"
+        android:text="Annuler"
         android:textAllCaps="false"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/confirmerButton" />
 
-    <Button
-        android:id="@+id/annulerButton"
-        android:layout_width="118dp"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="10dp"
-        android:backgroundTint="@color/error_color"
-        android:fontFamily="@font/gothambold"
-        android:text="Annuler"
-        android:textAllCaps="false"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.498"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/modifierButton" />
+
 
     <androidx.cardview.widget.CardView
         android:id="@+id/cardView3"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="28dp"
+        android:layout_marginTop="10dp"
         android:backgroundTint="@color/grey_light"
         app:cardCornerRadius="10dp"
         app:layout_constraintEnd_toEndOf="parent"
@@ -158,7 +149,7 @@
         android:id="@+id/cardView4"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="28dp"
+        android:layout_marginTop="10dp"
         app:cardBackgroundColor="@color/grey_light"
         app:cardCornerRadius="10dp"
         app:layout_constraintEnd_toEndOf="parent"
@@ -195,7 +186,7 @@
         android:id="@+id/cardView5"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="28dp"
+        android:layout_marginTop="10dp"
         app:cardBackgroundColor="@color/grey_light"
         app:cardCornerRadius="10dp"
         app:layout_constraintEnd_toEndOf="parent"

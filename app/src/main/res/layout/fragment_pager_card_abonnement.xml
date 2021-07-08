@@ -1,19 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout android:layout_height="match_parent"
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/cardView"
+    app:cardUseCompatPadding="true"
+    app:cardCornerRadius="18dp"
     android:layout_width="match_parent"
-    android:orientation="vertical"
-    android:id="@+id/linearCardView"
-    xmlns:android="http://schemas.android.com/apk/res/android">
-    <androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
-        xmlns:app="http://schemas.android.com/apk/res-auto"
-        android:id="@+id/cardView"
-        app:cardUseCompatPadding="true"
-        app:cardCornerRadius="18dp"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center"
-        android:paddingStart="@dimen/card_padding"
-        android:paddingEnd="@dimen/card_padding">
+    android:layout_height="wrap_content"
+    android:layout_gravity="center">
 
         <FrameLayout
             android:layout_width="239.54dp"
@@ -79,17 +72,3 @@
                 android:textSize="16sp"/>
         </FrameLayout>
     </androidx.cardview.widget.CardView>
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Historique"
-        android:textSize="22sp"
-        android:fontFamily="@font/gothambook"
-        android:layout_marginTop="24dp"/>
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/abonnementRecycler"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_marginTop="16dp"
-        android:layout_marginBottom="8dp" />
-</LinearLayout>

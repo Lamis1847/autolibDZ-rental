@@ -13,10 +13,10 @@ import com.sil1.autolibdz_rental.data.model.Transaction
 import com.sil1.autolibdz_rental.ui.adapter.TransactionCardAdapter
 import com.sil1.autolibdz_rental.ui.adapter.TransactionRecyclerAdapter
 import kotlinx.android.synthetic.main.fragment_pager_card_abonnement.*
-import kotlinx.android.synthetic.main.fragment_pager_card_abonnement.abonnementRecycler
 import kotlinx.android.synthetic.main.fragment_pager_card_stripe.*
 
 class StripeCardPagerFragment: TransactionCardFragment() {
+
     @Nullable
     override fun onCreateView(
         inflater: LayoutInflater, @Nullable container: ViewGroup?,
@@ -35,22 +35,22 @@ class StripeCardPagerFragment: TransactionCardFragment() {
         val vm = ViewModelProvider(requireActivity()).get(TransactionViewModel::class.java)
 
         //populating the recycler
-        val list = ArrayList<Transaction>()
+//        val list = ArrayList<Transaction>()
+//
+//        list.add(
+//            Transaction(1,1,90.0,
+//                "Rechargement")
+//        )
+//        list.add(
+//            Transaction(1,2,80.0,
+//                "Paiement Carte d'abonnement")
+//        )
+//
+//
+//        val  adapter = TransactionRecyclerAdapter(list, requireActivity(),vm)
 
-        list.add(
-            Transaction(1,1,90.0,
-                "Rechargement")
-        )
-        list.add(
-            Transaction(1,2,80.0,
-                "Paiement Carte d'abonnement")
-        )
-
-
-        val  adapter = TransactionRecyclerAdapter(list, requireActivity(),vm)
-
-        stripeRecycler.layoutManager = LinearLayoutManager(requireActivity(), LinearLayoutManager.VERTICAL,false)
-
-        stripeRecycler.adapter = adapter
+//        stripeRecycler.layoutManager = LinearLayoutManager(requireActivity(), LinearLayoutManager.VERTICAL,false)
+//
+//        stripeRecycler.adapter = adapter
     }
 }

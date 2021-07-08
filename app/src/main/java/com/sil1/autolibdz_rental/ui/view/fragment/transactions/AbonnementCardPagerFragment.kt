@@ -1,17 +1,24 @@
 package com.sil1.autolibdz_rental.ui.view.fragment.transactions
 
 import android.os.Bundle
+import android.os.Handler
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.annotation.Nullable
 import androidx.cardview.widget.CardView
+import androidx.core.os.bundleOf
+import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
+import androidx.navigation.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.kaopiz.kprogresshud.KProgressHUD
 import com.sil1.autolibdz_rental.R
 import com.sil1.autolibdz_rental.data.model.Transaction
 import com.sil1.autolibdz_rental.ui.adapter.TransactionCardAdapter
 import com.sil1.autolibdz_rental.ui.adapter.TransactionRecyclerAdapter
+import kotlinx.android.synthetic.main.abonnement_payment_fragment.*
+import kotlinx.android.synthetic.main.activity_transaction.*
 import kotlinx.android.synthetic.main.fragment_pager_card_abonnement.*
 
 class AbonnementCardPagerFragment: TransactionCardFragment() {
@@ -30,25 +37,15 @@ class AbonnementCardPagerFragment: TransactionCardFragment() {
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
 
-        val vm = ViewModelProvider(requireActivity()).get(TransactionViewModel::class.java)
+        val viewModel = ViewModelProvider(this).get(TransactionViewModel::class.java)
 
-        //populating the recycler
-        val list = ArrayList<Transaction>()
+        viewModel.getUserBalance(requireContext())
 
-        list.add(
-            Transaction(1,1,90.0,
-                "Rechargement")
-        )
-        list.add(
-            Transaction(1,2,80.0,
-                "Paiement Carte d'abonnement")
-        )
-
-
-        val  adapter = TransactionRecyclerAdapter(list, requireActivity(),vm)
-
-        abonnementRecycler.layoutManager = LinearLayoutManager(requireActivity(), LinearLayoutManager.VERTICAL,false)
-
-        abonnementRecycler.adapter = adapter
+        viewModel.balance.observe(requireActivity(), Observer {
+            balanceUserText.text = String.format("%.2f", it.userBalance)  + " DZD"
+        })
     }
+
+
+
 }

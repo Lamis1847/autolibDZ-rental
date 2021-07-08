@@ -1,11 +1,19 @@
 package com.sil1.autolibdz_rental.ui.view.activity
 
+import android.Manifest
 import android.annotation.SuppressLint
+import android.content.Context
 import android.content.IntentSender
+import android.content.pm.PackageManager
 import android.os.Bundle
+import android.util.Log
 import android.view.Gravity
 import android.view.View
+import android.view.Window
+import android.view.WindowManager
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.app.ActivityCompat
+import androidx.core.content.ContextCompat
 import androidx.drawerlayout.widget.DrawerLayout
 import androidx.navigation.findNavController
 import androidx.navigation.ui.AppBarConfiguration
@@ -18,7 +26,9 @@ import com.google.android.libraries.places.api.Places
 import com.google.android.material.floatingactionbutton.FloatingActionButton
 import com.google.android.material.navigation.NavigationView
 import com.sil1.autolibdz_rental.R
+import com.sil1.autolibdz_rental.data.room.RoomService.context
 import com.sil1.autolibdz_rental.databinding.ActivityHomeBinding
+import com.sil1.autolibdz_rental.utils.sharedPrefFile
 
 
 class HomeActivity : AppCompatActivity(),MyDrawerController{
@@ -29,9 +39,33 @@ class HomeActivity : AppCompatActivity(),MyDrawerController{
     private lateinit var menuButton: FloatingActionButton
     protected val REQUEST_CHECK_SETTINGS = 0x1
 
+    companion object {
+        // The code that denotes the request for location permissions
+        private const val REQUEST_CODE_LOCATION = 1
+    }
+
     @SuppressLint("ResourceType")
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+
+        //status bar
+        val window: Window = this@HomeActivity.window
+        window.addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS)
+        window.clearFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS)
+        window.statusBarColor = ContextCompat.getColor(
+            this@HomeActivity,
+            R.color.palette_yellow
+        )
+
+        //for stripe sdk, check location permission
+        if (ContextCompat.checkSelfPermission(this,
+                Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
+            val permissions = arrayOf(Manifest.permission.ACCESS_FINE_LOCATION)
+            // REQUEST_CODE_LOCATION should be defined on your app level
+            ActivityCompat.requestPermissions(this, permissions,
+                HomeActivity.REQUEST_CODE_LOCATION
+            )
+        }
 
         binding = ActivityHomeBinding.inflate(layoutInflater)
 
@@ -58,7 +92,7 @@ class HomeActivity : AppCompatActivity(),MyDrawerController{
         // menu should be considered as top level destinations.
         appBarConfiguration = AppBarConfiguration(
             setOf(
-                R.id.nav_home, R.id.nav_profil, R.id.nav_history, R.id.nav_transaction, R.id.nav_reclamation, R.id.nav_assistance
+                R.id.nav_home, R.id.nav_profil, R.id.nav_history, R.id.nav_transaction, R.id.nav_reclamation
             ), drawerLayout
         )
         navView.setupWithNavController(navController)
@@ -113,6 +147,14 @@ class HomeActivity : AppCompatActivity(),MyDrawerController{
         drawerLayout.setDrawerLockMode(DrawerLayout.LOCK_MODE_UNLOCKED)
         menuButton.visibility = View.VISIBLE
 
+    }
+
+    override fun onRequestPermissionsResult(requestCode: Int, permissions: Array<String>, grantResults: IntArray) {
+        super.onRequestPermissionsResult(requestCode, permissions, grantResults)
+        if (requestCode == HomeActivity.REQUEST_CODE_LOCATION && grantResults.isNotEmpty()
+            && grantResults[0] != PackageManager.PERMISSION_GRANTED) {
+            throw RuntimeException("Location services are required in order to " + "connect to a reader.")
+        }
     }
 
 }

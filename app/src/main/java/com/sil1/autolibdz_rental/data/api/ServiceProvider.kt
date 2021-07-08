@@ -9,7 +9,7 @@ import retrofit2.http.*
 interface ServiceProvider {
     // Getting all bornes of our system
     @GET("api/bornes/all")
-    fun getAllBornes(/*@Header("Authorization") token: String*/): Call<List<Borne>>
+    fun getAllBornes(@Header("authorization") token:String): Call<List<Borne>>
 
     //authentification locataire
     @POST("api/auth/locataire")
@@ -40,7 +40,14 @@ interface ServiceProvider {
     fun getReservations(@Path("id") id:String /*@Header("Authorization") token: String*/): Call<List<Reservation>>
 
     @GET("/api/bornes/{id}/vehicules")
-    fun getListeVehicules(@Path("id") id:String  ): Call<List<VehiculeModel>>
+    fun getListeVehicules(@Path("id") id:String,@Header("authorization") token:String  ): Call<List<VehiculeModel>>
+
+
+    @GET("/api/identites/locataire/{id}")
+    fun getIdentiteLocataire(@Path("id") id:String,/*@Header("authorization") token:String  */): Call<Identite>
+
+    @POST("api/reservation")
+    fun ajouterReservation(@Body reservation: ReservationModel,@Header("authorization") token:String): Call<ReservationResponse>
 
     @POST("api/reservation")
     fun ajouterReservation(@Body reservation: ReservationModel): Call<ReservationResponse>
@@ -66,8 +73,11 @@ interface ServiceProvider {
     @POST("api/transaction")
     fun createTransaction(@Header("Authorization") token:String, @Body transaction: Transaction): Call<ResponseBody>
 
-    //get user's transactions
+    //get user's stripe transactions
     @GET("api/transaction/{id}")
-    fun getUserTransactions(@Header("Authorization") token:String, @Path("id") id: Int): Call<Transaction>
+    fun getUserTransactions(@Path("id") id: Int, @Header("Authorization") token:String ): Call<ArrayList<Transaction>>
 
+    //get user's stripe transactions
+    @GET("api/trajet/getTrajetByReservation/{id}")
+    fun getTrajetByReservation(@Path("id") idReservation: Int): Call<Trajet>
 }

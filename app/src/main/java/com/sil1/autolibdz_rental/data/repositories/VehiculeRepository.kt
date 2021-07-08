@@ -23,9 +23,10 @@ class VehiculeRepository {
         fun getListeVehicules(
             TAG: String,
             id:String,
+            token : String,
             onResult: (MutableLiveData<ArrayList<VehiculeModel>>?) -> Unit
         ) {
-            val call = api.getListeVehicules(id)
+            val call = api.getListeVehicules(id,token)
 
             call.enqueue(object : Callback<List<VehiculeModel>> {
                 override fun onResponse(
@@ -42,6 +43,8 @@ class VehiculeRepository {
                     val vehiculeRespond = response.body()
                     if (vehiculeRespond != null) {
                         for (m in vehiculeRespond!!) {
+                            Log.i(TAG, "Vehicule latitude:${m.latitude} longitude:${m.longitude}")
+
                             vehiculeList.add(m)
                         }
                         finalList.value = vehiculeList

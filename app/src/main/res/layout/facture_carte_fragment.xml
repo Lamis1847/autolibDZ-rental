@@ -208,33 +208,50 @@
         app:layout_constraintTop_toBottomOf="@+id/view2"
         android:background="@drawable/ic_stripe"/>
     <!--send by email button-->
+<!--    <androidx.appcompat.widget.AppCompatButton-->
+<!--        android:id="@+id/sendFactureEmail"-->
+<!--        android:layout_width="match_parent"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        android:layout_marginHorizontal="@dimen/btn_margin_horizontal"-->
+<!--        android:layout_marginTop="32dp"-->
+<!--        android:background="@drawable/ic_btn_rounded_corners"-->
+<!--        android:stateListAnimator="@null"-->
+<!--        android:text="@string/sendByEmail"-->
+<!--        android:textAllCaps="false"-->
+<!--        android:textColor="@color/white"-->
+<!--        android:textSize="14sp"-->
+<!--        app:layout_constraintEnd_toEndOf="parent"-->
+<!--        app:layout_constraintStart_toStartOf="parent"-->
+<!--        app:layout_constraintTop_toBottomOf="@+id/payedFactureText"-->
+<!--        android:onClick="sendEmail"/>-->
+
+<!--    <TextView-->
+<!--        android:id="@+id/skipBtn"-->
+<!--        android:layout_width="wrap_content"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        android:layout_marginTop="18dp"-->
+<!--        android:letterSpacing="-0.01"-->
+<!--        android:text="@string/skip"-->
+<!--        android:textColor="@color/palette_grey_700"-->
+<!--        android:textSize="20sp"-->
+<!--        app:layout_constraintEnd_toEndOf="parent"-->
+<!--        app:layout_constraintStart_toStartOf="parent"-->
+<!--        app:layout_constraintTop_toBottomOf="@+id/sendFactureEmail" />-->
+
+    <!--    <androidx.appcompat.widget.AppCompatButton-->
     <androidx.appcompat.widget.AppCompatButton
-        android:id="@+id/sendFactureEmail"
+        android:id="@+id/skipBtn"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginHorizontal="@dimen/btn_margin_horizontal"
         android:layout_marginTop="32dp"
         android:background="@drawable/ic_btn_rounded_corners"
         android:stateListAnimator="@null"
-        android:text="@string/sendByEmail"
+        android:text="@string/skip"
         android:textAllCaps="false"
         android:textColor="@color/white"
         android:textSize="14sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/payedFactureText"
-        android:onClick="sendEmail"/>
-
-    <TextView
-        android:id="@+id/skipBtn"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="18dp"
-        android:letterSpacing="-0.01"
-        android:text="@string/skip"
-        android:textColor="@color/palette_grey_700"
-        android:textSize="20sp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/sendFactureEmail" />
+        app:layout_constraintTop_toBottomOf="@+id/payedFactureText"/>
 </androidx.constraintlayout.widget.ConstraintLayout>

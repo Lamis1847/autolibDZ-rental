@@ -3,8 +3,8 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_margin="10dp"
-    android:padding="10dp"
+    android:layout_margin="8dp"
+    android:padding="8dp"
     android:layout_height="wrap_content">
 
     <FrameLayout
@@ -16,13 +16,13 @@
         app:layout_constraintTop_toTopOf="parent">
         <ImageView
             android:id="@+id/shadowTransaction"
-            android:layout_width="76dp"
-            android:layout_height="76dp"
+            android:layout_width="62dp"
+            android:layout_height="62dp"
             android:background="@drawable/_shadow_yellow"/>
         <ImageView
             android:id="@+id/solidTransaction"
-            android:layout_width="62dp"
-            android:layout_height="62dp"
+            android:layout_width="48dp"
+            android:layout_height="48dp"
             android:layout_gravity="center_horizontal|center_vertical"
             android:background="@drawable/_square_yellow_shadow"/>
         <ImageView
@@ -43,7 +43,7 @@
         android:lineSpacingExtra="14sp"
         android:textColor="@color/black"
         android:text="@string/transactionType"
-        android:textSize="16sp"
+        android:textSize="14sp"
         app:layout_constraintStart_toEndOf="@+id/imageFrame"
         app:layout_constraintTop_toTopOf="@+id/imageFrame" />
 
@@ -56,7 +56,7 @@
         android:lineSpacingExtra="12sp"
         android:text="10/06 16:10"
         android:textColor="@color/palette_grey_700"
-        android:textSize="14sp"
+        android:textSize="12sp"
         app:layout_constraintStart_toStartOf="@+id/modePaiement"
         app:layout_constraintTop_toBottomOf="@+id/modePaiement" />
 

@@ -36,19 +36,15 @@
 
     <fragment
         android:id="@+id/nav_transaction"
-        android:name="com.sil1.autolibdz_rental.ui.view.fragment.ExampleFragment"
-        android:label="@string/menu_transactions"
-        tools:layout="@layout/fragment_example" />
+        android:name="com.sil1.autolibdz_rental.ui.view.fragment.transactions.TransactionFragment"
+        android:label="transaction_history"
+        tools:layout="@layout/fragment_transaction" />
     <fragment
         android:id="@+id/nav_reclamation"
         android:name="com.sil1.autolibdz_rental.ui.view.fragment.ExampleFragment"
         android:label="@string/menu_reclamation"
         tools:layout="@layout/fragment_example" />
-    <fragment
-        android:id="@+id/nav_assistance"
-        android:name="com.sil1.autolibdz_rental.ui.view.fragment.ExampleFragment"
-        android:label="@string/menu_assistance"
-        tools:layout="@layout/fragment_example" />
+
     <fragment
         android:id="@+id/listeVehiculeFragment"
         android:name="com.sil1.autolibdz_rental.ui.view.activity.ListeVehiculeFragment"
@@ -65,6 +61,7 @@
             android:id="@+id/action_listeVehiculeFragment_to_infosReservationFragment"
             app:destination="@id/infosReservationFragment" />
     </fragment>
+
     <fragment
         android:id="@+id/detailsVehiculeFragment"
         android:name="com.sil1.autolibdz_rental.ui.view.activity.DetailsVehiculeFragment"
@@ -107,6 +104,9 @@
         <action
             android:id="@+id/action_vehiculeReserve2Fragment_to_nav_home"
             app:destination="@id/nav_home" />
+        <action
+            android:id="@+id/action_vehiculeReserve2Fragment_to_infosTrajetFragment"
+            app:destination="@id/infosTrajetFragment" />
     </fragment>
     <fragment
         android:id="@+id/detailReservationFragment3"
@@ -123,5 +123,63 @@
         android:label="fragment_mot_de_passe"
         tools:layout="@layout/fragment_mot_de_passe" />
 
+<!--    Fragments paiement-->
+    <fragment
+        android:id="@+id/stripeCardFragment2"
+        android:name="com.sil1.autolibdz_rental.ui.view.fragment.stripe_card.StripeCardFragment"
+        android:label="stripe_card_fragment"
+        tools:layout="@layout/stripe_card_fragment" >
+        <action
+            android:id="@+id/action_stripeCardFragment2_to_factureCarteFragment"
+            app:destination="@id/factureCarteFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/abonnementPaymentFragment"
+        android:name="com.sil1.autolibdz_rental.ui.view.fragment.abonnement_payment.AbonnementPaymentFragment"
+        android:label="abonnement_payment_fragment"
+        tools:layout="@layout/abonnement_payment_fragment" >
+        <action
+            android:id="@+id/action_abonnementPaymentFragment_to_factureAbonnementFragment22"
+            app:destination="@id/factureAbonnementFragment2" />
+    </fragment>
+    <fragment
+        android:id="@+id/factureAbonnementFragment2"
+        android:name="com.sil1.autolibdz_rental.ui.view.fragment.facture_abonnement.FactureAbonnementFragment"
+        android:label="facture_abonnement_fragment"
+        tools:layout="@layout/facture_abonnement_fragment" >
+        <action
+            android:id="@+id/action_factureAbonnementFragment2_to_paymentEndFragment"
+            app:destination="@id/paymentEndFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/factureCarteFragment"
+        android:name="com.sil1.autolibdz_rental.ui.view.fragment.facture_carte.FactureCarteFragment"
+        android:label="facture_carte_fragment"
+        tools:layout="@layout/facture_carte_fragment" >
+        <action
+            android:id="@+id/action_factureCarteFragment_to_paymentEndFragment"
+            app:destination="@id/paymentEndFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/infosTrajetFragment"
+        android:name="com.sil1.autolibdz_rental.ui.view.fragment.infos_trajet.InfosTrajetFragment"
+        android:label="infos_trajet_fragment"
+        tools:layout="@layout/infos_trajet_fragment" >
+        <action
+            android:id="@+id/action_infosTrajetFragment_to_stripeCardFragment"
+            app:destination="@id/stripeCardFragment2" />
 
+        <action
+            android:id="@+id/action_infosTrajetFragment_to_abonnementPaymentFragment"
+            app:destination="@id/abonnementPaymentFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/paymentEndFragment"
+        android:name="com.sil1.autolibdz_rental.ui.view.fragment.payment_end.PaymentEndFragment"
+        android:label="fragment_payment_end"
+        tools:layout="@layout/fragment_payment_end" >
+        <action
+            android:id="@+id/action_paymentEndFragment_to_nav_home"
+            app:destination="@id/nav_home" />
+    </fragment>
 </navigation>
