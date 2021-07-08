@@ -28,7 +28,6 @@ class InfosReservationViewModel(token : String): ViewModel() {
             Log.i(TAG, "view model here")
             reservation.value = it?.value
         }
-
     }
 
     fun getTrajet(idReservation: Int) {

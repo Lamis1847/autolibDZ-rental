@@ -5,10 +5,10 @@
     <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
     <uses-permission android:name="android.permission. ACCESS_COARSE_LOCATION" />
     <uses-permission android:name="android.permission.INTERNET" />
-    <uses-permission android:name="android.permission.CAMERA" />
 
     <application
         android:name=".data.room.App"
+        android:allowBackup="true"
         android:icon="@drawable/ic_logo_1"
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_launcher_round"
@@ -17,10 +17,10 @@
 
         >
         <activity android:name=".ui.view.activity.validation.ValidationResActivity"
-                  android:theme="@style/Theme.AutolibDZrental.NoActionBar"
+            android:theme="@style/Theme.AutolibDZrental.NoActionBar"
             />
         <activity android:name=".ui.view.activity.validation.ValidationReadyActivity"
-                  android:theme="@style/Theme.AutolibDZrental.NoActionBar"
+            android:theme="@style/Theme.AutolibDZrental.NoActionBar"
             />
 
         <activity
@@ -59,7 +59,7 @@
             </intent-filter>
         </activity>
 
-    
+
 
         <meta-data
             android:name="com.google.android.gms.version"
@@ -67,11 +67,6 @@
         <meta-data
             android:name="com.google.android.geo.API_KEY"
             android:value="${MAPS_API_KEY}" />
-
-        <meta-data
-            android:name="CLOUDINARY_URL"
-            android:value="cloudinary://417846431126524:VI0hz_4ir15jp-Slkb_heb44-LI@dkwni6a1d"/>
-
     </application>
 
 </manifest>

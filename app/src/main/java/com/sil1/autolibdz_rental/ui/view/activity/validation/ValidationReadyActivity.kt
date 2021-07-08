@@ -7,7 +7,6 @@ import android.view.Window
 import android.view.WindowManager
 import androidx.core.content.ContextCompat
 import com.sil1.autolibdz_rental.R
-import com.sil1.autolibdz_rental.ui.view.activity.HomeActivity
 import com.sil1.autolibdz_rental.ui.view.activity.LoginActivity
 import kotlinx.android.synthetic.main.activity_validation_ready.*
 

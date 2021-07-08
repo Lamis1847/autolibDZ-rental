@@ -127,7 +127,7 @@ class MapDisplayFragment : Fragment() , OnMapReadyCallback , GoogleMap.OnMarkerC
     @SuppressLint("FragmentLiveDataObserve")
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
-        val sharedPref = RoomService.context.getSharedPreferences(
+        val sharedPref = requireActivity().getSharedPreferences(
             sharedPrefFile, Context.MODE_PRIVATE
         )
 

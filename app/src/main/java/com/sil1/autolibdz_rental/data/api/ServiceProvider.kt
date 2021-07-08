@@ -27,17 +27,18 @@ interface ServiceProvider {
 
     //récupérer les informations d'un locataire
     @GET("api/locataire/{id}")
-    fun getLocataire(@Path("id") id:String? /*@Header("Authorization") token: String*/): Call<LocataireRetro>
+    fun getLocataire(@Header("authorization") token:String?,@Path("id") id:String?): Call<LocataireRetro>
 
     @PUT("api/locataire/email/{id}")
-    fun editMailLocataire(@Path("id") id:String?,@Body locataire:LocataireEditEmail/*@Header("Authorization") token: String*/): Call<LocataireModificationResponse>
+    fun editMailLocataire(@Header("authorization") token:String?,@Path("id") id:String?,@Body locataire:LocataireEditEmail): Call<LocataireModificationResponse>
 
     @PUT("api/locataire/password/{id}")
-    fun editPasswordLocataire(@Path("id") id:String?,@Body locataire:LocataireEditPassword/*@Header("Authorization") token: String*/): Call<LocataireModificationResponse>
+    fun editPasswordLocataire(@Header("authorization") token:String?,@Path("id") id:String?,@Body locataire:LocataireEditPassword): Call<LocataireModificationResponse>
+
 
     //récupérer les reservation d'un locataire
     @GET("api/reservation/historique/locataires/{id}")
-    fun getReservations(@Path("id") id:String /*@Header("Authorization") token: String*/): Call<List<Reservation>>
+    fun getReservations(@Header("authorization") token: String?,@Path("id") id:String? /*@Header("Authorization") token: String*/): Call<List<Reservation>>
 
     @GET("/api/bornes/{id}/vehicules")
     fun getListeVehicules(@Path("id") id:String,@Header("authorization") token:String  ): Call<List<VehiculeModel>>
@@ -52,6 +53,8 @@ interface ServiceProvider {
     @POST("api/reservation")
     fun ajouterReservation(@Body reservation: ReservationModel): Call<ReservationResponse>
 
+    @POST("api/reclamation/{id}")
+    fun ajouterReclamation(@Body reservation: ReclamationModel,@Path("id") id:String ): Call<ReclamationResponse>
 
     @POST("api/identites")
     fun envoyerValidationDemande(@Body validationBody: ValidationBody): Call<Any>

@@ -20,6 +20,7 @@ data class Reservation(
     val secureUrl:String?,
     val dateReservation:Date?,
     val dure:Int,
-    val distance:Int?
+    val distance:Int?,
+    val prix:Float?
     ) {
 }

@@ -1,5 +1,6 @@
 package com.sil1.autolibdz_rental.ui.view.fragment.profil
 
+import android.content.Context
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
@@ -10,6 +11,7 @@ import androidx.lifecycle.ViewModelProvider
 import com.sil1.autolibdz_rental.R
 import com.sil1.autolibdz_rental.data.model.LocataireEditEmail
 import com.sil1.autolibdz_rental.data.model.LocataireEditPassword
+import com.sil1.autolibdz_rental.utils.sharedPrefFile
 import kotlinx.android.synthetic.main.fragment_mot_de_passe.*
 import kotlinx.android.synthetic.main.fragment_profil.*
 
@@ -46,11 +48,13 @@ class MotDePasseFragment : Fragment() {
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
-        val userID="254"
+        val preferences = requireActivity().getSharedPreferences(sharedPrefFile, Context.MODE_PRIVATE)
+        val token = preferences.getString("token", "default")
+        val userID = preferences.getString("userID", "1")
         var viewModel = ViewModelProvider(this).get(ProfilViewModel::class.java)
         SauvgarderMdp.setOnClickListener {
             val locataire= LocataireEditPassword(oldPassword.text.toString(),newPassword.text.toString())
-            viewModel.updatePasswordLocataire(locataire,"254",requireActivity()) //il faut changer l'id après!
+            viewModel.updatePasswordLocataire(locataire,token,userID,requireActivity()) //il faut changer l'id après!
             oldPassword.text.clear()
             newPassword.text.clear()
 

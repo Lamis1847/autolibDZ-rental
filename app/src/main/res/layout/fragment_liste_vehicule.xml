@@ -4,6 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/palette_grey_200"
     tools:context=".ui.view.activity.ListeVehiculeFragment">
 
     <Button
@@ -36,9 +37,9 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="320dp"
-        android:fontFamily="@font/gothambold"
+        android:fontFamily="@font/gothambook"
         android:text="Borne de Bab El Oued"
-        android:textSize="20dp"
+        android:textSize="@dimen/appbar_title"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="@+id/imgEnteteListeVehicules" />
