@@ -1,5 +1,6 @@
 package com.sil1.autolibdz_rental.ui.view.fragment.reservation_vehicule
 
+import android.content.Context
 import android.os.Bundle
 import android.util.Log
 import androidx.lifecycle.Observer
@@ -25,12 +26,15 @@ import com.sil1.autolibdz_rental.data.repositories.ReclamationRepository
 import com.sil1.autolibdz_rental.data.repositories.SignUpRepository
 import com.sil1.autolibdz_rental.ui.viewmodel.Reservation
 import com.sil1.autolibdz_rental.ui.viewmodel.Vehicule
+import com.sil1.autolibdz_rental.utils.sharedPrefFile
 import kotlinx.android.synthetic.main.fragment_infos_reservation.*
 import kotlinx.android.synthetic.main.fragment_reclamation.*
 
 class ReclamationFragment : Fragment() {
     private lateinit var viewModel: ReclamationViewModel
 
+    private lateinit var userID: String
+    private lateinit var token: String
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -49,6 +53,10 @@ class ReclamationFragment : Fragment() {
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
+        val preferences = requireActivity().getSharedPreferences(sharedPrefFile, Context.MODE_PRIVATE)
+        userID = preferences.getString("userID", "Default").toString()
+        token = preferences.getString("token", "Default").toString()
+
         val adapter = ArrayAdapter.createFromResource(requireActivity(), R.array.reclamation_array, android.R.layout.simple_spinner_item)
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
         spinner2.adapter = adapter
@@ -58,13 +66,12 @@ class ReclamationFragment : Fragment() {
     }
 
     fun getValues() {
-        Toast.makeText(requireActivity(), "Spinner  " + spinner2.selectedItem.toString() +
-                "\ndescription " + descriptionTextR.text.toString(), Toast.LENGTH_LONG).show()
+        Toast.makeText(requireActivity(), "Votre réclamation a été bien envoyé", Toast.LENGTH_LONG).show()
         var reclamation = ReclamationModel(
             descriptionTextR.text.toString(),
             spinner2.selectedItem.toString()
         )
-        viewModel.ajouterReclamation(reclamation,  "272")
+        viewModel.ajouterReclamation(reclamation, userID  )
         viewModel.reclamation.observe(viewLifecycleOwner, Observer {
             val data = viewModel.reclamation.value
         })

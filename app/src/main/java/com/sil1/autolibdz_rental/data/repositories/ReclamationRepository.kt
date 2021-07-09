@@ -49,6 +49,7 @@ class ReclamationRepository {
 
                         reclamer.value = resp!!
                         onResult(reclamer)
+
                         Log.i(TAG, "La réclamation a été envoyée correctement"+ reclamer.value )
 
                     }

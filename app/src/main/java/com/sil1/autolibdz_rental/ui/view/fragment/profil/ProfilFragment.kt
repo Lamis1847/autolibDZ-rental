@@ -19,6 +19,7 @@ import androidx.navigation.findNavController
 import com.sil1.autolibdz_rental.data.model.LocataireEditEmail
 import com.sil1.autolibdz_rental.ui.view.activity.MyDrawerController
 import com.sil1.autolibdz_rental.utils.sharedPrefFile
+import com.sil1.autolibdz_rental.utils.userToken
 
 
 //// TODO: Rename parameter arguments, choose names that match
@@ -64,19 +65,27 @@ class ProfilFragment : Fragment() {
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
         val preferences = requireActivity().getSharedPreferences(sharedPrefFile, Context.MODE_PRIVATE)
-        val userIDd = preferences.getString("userID", "Default")
-        val userID="254"
+        val userID = preferences.getString("userID", "Default")
+        val token = preferences.getString("token", "Default")
+
+        if (token != null) {
+            Log.i("profil frag",token)
+        }
+        Log.i("profil frag",userID.toString())
+
         var viewModel = ViewModelProvider(this).get(ProfilViewModel::class.java)
-        viewModel.getLocataire(userID)
+        viewModel.getLocataire(userID,token)
         viewModel.locataire.observe(requireActivity(), Observer {
                 locataire ->
             updateLocataire(locataire)
         })
         SauvgarderP.setOnClickListener{
                 val locataire=LocataireEditEmail(email.text.toString(),password.text.toString())
-                viewModel.updateMailLocataire(locataire,"254",requireActivity()) //il faut changer l'id après!
+            if (userID != null) {
+                viewModel.updateMailLocataire(locataire,userID,token,requireActivity())
+            } //il faut changer l'id après!
                 password.text.clear()
-                viewModel.getLocataire(userID)
+                viewModel.getLocataire(userID,token)
 
         }
 

@@ -592,30 +592,16 @@
         android:id="@+id/reseverButtonD"
         android:layout_width="121dp"
         android:layout_height="wrap_content"
-        android:layout_marginStart="64dp"
         android:layout_marginBottom="32dp"
         android:fontFamily="@font/gothambold"
         android:text="Réserver"
+        android:textAllCaps="false"
         app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/scrollView2"
         app:layout_constraintVertical_bias="0.555" />
 
-    <Button
-        android:id="@+id/annulerButtonD"
-        android:layout_width="114dp"
-        android:layout_height="wrap_content"
-        android:layout_marginEnd="60dp"
-        android:backgroundTint="@color/error_color"
-        android:fontFamily="@font/gothambold"
-        android:text="Annuler"
-
-        app:layout_constraintBottom_toBottomOf="@+id/reseverButtonD"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="1.0"
-        app:layout_constraintStart_toEndOf="@+id/reseverButtonD"
-        app:layout_constraintTop_toTopOf="@+id/reseverButtonD"
-        app:layout_constraintVertical_bias="0.0" />
 
     <Button
         android:id="@+id/goBackButtonDetailsVehicule"

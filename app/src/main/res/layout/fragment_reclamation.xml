@@ -4,16 +4,19 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/palette_grey_200"
+
     tools:context=".ui.view.fragment.reservation_vehicule.ReclamationFragment">
 
     <TextView
         android:id="@+id/reclamationTitleTextView"
         android:layout_width="wrap_content"
         android:layout_height="22dp"
-        android:layout_marginTop="16dp"
+        android:layout_marginTop="20dp"
         android:fontFamily="@font/gothambook"
         android:text="Réclamations"
-        android:textSize="20dp"
+        android:textColor="@color/black"
+        android:textSize="@dimen/appbar_title"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
@@ -43,11 +46,14 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/cardView9" />
 
-    <Button
+    <androidx.appcompat.widget.AppCompatButton
         android:id="@+id/envoyerRecButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Envoyer"
+        android:textColor="@color/white"
+        android:textAllCaps="false"
+        android:backgroundTint="@color/palette_yellow"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.506"
@@ -68,6 +74,7 @@
 
         <Spinner
             android:id="@+id/spinner2"
+            android:background="@color/white"
             android:layout_width="match_parent"
             android:layout_height="match_parent" />
     </androidx.cardview.widget.CardView>
@@ -87,6 +94,8 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:ems="10"
+            android:paddingLeft="5dp"
+            android:background="@color/white"
             android:gravity="start|top"
             android:inputType="textMultiLine" />
     </androidx.cardview.widget.CardView>
