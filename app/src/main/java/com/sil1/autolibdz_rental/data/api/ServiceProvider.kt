@@ -35,6 +35,10 @@ interface ServiceProvider {
     @PUT("api/locataire/password/{id}")
     fun editPasswordLocataire(@Path("id") id:String?,@Body locataire:LocataireEditPassword, @Header("authorization") token: String): Call<LocataireModificationResponse>
 
+
+    @PUT("api/locataire/{id}")
+    fun editLocataire(@Path("id") id:String,@Body locataire:LocataireRetro/*@Header("Authorization") token: String*/): Call<LocataireModificationResponse>
+
     //récupérer les reservation d'un locataire
     @GET("api/reservation/historique/locataires/{id}")
     fun getReservations(@Path("id") id:String /*@Header("Authorization") token: String*/): Call<List<Reservation>>
@@ -42,12 +46,14 @@ interface ServiceProvider {
     @GET("/api/bornes/{id}/vehicules")
     fun getListeVehicules(@Path("id") id:String,@Header("authorization") token:String  ): Call<List<VehiculeModel>>
 
-
     @GET("/api/identites/locataire/{id}")
     fun getIdentiteLocataire(@Path("id") id:String,/*@Header("authorization") token:String  */): Call<Identite>
 
     @POST("api/reservation")
     fun ajouterReservation(@Body reservation: ReservationModel,@Header("authorization") token:String): Call<ReservationResponse>
+
+    @GET("/api/bornes/{id}/vehicules")
+    fun getListeVehicules(@Path("id") id:String  ): Call<List<VehiculeModel>>
 
     @POST("api/reservation")
     fun ajouterReservation(@Body reservation: ReservationModel): Call<ReservationResponse>
