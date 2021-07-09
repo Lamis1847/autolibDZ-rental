@@ -52,12 +52,6 @@ interface ServiceProvider {
     @POST("api/reservation")
     fun ajouterReservation(@Body reservation: ReservationModel,@Header("authorization") token:String): Call<ReservationResponse>
 
-    @GET("/api/bornes/{id}/vehicules")
-    fun getListeVehicules(@Path("id") id:String  ): Call<List<VehiculeModel>>
-
-    @POST("api/reservation")
-    fun ajouterReservation(@Body reservation: ReservationModel): Call<ReservationResponse>
-
     @POST("api/reclamation/{id}")
     fun ajouterReclamation(@Body reservation: ReclamationModel,@Path("id") id:String ): Call<ReclamationResponse>
 
