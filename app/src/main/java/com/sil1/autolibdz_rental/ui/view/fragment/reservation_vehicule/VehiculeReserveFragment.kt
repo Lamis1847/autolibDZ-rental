@@ -6,6 +6,8 @@ import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
+import androidx.activity.OnBackPressedCallback
 import androidx.core.os.HandlerCompat.postDelayed
 import androidx.core.os.bundleOf
 import androidx.databinding.DataBindingUtil.setContentView
@@ -23,6 +25,15 @@ class VehiculeReserveFragment : Fragment() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        var codePin = arguments?.get("codePin")
+        var id = arguments?.getInt("id")!!
+        bundle = bundleOf("codePin" to codePin, "id" to id)
+
+        activity?.onBackPressedDispatcher?.addCallback(requireActivity(), object : OnBackPressedCallback(true) {
+            override fun handleOnBackPressed() {
+                Toast.makeText(requireActivity(), "Disabled Back Press", Toast.LENGTH_SHORT).show()
+            }
+        })
     }
 
 
@@ -31,18 +42,17 @@ class VehiculeReserveFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         // Inflate the layout for this fragment
-        splash()
-        rootview = inflater.inflate(R.layout.fragment_vehicule_reserve, container, false)
-        var codePin = arguments?.get("codePin")
 
-        bundle = bundleOf("codePin" to codePin)
+        //splash()
+        rootview = inflater.inflate(R.layout.fragment_vehicule_reserve, container, false)
+        findNavController().navigate(R.id.action_vehiculeReserveFragment_to_vehiculeReserve2Fragment,bundle)
         return rootview
     }
 
-    fun splash(){
-        Thread(Runnable {
-            Thread.sleep(500)
-            findNavController().navigate(R.id.action_vehiculeReserveFragment_to_vehiculeReserve2Fragment,bundle)
-        }).start()
-    }
+//    fun splash(){
+//        Thread(Runnable {
+//            Thread.sleep(500)
+//            findNavController().navigate(R.id.action_vehiculeReserveFragment_to_vehiculeReserve2Fragment,bundle)
+//        }).start()
+//    }
 }

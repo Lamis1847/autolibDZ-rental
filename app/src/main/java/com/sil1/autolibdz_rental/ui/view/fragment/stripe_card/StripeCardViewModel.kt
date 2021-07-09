@@ -10,6 +10,8 @@ import com.sil1.autolibdz_rental.data.model.Transaction
 import com.sil1.autolibdz_rental.data.repositories.AbonnementRepository
 import com.sil1.autolibdz_rental.data.repositories.StripeRepository
 import com.sil1.autolibdz_rental.utils.sharedPrefFile
+import java.time.LocalDateTime
+import java.time.format.DateTimeFormatter
 import java.util.*
 
 class StripeCardViewModel : ViewModel() {
@@ -24,12 +26,12 @@ class StripeCardViewModel : ViewModel() {
 
     var prixAPayer: Double = 0.0
 
-    fun createPaymentIntent(prix: Int, context: Context){
+    fun createPaymentIntent(prix: Int, context: Context, idReservation: Int){
         StripeRepository.createPaymentIntent(TAG , prix) {
             Log.i(TAG, "view model here")
             _paymentIntent.postValue(it)
             if (it != null)
-                createTransaction(context)
+                createTransaction(context, idReservation )
         }
     }
 
@@ -38,17 +40,21 @@ class StripeCardViewModel : ViewModel() {
             _cardExpirationDate.postValue(cal!!)
     }
 
-    private fun createTransaction(context: Context) {
+    private fun createTransaction(context: Context, idReservation: Int) {
         val sharedPref = context.getSharedPreferences(
             sharedPrefFile, Context.MODE_PRIVATE
         )
 
         val token = sharedPref.getString("token", "default")!!
         val id = sharedPref.getString("userID", "1")!!.toInt()
-        //val idReservation = 2
 
-        //val transaction = Transaction(id, idReservation,prixAPayer, "Stripe")
+        var currentDateTime= LocalDateTime.now()
 
-        //AbonnementRepository.createTransaction(TAG, token, transaction) {}
+        val formatter = DateTimeFormatter.ofPattern("dd-MM HH:mm")
+        val formatted = currentDateTime.format(formatter)
+
+        val transaction = Transaction(id, idReservation,null, prixAPayer.toFloat(), "Stripe")
+
+        AbonnementRepository.createTransaction(TAG, token, transaction) {}
     }
 }

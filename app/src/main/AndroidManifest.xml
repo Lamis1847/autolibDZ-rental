@@ -17,10 +17,10 @@
 
         >
         <activity android:name=".ui.view.activity.validation.ValidationResActivity"
-                  android:theme="@style/Theme.AutolibDZrental.NoActionBar"
+            android:theme="@style/Theme.AutolibDZrental.NoActionBar"
             />
         <activity android:name=".ui.view.activity.validation.ValidationReadyActivity"
-                  android:theme="@style/Theme.AutolibDZrental.NoActionBar"
+            android:theme="@style/Theme.AutolibDZrental.NoActionBar"
             />
 
         <activity
@@ -59,7 +59,7 @@
 
         </activity>
 
-    
+
 
         <meta-data
             android:name="com.google.android.gms.version"

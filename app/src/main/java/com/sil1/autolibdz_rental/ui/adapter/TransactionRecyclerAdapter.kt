@@ -42,22 +42,23 @@ class TransactionRecyclerAdapter(private var list: ArrayList<Transaction>, val c
     }
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
-
-        holder.modePaiement.text = list[position].modePaiement
-       // holder.dateTransaction.text = list[position].dateTransaction.toString()
+        holder.dateTransaction.text = list[position].dateTransaction
         holder.montant.text = list[position].montant.toString()
 
         if (list[position].modePaiement == "Stripe") {
+            holder.modePaiement.text = list[position].modePaiement
             holder.shadowTransaction.setBackgroundResource(R.drawable._shadow_gray)
             holder.solidTransaction.setBackgroundResource(R.drawable._square_gray_shadow)
             holder.iconTransaction.setBackgroundResource(R.drawable.ic_car_white)
         }
         else if (list[position].modePaiement == "Paiement Carte d'abonnement") {
+            holder.modePaiement.text = "Paiement"
             holder.shadowTransaction.setBackgroundResource(R.drawable._shadow_gray)
             holder.solidTransaction.setBackgroundResource(R.drawable._square_gray_shadow)
             holder.iconTransaction.setBackgroundResource(R.drawable.ic_car_white)
         }
         else if (list[position].modePaiement == "Rechargement") {
+            holder.modePaiement.text = list[position].modePaiement
             holder.shadowTransaction.setBackgroundResource(R.drawable._shadow_yellow)
             holder.solidTransaction.setBackgroundResource(R.drawable._square_yellow_shadow)
             holder.iconTransaction.setBackgroundResource(R.drawable.ic_suitcase_white)

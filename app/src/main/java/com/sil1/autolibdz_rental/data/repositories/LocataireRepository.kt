@@ -11,6 +11,7 @@ import com.sil1.autolibdz_rental.data.model.LocataireEditEmail
 import com.sil1.autolibdz_rental.data.model.LocataireEditPassword
 import com.sil1.autolibdz_rental.data.model.LocataireModificationResponse
 import com.sil1.autolibdz_rental.data.model.LocataireRetro
+import com.sil1.autolibdz_rental.utils.userToken
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
@@ -22,9 +23,9 @@ class LocataireRepository {
         val api: ServiceProvider by lazy {
             ServiceBuilder.buildService(ServiceProvider::class.java)
         }
-        fun editPasswordLocataire(TAG:String,id:String?,locataire:LocataireEditPassword,context:Context)
+        fun editPasswordLocataire(TAG:String,id:String?,token:String,locataire:LocataireEditPassword,context:Context)
         {
-            var call = api.editPasswordLocataire(id,locataire) // fonction de modification dans l'api
+            var call = api.editPasswordLocataire(id,locataire,token) // fonction de modification dans l'api
 
             call.enqueue(object:Callback<LocataireModificationResponse>{
                 override fun onResponse(
@@ -52,9 +53,9 @@ class LocataireRepository {
         }
 
 
-        fun editMailLocataire(TAG:String,id:String?,locataire:LocataireEditEmail,context:Context)
+        fun editMailLocataire(TAG:String,id:String?,token:String,locataire:LocataireEditEmail,context:Context)
         {
-            var call = api.editMailLocataire(id,locataire) // fonction de modification dans l'api
+            var call = api.editMailLocataire(id,locataire, token) // fonction de modification dans l'api
 
             call.enqueue(object:Callback<LocataireModificationResponse>{
                 override fun onResponse(
@@ -81,8 +82,8 @@ class LocataireRepository {
             })
 
         }
-        fun getLocataire(TAG: String,id:String?): MutableLiveData<ArrayList<LocataireRetro?>> {
-            var call = api.getLocataire(id) // consommation de l'api
+        fun getLocataire(TAG: String,id:String?,token:String): MutableLiveData<ArrayList<LocataireRetro?>> {
+            var call = api.getLocataire(id, token) // consommation de l'api
             var locataireRespond: LocataireRetro?
             var locatairelist = ArrayList<LocataireRetro?>()
             var finalList = MutableLiveData<ArrayList<LocataireRetro?>>()

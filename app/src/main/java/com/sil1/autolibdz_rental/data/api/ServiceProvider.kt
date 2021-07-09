@@ -27,13 +27,13 @@ interface ServiceProvider {
 
     //récupérer les informations d'un locataire
     @GET("api/locataire/{id}")
-    fun getLocataire(@Path("id") id:String? /*@Header("Authorization") token: String*/): Call<LocataireRetro>
+    fun getLocataire(@Path("id") id:String? ,@Header("authorization") token: String): Call<LocataireRetro>
 
     @PUT("api/locataire/email/{id}")
-    fun editMailLocataire(@Path("id") id:String?,@Body locataire:LocataireEditEmail/*@Header("Authorization") token: String*/): Call<LocataireModificationResponse>
+    fun editMailLocataire(@Path("id") id:String?,@Body locataire:LocataireEditEmail, @Header("authorization") token: String): Call<LocataireModificationResponse>
 
     @PUT("api/locataire/password/{id}")
-    fun editPasswordLocataire(@Path("id") id:String?,@Body locataire:LocataireEditPassword/*@Header("Authorization") token: String*/): Call<LocataireModificationResponse>
+    fun editPasswordLocataire(@Path("id") id:String?,@Body locataire:LocataireEditPassword, @Header("authorization") token: String): Call<LocataireModificationResponse>
 
     //récupérer les reservation d'un locataire
     @GET("api/reservation/historique/locataires/{id}")
@@ -51,6 +51,9 @@ interface ServiceProvider {
 
     @POST("api/reservation")
     fun ajouterReservation(@Body reservation: ReservationModel): Call<ReservationResponse>
+
+    @POST("api/reclamation/{id}")
+    fun ajouterReclamation(@Body reservation: ReclamationModel,@Path("id") id:String ): Call<ReclamationResponse>
 
 
     @POST("api/identites")
@@ -73,8 +76,11 @@ interface ServiceProvider {
     @POST("api/transaction")
     fun createTransaction(@Header("Authorization") token:String, @Body transaction: Transaction): Call<ResponseBody>
 
-    //get user's transactions
+    //get user's stripe transactions
     @GET("api/transaction/{id}")
-    fun getUserTransactions(@Header("Authorization") token:String, @Path("id") id: Int): Call<Transaction>
+    fun getUserTransactions(@Path("id") id: Int, @Header("Authorization") token:String ): Call<ArrayList<Transaction>>
 
+    //get user's stripe transactions
+    @GET("api/trajet/getTrajetByReservation/{id}")
+    fun getTrajetByReservation(@Path("id") idReservation: Int): Call<Trajet>
 }

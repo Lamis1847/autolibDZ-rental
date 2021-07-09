@@ -2,35 +2,54 @@ package com.sil1.autolibdz_rental.ui.view.fragment.reservation_vehicule
 
 import android.Manifest
 import android.app.Activity
+import android.content.Context
 import android.content.pm.PackageManager
 import android.location.Location
 import android.os.Bundle
+import android.os.Handler
 import android.os.Looper
 import android.util.Log
+import androidx.navigation.fragment.findNavController
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.core.app.ActivityCompat
+import androidx.core.os.bundleOf
+import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
+import androidx.lifecycle.ViewModelProviders
+import androidx.navigation.findNavController
+import com.afollestad.materialdialogs.MaterialDialog
 import com.bumptech.glide.Glide
 import com.google.android.gms.location.*
 import com.google.android.gms.maps.model.LatLng
 import com.google.android.gms.tasks.Task
+import com.kaopiz.kprogresshud.KProgressHUD
+import com.sil1.autolibdz_rental.R
+import com.sil1.autolibdz_rental.ui.view.activity.MyDrawerController
+import com.sil1.autolibdz_rental.ui.view.fragment.stripe_card.StripeCardViewModel
 import com.google.maps.DistanceMatrixApi
 import com.google.maps.GeoApiContext
 import com.google.maps.PendingResult
 import com.google.maps.model.DistanceMatrix
 import com.google.maps.model.TravelMode
-import com.sil1.autolibdz_rental.R
-import com.sil1.autolibdz_rental.ui.view.activity.MyDrawerController
+import com.sil1.autolibdz_rental.data.room.RoomService
 import com.sil1.autolibdz_rental.ui.viewmodel.Reservation
 import com.sil1.autolibdz_rental.ui.viewmodel.Vehicule
+import com.sil1.autolibdz_rental.utils.sharedPrefFile
 import kotlinx.android.synthetic.main.fragment_details_vehicule.*
 import kotlinx.android.synthetic.main.fragment_vehicule_reserve2.*
+import kotlinx.android.synthetic.main.stripe_card_fragment.*
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.GlobalScope
+import kotlinx.coroutines.launch
+import java.net.HttpURLConnection
+import java.net.URL
 
 class VehiculeReserve2Fragment : Fragment() {
     private val TAG = "_VehiculeDeverouillerFragment"
+    private lateinit var viewModel: InfosReservationViewModel
     private lateinit var fusedLocationClient: FusedLocationProviderClient
     private lateinit var locationCallback: LocationCallback
     var requestingLocationUpdates = true
@@ -40,6 +59,8 @@ class VehiculeReserve2Fragment : Fragment() {
     private lateinit var vehiculeLocation : LatLng
     private lateinit var vm : Vehicule
     private var myDrawerController: MyDrawerController? = null
+    private var idReservation = 0
+    private lateinit var hud: KProgressHUD
     override fun onAttach(activity: Activity) {
         super.onAttach(activity)
         myDrawerController = try {
@@ -62,6 +83,11 @@ class VehiculeReserve2Fragment : Fragment() {
 
         var codePin= arguments?.get("codePin")
         code = codePin.toString()
+
+        idReservation= arguments?.getInt("id")!!
+        //idReservation = 164
+        Log.i("idReservation_vehicule2", idReservation.toString())
+
         myDrawerController?.setDrawer_Locked();
         fusedLocationClient = LocationServices.getFusedLocationProviderClient(requireActivity())
 
@@ -97,6 +123,17 @@ class VehiculeReserve2Fragment : Fragment() {
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
+        val vm = ViewModelProvider(requireActivity()).get(Vehicule::class.java)
+        val sharedPref = RoomService.context.getSharedPreferences(
+            sharedPrefFile, Context.MODE_PRIVATE
+        )
+
+        val token = sharedPref.getString("token","defaultvalue").toString()
+        val factory = InfosReservationViewModelFactory(token)
+        viewModel = ViewModelProviders.of(this, factory).get(InfosReservationViewModel::class.java)
+
+        signalerFinTrajetBtn.setOnClickListener { signalFinTrajet() }
+
         Glide.with(requireActivity()).load(vm.secureUrl).into(imageVehicule1)
         Log.i(TAG,"vehicule location : ${vm.longitude} ${vm.latitute}")
         codePINTextView1.text = code
@@ -140,9 +177,6 @@ class VehiculeReserve2Fragment : Fragment() {
             // for ActivityCompat#requestPermissions for more details.
             return
         }
-        fusedLocationClient.requestLocationUpdates(locationRequest,
-            locationCallback,
-            Looper.getMainLooper())
     }
     override fun onPause() {
         super.onPause()
@@ -196,30 +230,46 @@ class VehiculeReserve2Fragment : Fragment() {
         return results[0]
     }
 
-    fun geoContextDistanceApi(): GeoApiContext {
-        return GeoApiContext.Builder()
-            .apiKey(getString(R.string.api_key))
-            .build()
-    }
-    private fun makeDistanceCalculationCall(depart:LatLng , dest:LatLng ) {
-
-        val origin = arrayOf(depart.latitude.toString() + "," + depart.longitude)
-        val destination = arrayOf(dest.latitude.toString() + "," + dest.longitude.toString())
-        DistanceMatrixApi.getDistanceMatrix(geoContextDistanceApi(), origin, destination)
-            .mode(TravelMode.DRIVING)
-            .setCallback(object : PendingResult.Callback<DistanceMatrix> {
-                override fun onResult(result: DistanceMatrix) {
-                    totalDistance = result.rows[0].elements[0].distance.inMeters
-
-                    Log.e(TAG, "Total Distance -> $totalDistance")
-
+    fun signalFinTrajet() {
+        //create payment intent
+        val vmRes = ViewModelProvider(requireActivity()).get(Reservation::class.java)
+        viewModel.getTrajet(idReservation)
+        Log.i("idreservationsignal" , idReservation.toString())
+        hud = KProgressHUD.create(requireActivity())
+            .setStyle(KProgressHUD.Style.SPIN_INDETERMINATE)
+            .setLabel("Patientez s'il vous plait")
+        hud.show()
+        viewModel.trajet.observe(requireActivity(), Observer {
+            if (viewModel.trajet.value != null) {
+                val handler = Handler()
+                handler.postDelayed(Runnable { hud.dismiss() }, 500)
+                if (viewModel.trajet.value!!.dateFin != null) {
+                    val bundle = bundleOf(
+                        "idReservation" to idReservation,
+                        "borneDepart" to vmRes.nomBorneDepart,
+                        "borneArrivee" to vmRes.nomBorneDestination,
+                        "kilometres" to viewModel.trajet.value!!.kmParcourue,
+                        "temps" to viewModel.trajet.value!!.tempsEstime,
+                        "prixAPayer" to viewModel.trajet.value!!.prixAPayer
+                    )
+                    findNavController().navigate(
+                        R.id.action_vehiculeReserve2Fragment_to_infosTrajetFragment,
+                        bundle
+                    )
                 }
-                override fun onFailure(e: Throwable) {
-                    Log.i("error",e.message.toString())
-                    e.printStackTrace()
+                else {
+                    val dialog = MaterialDialog(requireActivity())
+                        .title(R.string.signalODB)
+                        .message(R.string.signalODBDetail)
+                        .positiveButton(R.string.yes) { dialog ->
+                            dialog.dismiss()
+                        }
+                    dialog.show()
+                    Log.i("tralala", "date fin NOOON atteinte")
                 }
-            })
 
+            }
+        })
     }
 
 }

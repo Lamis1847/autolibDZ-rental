@@ -8,7 +8,7 @@ import android.view.ViewGroup
 import androidx.navigation.findNavController
 import com.sil1.autolibdz_rental.R
 import kotlinx.android.synthetic.main.fragment_payment_end.*
-
+import androidx.navigation.fragment.findNavController
 
 class PaymentEndFragment : Fragment() {
 
@@ -23,7 +23,7 @@ class PaymentEndFragment : Fragment() {
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
         paymentDoneBtn.setOnClickListener {
-            requireActivity().findNavController(R.id.payment_test).navigate(R.id.action_paymentEndFragment_to_infosTrajetFragment)
+            findNavController().navigate(R.id.action_paymentEndFragment_to_nav_home)
         }
     }
 

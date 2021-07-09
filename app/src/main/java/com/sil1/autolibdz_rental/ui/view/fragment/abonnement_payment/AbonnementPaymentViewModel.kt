@@ -10,8 +10,11 @@ import com.sil1.autolibdz_rental.data.model.Transaction
 import com.sil1.autolibdz_rental.data.repositories.AbonnementRepository
 import com.sil1.autolibdz_rental.data.repositories.StripeRepository
 import com.sil1.autolibdz_rental.utils.sharedPrefFile
+import kotlinx.android.synthetic.main.facture_abonnement_fragment.*
 import okhttp3.ResponseBody
 import retrofit2.Response
+import java.time.LocalDateTime
+import java.time.format.DateTimeFormatter
 
 class AbonnementPaymentViewModel : ViewModel() {
     private val TAG = "TAG-AbonnementPaymentViewModel"
@@ -39,7 +42,7 @@ class AbonnementPaymentViewModel : ViewModel() {
         }
     }
 
-    fun payWithAbonnement(context: Context) {
+    fun payWithAbonnement(context: Context , idReservation: Int) {
         val sharedPref = context.getSharedPreferences(
             sharedPrefFile, Context.MODE_PRIVATE
         )
@@ -50,16 +53,21 @@ class AbonnementPaymentViewModel : ViewModel() {
         AbonnementRepository.payWithAbonnement(TAG, token, id,prixAPayer) {
             Log.i(TAG, "view model here (checkout)")
             _response.postValue(it)
-            if (it?.message()=="OK")
-                createTransaction(token, id)
+            if (it!=null)
+                createTransaction(token, id, idReservation)
         }
     }
 
-    private fun createTransaction(token:String, id: Int) {
-        //val idReservation = 1
+    private fun createTransaction(token:String, id: Int, idReservation: Int) {
+        Log.i("heeeeeeeeeere", "here")
+        /*date and time of transaction*/
+        var currentDateTime= LocalDateTime.now()
 
-        //val transaction = Transaction(id, idReservation,prixAPayer, "Paiement Carte d\'abonnement")
+        val formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd")
+        val formatted = currentDateTime.format(formatter)
 
-        //AbonnementRepository.createTransaction(TAG, token, transaction) {}
+        val transaction = Transaction(id, idReservation, null ,prixAPayer.toFloat(), "Paiement Carte d\'abonnement")
+
+        AbonnementRepository.createTransaction(TAG, token, transaction) {}
     }
 }

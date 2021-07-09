@@ -68,7 +68,7 @@ class DetailsVehiculeFragment : Fragment() {
         reseverButtonD.setOnClickListener {
             findNavController().navigate(R.id.action_detailsVehiculeFragment_to_infosReservationFragment)
         }
-        annulerButtonD.setOnClickListener{ this.findNavController().navigate(R.id.action_DetailsVehiculeFragment_pop)
+        goBackButtonDetailsVehicule.setOnClickListener{ this.findNavController().navigate(R.id.action_DetailsVehiculeFragment_pop)
         }
     }
 }

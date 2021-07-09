@@ -8,6 +8,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.activity.OnBackPressedCallback
+import androidx.navigation.fragment.findNavController
 import androidx.navigation.findNavController
 import com.sil1.autolibdz_rental.R
 import kotlinx.android.synthetic.main.facture_abonnement_fragment.*
@@ -49,7 +50,7 @@ class FactureAbonnementFragment : Fragment() {
         factureDateText.text = formatted
 
         skipBtn.setOnClickListener{
-            requireActivity().findNavController(R.id.payment_test).navigate(R.id.action_factureAbonnementFragment2_to_paymentEndFragment)
+            findNavController().navigate(R.id.action_factureAbonnementFragment2_to_paymentEndFragment)
         }
     }
 

@@ -23,8 +23,7 @@
     <string name="from_current_location_empty">Borne départ</string>
     <string name="to_location_empty">Borne destination</string>
     <string name="drag_info">Plus d\'infos</string>
-
-    <string name="api_key" templateMergeStrategy="preserve" translatable="false"></string>
+    <string name="api_key" templateMergeStrategy="preserve" translatable="false">AIzaSyA9DGuUN735F-CarxUPOfblxOMC5m3K8p8</string>
 
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="button_confirmer">Confirmer</string>
@@ -61,12 +60,19 @@
     <!-- END OF Strings used for profil interface-->
 
     <!-- FOR KEY SHAREDPREF-->
+    <string-array name="reclamation_array">
+        <item>bug</item>
+        <item>service</item>
+        <item>autre</item>
+    </string-array>
+
+
     <string name="PREFERENCE_FILE_KEY">com.sil1.autolibdz_rental</string>
     <string name="reservation_tout">Tout</string>
     <string name="codePin_tip">Utiliser le code PIN pour déverouiller l"ordinateur de bord qui se trouve à l'intérieur du véhicule.</string>
     <!-- END OF SHAREDPREF-->
 
-<!--    trajet-->
+    <!--    trajet-->
     <string name="thankYouTrajet">Merci d\'avoir pris \nla route avec \nAutoLibDZ!</string>
     <string name="detailsTrajet">Voici les détails de votre trajet :</string>
 
@@ -107,18 +113,20 @@
     <string name="skip">Terminer</string>
 
 
-<!--    paiement end-->
+    <!--    paiement end-->
     <string name="paymentDone">Paiement effectué</string>
     <string name="thankYouPayment">Merci d\'avoir utilisé AutolibDz !</string>
-    <string name="done">Done</string>
-    
-<!--    transaction-->
-    <string name="transactionType">Nature de la réservation</string>
+    <string name="done">Terminé</string>
 
+    <!--    transaction-->
+    <string name="transactionType">Nature de la réservation</string>
+    <string name="history">Historique</string>
+    <string name="transactions">Transactions</string>
+
+    <string name="signalODB">Fin de trajet</string>
+    <string name="signalODBDetail">Veuillez signalez la fin de trajet sur l\'ordinateur de bord de votre voiture d\'abord.</string>
     <!--maps display fragment-->
     <string name="compteValidationTitle">Opération impossible</string>
     <string name="compteValidationMsg">Votre compte n\'a pas encore été validé</string>
     <string name="compris">J\'ai compris</string>
-
-
 </resources>

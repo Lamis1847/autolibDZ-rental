@@ -9,9 +9,12 @@ import android.os.Bundle
 import android.provider.MediaStore
 import android.util.Log
 import android.view.View
+import android.view.Window
+import android.view.WindowManager
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.app.ActivityCompat
+import androidx.core.content.ContextCompat
 import androidx.lifecycle.ViewModelProvider
 import com.cloudinary.android.MediaManager
 import com.cloudinary.android.callback.ErrorInfo
@@ -37,6 +40,16 @@ class ValidationActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+
+        //status bar
+        val window: Window = this@ValidationActivity.window
+        window.addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS)
+        window.clearFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS)
+        window.statusBarColor = ContextCompat.getColor(
+            this@ValidationActivity,
+            R.color.palette_yellow
+        )
+
         setContentView(R.layout.activity_validation)
 
         val config: MutableMap<String, String> = HashMap()
@@ -193,7 +206,7 @@ class ValidationActivity : AppCompatActivity() {
             }).dispatch()
 
         }else{
-            Toast.makeText(this,"please make sure to take a picture of you and your permis",Toast.LENGTH_SHORT).show()
+            Toast.makeText(this,"Veuillez prendre les photos pour continuer",Toast.LENGTH_SHORT).show()
         }
 
 
