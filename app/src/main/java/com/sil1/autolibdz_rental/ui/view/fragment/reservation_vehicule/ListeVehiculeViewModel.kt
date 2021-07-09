@@ -16,6 +16,5 @@ class ListeVehiculeViewModel(token:String) : ViewModel(){
             Log.i(TAG, "view model here")
             vehicules.value = it?.value
         }
-
     }
 }

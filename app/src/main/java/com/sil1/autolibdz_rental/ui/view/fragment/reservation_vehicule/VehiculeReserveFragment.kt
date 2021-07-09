@@ -6,6 +6,8 @@ import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
+import androidx.activity.OnBackPressedCallback
 import androidx.core.os.HandlerCompat.postDelayed
 import androidx.core.os.bundleOf
 import androidx.databinding.DataBindingUtil.setContentView
@@ -26,6 +28,12 @@ class VehiculeReserveFragment : Fragment() {
         var codePin = arguments?.get("codePin")
         var id = arguments?.getInt("id")!!
         bundle = bundleOf("codePin" to codePin, "id" to id)
+
+        activity?.onBackPressedDispatcher?.addCallback(requireActivity(), object : OnBackPressedCallback(true) {
+            override fun handleOnBackPressed() {
+                Toast.makeText(requireActivity(), "Disabled Back Press", Toast.LENGTH_SHORT).show()
+            }
+        })
     }
 
 
