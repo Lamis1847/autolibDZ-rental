@@ -199,7 +199,7 @@
         android:backgroundTint="#FFCB00"
         android:focusable="false"
         android:stateListAnimator="@null"
-        android:text="Sauvgarder"
+        android:text="Sauvegarder"
         android:textAllCaps="false"
         android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"

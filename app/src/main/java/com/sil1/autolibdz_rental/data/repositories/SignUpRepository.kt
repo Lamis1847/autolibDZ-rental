@@ -14,6 +14,8 @@ import com.sil1.autolibdz_rental.ui.view.activity.HomeActivity
 import com.sil1.autolibdz_rental.ui.view.activity.LoginActivity
 import com.sil1.autolibdz_rental.ui.view.activity.validation.ValidationActivity
 import com.sil1.autolibdz_rental.utils.idTokenUser
+import com.sil1.autolibdz_rental.utils.sharedPrefFile
+import com.sil1.autolibdz_rental.utils.userToken
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
@@ -34,6 +36,9 @@ class SignUpRepository {
 
             val addLocataireRequest = api.ajouterLocataire(locataire) // consommation de l'api
 
+            val sharedPref = context.getSharedPreferences(
+                sharedPrefFile, Context.MODE_PRIVATE
+            )
             addLocataireRequest.enqueue(object : Callback<SignUpResponse> {
                 override fun onResponse(
                     call: Call<SignUpResponse>,
@@ -59,6 +64,13 @@ class SignUpRepository {
                             resp?.message,
                             Toast.LENGTH_SHORT
                         ).show()
+                        val userID = resp?.id
+                        with(sharedPref?.edit()) {
+                            this?.putString("userID", userID.toString())
+                            this?.apply()
+                        }
+                        Toast.makeText(context, "Votre compte a été crée avec succées", Toast.LENGTH_SHORT).show()
+
                         val myIntent = Intent(context, ValidationActivity::class.java)
                         context.startActivity(myIntent)
                     }

@@ -9,7 +9,6 @@ import com.sil1.autolibdz_rental.data.repositories.ValidationRepository
 
 class ValidationVm : ViewModel() {
 
-    private var id:String="193"; //changer cet id selon l'utilisateur
 
     var callResult = MutableLiveData<Boolean>()
 

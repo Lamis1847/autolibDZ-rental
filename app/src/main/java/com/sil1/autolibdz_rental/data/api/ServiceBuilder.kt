@@ -7,9 +7,7 @@ import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 import java.util.concurrent.TimeUnit
 
-
 object ServiceBuilder {
-
     // the Base adresse
     private const val BASE_URL = "https://autolib-dz.herokuapp.com/"
 
@@ -17,10 +15,10 @@ object ServiceBuilder {
 
     //Create Okhttp Client
     private val okHttp: OkHttpClient = OkHttpClient.Builder()
-            .addInterceptor(interceptor)
-            .readTimeout(5, TimeUnit.MINUTES)
-            .writeTimeout(5, TimeUnit.MINUTES)
-            .build()
+        .addInterceptor(interceptor)
+        .readTimeout(5, TimeUnit.MINUTES)
+        .writeTimeout(5, TimeUnit.MINUTES)
+        .build()
 
     var gson = GsonBuilder()
         .setLenient()
@@ -29,9 +27,9 @@ object ServiceBuilder {
 
     // Create Retrofit Builder
     private val builder : Retrofit.Builder = Retrofit.Builder()
-            .client(okHttp)
-            .baseUrl(BASE_URL)
-            .addConverterFactory(GsonConverterFactory.create(gson))
+        .client(okHttp)
+        .baseUrl(BASE_URL)
+        .addConverterFactory(GsonConverterFactory.create(gson))
 
     //create Retrofit Instance
     private val retrofit = builder.build()

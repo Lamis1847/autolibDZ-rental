@@ -45,6 +45,7 @@
         android:label="@string/menu_reclamation"
         tools:layout="@layout/fragment_reclamation" />
 
+
     <fragment
         android:id="@+id/listeVehiculeFragment"
         android:name="com.sil1.autolibdz_rental.ui.view.activity.ListeVehiculeFragment"
