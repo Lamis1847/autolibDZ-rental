@@ -9,11 +9,12 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.annotation.RequiresApi
 import androidx.fragment.app.Fragment
+import androidx.fragment.app.FragmentManager
 import androidx.navigation.findNavController
 import com.sil1.autolibdz_rental.R
-import com.sil1.autolibdz_rental.ui.view.activity.HomeActivity
 import com.sil1.autolibdz_rental.ui.view.activity.LoginActivity
 import kotlinx.android.synthetic.main.fragment_splash_one.*
+
 
 
 class SplashFragmentOne : Fragment() {
@@ -41,11 +42,9 @@ class SplashFragmentOne : Fragment() {
 
         textViewPasserOne.setOnClickListener {
             val intent = Intent(activity, LoginActivity::class.java)
+            intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK)
+            intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK)
             startActivity(intent)
-            activity?.onBackPressed()
         }
-
     }
-
-
 }
