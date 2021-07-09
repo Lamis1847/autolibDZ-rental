@@ -37,12 +37,11 @@
             android:name=".ui.view.activity.SignUpActivity"
             android:screenOrientation="portrait"
             android:theme="@style/Theme.AutolibDZrental.NoActionBar"></activity>
+
         <activity
             android:name=".ui.view.activity.HomeActivity"
             android:screenOrientation="portrait"
             android:theme="@style/Theme.AutolibDZrental.NoActionBar"></activity>
-
-
 
 
         <activity

@@ -49,15 +49,13 @@ class MotDePasseFragment : Fragment() {
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
         val preferences = requireActivity().getSharedPreferences(sharedPrefFile, Context.MODE_PRIVATE)
-        val userID = preferences.getString("userID", "Default")
-        val token = preferences.getString("token", "Default")
 
+        val token = preferences.getString("token", "default")
+        val userID = preferences.getString("userID", "1")
         var viewModel = ViewModelProvider(this).get(ProfilViewModel::class.java)
         SauvgarderMdp.setOnClickListener {
             val locataire= LocataireEditPassword(oldPassword.text.toString(),newPassword.text.toString())
-            if (userID != null) {
-                viewModel.updatePasswordLocataire(locataire,userID,token,requireActivity())
-            } //il faut changer l'id après!
+            viewModel.updatePasswordLocataire(locataire,token,userID,requireActivity()) //il faut changer l'id après!
             oldPassword.text.clear()
             newPassword.text.clear()
 

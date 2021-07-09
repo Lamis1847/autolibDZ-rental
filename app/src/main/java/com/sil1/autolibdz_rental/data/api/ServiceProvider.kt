@@ -36,12 +36,9 @@ interface ServiceProvider {
     fun editPasswordLocataire(@Path("id") id:String?,@Body locataire:LocataireEditPassword, @Header("authorization") token: String): Call<LocataireModificationResponse>
 
 
-    @PUT("api/locataire/{id}")
-    fun editLocataire(@Path("id") id:String,@Body locataire:LocataireRetro/*@Header("Authorization") token: String*/): Call<LocataireModificationResponse>
-
     //récupérer les reservation d'un locataire
     @GET("api/reservation/historique/locataires/{id}")
-    fun getReservations(@Path("id") id:String /*@Header("Authorization") token: String*/): Call<List<Reservation>>
+    fun getReservations(@Header("authorization") token: String?,@Path("id") id:String? /*@Header("Authorization") token: String*/): Call<List<Reservation>>
 
     @GET("/api/bornes/{id}/vehicules")
     fun getListeVehicules(@Path("id") id:String,@Header("authorization") token:String  ): Call<List<VehiculeModel>>
@@ -55,9 +52,9 @@ interface ServiceProvider {
     @POST("api/reclamation/{id}")
     fun ajouterReclamation(@Body reservation: ReclamationModel,@Path("id") id:String ): Call<ReclamationResponse>
 
-
     @POST("api/identites")
     fun envoyerValidationDemande(@Body validationBody: ValidationBody): Call<Any>
+
     //create payment intent
     @FormUrlEncoded
     @POST("api/payment/create-payment-intent")
