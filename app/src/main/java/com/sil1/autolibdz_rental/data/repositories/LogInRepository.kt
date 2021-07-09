@@ -26,7 +26,6 @@ class LogInRepository {
             ServiceBuilder.buildService(ServiceProvider::class.java)
         }
 
-
         fun login(
             context: Context,
             email: String,

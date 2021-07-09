@@ -25,6 +25,7 @@ class VehiculeReserveFragment : Fragment() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+
         var codePin = arguments?.get("codePin")
         var id = arguments?.getInt("id")!!
         bundle = bundleOf("codePin" to codePin, "id" to id)

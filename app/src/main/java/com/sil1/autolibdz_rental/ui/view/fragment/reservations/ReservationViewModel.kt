@@ -8,11 +8,11 @@ import com.sil1.autolibdz_rental.utils.reservations
 
 class ReservationViewModel : ViewModel() {
     private val TAG = "TAG-reservation-View-Model"
-    private var id:String="3"; //changer cet id selon l'utilisateur
 
 
-    fun getReservations() {
-        reservations = ReservationRepository.getReservations(TAG, id)
+
+    fun getReservations(token:String?,id:String?) {
+        reservations = ReservationRepository.getReservations(TAG, token,id)
     }
 
 

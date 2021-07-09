@@ -35,13 +35,13 @@ interface ServiceProvider {
     @PUT("api/locataire/password/{id}")
     fun editPasswordLocataire(@Path("id") id:String?,@Body locataire:LocataireEditPassword, @Header("authorization") token: String): Call<LocataireModificationResponse>
 
+
     //récupérer les reservation d'un locataire
     @GET("api/reservation/historique/locataires/{id}")
-    fun getReservations(@Path("id") id:String /*@Header("Authorization") token: String*/): Call<List<Reservation>>
+    fun getReservations(@Header("authorization") token: String?,@Path("id") id:String? /*@Header("Authorization") token: String*/): Call<List<Reservation>>
 
     @GET("/api/bornes/{id}/vehicules")
     fun getListeVehicules(@Path("id") id:String,@Header("authorization") token:String  ): Call<List<VehiculeModel>>
-
 
     @GET("/api/identites/locataire/{id}")
     fun getIdentiteLocataire(@Path("id") id:String,/*@Header("authorization") token:String  */): Call<Identite>
@@ -49,15 +49,12 @@ interface ServiceProvider {
     @POST("api/reservation")
     fun ajouterReservation(@Body reservation: ReservationModel,@Header("authorization") token:String): Call<ReservationResponse>
 
-    @POST("api/reservation")
-    fun ajouterReservation(@Body reservation: ReservationModel): Call<ReservationResponse>
-
     @POST("api/reclamation/{id}")
     fun ajouterReclamation(@Body reservation: ReclamationModel,@Path("id") id:String ): Call<ReclamationResponse>
 
-
     @POST("api/identites")
     fun envoyerValidationDemande(@Body validationBody: ValidationBody): Call<Any>
+
     //create payment intent
     @FormUrlEncoded
     @POST("api/payment/create-payment-intent")

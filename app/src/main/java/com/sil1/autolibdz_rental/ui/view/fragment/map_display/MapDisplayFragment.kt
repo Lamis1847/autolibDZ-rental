@@ -39,14 +39,11 @@ import com.google.maps.model.DistanceMatrix
 import com.google.maps.model.TravelMode
 import com.sil1.autolibdz_rental.R
 import com.sil1.autolibdz_rental.data.model.Borne
-import com.sil1.autolibdz_rental.data.model.Identite
 import com.sil1.autolibdz_rental.data.repositories.LocataireRepository
-import com.sil1.autolibdz_rental.data.room.RoomService
 import com.sil1.autolibdz_rental.ui.view.activity.MyDrawerController
 import com.sil1.autolibdz_rental.ui.viewmodel.Reservation
 import com.sil1.autolibdz_rental.utils.sharedPrefFile
 import kotlinx.android.synthetic.main.map_display_fragment.*
-import kotlinx.android.synthetic.main.stripe_card_fragment.*
 import java.io.IOException
 import java.text.DecimalFormat
 import java.util.*
@@ -127,7 +124,7 @@ class MapDisplayFragment : Fragment() , OnMapReadyCallback , GoogleMap.OnMarkerC
     @SuppressLint("FragmentLiveDataObserve")
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
-        val sharedPref = RoomService.context.getSharedPreferences(
+        val sharedPref = requireActivity().getSharedPreferences(
             sharedPrefFile, Context.MODE_PRIVATE
         )
 

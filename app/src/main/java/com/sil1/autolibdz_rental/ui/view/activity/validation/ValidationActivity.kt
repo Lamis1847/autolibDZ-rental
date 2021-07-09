@@ -1,10 +1,10 @@
 package com.sil1.autolibdz_rental.ui.view.activity.validation
 
 import android.Manifest
+import android.content.Context
 import android.content.Intent
 import android.content.pm.PackageManager
 import android.graphics.Bitmap
-import android.net.Uri
 import android.os.Bundle
 import android.provider.MediaStore
 import android.util.Log
@@ -16,11 +16,12 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
 import androidx.lifecycle.ViewModelProvider
+import com.afollestad.materialdialogs.MaterialDialog
 import com.cloudinary.android.MediaManager
 import com.cloudinary.android.callback.ErrorInfo
 import com.cloudinary.android.callback.UploadCallback
 import com.sil1.autolibdz_rental.R
-import com.sil1.autolibdz_rental.ui.view.fragment.profil.ProfilViewModel
+import com.sil1.autolibdz_rental.utils.sharedPrefFile
 import kotlinx.android.synthetic.main.activity_validation.*
 import java.io.ByteArrayOutputStream
 
@@ -32,7 +33,7 @@ class ValidationActivity : AppCompatActivity() {
 
      var selfieBitmap:Bitmap? = null
      var permisBitmap:Bitmap? = null
-
+     var userID : String = ""
     var tookSelfie = false
     var tookPermis = false
 
@@ -40,8 +41,12 @@ class ValidationActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        val sharedPref = this.getSharedPreferences(
+            sharedPrefFile, Context.MODE_PRIVATE
+        )
 
-        //status bar
+        userID = sharedPref.getString("userID","defaultvalue").toString()
+
         val window: Window = this@ValidationActivity.window
         window.addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS)
         window.clearFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS)
@@ -188,7 +193,7 @@ class ValidationActivity : AppCompatActivity() {
                             permisUrl = resultData!!["secure_url"].toString()
                             permisId = resultData!!["public_id"].toString()
                             Log.e("upload-call",permisUrl+"$requestId  $selfieUrl    $selfieId")
-                            viewModel.envoyerValidationDemande(245,selfieUrl,permisUrl,permisId,selfieId)
+                            viewModel.envoyerValidationDemande(userID.toInt(),selfieUrl,permisUrl,permisId,selfieId)
 
                         }
 

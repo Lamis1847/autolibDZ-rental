@@ -6,6 +6,7 @@ import android.content.Context
 import android.net.ConnectivityManager
 import android.net.NetworkInfo
 import android.os.Bundle
+import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
@@ -17,6 +18,7 @@ import com.sil1.autolibdz_rental.R
 import com.sil1.autolibdz_rental.data.room.RoomService
 import com.sil1.autolibdz_rental.utils.reservations
 import com.sil1.autolibdz_rental.utils.reservationsFiltred
+import com.sil1.autolibdz_rental.utils.sharedPrefFile
 import kotlinx.android.synthetic.main.fragment_reservations.*
 
 //// TODO: Rename parameter arguments, choose names that match
@@ -57,12 +59,16 @@ private lateinit var adapter: ReservationAdapter
 //        val test2 = mutableListOf<Reservation>(test)
 //        adapter.setReservations(test2)
         textView3.setBackgroundResource(R.color.white)
-
-
+        val preferences = requireActivity().getSharedPreferences(sharedPrefFile, Context.MODE_PRIVATE)
+        val token = preferences.getString("token", "defaultvalue")
+        val userID = preferences.getString("userID", "defaultvalue")
+        Log.i("useridd",userID.toString())
+        Log.i("token",token.toString())
         if(!checkNetwork() && RoomService.database.getReservationDao().selectReservations() == null)
 
     else
         {
+
             tout.isSelected = true;
             if(progressBar != null) {
                 progressBar.visibility = View.VISIBLE
@@ -105,7 +111,7 @@ private lateinit var adapter: ReservationAdapter
         adapter = ReservationAdapter(requireActivity())
 
         var viewModel = ViewModelProvider(this).get(ReservationViewModel::class.java)
-        viewModel.getReservations();
+        viewModel.getReservations(token,userID);
             reservationsFiltred.observe(requireActivity(), Observer { reservationsFiltred ->
                 if(reservationsFiltred!=null)
                     adapter.setReservations(reservationsFiltred)
@@ -124,7 +130,6 @@ private lateinit var adapter: ReservationAdapter
 
         recycleview.layoutManager = LinearLayoutManager(requireActivity())
         recycleview.adapter = adapter
-
 
     }
     }}

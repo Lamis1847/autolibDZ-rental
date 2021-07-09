@@ -1,5 +1,6 @@
 package com.sil1.autolibdz_rental.ui.view.fragment.reservations
 
+import android.opengl.Visibility
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
@@ -56,6 +57,12 @@ class DetailReservationFragment : Fragment() {
             "Terminée"-> etatR.setBackgroundResource(R.color.terminée)
             "Annulée" -> etatR.setBackgroundResource(R.color.annulée)
         }
+        if(!etatR.text.toString().equals("Terminée",true))
+        {
+            prixDetail.visibility=View.GONE
+        }
+        else
+            priceDetail.text=reservation?.get(0)?.prix.toString() + " DA"
         Glide.with(requireActivity()).load(reservation?.get(0)?.secureUrl)
             .into(vehiculeD)
         activity?.onBackPressedDispatcher?.addCallback(requireActivity(), object : OnBackPressedCallback(true) {

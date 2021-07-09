@@ -18,20 +18,18 @@ class ProfilViewModel : ViewModel() {
 
     var locataire = MutableLiveData<ArrayList<LocataireRetro?>>()
 
-   fun getLocataire(userID:String?, token:String?) {
-       locataire = token?.let { LocataireRepository.getLocataire(TAG, userID, it) }!!
+
+   fun getLocataire(token:String?,userID:String?) {
+       locataire = LocataireRepository.getLocataire(TAG,userID, token)
+       Log.i("viewModel",token.toString())
    }
-    fun updateMailLocataire(locataireEdit: LocataireEditEmail, id:String, token:String?,context:Context) {
-        if (token != null) {
-            LocataireRepository.editMailLocataire(TAG,id,token,locataireEdit,context)
-        }
+    fun updateMailLocataire(locataireEdit: LocataireEditEmail,token:String?, id:String?,context:Context) {
+     LocataireRepository.editMailLocataire(TAG,id,token,locataireEdit,context)
 
     }
 
-    fun updatePasswordLocataire(locataireEdit: LocataireEditPassword, id:String,token:String?,context:Context) {
-        if (token != null) {
-            LocataireRepository.editPasswordLocataire(TAG,id,token,locataireEdit,context)
-        }
+    fun updatePasswordLocataire(locataireEdit: LocataireEditPassword,token:String?, id:String?,context:Context) {
+        LocataireRepository.editPasswordLocataire(TAG,id,token,locataireEdit,context)
 
     }
 

@@ -23,9 +23,10 @@ class LocataireRepository {
         val api: ServiceProvider by lazy {
             ServiceBuilder.buildService(ServiceProvider::class.java)
         }
-        fun editPasswordLocataire(TAG:String,id:String?,token:String,locataire:LocataireEditPassword,context:Context)
+        fun editPasswordLocataire(TAG:String,id:String?,token:String?,locataire:LocataireEditPassword,context:Context)
         {
-            var call = api.editPasswordLocataire(id,locataire,token) // fonction de modification dans l'api
+            var call = api.editPasswordLocataire(id,locataire,"Basic $token") // fonction de modification dans l'api
+
 
             call.enqueue(object:Callback<LocataireModificationResponse>{
                 override fun onResponse(
@@ -53,9 +54,10 @@ class LocataireRepository {
         }
 
 
-        fun editMailLocataire(TAG:String,id:String?,token:String,locataire:LocataireEditEmail,context:Context)
+
+        fun editMailLocataire(TAG:String?,id:String?,token:String?,locataire:LocataireEditEmail,context:Context)
         {
-            var call = api.editMailLocataire(id,locataire, token) // fonction de modification dans l'api
+            var call = api.editMailLocataire(id,locataire,"Basic $token",) // fonction de modification dans l'api
 
             call.enqueue(object:Callback<LocataireModificationResponse>{
                 override fun onResponse(
@@ -82,9 +84,11 @@ class LocataireRepository {
             })
 
         }
-        fun getLocataire(TAG: String,id:String?,token:String): MutableLiveData<ArrayList<LocataireRetro?>> {
-            var call = api.getLocataire(id, token) // consommation de l'api
+
+        fun getLocataire(TAG: String?,id:String?,token:String?): MutableLiveData<ArrayList<LocataireRetro?>> {
+            var call = api.getLocataire(id,"Basic $token") // consommation de l'api
             var locataireRespond: LocataireRetro?
+            Log.i("repositorytoken",token.toString())
             var locatairelist = ArrayList<LocataireRetro?>()
             var finalList = MutableLiveData<ArrayList<LocataireRetro?>>()
             call.enqueue(object : Callback<LocataireRetro> {
