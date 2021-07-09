@@ -70,7 +70,8 @@ class LocataireRepository {
                     } else {
                         var message = response.body().toString().split("(")
                         val test = message[1].split("=")
-                        val message2 = test[1]
+                        var message2 = test[1]
+                        message2=message2.dropLast(1)
                         Toast.makeText(context,message2, Toast.LENGTH_LONG).show()
                         Log.i(TAG, "REPONSES: updated successfully")
                     }}
