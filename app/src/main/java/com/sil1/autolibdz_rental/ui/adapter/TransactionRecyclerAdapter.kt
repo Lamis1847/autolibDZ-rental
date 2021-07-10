@@ -44,7 +44,6 @@ class TransactionRecyclerAdapter(private var list: ArrayList<Transaction>, val c
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         holder.dateTransaction.text = list[position].dateTransaction?.substring(0,10)
-        Log.i("tralala", list[position].dateTransaction!!)
         holder.montant.text = list[position].montant.toString()
 
         if (list[position].modePaiement == "Stripe") {
