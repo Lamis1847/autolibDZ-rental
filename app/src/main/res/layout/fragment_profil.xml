@@ -196,7 +196,7 @@
     <Button
         android:id="@+id/SauvgarderP"
         android:layout_width="160dp"
-        android:layout_height="wrap_content"
+        android:layout_height="60dp"
         android:layout_marginTop="16dp"
         android:backgroundTint="#FFCB00"
         android:focusable="false"
@@ -208,24 +208,42 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/changerMdp" />
 
+
     <Button
         android:id="@+id/DeconnecterP"
         android:layout_width="160dp"
-        android:layout_height="wrap_content"
+        android:layout_height="60dp"
         android:layout_marginTop="16dp"
-        android:layout_marginBottom="21dp"
         android:backgroundTint="#F5365C"
+        android:focusable="false"
         android:stateListAnimator="@null"
         android:text="Se déconnecter"
         android:textAllCaps="false"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/ValiderP"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/SauvgarderP"
+      />
+
+    <Button
+        android:id="@+id/ValiderP"
+        android:layout_width="160dp"
+        android:layout_height="60dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginEnd="24dp"
+        android:backgroundTint="@color/greenOk"
         android:focusable="false"
+        android:stateListAnimator="@null"
+        android:text="Valider mon compte"
+        android:visibility="gone"
+        android:textAllCaps="false"
         android:textStyle="bold"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/SauvgarderP" />
 
-    <!--    android:drawableEnd="@drawable/phone"-->
+
 
 
 

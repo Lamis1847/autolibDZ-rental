@@ -43,6 +43,7 @@ import com.sil1.autolibdz_rental.data.repositories.LocataireRepository
 import com.sil1.autolibdz_rental.ui.view.activity.MyDrawerController
 import com.sil1.autolibdz_rental.ui.viewmodel.Reservation
 import com.sil1.autolibdz_rental.utils.sharedPrefFile
+import com.sil1.autolibdz_rental.utils.valide
 import kotlinx.android.synthetic.main.map_display_fragment.*
 import java.io.IOException
 import java.text.DecimalFormat
@@ -76,7 +77,6 @@ class MapDisplayFragment : Fragment() , OnMapReadyCallback , GoogleMap.OnMarkerC
     private lateinit var  listBornes: ArrayList<Borne>
     private  var markers : ArrayList<Marker> = ArrayList<Marker>()
     private var token : String  = ""
-    private  var valide: Int = 0
     companion object {
         fun newInstance() = MapDisplayFragment()
     }
@@ -175,7 +175,8 @@ class MapDisplayFragment : Fragment() , OnMapReadyCallback , GoogleMap.OnMarkerC
             }
             //filtrer les bornes à afficher
             if(valide==1){
-            verifyBornesDeDepart()
+                verifyBornesDeDepart()
+
             // Set the fields to specify which types of place data to
             // return after the user has made a selection.
 
