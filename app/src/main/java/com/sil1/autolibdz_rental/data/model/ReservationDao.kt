@@ -13,6 +13,8 @@ interface ReservationDao {
     fun deleteReservation(reservation:Reservation)
     @Query("SELECT * FROM Reservations")
     fun selectReservations():List<Reservation>
+    @Query("DELETE FROM Reservations")
+    fun deleteReservations()
 
 }
 
