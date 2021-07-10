@@ -89,8 +89,9 @@ class ProfilFragment : Fragment() {
                 this?.putString("token", "")
                 this?.putBoolean("connected", false)
                 this?.apply()
-                RoomService.database.getReservationDao().deleteReservations()
             }
+            RoomService.database.getReservationDao().deleteReservations()
+
             val myIntent = Intent(requireActivity(), LoginActivity::class.java)
             requireActivity().startActivity(myIntent)
 
