@@ -45,7 +45,4 @@ class AbonnementCardPagerFragment: TransactionCardFragment() {
             balanceUserText.text = String.format("%.2f", it.userBalance)  + " DZD"
         })
     }
-
-
-
 }
