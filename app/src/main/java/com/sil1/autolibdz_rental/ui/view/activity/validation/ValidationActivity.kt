@@ -22,6 +22,7 @@ import com.cloudinary.android.callback.ErrorInfo
 import com.cloudinary.android.callback.UploadCallback
 import com.sil1.autolibdz_rental.R
 import com.sil1.autolibdz_rental.utils.sharedPrefFile
+import com.sil1.autolibdz_rental.utils.valide
 import kotlinx.android.synthetic.main.activity_validation.*
 import java.io.ByteArrayOutputStream
 
@@ -46,7 +47,7 @@ class ValidationActivity : AppCompatActivity() {
         )
 
         userID = sharedPref.getString("userID","defaultvalue").toString()
-
+        valide = null
         val window: Window = this@ValidationActivity.window
         window.addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS)
         window.clearFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS)

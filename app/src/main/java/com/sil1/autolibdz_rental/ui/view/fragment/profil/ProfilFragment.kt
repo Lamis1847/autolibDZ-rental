@@ -24,9 +24,10 @@ import com.sil1.autolibdz_rental.data.room.RoomService
 import com.sil1.autolibdz_rental.ui.view.activity.HomeActivity
 import com.sil1.autolibdz_rental.ui.view.activity.LoginActivity
 import com.sil1.autolibdz_rental.ui.view.activity.MyDrawerController
+import com.sil1.autolibdz_rental.ui.view.activity.validation.ValidationActivity
 import com.sil1.autolibdz_rental.utils.sharedPrefFile
 import com.sil1.autolibdz_rental.utils.userToken
-
+import com.sil1.autolibdz_rental.utils.valide
 
 
 class ProfilFragment : Fragment() {
@@ -48,6 +49,7 @@ class ProfilFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         // Inflate the layout for this fragment
+
         val view: View = inflater.inflate(R.layout.fragment_profil, container, false)
         myDrawerController?.setDrawer_UnLocked();
 
@@ -61,7 +63,8 @@ class ProfilFragment : Fragment() {
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
-
+        if(valide == 0)
+            ValiderP.visibility = View.VISIBLE
         val preferences = requireActivity().getSharedPreferences(sharedPrefFile, Context.MODE_PRIVATE)
 
         val token = preferences.getString("token", "defaultvalue")
@@ -101,6 +104,10 @@ class ProfilFragment : Fragment() {
         changerMdp.setOnClickListener{
             view?.findNavController()?.navigate(R.id.action_nav_profil_to_motDePasseFragment)
 
+        }
+        ValiderP.setOnClickListener{
+            val myIntent = Intent(requireActivity(), ValidationActivity::class.java)
+            requireActivity().startActivity(myIntent)
         }
     }
     private fun updateLocataire(locataire: ArrayList<LocataireRetro?>)
