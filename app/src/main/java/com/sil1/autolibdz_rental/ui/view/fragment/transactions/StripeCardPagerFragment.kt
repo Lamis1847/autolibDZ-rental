@@ -33,24 +33,5 @@ class StripeCardPagerFragment: TransactionCardFragment() {
         super.onActivityCreated(savedInstanceState)
 
         val vm = ViewModelProvider(requireActivity()).get(TransactionViewModel::class.java)
-
-        //populating the recycler
-//        val list = ArrayList<Transaction>()
-//
-//        list.add(
-//            Transaction(1,1,90.0,
-//                "Rechargement")
-//        )
-//        list.add(
-//            Transaction(1,2,80.0,
-//                "Paiement Carte d'abonnement")
-//        )
-//
-//
-//        val  adapter = TransactionRecyclerAdapter(list, requireActivity(),vm)
-
-//        stripeRecycler.layoutManager = LinearLayoutManager(requireActivity(), LinearLayoutManager.VERTICAL,false)
-//
-//        stripeRecycler.adapter = adapter
     }
 }
