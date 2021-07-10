@@ -20,7 +20,7 @@ val sharedPrefFile: String = "kotlinsharedpreference"
 var idTokenUser :String = ""
 var reservationsFiltred = MutableLiveData<List<Reservation>>()
 var reservations = MutableLiveData<List<Reservation>>()
-var valide: Int? = null
+var valide: Int? = 2
 
 class utils {
     companion object {
