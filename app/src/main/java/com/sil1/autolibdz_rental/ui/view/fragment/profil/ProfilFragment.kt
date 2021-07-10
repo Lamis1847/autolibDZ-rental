@@ -63,8 +63,11 @@ class ProfilFragment : Fragment() {
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
+        Log.i("profil","je suis la"+ valide)
         if(valide == 0)
             ValiderP.visibility = View.VISIBLE
+        else
+            ValiderP.visibility = View.GONE
         val preferences = requireActivity().getSharedPreferences(sharedPrefFile, Context.MODE_PRIVATE)
 
         val token = preferences.getString("token", "defaultvalue")

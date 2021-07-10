@@ -47,7 +47,7 @@ class ValidationActivity : AppCompatActivity() {
         )
 
         userID = sharedPref.getString("userID","defaultvalue").toString()
-        valide = null
+        valide = 2
         val window: Window = this@ValidationActivity.window
         window.addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS)
         window.clearFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS)

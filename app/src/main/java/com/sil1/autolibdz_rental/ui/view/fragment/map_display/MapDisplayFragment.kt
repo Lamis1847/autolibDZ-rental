@@ -202,7 +202,7 @@ class MapDisplayFragment : Fragment() , OnMapReadyCallback , GoogleMap.OnMarkerC
                 viewModel.valide.observe(requireActivity(), Observer {
                     if (viewModel.valide.value != null) {
                         valide = viewModel.valide.value
-                        if(viewModel.valide.value==1){
+                        if(viewModel.valide.value == 1){
                             verifyBornesDeDestination()
 
                             // Set the fields to specify which types of place data to
