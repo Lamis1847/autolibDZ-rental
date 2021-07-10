@@ -16,6 +16,8 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.sil1.autolibdz_rental.R
 import com.sil1.autolibdz_rental.ui.adapter.CardFragmentPagerAdapter
 import com.sil1.autolibdz_rental.ui.adapter.TransactionRecyclerAdapter
+import com.sil1.autolibdz_rental.ui.view.activity.HomeActivity
+import com.sil1.autolibdz_rental.ui.view.activity.validationBool
 import com.sil1.autolibdz_rental.ui.view.fragment.reservation_vehicule.InfosReservationViewModel
 import com.sil1.autolibdz_rental.utils.ShadowTransformer
 import kotlinx.android.synthetic.main.activity_transaction.*

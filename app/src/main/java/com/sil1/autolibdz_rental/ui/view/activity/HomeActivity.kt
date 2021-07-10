@@ -31,6 +31,8 @@ import com.sil1.autolibdz_rental.databinding.ActivityHomeBinding
 import com.sil1.autolibdz_rental.utils.sharedPrefFile
 
 
+val validationBool = true
+
 class HomeActivity : AppCompatActivity(),MyDrawerController{
 
     private lateinit var appBarConfiguration: AppBarConfiguration
@@ -38,6 +40,7 @@ class HomeActivity : AppCompatActivity(),MyDrawerController{
     private lateinit var  drawerLayout: DrawerLayout
     private lateinit var menuButton: FloatingActionButton
     protected val REQUEST_CHECK_SETTINGS = 0x1
+
 
     companion object {
         // The code that denotes the request for location permissions
