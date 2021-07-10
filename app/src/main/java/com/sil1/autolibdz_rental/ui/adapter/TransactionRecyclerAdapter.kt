@@ -3,6 +3,7 @@ package com.sil1.autolibdz_rental.ui.adapter
 import android.content.Context
 import android.content.Intent
 import android.net.Uri
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -42,7 +43,7 @@ class TransactionRecyclerAdapter(private var list: ArrayList<Transaction>, val c
     }
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
-        holder.dateTransaction.text = list[position].dateTransaction
+        holder.dateTransaction.text = list[position].dateTransaction?.substring(0,10)
         holder.montant.text = list[position].montant.toString()
 
         if (list[position].modePaiement == "Stripe") {

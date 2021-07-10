@@ -20,6 +20,7 @@ import java.util.ArrayList
 import androidx.lifecycle.Observer
 import androidx.navigation.findNavController
 import com.sil1.autolibdz_rental.data.model.LocataireEditEmail
+import com.sil1.autolibdz_rental.data.room.RoomService
 import com.sil1.autolibdz_rental.ui.view.activity.HomeActivity
 import com.sil1.autolibdz_rental.ui.view.activity.LoginActivity
 import com.sil1.autolibdz_rental.ui.view.activity.MyDrawerController
@@ -92,6 +93,8 @@ class ProfilFragment : Fragment() {
                 this?.putBoolean("connected", false)
                 this?.apply()
             }
+            RoomService.database.getReservationDao().deleteReservations()
+
             val myIntent = Intent(requireActivity(), LoginActivity::class.java)
             requireActivity().startActivity(myIntent)
 

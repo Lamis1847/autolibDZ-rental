@@ -13,7 +13,6 @@ import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.kaopiz.kprogresshud.KProgressHUD
 import com.sil1.autolibdz_rental.R
 import com.sil1.autolibdz_rental.ui.adapter.CardFragmentPagerAdapter
 import com.sil1.autolibdz_rental.ui.adapter.TransactionRecyclerAdapter
@@ -28,7 +27,6 @@ import java.util.concurrent.TimeUnit
 class TransactionFragment : Fragment() {
     private lateinit var mFragmentCardAdapter: CardFragmentPagerAdapter
     private lateinit var mFragmentCardShadowTransformer: ShadowTransformer
-    private lateinit var hud: KProgressHUD
     lateinit var mview:View
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -63,16 +61,8 @@ class TransactionFragment : Fragment() {
         mFragmentCardShadowTransformer.enableScaling(true)
 
 
-        //populating the recycler
-        hud = KProgressHUD.create(requireActivity())
-            .setStyle(KProgressHUD.Style.SPIN_INDETERMINATE)
-            .setLabel("Patientez s'il vous plait")
-            .setDetailsLabel("Chargement de vos transactions")
-        hud.show()
         vm.transactionList.observe(viewLifecycleOwner, Observer {
             if (vm.transactionList.value != null) {
-                val handler = Handler()
-                handler.postDelayed(Runnable { hud.dismiss() }, 500)
                 val list = vm.transactionList.value
                 val adapter = TransactionRecyclerAdapter(it, requireActivity(), vm)
 
