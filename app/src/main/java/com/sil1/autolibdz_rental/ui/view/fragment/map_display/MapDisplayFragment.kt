@@ -174,7 +174,7 @@ class MapDisplayFragment : Fragment() , OnMapReadyCallback , GoogleMap.OnMarkerC
                 }
             }
             //filtrer les bornes à afficher
-            if(valide==0){
+            if(valide==1){
             verifyBornesDeDepart()
             // Set the fields to specify which types of place data to
             // return after the user has made a selection.
@@ -205,7 +205,7 @@ class MapDisplayFragment : Fragment() , OnMapReadyCallback , GoogleMap.OnMarkerC
 
                 }
             }
-            if(valide==0){
+            if(valide==1){
             verifyBornesDeDestination()
 
             // Set the fields to specify which types of place data to
