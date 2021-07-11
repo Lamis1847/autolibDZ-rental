@@ -83,10 +83,6 @@ class AbonnementPaymentFragment : Fragment() {
                 }
             dialog.show()
         }
-
-        backToTrajetInfos.setOnClickListener{
-
-        }
     }
 
 }
