@@ -111,6 +111,8 @@ class ProfilFragment : Fragment() {
         ValiderP.setOnClickListener{
             val myIntent = Intent(requireActivity(), ValidationActivity::class.java)
             requireActivity().startActivity(myIntent)
+
+            (context as Activity).finish()
         }
     }
     private fun updateLocataire(locataire: ArrayList<LocataireRetro?>)
