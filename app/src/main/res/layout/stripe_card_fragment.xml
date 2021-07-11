@@ -26,14 +26,6 @@
             android:layout_height="?android:attr/actionBarSize"
             app:popupTheme="@style/AppTheme.PopupOverlay"
             app:theme="@style/AppTheme.Toolbar">
-
-            <androidx.appcompat.widget.AppCompatImageButton
-                android:id="@+id/backToTrajetInfos"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:background="@drawable/ic_back_icon"
-                android:layout_marginStart="24dp"
-                />
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"

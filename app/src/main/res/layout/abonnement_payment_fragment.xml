@@ -34,14 +34,6 @@
                 android:background="@drawable/ic_back_icon"
                 android:layout_marginStart="24dp"
             />
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:fontFamily="@font/gothambook"
-                android:paddingStart="24dp"
-                android:text="@string/effectuerPaiementFragTitle"
-                android:textColor="@color/black"
-                android:textSize="@dimen/appbar_title" />
 
         </androidx.appcompat.widget.Toolbar>
 
