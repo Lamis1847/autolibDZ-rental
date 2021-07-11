@@ -95,9 +95,9 @@
     <string name="no">Non</string>
 
     <!--paying from abonnement fragment-->
-    <string name="montantRestant">Montant restant</string>
+    <string name="montantRestant">Ma balance</string>
     <string name="montantAPayer">Montant à payer</string>
-    <string name="montantTotal">Total</string>
+    <string name="montantTotal">Restant</string>
     <string name="abonnement">Abonnement</string>
     <string name="invalidCard">Carte non valide</string>
     <string name="waitPlease">Patientez s\'il vous plait</string>
